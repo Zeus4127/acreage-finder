@@ -30,3 +30,6 @@ acreage/drive.log
 acreage/elev.log
 acreage/water.log
 acreage/daily.log
+
+# local backups made before edits (kept on disk, not published)
+*.before-*
