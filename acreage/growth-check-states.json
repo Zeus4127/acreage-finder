@@ -1,0 +1,48 @@
+{
+ "source": "Bendigo Bank Agribusiness, Australian Farmland Values 2026 and 2025 (sales over ~30 ha, median $/ha, total sale price incl. improvements)",
+ "councils": 256,
+ "tests": {
+  "cheap_then_growth_2005_15": {
+   "rank_match": 0.22,
+   "p": 0.0005,
+   "by_state": {
+    "NSW": 0.32,
+    "QLD": 0.39,
+    "SA": -0.04,
+    "TAS": 0.3,
+    "VIC": 0.37,
+    "WA": 0.03
+   },
+   "top_fifth_growth": 4.33,
+   "all_growth": 3.04
+  },
+  "cheap_then_growth_2015_25": {
+   "rank_match": 0.48,
+   "p": 0.0005,
+   "by_state": {
+    "NSW": 0.47,
+    "QLD": 0.75,
+    "SA": 0.14,
+    "TAS": 0.47,
+    "VIC": 0.65,
+    "WA": 0.41
+   },
+   "top_fifth_growth": 13.6,
+   "all_growth": 11.55
+  },
+  "not_boomed_2005_15_then_growth_2015_25": {
+   "rank_match": 0.33,
+   "p": 0.0005,
+   "by_state": {
+    "NSW": 0.25,
+    "QLD": 0.13,
+    "SA": 0.53,
+    "TAS": 0.42,
+    "VIC": 0.25,
+    "WA": 0.48
+   },
+   "top_fifth_growth": 13.0,
+   "all_growth": 11.55
+  }
+ }
+}

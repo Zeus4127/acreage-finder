@@ -1,6 +1,13 @@
 {
 "alerts": [
 {
+"id": "431645",
+"when": "2026-11-15T02:44+00:00",
+"title": "\u2b50 Standout: Dubbo NSW",
+"text": "900 acres, asking $1,095,000, Growth 59/100, likely sale $2,155,000",
+"url": "https://farmbuy.com/8105-newell-highway-dubbo-nsw-2830-431645"
+},
+{
 "id": "387433",
 "when": "2026-11-15T02:38+00:00",
 "title": "\u2b50 Standout: Lower Wilmot TAS",
@@ -50,5 +57,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-15T02:38+00:00"
+"updated": "2026-11-15T02:44+00:00"
 }

@@ -153,8 +153,11 @@ def main():
         add(2 if sl_ is not None and sl_ <= 10 else 0, sl_ is not None and sl_ <= 10, f"mostly gentle land (about {sl_}% slope)" if sl_ is not None and sl_ <= 10 else (f"steep in parts (about {sl_}% slope)" if sl_ is not None else "slope unknown"))
         # momentum and catch-up (22)
         l10 = x["land10"]   # areas that hadn't boomed yet grew faster next decade (fast growers slowed down)
-        add(6 if l10 is not None and l10 < 9.6 else 3 if l10 is not None and l10 < 12.3 else 0, l10 is not None and l10 < 12.3,
-            (f"area hasn't boomed yet: land values up {l10}%/yr over 10 years" if l10 < 12.3 else f"area already boomed: land values up {l10}%/yr over 10 years (fast risers slowed down next decade)") if l10 is not None else "no 10-year growth figure")
+        # checked in every state (Bendigo councils 2005-15 -> 2015-25) but Queensland's own Valuer-General figures show the
+        # opposite there (early risers kept rising), so it's worth 3 points and is left out in QLD (growth_check_qld.py)
+        if r["s"] == "QLD": l10 = None
+        add(3 if l10 is not None and l10 < 9.6 else 1.5 if l10 is not None and l10 < 12.3 else 0, l10 is not None and l10 < 12.3,
+            (f"area hasn't boomed yet: land values up {l10}%/yr over 10 years" if l10 < 12.3 else f"area already boomed: land values up {l10}%/yr over 10 years (fast risers slowed down next decade)") if l10 is not None else ("Queensland: past growth isn't a guide here (state figures show early risers kept rising)" if r["s"] == "QLD" else "no 10-year growth figure"))
         p10 = x["pop10"]
         add(4 if (p10 or 0) >= 1.5 else 3 if (p10 or 0) >= 0.8 else 1 if (p10 or 0) >= 0.3 else 0, (p10 or 0) >= 0.8,
             f"council population growing {p10}%/yr" if p10 is not None else "population growth unknown")
@@ -181,14 +184,14 @@ def main():
         if ck.get("fire") or ck.get("burnt"): pts -= 2; bad.append("bushfire prone")
         if a >= 20000: pts -= 10; bad.append("pastoral station")
         if sl_ is not None and sl_ > 25: bad.append("very steep")
-        gs = max(0, min(100, round(pts * 100 / 91.6)))   # 91.6 = most points possible, so the score is still out of 100
+        gs = max(0, min(100, round(pts * 100 / 88.6)))   # 88.6 = most points possible, so the score is still out of 100
         # must-haves: a real town or a holiday town with the basics, water, things to do, no deal-breaker
         town_ok = sm <= 45 or (hm <= 30 and tm <= 20)
         fun_ok = pkd <= 30 or wd <= 40 or cst <= 30 or hm <= 30
         hard = [b for b in bad if b not in ("bushfire prone", "very steep")]
         r["gs"], r["gx"] = gs, dict(x, bad=bad)   # the page builds the tick list from these facts
         r["gok"] = 1 if (town_ok and fun_ok and (frontage or stored) and not hard) else 0
-        r["gstar"] = 1 if (r["gok"] and gs >= 61 and v in ("great", "good")) else 0
+        r["gstar"] = 1 if (r["gok"] and gs >= 59 and v in ("great", "good")) else 0
     open(P("acreage-data.js"), "w").write("window.ACREAGE_DATA=" + json.dumps(d, separators=(",", ":")) + ";\n")
     L = [r for r in d["listings"] if "gs" in r]
     print("Growth score on", len(L), "blocks | tick all boxes:", sum(r["gok"] for r in L), "| standouts:", sum(r["gstar"] for r in L))

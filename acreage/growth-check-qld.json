@@ -1,0 +1,14 @@
+{
+ "source": "Queensland Valuer-General, historical trends in land valuations (data.qld.gov.au)",
+ "councils": 57,
+ "not_boomed": {
+  "rank_match": -0.62,
+  "p": 1.0,
+  "n": 57
+ },
+ "cheap": {
+  "rank_match": 0.61,
+  "p": 0.0005,
+  "n": 35
+ }
+}
