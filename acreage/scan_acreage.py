@@ -311,7 +311,7 @@ def price_one(r, model, pool):
     if r["a"] >= STATION_ACRES: return None, [], ""
     cs, level = comps_for(r, pool, model)
     if len(cs) < 3: return None, [], level
-    hs = 1.0 if r.get("house") else 0.0
+    hv = r.get("house"); hs = 0.5 if hv == 0.5 else (1.0 if hv else 0.0)   # 0.5 = not known (NSW government sales)
     # asking prices sit above what blocks sell for; scale them down (tuned with backtest.py)
     implied = [c["p"] * (1.0 if c.get("is_sold") else ASK_TO_SALE) * (r["a"] / c["a"]) ** model["b"] * math.exp(model["h"] * (hs - float(c["house"]))) for c in cs]
     fair = statistics.median(implied)
@@ -361,8 +361,17 @@ def load_sold():
     except Exception: nsw = []
     cut = (datetime.now(timezone.utc).date() - timedelta(days=730)).isoformat()
     seen = {(o["pc"], round(o["a"]), round(o["p"], -4)) for o in out}
+    # the government list includes non-market sales (family transfers, part shares): drop prices far outside the
+    # council's normal $/acre for that size of block (honest backtest: NSW sales were priced 35% too high before this)
+    def nb(a): return 0 if a < 50 else 1 if a < 200 else 2
+    grp = {}
+    for x in nsw:
+        if x["date"] >= cut and x.get("p") and x.get("a"): grp.setdefault((x.get("lga") or x.get("region"), nb(x["a"])), []).append(x["p"] / x["a"])
+    grp = {k: statistics.median(v) for k, v in grp.items() if len(v) >= 8}
     for x in nsw:
         if x["date"] < cut or not x.get("lat"): continue
+        m = grp.get((x.get("lga") or x.get("region"), nb(x["a"])))
+        if m and not (0.3 * m <= x["p"] / x["a"] <= 5 * m): continue
         key = (x["pc"], round(x["a"]), round(x["p"], -4))
         if key in seen: continue
         seen.add(key)

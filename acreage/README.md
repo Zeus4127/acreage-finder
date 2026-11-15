@@ -91,6 +91,9 @@ Re-run every Monday by `run_daily.sh`.
 - `backtest.py`: the likely sale price, learned on older sales and tested on the newest fifth using
   only earlier sales. Typically about 26% off. Tried on 15 Nov 2026: more comparisons, similarity
   weights and counting sales double; no real gain on the newest sales, so the method was kept.
+  Fixed the same day: NSW government sales include non-market sales (family transfers, part shares), now
+  dropped when far outside the council's normal $/acre; and NSW sales with "house unknown" were tested as if
+  they had a house. NSW sales went from 36% over to 3% over, typical error 49% to 34%.
 
 ## NSW sales
 
