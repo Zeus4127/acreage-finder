@@ -419,11 +419,14 @@ def fill_areas(rows, sold, scanned):
         if r.get("lga"): sub_lga.setdefault((r["s"], (r.get("sub") or "").upper()), r["lga"])
     try: qld = json.load(open(os.path.join(HERE, "qld-localities.json")))
     except Exception: qld = {}
+    try: abs_lga = json.load(open(os.path.join(HERE, "lga-cache.json")))   # council from the map point (lga_lookup.py, ABS boundaries)
+    except Exception: abs_lga = {}
     for r in rows:
         if not r.get("region"): r["region"] = pc_reg.get((r["s"], r["pc"]))
         if not r.get("lga"):
             g = sub_lga.get((r["s"], (r.get("sub") or "").upper()))
             if not g and r["s"] == "QLD": g = qld.get((r.get("sub") or "").upper())
+            if not g and r.get("lat"): g = abs_lga.get(f"{round(r['lat'], 3)},{round(r['lng'], 3)}") or None
             if g: r["lga"] = g
         if r.get("lga"):
             r["lga"] = LGA_SUFFIX.sub("", re.sub(r"^(Shire|City|Town|Municipality) of\s+", "", r["lga"])).strip()

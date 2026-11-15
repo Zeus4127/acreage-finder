@@ -38,6 +38,11 @@ Daily: `./run_daily.sh` runs the sold collectors, the scan and the page build in
 | QLD State Valuation Service maps | Big station sales 2023–25 (over 500 ha), positions read off the map | `qld-big-sales.json` |
 | Bendigo Bank 2026 mid-year report, NSW and QLD Valuer-General | Newest changes by region and council | `latest-values.json` |
 | Bendigo Bank farmland values | Growth by state, region, council and parcel size | `history/` |
+| QLD Valuer-General land valuation trends (data.qld.gov.au) | Every council's revaluation changes since 2002, used to cross-check the Growth score | `growth_check_qld.py`, `ref/qld-vg/` |
+| QLD state planning maps (spatial-gis.information.qld.gov.au) | Regional plan land use (Urban Footprint, Rural Production, Rural Living), tourist areas, Priority Agricultural Areas, SEQ development areas, Coordinator-General projects | `qld_planning.py` |
+| NSW and VIC zoning maps | Zones within 2 km of each block, and Victoria's Urban Growth Zone | `edge_check.py` |
+| ABS council boundaries (geo.abs.gov.au) | Council for blocks without one, from the map point | `lga_lookup.py` |
+| State population forecasts (QGSO, WA Tomorrow 13, Tasmanian Treasury 2024, SA 2016-36) | Forecast council growth to about 2041 | `pop_forecast.py`, `ref/popproj/` |
 
 Not used: Domain, realestate.com.au, Facebook and Gumtree (off-limits), REIWA (bot check), Elders (not
 reachable). Paste their ads into "Check a listing" instead.
@@ -69,6 +74,21 @@ pdftotext -layout 2026-farmland-values-report.pdf b26.txt && python3 history/par
 pdftotext -layout 2025-farmland-values-report.pdf b25.txt && python3 history/parse_bendigo.py b25.txt 2024 > history/b2024.json
 python3 history/build_history.py history/b2025.json history/b2024.json
 ```
+
+## Testing the Growth score (the Track Edge way)
+
+Every rule is judged on years it was never tuned on, and must beat 2,000 shuffles of the results.
+Re-run every Monday by `run_daily.sh`.
+
+- `growth_check.py`: NSW sales, two decades (2002-05 to 2011-14, and 2012-15 to 2022-25). Cheap areas
+  and not-yet-boomed areas grew faster in both; city and coast closeness only in the newer one.
+- `growth_check_states.py`: Bendigo council figures for all six states, 2005 to 2015 to 2025.
+- `growth_check_qld.py`: QLD Valuer-General valuations. Confirms the cheap rule; early risers kept
+  rising in QLD, so "hasn't boomed yet" is left out for QLD blocks.
+- `growth_jumps.py`: what the NSW areas that went up 10 times had in common (cheap, 40-90 km from a city).
+- `backtest.py`: the likely sale price, learned on older sales and tested on the newest fifth using
+  only earlier sales. Typically about 26% off. Tried on 15 Nov 2026: more comparisons, similarity
+  weights and counting sales double; no real gain on the newest sales, so the method was kept.
 
 ## NSW sales
 

@@ -64,7 +64,7 @@ def main():
         except Exception: return {}
     drive, elev, water = lj("drive-cache.json"), lj("elev-cache.json"), lj("water-cache.json")
     qplan, qproj, qdev = lj("qld-plan-cache.json"), lj("qld-projects-near.json"), lj("qld-devarea-near.json")
-    popf = lj("ref/pop-forecast.json")
+    popf = lj("ref/pop-forecast.json"); edge = lj("edge-cache.json")
     sys.path.insert(0, HERE); import pop_forecast as PF
     # area price level: median $/acre by state and size band, to spot areas that are still cheap (they caught up fastest)
     import statistics
@@ -185,6 +185,11 @@ def main():
         if ca is not None and ca <= 0.7 and 35 <= cm <= 90: path.append("tree-change belt: cheap area 35-90 min from " + (x["city"][0] if x["city"] else "a city"))
         if qp.get("cat") == "Urban Footprint": path.append("inside the planned urban area (SEQ Urban Footprint)")
         elif qp.get("uf3"): path.append("within about 3 km of the planned urban area (SEQ Urban Footprint): next in line if it grows")
+        eg = edge.get(sid) or {}
+        if r["s"] == "VIC" and (eg.get("ugz2") or str(r.get("zone") or "").startswith("UGZ")):
+            path.append("within 2 km of Victoria's Urban Growth Zone (land set aside for future suburbs)")
+        # town edge: shown as information only. NSW history: blocks near a 10,000+ town did not jump more often (7% went 10x, like everywhere)
+        if eg.get("res2"): x["edge"] = 1
         if sid in qdev and qdev[sid][0] <= 10: path.append(f"{qdev[sid][0]} km from {qdev[sid][1]} (the state's chosen future growth area)")
         add(4 if path else 0, bool(path), path[0] if path else "not on a known growth path")
         if len(path) >= 2: pts += 2
