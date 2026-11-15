@@ -116,26 +116,29 @@ def main():
             nonlocal pts
             pts += n if ok else 0
             why.append([1 if ok else 0, txt])
-        # weights set from what actually grew: NSW 10-100 acre sales, 177 areas, 2012-15 vs 2022-25 (see README)
-        # location (38)
+        # weights checked on two decades of NSW 10-100 acre sales (growth_check.py): 2002-05 -> 2011-14 and 2012-15 -> 2022-25.
+        # Cheap areas catching up and areas that hadn't boomed yet grew faster in BOTH decades; being close to a city or
+        # the coast only paid off in the newer one, so location counts at 60% (it's still a must-have through gok below).
+        L = 0.6
+        # location (38 x 0.6)
         cm = x["city"][1] if x["city"] else 999
-        add(12 if cm <= 90 else 10 if cm <= 150 else 5 if cm <= 240 else 0, cm <= 150, f"{x['city'][0]} about {cm} min" if x["city"] else "far from a city")
+        add(L * (12 if cm <= 90 else 10 if cm <= 150 else 5 if cm <= 240 else 0), cm <= 150, f"{x['city'][0]} about {cm} min" if x["city"] else "far from a city")
         hm = x["hol"][1] if x["hol"] else 999
-        add(9 if hm <= 30 else 7 if hm <= 60 else 2 if hm <= 120 else 0, hm <= 60, f"holiday area: {x['hol'][0]} about {hm} min" if x["hol"] else "not near a known holiday area")
+        add(L * (9 if hm <= 30 else 7 if hm <= 60 else 2 if hm <= 120 else 0), hm <= 60, f"holiday area: {x['hol'][0]} about {hm} min" if x["hol"] else "not near a known holiday area")
         cst = x["coast"] if x["coast"] is not None else 999
-        add(6 if cst <= 20 else 3 if cst <= 60 else 2 if cst <= 150 else 0, cst <= 60, f"beach about {cst} km" if cst < 999 else "far from the coast")
+        add(L * (6 if cst <= 20 else 3 if cst <= 60 else 2 if cst <= 150 else 0), cst <= 60, f"beach about {cst} km" if cst < 999 else "far from the coast")
         sm = x["sua"][1] if x["sua"] else 999
-        add(6 if sm <= 40 else 4 if sm <= 60 else 2 if sm <= 90 else 0, sm <= 60,
+        add(L * (6 if sm <= 40 else 4 if sm <= 60 else 2 if sm <= 90 else 0), sm <= 60,
             f"{x['sua'][0]} (10,000+ people) about {sm} min" if x["sua"] else "no town of 10,000+ near")
         tm = x["town"][1] if x["town"] else 999
-        add(3 if tm <= 15 else 1 if tm <= 25 else 0, tm <= 15, f"town with the basics ({x['town'][0]}) about {tm} min" if x["town"] else "no town near")
+        add(L * (3 if tm <= 15 else 1 if tm <= 25 else 0), tm <= 15, f"town with the basics ({x['town'][0]}) about {tm} min" if x["town"] else "no town near")
         hp = x["hosp"][1] if x["hosp"] else 999
-        add(2, hp <= 45, f"hospital ({x['hosp'][0]}) about {hp} min" if x["hosp"] else "no hospital near")
+        add(L * 2, hp <= 45, f"hospital ({x['hosp'][0]}) about {hp} min" if x["hosp"] else "no hospital near")
         # things to do (11)
         pkd = x["park"][1] if x["park"] else 999
-        add(6 if pkd <= 5 else 3 if pkd <= 15 else 1 if pkd <= 35 else 0, pkd <= 15, f"{x['park'][0]} about {pkd} km" if x["park"] else "no park near")
+        add(L * (6 if pkd <= 5 else 3 if pkd <= 15 else 1 if pkd <= 35 else 0), pkd <= 15, f"{x['park'][0]} about {pkd} km" if x["park"] else "no park near")
         wd = x["wine"][1] if x["wine"] else 999
-        add(2 if wd <= 25 else 1 if wd <= 50 else 0, wd <= 50, f"{x['wine'][0]} wine region about {wd} km" if x["wine"] else "no wine region near")
+        add(L * (2 if wd <= 25 else 1 if wd <= 50 else 0), wd <= 50, f"{x['wine'][0]} wine region about {wd} km" if x["wine"] else "no wine region near")
         add(3, stays >= 20, f"{stays} holiday cabins and farm stays within 40 km" if stays else "few holiday stays nearby (or no data)")
         # water and land (17)
         f = set(r.get("feats") or [])
@@ -149,15 +152,16 @@ def main():
         sl_ = x["slope"]
         add(2 if sl_ is not None and sl_ <= 10 else 0, sl_ is not None and sl_ <= 10, f"mostly gentle land (about {sl_}% slope)" if sl_ is not None and sl_ <= 10 else (f"steep in parts (about {sl_}% slope)" if sl_ is not None else "slope unknown"))
         # momentum and catch-up (22)
-        l20 = x["land20"] or 0
-        add(6 if l20 >= 8 else 4 if l20 >= 6 else 2 if l20 >= 4 else 0, l20 >= 6, f"area land values grew {l20}%/yr over 20 years" if x["land20"] else "no long-run growth figure")
+        l10 = x["land10"]   # areas that hadn't boomed yet grew faster next decade (fast growers slowed down)
+        add(6 if l10 is not None and l10 < 9.6 else 3 if l10 is not None and l10 < 12.3 else 0, l10 is not None and l10 < 12.3,
+            (f"area hasn't boomed yet: land values up {l10}%/yr over 10 years" if l10 < 12.3 else f"area already boomed: land values up {l10}%/yr over 10 years (fast risers slowed down next decade)") if l10 is not None else "no 10-year growth figure")
         p10 = x["pop10"]
         add(4 if (p10 or 0) >= 1.5 else 3 if (p10 or 0) >= 0.8 else 1 if (p10 or 0) >= 0.3 else 0, (p10 or 0) >= 0.8,
             f"council population growing {p10}%/yr" if p10 is not None else "population growth unknown")
         add(4 if x["pace"] == "busy" else 2 if x["pace"] == "normal" else 0, x["pace"] in ("busy", "normal"), f"local market {x['pace'] or 'unknown'}")
         ca = x["cheap_area"]
-        add(5 if ca is not None and ca <= 0.7 else 3 if ca is not None and ca <= 0.9 else 0, ca is not None and ca <= 0.9,
-            (f"area still cheap: about {round((1 - ca) * 100)}% under the state's price per acre (cheap areas caught up fastest)" if ca <= 1 else f"area already {round((ca - 1) * 100)}% dearer than the state's price per acre") if ca is not None else "area price level unknown")
+        add(20 if ca is not None and ca <= 0.5 else 15 if ca is not None and ca <= 0.7 else 9 if ca is not None and ca <= 0.9 else 3 if ca is not None and ca <= 1.1 else 0, ca is not None and ca <= 0.9,
+            (f"area still cheap: about {round((1 - ca) * 100)}% under the state's price per acre (cheap areas caught up fastest in both decades tested)" if ca <= 1 else f"area already {round((ca - 1) * 100)}% dearer than the state's price per acre") if ca is not None else "area price level unknown")
         # upside and price (10)
         add(3, (r.get("lots") or 0) >= 2, f"could be split into {r.get('lots')} lots" if (r.get("lots") or 0) >= 2 else "no subdivision found")
         v = r.get("v")
@@ -177,14 +181,14 @@ def main():
         if ck.get("fire") or ck.get("burnt"): pts -= 2; bad.append("bushfire prone")
         if a >= 20000: pts -= 10; bad.append("pastoral station")
         if sl_ is not None and sl_ > 25: bad.append("very steep")
-        gs = max(0, min(100, round(pts)))
+        gs = max(0, min(100, round(pts * 100 / 91.6)))   # 91.6 = most points possible, so the score is still out of 100
         # must-haves: a real town or a holiday town with the basics, water, things to do, no deal-breaker
         town_ok = sm <= 45 or (hm <= 30 and tm <= 20)
         fun_ok = pkd <= 30 or wd <= 40 or cst <= 30 or hm <= 30
         hard = [b for b in bad if b not in ("bushfire prone", "very steep")]
         r["gs"], r["gx"] = gs, dict(x, bad=bad)   # the page builds the tick list from these facts
         r["gok"] = 1 if (town_ok and fun_ok and (frontage or stored) and not hard) else 0
-        r["gstar"] = 1 if (r["gok"] and gs >= 68 and v in ("great", "good")) else 0
+        r["gstar"] = 1 if (r["gok"] and gs >= 61 and v in ("great", "good")) else 0
     open(P("acreage-data.js"), "w").write("window.ACREAGE_DATA=" + json.dumps(d, separators=(",", ":")) + ";\n")
     L = [r for r in d["listings"] if "gs" in r]
     print("Growth score on", len(L), "blocks | tick all boxes:", sum(r["gok"] for r in L), "| standouts:", sum(r["gstar"] for r in L))

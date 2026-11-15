@@ -165,9 +165,9 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
     <h3 style="font-size:16px;margin-top:14px">By state</h3>
     <div class="chips" id="pStates"></div>
     <div id="pState"></div>
-    <p class="what" id="pPicks"></p></div>
+    <div class="what" id="pPicks" style="min-width:0;max-width:100%"></div></div>
   <div class="panel" id="starBox" hidden><h3>⭐ Standouts right now</h3>
-    <p class="what">Blocks that tick every must-have (a real town or holiday town close by, water, things to do, no deal-breakers), score 68+ for growth, and are priced under similar blocks. Check each one yourself before you get excited.</p>
+    <p class="what">Blocks that tick every must-have (a real town or holiday town close by, water, things to do, no deal-breakers), score 61+ for growth, and are priced under similar blocks. Check each one yourself before you get excited.</p>
     <div id="starList"></div></div>
   <h3>What's new</h3>
   <p class="what" id="tNote"></p>
@@ -336,13 +336,13 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
     </ul></div>
   <div class="panel"><h3>How the Growth score works</h3>
     <ul class="plain">
-      <li><b>Tested on real history:</b> the weights come from NSW government sales of 10–100 acre blocks in 177 areas, comparing 2012–15 prices with 2022–25. Blocks within 2½ hours of a city grew about 10% a year, against 7.8% for blocks over 4 hours out. Within an hour of a holiday area: about 10% a year against 8–8.6%. Within 20 km of the beach: 10.1% against 8.6% inland. Next to a national park: 10.2% against 9.0%. Areas that were cheap per acre caught up fastest. Being near a wine region made no difference to growth, so it counts for little. These factors explain only part of the differences between areas (about a fifth), which is normal for property.</li>
-      <li><b>Location (38 points):</b> city (12), holiday area (9), beach (6), a 10,000+ town (6), a town with the basics (3), a hospital (2). Drive times are real road times where the router has done them, otherwise straight-line × 1.3.</li>
-      <li><b>Things to do (11):</b> a national or state park (6), wine region (2), holiday cabins and farm stays nearby (3).</li>
+      <li><b>Tested on two decades, the Track Edge way:</b> NSW government sales of 10–100 acre blocks, grouped into about 200 areas. The score was checked on 2002–05 → 2011–14 (years it was never tuned on) and on 2012–15 → 2022–25, including a shuffle test that it has to beat by a wide margin. Two things picked the winners in <i>both</i> decades: <b>areas still cheap per acre against the state caught up fastest</b>, and <b>areas that hadn't boomed yet grew faster next decade</b> (fast risers slowed down). Being close to a city, the coast or a holiday area paid off strongly in 2012–25 but not in 2002–14, so it counts for a bit less. It's still one of your must-haves. Wine regions made no difference either decade. The top fifth of areas by this score grew about 8.4% a year in the older decade against 5.8% for all areas, and 11.8% against 10.1% in the newer one.</li>
+      <li><b>Location (about 23 points):</b> city, holiday area, beach, a 10,000+ town, a town with the basics, a hospital. Drive times are real road times where the router has done them, otherwise straight-line × 1.3.</li>
+      <li><b>Things to do (about 8):</b> a national or state park, a wine region, holiday cabins and farm stays nearby.</li>
       <li><b>Water and land (17):</b> creek or river from the listing or the state water maps (7), dam, bore or tanks (3), rainfall (3), size (2), gentle slope from terrain data (2). Very steep land loses points.</li>
-      <li><b>Momentum and catch-up (19):</b> 20-year land growth (6), population growth (4), market pace (4), area still cheap against the state (5).</li>
-      <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price.</li>
-      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 68+, and priced under similar blocks.</li>
+      <li><b>Catch-up and momentum (34):</b> area still cheap against the state (up to 20), area hasn't boomed yet over 10 years (6), population growth (4), market pace (4).</li>
+      <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price. The total is scaled to be out of 100.</li>
+      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 61+, and priced under similar blocks.</li>
     </ul></div>
   <div class="panel"><h3>How the fair price works</h3>
     <ul class="plain">
@@ -517,7 +517,7 @@ function myTake(x){
   if(fl.includes("lease"))bad.push("leasehold, not freehold");if(fl.includes("access"))bad.push("access needs checking");
   const score=good.length-bad.length+(x.v==="great"?1:0)-(x.v==="over"||x.v==="why"?1:0);
   const head=x.gstar?"⭐ Standout: ticks everything and priced well. Look at it this week":x.gs==null?(score>=2?"👍 Worth a look":score>=0?"🤔 Check it carefully":"👎 I'd probably pass"):
-    x.gok&&x.gs>=60?"👍 Strong pick for long-term growth":x.gok?"🤔 Ticks the must-haves, but check the price and the area":"👎 I'd pass: it misses one of your must-haves";
+    x.gok&&x.gs>=55?"👍 Strong pick for long-term growth":x.gok?"🤔 Ticks the must-haves, but check the price and the area":"👎 I'd pass: it misses one of your must-haves";
   // flip: buy at the opening offer, hold about a year, sell at the likely sale price
   const buy=x.offer||Math.min(x.p,x.fair),buyCost=(duty(x.s,buy,x.house)||0)+2500,hold=(c.ratesLo+c.ratesHi)/2||2000;
   const sell=Math.round((x.fair+x.p)/2),sellCost=sell*.025+5000,flip=sell-sellCost-buy-buyCost-hold;   // cautious: halfway between asking and the likely price
@@ -664,7 +664,7 @@ function card(x){
   const vk=vkey(x),q=quick(x);
   const t=(x.feats||[]).map(f=>`<span class="tag">${FEAT[f]||f}</span>`).join("")+(x.flags||[]).map(f=>`<span class="tag bad">${FLAG[f]||f}</span>`).join("");
   const name=x.addr.replace(/,?\s*(QLD|NSW|VIC|SA|WA|TAS|NT)\s*\d{4}$/,"")||x.sub;
-  const gsc=x.gs==null?"":`<span class="gs ${x.gs>=65?"hi":x.gs>=45?"mid":"lo"}" title="Growth score out of 100"><i>${x.gs}</i>Growth</span>`;
+  const gsc=x.gs==null?"":`<span class="gs ${x.gs>=60?"hi":x.gs>=42?"mid":"lo"}" title="Growth score out of 100"><i>${x.gs}</i>Growth</span>`;
   return `<article class="card${x.gstar?" star":""}">
   <div class="chead"><div style="min-width:0;display:grid;gap:6px">
     <div class="pills">${gsc}${x.gstar?'<span class="pill star">★ Standout</span>':x.gok?'<span class="pill v-great">Ticks must-haves</span>':""}<span class="pill v-${vk}">${VN[vk]}${gone(x)&&x.v?" · was "+VN[x.v].toLowerCase():""}</span><span class="pill st">${x.s}</span>${isNew(x)?'<span class="pill v-great">New</span>':""}${x.drop?`<span class="pill v-high">Cut ${short(x.drop[0])} → ${short(x.drop[1])}</span>`:""}</div>
@@ -936,7 +936,9 @@ rulesChanged();
     const ticks=[lo,(lo+hi)/2,hi].map(t=>`<text x="${pd.l-6}" y="${Y(t)+4}" text-anchor="end" font-size="11" fill="currentColor" opacity=".7">$${Math.round(t/1000)}k</text>`).join("");
     const lab=[0,Math.floor(m.length/2),m.length-1].map(i=>`<text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">${m[i].month}</text>`).join("");
     $("pChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="NSW sale price per acre by month"><path d="${path}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>${ticks}${lab}</svg><div class="muted" style="font-size:12px">NSW sale price per acre, 10–200 acre blocks (3-month average). The last couple of months fill in as sales are recorded.</div>`}
-  const k=D.picks;if(k)$("pPicks").innerHTML=`<b>Track record:</b> ${k.picks.toLocaleString("en-AU")} blocks called good or great deals are being followed. `+(k.sold?`${k.sold} have sold so far, for a median ${Math.round(k.sold_vs_ask*100)}% of their asking price`+(k.sold_vs_fair?` and ${Math.round(k.sold_vs_fair*100)}% of the app's likely sale price.`:"."):`None have sold yet. Results build up over the coming weeks, and the app re-learns how far under asking blocks sell every Monday.`);
+  const k=D.picks;if(k)$("pPicks").innerHTML=`<b>Track record:</b> ${k.picks.toLocaleString("en-AU")} blocks called good or great deals are being followed. `+(k.sold?`${k.sold} have sold so far, for a median ${Math.round(k.sold_vs_ask*100)}% of their asking price`+(k.sold_vs_fair?` and ${Math.round(k.sold_vs_fair*100)}% of the app's likely sale price.`:"."):`None have sold yet. Results build up over the coming weeks, and the app re-learns how far under asking blocks sell every Monday.`)
+   +(k.card?(()=>{const c=k.card,pc=g=>g.n?Math.round(g.gone/g.n*100)+"%":"–",row=(t,g)=>`<tr><td>${t}</td><td class="r num">${g.n.toLocaleString("en-AU")}</td><td class="r num">${pc(g)}</td><td class="r num">${g.sold_vs_fair?Math.round(g.sold_vs_fair*100)+"%":"–"}</td></tr>`;
+     return `<div class="tablewrap" style="margin-top:10px"><table><thead><tr><th>Paper scorecard since ${c.since}</th><th class="r">Blocks</th><th class="r">Sold or under offer</th><th class="r">Sold vs likely price</th></tr></thead><tbody>${row("⭐ Standouts",c.standouts)}${row("Growth score 55+",c.high_score)}${row("Other good or great deals",c.other_picks)}${row("Every listing (do nothing)",c.all_listings)}</tbody></table></div><div class="what" style="margin-top:6px">If the picks are right, Standouts should sell faster than the average listing and close to the likely sale price. This fills in by itself.</div>`})():"");
 })();
 
 // market pulse by state, and standouts

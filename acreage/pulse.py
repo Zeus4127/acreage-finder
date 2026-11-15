@@ -111,6 +111,9 @@ def main():
         sid = str(r["id"])
         if r.get("v") in ("great", "good") and r.get("p") and sid not in picks:
             picks[sid] = {"d": today, "v": r["v"], "p": r["p"], "fair": r.get("fair"), "s": r["s"], "sub": r.get("sub"), "a": r["a"], "u": r.get("u")}
+        if sid in picks and "gs" not in picks[sid] and r.get("gs") is not None:   # remember the score and tier it had when picked
+            picks[sid].update(gs=r["gs"], star=r.get("gstar", 0), ok=r.get("gok", 0))
+        if sid in picks and r.get("gstar") and not picks[sid].get("star"): picks[sid]["star"] = 1
     for sid, k in picks.items():
         h = hist.get(sid) or {}
         if h.get("sold_price") and "sold" not in k: k.update(sold=h["sold_price"], sold_d=h.get("sold_date"))
@@ -121,6 +124,18 @@ def main():
                "sold_vs_ask": round(statistics.median(k["sold"] / k["p"] for k in done), 3) if done else None,
                "sold_vs_fair": round(statistics.median(k["sold"] / k["fair"] for k in done if k.get("fair")), 3) if any(k.get("fair") for k in done) else None,
                "recent": sorted(done, key=lambda k: k.get("sold_d") or "")[-8:]}
+    # paper scorecard, the Track Edge way: compare picks with "do nothing" (every listing seen since picks began).
+    # A good pick should sell (or go under offer) sooner than an average listing, and sell near our likely sale price.
+    start = min((k["d"] for k in picks.values()), default=today)
+    base = [h for h in hist.values() if (h.get("last") or h.get("first") or "") >= start]
+    def grp(ks):
+        sold = [k for k in ks if k.get("sold") and k.get("p")]
+        return {"n": len(ks), "gone": sum(1 for k in ks if k.get("gone") or k.get("sold")), "sold": len(sold),
+                "sold_vs_fair": round(statistics.median(k["sold"] / k["fair"] for k in sold if k.get("fair")), 3) if any(k.get("fair") for k in sold) else None}
+    allp = list(picks.values())
+    summary["card"] = {"since": start, "standouts": grp([k for k in allp if k.get("star")]), "high_score": grp([k for k in allp if (k.get("gs") or 0) >= 55]),
+                       "other_picks": grp([k for k in allp if not k.get("star") and (k.get("gs") or 0) < 55]),
+                       "all_listings": {"n": len(base), "gone": sum(1 for h in base if h.get("gone") or h.get("sold_price"))}}
 
     # ---- sales per month by state
     # Farmbuy's sold list (every sale it shows, since mid 2026; grows each day)

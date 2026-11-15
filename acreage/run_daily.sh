@@ -15,6 +15,7 @@ python3 -I -u scan_acreage.py
 python3 -I -u scan_catches.py && python3 -I -u scan_acreage.py --rescore || echo "Catch checks failed; carrying on"
 if [ "$(date +%u)" = 1 ]; then  # Mondays: re-test the prices against real sales and re-learn the asking-to-sale gap
   python3 -I -u backtest.py --tune && python3 -I -u scan_acreage.py --rescore || echo "Backtest step failed; carrying on"
+  python3 -I -u growth_check.py || echo "Growth check failed; carrying on"   # re-check the Growth score on two decades of NSW sales
 fi
 python3 -I -u elevation.py || echo "Elevation step failed; carrying on"
 python3 -I -u water_check.py || echo "Creek check step failed; carrying on"

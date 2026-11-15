@@ -1,4 +1,54 @@
 {
-"alerts": [],
-"updated": "2026-11-14T17:52+00:00"
+"alerts": [
+{
+"id": "387433",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Lower Wilmot TAS",
+"text": "24 acres, asking $650,000, Growth 61/100, likely sale $697,000",
+"url": "https://farmbuy.com/1951-wilmot-road-lower-wilmot-tas-7310-387433"
+},
+{
+"id": "431811",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Hartley SA",
+"text": "204 acres, asking $745,000, Growth 61/100, likely sale $977,000",
+"url": "https://farmbuy.com/lot-259-harvey-road-hartley-sa-5255-431811"
+},
+{
+"id": "420242",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Merrijig VIC",
+"text": "305 acres, asking $1,250,000, Growth 64/100, likely sale $1,564,000",
+"url": "https://farmbuy.com/351-mia-mia-road-merrijig-vic-3875-420242"
+},
+{
+"id": "432111",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Kulnura NSW",
+"text": "383 acres, asking $1,250,000, Growth 67/100, likely sale $2,002,000",
+"url": "https://farmbuy.com/kulnura-nsw-2250-432111"
+},
+{
+"id": "435496",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Lansdowne NSW",
+"text": "157 acres, asking $1,100,000, Growth 65/100, likely sale $1,775,000",
+"url": "https://farmbuy.com/974-north-moto-road-lansdowne-nsw-2430-435496"
+},
+{
+"id": "339181",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Wootha QLD",
+"text": "142 acres, asking $1,900,000, Growth 61/100, likely sale $2,847,000",
+"url": "https://farmbuy.com/97-155-doyle-road-wootha-qld-4552-339181"
+},
+{
+"id": "420773",
+"when": "2026-11-15T02:38+00:00",
+"title": "\u2b50 Standout: Yangan QLD",
+"text": "257 acres, asking $1,100,000, Growth 67/100, likely sale $1,304,000",
+"url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
+}
+],
+"updated": "2026-11-15T02:38+00:00"
 }
