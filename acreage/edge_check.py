@@ -6,8 +6,9 @@ growth.py turns these into "growth path" signs."""
 import json, os, sys, time, urllib.parse, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__)); P = lambda f: os.path.join(HERE, f)
 SVC = {"NSW": ("https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/ePlanning/Planning_Portal_Principal_Planning/MapServer/19/query", "SYM_CODE"),
-       "VIC": ("https://plan-gis.mapshare.vic.gov.au/arcgis/rest/services/Planning/Vicplan_PlanningSchemeZones/MapServer/0/query", "ZONE_CODE")}
-RES = {"NSW": ("R1", "R2", "R3", "R4"), "VIC": ("GRZ", "NRZ", "RGZ", "MUZ", "TZ")}
+       "VIC": ("https://plan-gis.mapshare.vic.gov.au/arcgis/rest/services/Planning/Vicplan_PlanningSchemeZones/MapServer/0/query", "ZONE_CODE"),
+       "TAS": ("https://services.thelist.tas.gov.au/arcgis/rest/services/Public/PlanningOnline/MapServer/13/query", "ZONE")}
+RES = {"NSW": ("R1", "R2", "R3", "R4"), "VIC": ("GRZ", "NRZ", "RGZ", "MUZ", "TZ"), "TAS": ("GENERAL RESIDENTIAL", "INNER RESIDENTIAL", "LOW DENSITY RESIDENTIAL")}
 
 def get(url, q):
     for t in range(3):
@@ -22,7 +23,7 @@ def main():
     d = json.loads(open(P("acreage-data.js")).read().split("=", 1)[1].strip().rstrip(";"))
     try: cache = json.load(open(P("edge-cache.json")))
     except Exception: cache = {}
-    todo = sorted([r for r in d["listings"] if r["s"] in SVC and r.get("lat") and not r.get("uo") and str(r["id"]) not in cache], key=lambda r: r["s"] != "VIC")   # VIC first: its service is quicker
+    todo = sorted([r for r in d["listings"] if r["s"] in SVC and r.get("lat") and not r.get("uo") and str(r["id"]) not in cache], key=lambda r: r["s"] == "NSW")   # NSW last: its service is the slowest
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else 4000
     print("Town-edge check: to do", len(todo), "| doing up to", limit)
     # skip a state whose map server isn't answering right now (try again next run)
@@ -41,6 +42,7 @@ def main():
         codes = sorted({(f["attributes"].get(fld) or "").upper() for f in res.get("features", [])} - {""})
         x = {"res2": 1 if any(c.startswith(RES[r["s"]]) for c in codes) else 0}
         if r["s"] == "VIC" and any(c.startswith("UGZ") for c in codes): x["ugz2"] = 1
+        if r["s"] == "TAS" and any(c.startswith("FUTURE URBAN") for c in codes): x["fu2"] = 1   # Tasmania's Future Urban Zone
         return r, x
     done = fails = 0
     with ThreadPoolExecutor(4) as ex:   # 4 at a time: the map servers are slow per request

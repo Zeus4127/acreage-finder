@@ -188,6 +188,7 @@ def main():
         eg = edge.get(sid) or {}
         if r["s"] == "VIC" and (eg.get("ugz2") or str(r.get("zone") or "").startswith("UGZ")):
             path.append("within 2 km of Victoria's Urban Growth Zone (land set aside for future suburbs)")
+        if r["s"] == "TAS" and eg.get("fu2"): path.append("within 2 km of Tasmania's Future Urban Zone (land set aside for future suburbs)")
         # town edge: shown as information only. NSW history: blocks near a 10,000+ town did not jump more often (7% went 10x, like everywhere)
         if eg.get("res2"): x["edge"] = 1
         sp = saplan.get(sid) or {}

@@ -40,7 +40,9 @@ Daily: `./run_daily.sh` runs the sold collectors, the scan and the page build in
 | Bendigo Bank farmland values | Growth by state, region, council and parcel size | `history/` |
 | QLD Valuer-General land valuation trends (data.qld.gov.au) | Every council's revaluation changes since 2002, used to cross-check the Growth score | `growth_check_qld.py`, `ref/qld-vg/` |
 | QLD state planning maps (spatial-gis.information.qld.gov.au) | Regional plan land use (Urban Footprint, Rural Production, Rural Living), tourist areas, Priority Agricultural Areas, SEQ development areas, Coordinator-General projects | `qld_planning.py` |
-| NSW and VIC zoning maps | Zones within 2 km of each block, and Victoria's Urban Growth Zone | `edge_check.py` |
+| NSW, VIC and TAS zoning maps | Zones within 2 km of each block: Victoria's Urban Growth Zone, Tasmania's Future Urban Zone, land zoned for houses | `edge_check.py` |
+| PlanSA maps (location.sa.gov.au) | SA zone, Code Amendment rezonings within 3 km (rural to housing counts as a growth path), Greenfield land | `sa_planning.py` |
+| WA SLIP maps | Region Scheme Urban Deferred land, region scheme changes to Urban, planned Perth and Peel estates | `wa_planning.py` |
 | ABS council boundaries (geo.abs.gov.au) | Council for blocks without one, from the map point | `lga_lookup.py` |
 | State population forecasts (QGSO, WA Tomorrow 13, Tasmanian Treasury 2024, SA 2016-36) | Forecast council growth to about 2041 | `pop_forecast.py`, `ref/popproj/` |
 
