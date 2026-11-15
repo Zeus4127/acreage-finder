@@ -64,7 +64,7 @@ def main():
         except Exception: return {}
     drive, elev, water = lj("drive-cache.json"), lj("elev-cache.json"), lj("water-cache.json")
     qplan, qproj, qdev = lj("qld-plan-cache.json"), lj("qld-projects-near.json"), lj("qld-devarea-near.json")
-    popf = lj("ref/pop-forecast.json"); edge = lj("edge-cache.json")
+    popf = lj("ref/pop-forecast.json"); edge = lj("edge-cache.json"); saplan = lj("sa-plan-cache.json")
     sys.path.insert(0, HERE); import pop_forecast as PF
     # area price level: median $/acre by state and size band, to spot areas that are still cheap (they caught up fastest)
     import statistics
@@ -190,6 +190,11 @@ def main():
             path.append("within 2 km of Victoria's Urban Growth Zone (land set aside for future suburbs)")
         # town edge: shown as information only. NSW history: blocks near a 10,000+ town did not jump more often (7% went 10x, like everywhere)
         if eg.get("res2"): x["edge"] = 1
+        sp = saplan.get(sid) or {}
+        hit = [z for z in sp.get("rez", []) if z[2]]
+        if hit: path.append(f"within 3 km of a rural-to-housing rezoning ({hit[0][0]}, {str(hit[0][1]).lower()})")
+        # SA Greenfield land supply is within 2 km of over a third of SA blocks, too common to count: shown as information only
+        if sp: x["saplan"] = sp
         if sid in qdev and qdev[sid][0] <= 10: path.append(f"{qdev[sid][0]} km from {qdev[sid][1]} (the state's chosen future growth area)")
         add(4 if path else 0, bool(path), path[0] if path else "not on a known growth path")
         if len(path) >= 2: pts += 2

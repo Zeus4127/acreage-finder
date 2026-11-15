@@ -22,6 +22,7 @@ python3 -I -u elevation.py || echo "Elevation step failed; carrying on"
 python3 -I -u water_check.py || echo "Creek check step failed; carrying on"
 python3 -I -u qld_planning.py 300 || echo "QLD planning step failed; carrying on"   # QLD planning areas, growth fronts and big projects (new blocks only)
 python3 -I -u edge_check.py 400 || echo "Town-edge check failed; carrying on"   # NSW and VIC zoning within 2 km (new blocks only)
+python3 -I -u sa_planning.py 200 || echo "SA planning step failed; carrying on"   # SA zones, rezonings and greenfield land (new blocks only)
 python3 -I -u drive_times.py || echo "Drive times step failed; carrying on"
 python3 -I -u growth.py || echo "Growth score step failed; carrying on"
 python3 -I -u pulse.py || echo "Market pulse step failed; carrying on"
