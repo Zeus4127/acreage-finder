@@ -142,90 +142,194 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
 #rulesBox button:first-child{background:var(--accent);color:var(--accent-ink)}
 #pStates button{border:1px solid var(--line2);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;margin:0 4px 4px 0}
 #pStates button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
-</style>
+/* ===== App 2.0 structure: header, bottom navigation, compact rows, block page, folding sections ===== */
+.brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.logo{width:22px;height:22px;border-radius:6px;background:linear-gradient(160deg,var(--accent) 0 55%,#2F7A62 55% 100%)}
+.bar1 h1{display:none}
+.topin{padding-bottom:10px}
+.dnav{display:none;gap:2px;margin-top:8px}
+.dnav button{background:none;border:none;border-bottom:2px solid transparent;padding:8px 12px 9px;font-weight:600;font-size:14px;color:var(--muted)}
+.dnav button[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent)}
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:35;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);
+  padding:4px max(6px,env(safe-area-inset-right,0px)) calc(4px + env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px));box-shadow:0 -2px 12px rgba(19,32,27,.05)}
+.bnav button{display:grid;justify-items:center;gap:2px;background:none;border:none;padding:6px 0 4px;font-size:11.5px;font-weight:600;color:var(--muted);min-height:52px;border-radius:10px}
+.bnav svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.bnav button[aria-current="page"]{color:var(--accent)}
+.bnav button[aria-current="page"] svg{stroke-width:2.3}
+main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+@media (min-width:900px){.dnav{display:flex}.bnav{display:none}main{padding-bottom:64px}.topin{padding-bottom:0}}
+section.view{padding-top:14px;gap:12px}
+.vt{font-size:22px;margin:4px 0 0;letter-spacing:-.02em}
+/* home */
+.hello{padding:18px 18px 16px;border-radius:var(--r);background:var(--accent);color:var(--accent-ink);background-image:repeating-radial-gradient(circle at 92% 18%,rgba(255,255,255,.06) 0 1px,transparent 1px 22px)}
+.hello .ey{margin:0;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.hello h2{margin:6px 0 4px;font-size:clamp(22px,5vw,28px);line-height:1.15;letter-spacing:-.02em}
+.hello h2 em{font-style:normal;color:#F2D49A}
+.hsub{margin:0;font-size:14px;color:rgba(255,255,255,.88);max-width:60ch}
+.facts{margin:0}
+.pulse-mini{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);text-decoration:none;color:var(--ink);box-shadow:var(--shadow)}
+.pulse-mini b{font-size:13.5px}.pulse-mini span{font-size:13px;color:var(--muted)}
+.pulse-mini::after{content:"›";margin-left:auto;font-size:22px;color:var(--faint)}
+.sec{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:8px}
+.sec h3{font-size:17px}
+.sec a{font-size:13.5px;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap}
+.sec-note{margin:-6px 0 0;font-size:13px;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tile{display:grid;gap:2px;padding:12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);text-align:left;box-shadow:var(--shadow);color:var(--ink);text-decoration:none;font:inherit}
+.tile b{font-size:22px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.tile small{font-size:12px;color:var(--muted);font-weight:500}
+/* compact rows: one block per row, tap for the full page */
+.rows{display:grid;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.rows:empty{display:none}
+.ri{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);background:var(--surface)}
+.ri:first-child{border-top:none}
+.ri:active{background:var(--head)}
+@media (hover:hover){.ri:hover{background:color-mix(in srgb,var(--accent-soft) 40%,var(--surface))}}
+.gsb{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;color:#fff;background:var(--faint)}
+.gsb.hi{background:var(--ok)}.gsb.mid{background:var(--info)}
+.gsb small{display:block;font-size:7px;font-weight:600;letter-spacing:0;opacity:.85;margin-top:-4px;text-transform:uppercase}
+.ri-main{min-width:0;display:grid;gap:3px}
+.ri-t{font-weight:650;font-size:15px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ri-s{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ri-tags{display:flex;gap:4px;flex-wrap:wrap}
+.ri-tags .pill{font-size:11px;padding:2px 7px}
+.ri-p{text-align:right;display:grid;gap:1px}
+.ri-p b{font-size:16px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ri-p small{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.ri-note{grid-column:1/-1;font-size:12.5px;background:var(--warn-soft);color:var(--ink);padding:6px 10px;border-radius:8px;margin-top:-2px}
+.empty-row{padding:22px 16px;text-align:center;color:var(--muted);font-size:14px}
+/* search */
+.searchbar{display:flex;gap:8px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:20;padding:8px 0;background:var(--bg)}
+@media (min-width:900px){.searchbar{top:calc(env(safe-area-inset-top,0px) + 96px)}}
+.searchbar input{flex:1;min-width:0;padding:11px 14px;border:1px solid var(--line2);border-radius:999px;background:var(--surface);min-height:44px}
+.fbtn{border:1px solid var(--line2);background:var(--surface);border-radius:999px;padding:0 16px;font-weight:600;min-height:44px;white-space:nowrap}
+.fbtn span{display:inline-grid;place-items:center;min-width:20px;height:20px;margin-left:6px;border-radius:999px;background:var(--accent);color:#fff;font-size:12px}
+.fbtn span:empty{display:none}
+.qchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:-2px 0 0;padding-bottom:2px}
+.qchips::-webkit-scrollbar{display:none}
+.qchips .chip{white-space:nowrap;flex:none}
+.filt{gap:12px}
+.checks{display:flex;flex-wrap:wrap;gap:4px 16px}
+.count{margin:0;font-size:13px;color:var(--muted)}
+.btn.wide{width:100%}
+.grid2 label,.lbl{display:grid;gap:4px;font-size:11.5px;color:var(--muted);font-weight:600}
+.lbl select,.lbl input{padding:9px 10px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--surface);min-height:40px}
+/* folding sections */
+details.acc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+details.acc>summary{list-style:none;cursor:pointer;padding:15px 16px;font-weight:650;font-size:15.5px;display:flex;align-items:center;gap:10px}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary span{margin-left:auto;font-size:12px;font-weight:500;color:var(--muted)}
+details.acc>summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg);transition:transform .15s;flex:none}
+details.acc[open]>summary::after{transform:rotate(-135deg)}
+.accin{padding:0 16px 16px;display:grid;gap:10px;min-width:0}
+.accin h4,.bsec h4{margin:6px 0 0;font-size:14px}
+.verdict{font-weight:700;margin:0}
+/* block page */
+.bp-bar{display:flex;align-items:center;gap:8px;margin:-4px 0 2px}
+.back{display:inline-flex;align-items:center;gap:6px;border:none;background:none;color:var(--accent);font-weight:600;padding:8px 2px;font-size:15px}
+.back::before{content:"";width:9px;height:9px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.bp-head{display:grid;gap:8px}
+.bp-head h2{margin:0;font-size:22px;line-height:1.2;letter-spacing:-.02em}
+.bp-loc{font-size:14px;color:var(--muted)}
+.bp-price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bp-price b{font-size:28px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bp-price span{font-size:13px;color:var(--muted)}
+.kf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.kf div{padding:10px 12px;border-left:1px solid var(--line);border-top:1px solid var(--line);display:grid;gap:1px;min-width:0}
+.kf div:nth-child(3n+1){border-left:none}.kf div:nth-child(-n+3){border-top:none}
+.kf small{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.kf span{font-size:16px;font-weight:650;font-variant-numeric:tabular-nums}
+.take{padding:14px 16px;border-radius:var(--r);background:var(--accent-soft);display:grid;gap:8px}
+.take b{font-size:15px}
+.bsec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;box-shadow:var(--shadow);min-width:0}
+.bsec>h3{font-size:16px;display:flex;align-items:center;gap:8px}
+.bsec .loc,.bsec details.loc{font-size:14px;line-height:1.55;color:var(--ink2)}
+.ticks{display:grid;gap:6px;margin:0;padding:0;list-style:none;font-size:14px}
+.ticks li{display:grid;grid-template-columns:20px 1fr;gap:6px;align-items:start}
+.ticks li::before{content:"✓";color:var(--ok);font-weight:700}
+.ticks li.no::before{content:"✗";color:var(--stop)}
+.ticks li.no{color:var(--muted)}
+.gbig{display:flex;align-items:center;gap:12px}
+.gbig .gsb{width:56px;height:56px;font-size:21px;border-radius:14px}
+.ideas{display:grid;gap:8px;margin:0;padding:0;list-style:none;font-size:14px}
+.ideas li{padding:10px 12px;background:var(--bg);border-radius:var(--r-sm)}
+.nums3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.nums3 div{padding:10px 12px;background:var(--bg);border-radius:var(--r-sm);display:grid;gap:2px}
+.nums3 small{font-size:11.5px;color:var(--muted);font-weight:600}.nums3 b{font-size:17px;font-variant-numeric:tabular-nums}
+.actbar{position:sticky;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;gap:8px;padding:10px 0 4px;background:linear-gradient(to top,var(--bg) 70%,transparent)}
+@media (min-width:900px){.actbar{bottom:0}}
+.actbar .go{flex:1;justify-content:center;text-decoration:none;background:var(--accent);color:#fff;font-weight:600;border-radius:var(--r-sm);display:inline-flex;align-items:center;min-height:46px}
+.actbar .watch{min-height:46px;padding:0 16px}
+.watch[aria-pressed="true"]{background:var(--ochre-soft);border-color:color-mix(in srgb,var(--ochre) 40%,var(--line2));color:var(--ochre)}
+.risk{padding:10px 12px;border-radius:var(--r-sm);background:var(--stop-soft);font-size:14px}
+.okbox{padding:10px 12px;border-radius:var(--r-sm);background:var(--ok-soft);font-size:14px}
+.result{display:grid;gap:10px;margin-top:4px}
+section.view>*,.accin>*,.bsec>*{min-width:0}
+details.acc{min-width:0;max-width:100%}
+textarea{min-height:110px}
 
+</style>
 <header class="top"><div class="topin">
-  <div class="bar1"><h1>Acreage Finder</h1><span class="live"><span class="dot"></span><span id="scanned">loading…</span></span></div>
-  <nav class="tabs" role="tablist" id="tabs">
-    <button role="tab" data-v="today">Today</button>
-    <button role="tab" data-v="deals" aria-selected="true">Deals</button>
-    <button role="tab" data-v="check">Check a listing</button>
-    <button role="tab" data-v="all">All listings</button>
-    <button role="tab" data-v="growth">Growth</button>
-    <button role="tab" data-v="guide">Price guide</button>
-    <button role="tab" data-v="buy">Before you buy</button>
+  <div class="bar1"><a class="brand" href="#home" aria-label="Acreage Finder home"><span class="logo" aria-hidden="true"></span>Acreage Finder</a><span class="live"><span class="dot"></span><span id="scanned">loading…</span></span></div>
+  <nav class="dnav" id="dnav" aria-label="Sections">
+    <button type="button" data-v="home">Home</button><button type="button" data-v="search">Search</button><button type="button" data-v="saved">Saved</button><button type="button" data-v="insights">Insights</button><button type="button" data-v="more">More</button>
   </nav>
 </div></header>
 
-<main>
-<section class="view" id="v-today" hidden>
-  <div class="panel" id="pulseBox" hidden><h3>📊 Market pulse: is it time to buy?</h3>
-    <p id="pVerdict" style="font-weight:700;margin:4px 0"></p><ul class="plain" id="pNotes"></ul>
-    <div id="pChart" class="chart"></div>
-    <p class="what">Checked every day from what's for sale (asking prices by block size, price cuts, time on market, how many blocks there are for each sale, and how far under asking blocks sell), plus NSW government sale prices month by month. When several of these turn down together, prices are falling and buyers have the upper hand.</p>
-    <h3 style="font-size:16px;margin-top:14px">By state</h3>
-    <div class="chips" id="pStates"></div>
-    <div id="pState"></div>
-    <div class="what" id="pPicks" style="min-width:0;max-width:100%"></div></div>
-  <div class="panel" id="watchBox" hidden><h3>☆ Your watchlist</h3>
-    <p class="what">Blocks you've starred (tap ☆ Watch on any card). Price changes since you starred them show here, and whether it has sold. Saved on this phone only.</p>
-    <div id="watchList" class="list"></div></div>
-  <div class="panel" id="starBox" hidden><h3>⭐ Standouts right now</h3>
-    <p class="what">Blocks that tick every must-have (a real town or holiday town close by, water, things to do, no deal-breakers), score 57+ for growth, and are priced under similar blocks. Check each one yourself before you get excited.</p>
-    <div id="starList"></div></div>
-  <h3>What's new</h3>
-  <p class="what" id="tNote"></p>
-  <div class="facts" id="tfacts" style="margin:0;border-radius:14px"></div>
-  <h3>New listings</h3><div class="list" id="tnew"></div>
-  <h3>Price drops</h3><div class="list" id="tdrop"></div>
-  <h3>Recently sold, 10+ acres</h3>
-  <p class="what">From Farmbuy and Farm Property sold listings. The price is the sale price when the agent shares it, otherwise the last asking price. The date is roughly when it was marked sold.</p>
-  <div class="tablewrap"><table><thead><tr><th>Where</th><th>State</th><th class="r">Acres</th><th class="r">Price</th><th class="r">$/acre</th><th>Kind</th><th>Sold</th></tr></thead><tbody id="tsold"></tbody></table></div>
-</section>
-
-<section class="view" id="v-deals">
-  <div class="hero"><div class="ey">All of Australia · 10 acres and up</div>
-    <h2>Which blocks will <em>grow</em>?</h2>
-    <p>Every rural block of 10 acres or more for sale on Farmbuy and Farm Property, scored for long-term growth (city, holiday towns, beach, parks, water, the area's growth) and priced against real sales nearby. Each one gets a Growth score, a likely sale price, an offer to open with and a price to walk away at.</p></div>
+<main id="main">
+<!-- HOME: the short version. Today's best picks, the growth-path blocks, what you're watching, what changed. -->
+<section class="view" id="v-home" aria-labelledby="hTitle">
+  <div class="hello">
+    <p class="ey">All of Australia · rural blocks 10 acres and up</p>
+    <h2 id="hTitle">Which blocks will <em>grow</em>?</h2>
+    <p class="hsub">Every block is scored for long-term growth, priced against real sales, and checked against your must-haves.</p>
+  </div>
   <div class="facts" id="facts"></div>
-  <div class="filters">
-    <div style="display:grid;gap:3px"><span style="font-size:12px;color:var(--muted);font-weight:600">State</span><div class="chips" id="dstate"></div></div>
-    <label for="dmax">Most I'll pay<select id="dmax"><option value="150000">$150k</option><option value="200000">$200k</option><option value="250000">$250k</option><option value="300000" selected>$300k</option><option value="400000">$400k</option><option value="500000">$500k</option><option value="750000">$750k</option><option value="1000000">$1M</option></select></label>
-    <label for="dmin">At least<select id="dmin"><option value="10" selected>10 ac</option><option value="20">20 ac</option><option value="50">50 ac</option><option value="100">100 ac</option><option value="200">200 ac</option><option value="500">500 ac</option><option value="1000">1,000 ac</option></select></label>
-    <label class="chk" for="dhouse"><input type="checkbox" id="dhouse"> Has a house</label>
-    <label class="chk" for="dclean"><input type="checkbox" id="dclean"> No covenants or lease</label>
-    <label class="chk" for="dok"><input type="checkbox" id="dok"> Ticks the must-haves (town, water, things to do, no deal-breakers)</label>
-  </div>
-  <h3>Best deals right now</h3>
-  <p class="what">Ranked by Growth score first, then by how far under similar blocks the price is. ⭐ Standouts come first. Under-offer and sold blocks are left out.</p>
-  <div class="list" id="dlist"></div>
-  <div class="panel chart"><h3>Value vs quality</h3>
-    <p class="what">Each dot is a block within your filters. Further right means cheaper than its fair price. Higher means better quality. The top-right box holds the best buys. Tap a dot to open it.</p>
-    <div id="chart"></div>
-    <div class="legend"><span><i style="background:var(--ok)"></i>Great or good deal</span><span><i style="background:var(--info)"></i>Fair price</span><span><i style="background:var(--warn)"></i>A bit high</span><span><i style="background:var(--stop)"></i>Overpriced</span></div>
-  </div>
+  <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
+  <div class="sec"><h3>⭐ Top picks</h3><a href="#search" data-preset="star">See all</a></div>
+  <p class="sec-note">Tick every must-have, score high for growth, and priced under similar blocks.</p>
+  <div class="rows" id="hStars"></div>
+  <div class="sec"><h3>On a growth path</h3><a href="#search" data-preset="path">See all</a></div>
+  <p class="sec-note">Cheap areas in the tree-change belt, or next to land the state has set aside for future suburbs.</p>
+  <div class="rows" id="hPath"></div>
+  <div id="hWatchWrap" hidden><div class="sec"><h3>☆ Watching</h3><a href="#saved">See all</a></div><div class="rows" id="hWatch"></div></div>
+  <div class="sec"><h3>What changed</h3></div>
+  <div class="tiles" id="hTiles"></div>
 </section>
 
-<section class="view" id="v-check" hidden>
-  <h3>Check a listing</h3>
-  <p class="what">Copy the words from any listing (Domain, realestate.com.au, Gumtree, Facebook) and paste them here. I'll read the size, price and town, then price it against the blocks in this scan.</p>
-  <textarea id="paste" placeholder="e.g. 160 acres bush block, Inglewood QLD 4387. Two dams, shed, power to boundary. $265,000"></textarea>
-  <div class="row"><button class="btn" id="readBtn" type="button">Read listing</button><button class="btn ghost" id="sampleBtn" type="button">Try an example</button></div>
-  <div class="grid2">
-    <label for="cAcres">Acres<input id="cAcres" inputmode="decimal" placeholder="160"></label>
-    <label for="cPrice">Asking $<input id="cPrice" inputmode="numeric" placeholder="265000"></label>
-    <label for="cState">State<select id="cState"></select></label>
-    <label for="cPc">Postcode<input id="cPc" inputmode="numeric" placeholder="4387"></label>
+<!-- SEARCH: one place to find any block. Quick filters up top, more filters behind a button, compact rows. -->
+<section class="view" id="v-search" hidden aria-label="Search">
+  <div class="searchbar">
+    <input type="search" id="aq" placeholder="Town, postcode or agent" aria-label="Search by town, postcode or agent">
+    <button type="button" class="fbtn" id="fBtn" aria-expanded="false" aria-controls="fPanel">Filters<span id="fCount"></span></button>
   </div>
-  <div class="row" id="cFeat"></div>
-  <button class="btn" id="checkBtn" type="button">Check it</button>
-  <div class="result panel" id="cResult" hidden></div>
+  <div class="qchips" id="qchips" role="group" aria-label="Quick filters"></div>
+  <div class="panel filt" id="fPanel" hidden>
+    <div class="grid2">
+      <label for="as">State<select id="as"><option value="">All states</option></select></label>
+      <label for="amax">Max price<select id="amax"><option value="0">Any</option><option value="200000">$200k</option><option value="300000">$300k</option><option value="400000">$400k</option><option value="500000">$500k</option><option value="750000">$750k</option><option value="1000000">$1M</option><option value="2000000">$2M</option></select></label>
+      <label for="amin">Min size<select id="amin"><option value="0">Any</option><option value="20">20 ac</option><option value="50">50 ac</option><option value="100">100 ac</option><option value="200">200 ac</option><option value="500">500 ac</option></select></label>
+      <label for="av">Price verdict<select id="av"><option value="">Any</option><option value="great">Great deal</option><option value="good">Good deal</option><option value="fair">Fair price</option><option value="high">A bit high</option><option value="over">Overpriced</option><option value="why">Unusually cheap</option><option value="none">No price shown</option></select></label>
+      <label for="asort">Sort by<select id="asort"><option value="ratio">Best overall</option><option value="gs">Growth score</option><option value="p">Cheapest</option><option value="ppa">$ per acre</option><option value="a">Biggest</option><option value="dom">Longest for sale</option><option value="cuts">Most price cuts</option></select></label>
+    </div>
+    <div class="checks">
+      <label class="chk"><input type="checkbox" id="ahouse"> Has a house</label>
+      <label class="chk"><input type="checkbox" id="aclean"> No covenant or lease</label>
+      <label class="chk"><input type="checkbox" id="agone"> Show under offer and sold</label>
+    </div>
+    <div class="row"><button type="button" class="btn ghost" id="fReset">Reset filters</button><button type="button" class="btn" id="fDone">Show results</button></div>
+  </div>
+  <div class="count" id="acount" aria-live="polite"></div>
+  <div class="rows" id="alist"></div>
+  <button class="btn ghost wide" id="amore" type="button" hidden>Show more</button>
 </section>
 
-<section class="view" id="v-all" hidden>
-  <h3>All listings</h3>
-  <details class="panel" id="rulesBox"><summary><b>⭐ My rules</b> <span id="rulesCount" class="muted"></span></summary>
-    <p class="what">Set what you want once. Tick "Only my matches" below to see just those blocks. To get a phone alert each morning for new matches, tap "Copy my rules" and send them to me.</p>
+<!-- SAVED: blocks you're watching and the rules your phone alerts follow. -->
+<section class="view" id="v-saved" hidden aria-label="Saved">
+  <h2 class="vt">Saved</h2>
+  <div class="sec"><h3>☆ Watching</h3></div>
+  <div class="rows" id="watchList"></div>
+  <div class="panel" id="rulesBox"><h3>My rules</h3>
+    <p class="what">What you're after. The "My rules" quick filter in Search uses these, and the phone app only sends alerts for new blocks that match them (Standouts always come through). Saved on this device.</p>
     <div class="grid2">
       <label for="rMax">Max price $<input id="rMax" inputmode="numeric" placeholder="any"></label>
       <label for="rMinA">Min acres<input id="rMinA" inputmode="numeric" placeholder="10"></label>
@@ -237,7 +341,7 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
       <label for="rHouse">House<select id="rHouse"><option value="">Either</option><option value="yes">Must have a house</option><option value="no">Bare land only</option></select></label>
       <label for="rDeal">Deal<select id="rDeal"><option value="">Any price</option><option value="good">Good or great deals</option><option value="great">Great deals only</option></select></label>
     </div>
-    <div class="row" style="flex-wrap:wrap;gap:10px;margin-top:8px">
+    <div class="checks">
       <label class="chk"><input type="checkbox" id="rWater"> Has water (creek, river, dam or bore)</label>
       <label class="chk"><input type="checkbox" id="rNoFlood"> No mapped flood area</label>
       <label class="chk"><input type="checkbox" id="rNoVeg"> No protected vegetation</label>
@@ -247,90 +351,80 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
       <label class="chk"><input type="checkbox" id="rOk"> Ticks the must-haves</label>
       <label class="chk"><input type="checkbox" id="rMinG"> Growth score 60+</label>
     </div>
-    <div class="row" style="gap:10px;margin-top:8px"><button type="button" id="rCopy">Copy my rules</button><button type="button" id="rClear">Clear</button></div>
-  </details>
-  <div class="filters">
-    <label for="aq">Search<input type="search" id="aq" placeholder="town, postcode, agent"></label>
-    <label for="as">State<select id="as"><option value="">All</option></select></label>
-    <label for="av">Verdict<select id="av"><option value="">Any</option><option value="why">Unusually cheap</option><option value="great">Great deal</option><option value="good">Good deal</option><option value="fair">Fair price</option><option value="high">A bit high</option><option value="over">Overpriced</option><option value="none">No price shown</option></select></label>
-    <label for="amax">Max price<select id="amax"><option value="0">Any</option><option value="200000">$200k</option><option value="300000">$300k</option><option value="500000">$500k</option><option value="1000000">$1M</option></select></label>
-    <label for="asort">Sort<select id="asort"><option value="ratio">Best overall (growth + price)</option><option value="gs">Highest Growth score</option><option value="p">Cheapest</option><option value="ppa">$ per acre</option><option value="a">Biggest</option><option value="q">Best quality</option><option value="dom">Longest for sale</option><option value="cuts">Most price cuts</option></select></label>
-    <label class="chk" for="agone"><input type="checkbox" id="agone"> Show under offer / sold</label>
-    <label class="chk" for="amine"><input type="checkbox" id="amine"> Only my matches</label>
-    <label class="chk" for="aok"><input type="checkbox" id="aok"> Only blocks that tick the must-haves</label>
-    <label class="chk" for="astar"><input type="checkbox" id="astar"> Only ⭐ Standouts</label>
-    <span class="count" id="acount"></span>
+    <div class="row"><span class="muted" id="rulesCount"></span><button type="button" class="btn ghost" id="rClear">Clear rules</button><button type="button" class="btn" id="rShow">See matches</button></div>
   </div>
-  <div class="list" id="alist"></div>
-  <button class="btn ghost" id="amore" type="button" hidden>Show more</button>
 </section>
 
-<section class="view" id="v-growth" hidden>
-  <div class="panel" id="pathBox"><h3>Where the next big jumps could be</h3>
-    <div class="what" id="pathWhat" style="max-width:none"></div>
-    <div id="pathList" class="list"></div></div>
-  <h3>How much has farmland gone up?</h3>
-  <p class="what">Median sale price of farms over about 30 ha (75 acres) for each state, region and council, from every farm sale in Australia (Bendigo Bank Agribusiness, Australian Farmland Values 2026 and 2025). Prices are per acre and include houses and sheds on the land.</p>
-  <div class="facts" id="gfacts" style="margin:0;border-radius:14px"></div>
-  <div class="panel"><h3>Price per acre since 2004</h3>
-    <p class="what">Rebuilt from each state's 5, 10 and 20-year growth rates in the last two reports, so it shows the shape of the climb, not every year's wiggle.</p>
-    <div class="chips" id="gchips"></div>
-    <div id="gchart" class="chart"></div></div>
-  <div class="tablewrap"><table><thead><tr><th>State</th><th class="r">Median $/acre 2025</th><th class="r">Last year</th><th class="r">5 yrs, per year</th><th class="r">10 yrs, per year</th><th class="r">20 yrs, per year</th><th class="r">$100k in 2005 is now</th></tr></thead><tbody id="gstates"></tbody></table></div>
-  <div class="panel"><h3>What could a block be worth later?</h3>
-    <p class="what">Three what-ifs, not a forecast. Farmland growth has slowed hard: 2.8% in 2025, the lowest in 12 years, and Rabobank expects about 2% in 2026.</p>
-    <div class="grid2">
-      <label for="fPrice">Price you pay $<input id="fPrice" inputmode="numeric" value="250000"></label>
-      <label for="fYears">Years you hold it<select id="fYears"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label>
-      <label for="fRegion">Region<select id="fRegion"></select></label>
-    </div>
-    <div class="big" id="fOut"></div>
-    <p class="what" id="fNote"></p></div>
-  <div class="panel"><h3>Regions</h3>
-    <div class="row"><label for="rState" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">State<select id="rState" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="">All</option></select></label>
-    <label for="rSort" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">Sort<select id="rSort" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="cagr20">20-year growth</option><option value="cagr10">10-year growth</option><option value="cagr5">5-year growth</option><option value="yoy">Last year</option><option value="median">Cheapest per acre</option></select></label></div>
+<!-- INSIGHTS: the evidence. Market, growth history, how the scores work. Each topic folds away. -->
+<section class="view" id="v-insights" hidden aria-label="Insights">
+  <h2 class="vt">Insights</h2>
+  <details class="acc" open><summary>Is it time to buy? <span>Market pulse</span></summary><div class="accin" id="pulseBox">
+    <p id="pVerdict" class="verdict"></p><ul class="plain" id="pNotes"></ul>
+    <div id="pChart" class="chart"></div>
+    <h4>By state</h4><div class="chips" id="pStates"></div><div id="pState"></div>
+    <div id="pPicks"></div>
+    <p class="what">Checked every day from what's for sale (asking prices, price cuts, time on market, supply) plus NSW government sale prices month by month. When several turn down together, buyers have the upper hand.</p></div></details>
+  <details class="acc"><summary>Where the next big jumps could be <span>10x areas</span></summary><div class="accin"><div id="pathWhat"></div><div class="rows" id="pathList"></div></div></details>
+  <details class="acc"><summary>How much has farmland gone up? <span>Since 2004</span></summary><div class="accin">
+    <p class="what">Median sale price of farms over about 30 ha (75 acres), from every farm sale in Australia (Bendigo Bank Agribusiness, Australian Farmland Values 2026 and 2025). Prices are per acre and include houses and sheds.</p>
+    <div class="facts" id="gfacts"></div>
+    <div class="chips" id="gchips"></div><div id="gchart" class="chart"></div>
+    <div class="tablewrap"><table><thead><tr><th>State</th><th class="r">Median $/acre 2025</th><th class="r">Last year</th><th class="r">5 yrs, per year</th><th class="r">10 yrs, per year</th><th class="r">20 yrs, per year</th><th class="r">$100k in 2005 is now</th></tr></thead><tbody id="gstates"></tbody></table></div></div></details>
+  <details class="acc"><summary>What could a block be worth later? <span>Calculator</span></summary><div class="accin">
+    <p class="what">Three what-ifs, not a forecast. Farmland growth slowed to 2.8% in 2025, the lowest in 12 years, and Rabobank expects about 2% in 2026.</p>
+    <div class="grid2"><label for="fPrice">Price you pay $<input id="fPrice" inputmode="numeric" value="250000"></label><label for="fYears">Years you hold it<select id="fYears"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label><label for="fRegion">Region<select id="fRegion"></select></label></div>
+    <div class="big" id="fOut"></div><p class="what" id="fNote"></p></div></details>
+  <details class="acc"><summary>Regions and councils <span>Growth tables</span></summary><div class="accin">
+    <div class="row"><label for="rState" class="lbl">State<select id="rState"><option value="">All</option></select></label><label for="rSort" class="lbl">Sort<select id="rSort"><option value="cagr20">20-year growth</option><option value="cagr10">10-year growth</option><option value="cagr5">5-year growth</option><option value="yoy">Last year</option><option value="median">Cheapest per acre</option></select></label></div>
     <div class="tablewrap"><table><thead><tr><th>Region</th><th>State</th><th class="r">$/acre 2025</th><th class="r">Last year</th><th class="r">5 yrs</th><th class="r">10 yrs</th><th class="r">20 yrs</th></tr></thead><tbody id="rtable"></tbody></table></div>
-    <p class="what">Growth is the average per year (compound). Tap a region to see growth by farm size.</p>
-    <div id="bands"></div></div>
-  <div class="panel"><h3>How busy is each area right now?</h3>
-    <p class="what">Blocks of 10+ acres for sale now, against how many sold in the last 3 months (Farmbuy). <b>Months of supply</b> is how long it would take to sell everything for sale at today's pace: under 6 is a busy market where prices tend to rise, over 12 is slow and buyers have the upper hand. <b>Sold vs asking</b> compares the price per acre of recent sales with blocks the same size asking now: under 90% means sellers are asking more than buyers have been paying.</p>
-    <div class="row"><label for="aState" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">State<select id="aState" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="">All</option></select></label>
-    <label for="aBand" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">Size<select id="aBand" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="">All 10+ acres</option><option value="10-50">10 to 50 acres</option><option value="50-200">50 to 200 acres</option><option value="200+">200+ acres</option></select></label>
-    <label for="aSort" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">Sort<select id="aSort" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="supply">Busiest first</option><option value="sold">Most sales</option><option value="forsale">Most for sale</option></select></label></div>
-    <div class="tablewrap"><table><thead><tr><th>Area</th><th>State</th><th class="r">For sale</th><th class="r">Sold, 3 months</th><th class="r">Months of supply</th><th>Market</th><th>Sales each month</th><th class="r">Sold vs asking</th><th class="r">Older sales on record</th><th>Sales each year</th></tr></thead><tbody id="atable"></tbody></table></div>
-    <p class="what">Sales counts start in mid 2026 and grow every day the app runs. "Older sales on record" are Farm Property's past sales in the same area. "Sales each year" counts the ones with a sale date (last 7 years).</p></div>
-  <div class="panel" id="nswpanel" hidden><h3>NSW: real sale prices since 2001, by block size</h3>
-    <p class="what">From the NSW government's own sales records: the latest sale of every rural and semi-rural property of 10+ acres, with price, date and land size. Growth is per acre, per year, worked out from 3-year pooled medians so one odd year doesn't swing it. Each property appears once, at its latest sale, so early years have fewer sales.</p>
-    <div class="row"><label for="nBand" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">Size<select id="nBand" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="all">All 10+ acres</option><option value="10-50">10 to 50 acres</option><option value="50-100">50 to 100 acres</option><option value="100-500">100 to 500 acres</option><option value="500+">500+ acres</option></select></label>
-    <label for="nKind" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">Show<select id="nKind" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:40px"><option value="region">Regions</option><option value="council">Councils</option></select></label></div>
-    <div class="facts" id="nfacts" style="margin:8px 0;border-radius:14px"></div>
-    <div class="tablewrap"><table><thead><tr><th>Area</th><th class="r">Sales</th><th class="r">$/acre now</th><th class="r">5 yrs</th><th class="r">10 yrs</th><th class="r">20 yrs</th></tr></thead><tbody id="ntable"></tbody></table></div></div>
-  <div class="panel"><h3>Do small blocks (10 to 100 acres) grow faster?</h3>
-    <p class="what">Short answer: not usually. Small blocks cost a lot more per acre than big farms, but over 10 years they have mostly grown at the same speed or slower.</p>
-    <ul class="plain">
-    <li><b>Australia-wide:</b> ABARES put hobby farms at the slowest 10-year growth of any farm type, about 4% a year to 2024, against about 10% for big grazing and cropping farms. They had a burst of about 10% a year from 2020 to 2023. <span class="muted">(ABARES, June 2025, from news reports of the release)</span></li>
-    <li><b>Smallest farm sizes in each region (75 to 250 acres):</b> grew faster than their region's farms in only 13 of 39 regions. They sell for about 1.2 to 2.5 times the region's price per acre. <span class="muted">(Bendigo Bank farmland reports)</span></li>
-    <li><b>Where small blocks did best:</b> Adelaide Hills and Fleurieu (+16.6% in 2025), Hunter (+10.1%), and Tasmania, where 37 to 100 acre blocks grew 9.6 to 10.6% a year in the north and south over 10 years.</li>
-    <li><b>Queensland 2026 valuations:</b> small rural home blocks rose 11 to 86% since the last valuation 2 to 4 years ago. Biggest: North Burnett +86%, Western Downs +72%, Lockyer Valley +66%, Noosa +43%. They beat farms in 6 of 13 councils.</li>
-    <li><b>NSW:</b> rural land values fell 0.4% in the year to July 2025. The Valuer General put it down to weaker demand for lifestyle blocks. Biggest falls: Snowy Monaro −14.3%, Greater Hume −12.8%.</li>
-    <li><b>Newest figures, first half of 2026:</b> Australia +7.6% vs a year before. QLD +11.9%, NSW +2.1%, VIC +7.7%, SA +9.5%, WA +20.9%, TAS −9.5%. Sales were the fewest on record.</li>
-    </ul>
-    <p class="what">What this means for you: buy a small block because the price is right and you'll enjoy it, not because it will out-grow a farm. The ones that grew most were within an easy drive of a city or big town.</p></div>
-  <div class="panel"><h3>Councils</h3>
-    <label for="lq" style="display:grid;gap:3px;font-size:12px;color:var(--muted);font-weight:600">Find a council (e.g. Western Downs, Tenterfield, Southern Mallee)<input id="lq" type="search" style="padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:42px" placeholder="council name"></label>
+    <p class="what">Growth is the average per year (compound). Tap a region to see growth by farm size.</p><div id="bands"></div>
+    <h4>Councils</h4><label for="lq" class="lbl">Find a council<input id="lq" type="search" placeholder="e.g. Western Downs"></label>
     <div class="tablewrap"><table><thead><tr><th>Council</th><th>State</th><th class="r">$/acre 2025</th><th class="r">5 yrs</th><th class="r">10 yrs</th><th class="r">20 yrs</th><th class="r">$100k 20 yrs ago is now</th></tr></thead><tbody id="ltable"></tbody></table></div>
-    <p class="what">Councils with few sales jump around from year to year. Trust the 10 and 20-year figures more than the 5-year one.</p></div>
-  <div class="panel"><h3>Every single sale</h3><ul class="plain">
-    <li><b>NSW:</b> done. Every NSW rural sale of 10+ acres since 2001 (100,788 sales) is in the "NSW: real sale prices since 2001" table above and in the NSW price checks, refreshed every Monday.</li>
-    <li><b>Other states</b> sell their sales records: WA Landgate (about $7 per property report), SA Land Services, QLD and VIC through licensed brokers, TAS through theLIST. Cotality (RP Data) or Pricefinder give every state with land size for roughly $175–$280 a month.</li></ul></div>
-</section>
-
-<section class="view" id="v-guide" hidden>
-  <h3>Price guide by state</h3>
-  <p class="what">Typical asking prices for blocks in this scan, by kind of land. Bare bush is usually far cheaper per acre than farmland or a block with a house.</p>
-  <div class="tablewrap"><table><thead><tr><th>State</th><th class="r">Listings</th><th class="r">Median $/acre</th><th class="r">Median price</th><th class="r">Under $300k</th><th class="r">$/acre bush</th><th class="r">$/acre farm</th><th class="r">$/acre with house</th></tr></thead><tbody id="gtable"></tbody></table></div>
-  <div class="panel"><h3>Costs and ways to earn: where the numbers come from</h3>
+    <p class="what">Councils with few sales jump around year to year. Trust the 10 and 20-year figures more than the 5-year one.</p></div></details>
+  <details class="acc"><summary>How busy is each area? <span>Supply and sales</span></summary><div class="accin">
+    <p class="what"><b>Months of supply</b> is how long it would take to sell everything for sale at today's pace: under 6 is busy (prices tend to rise), over 12 is slow (buyers have the upper hand). <b>Sold vs asking</b> compares recent sale prices per acre with blocks the same size asking now.</p>
+    <div class="row"><label for="aState" class="lbl">State<select id="aState"><option value="">All</option></select></label><label for="aBand" class="lbl">Size<select id="aBand"><option value="">All 10+ acres</option><option value="10-50">10 to 50 acres</option><option value="50-200">50 to 200 acres</option><option value="200+">200+ acres</option></select></label><label for="aSort" class="lbl">Sort<select id="aSort"><option value="supply">Busiest first</option><option value="sold">Most sales</option><option value="forsale">Most for sale</option></select></label></div>
+    <div class="tablewrap"><table><thead><tr><th>Area</th><th>State</th><th class="r">For sale</th><th class="r">Sold, 3 months</th><th class="r">Months of supply</th><th>Market</th><th>Sales each month</th><th class="r">Sold vs asking</th><th class="r">Older sales on record</th><th>Sales each year</th></tr></thead><tbody id="atable"></tbody></table></div></div></details>
+  <details class="acc" id="nswpanel" hidden><summary>NSW sale prices since 2001 <span>By block size</span></summary><div class="accin">
+    <p class="what">From the NSW government's own sales records: the latest sale of every rural property of 10+ acres. Growth is per acre, per year, from 3-year pooled medians. Non-market sales are left out.</p>
+    <div class="row"><label for="nBand" class="lbl">Size<select id="nBand"><option value="all">All 10+ acres</option><option value="10-50">10 to 50 acres</option><option value="50-100">50 to 100 acres</option><option value="100-500">100 to 500 acres</option><option value="500+">500+ acres</option></select></label><label for="nKind" class="lbl">Show<select id="nKind"><option value="region">Regions</option><option value="council">Councils</option></select></label></div>
+    <div class="facts" id="nfacts"></div>
+    <div class="tablewrap"><table><thead><tr><th>Area</th><th class="r">Sales</th><th class="r">$/acre now</th><th class="r">5 yrs</th><th class="r">10 yrs</th><th class="r">20 yrs</th></tr></thead><tbody id="ntable"></tbody></table></div></div></details>
+  <details class="acc"><summary>Recently sold <span>10+ acres</span></summary><div class="accin">
+    <p class="what">From Farmbuy and Farm Property sold listings. The price is the sale price when the agent shares it, otherwise the last asking price.</p>
+    <div class="tablewrap"><table><thead><tr><th>Where</th><th>State</th><th class="r">Acres</th><th class="r">Price</th><th class="r">$/acre</th><th>Kind</th><th>Sold</th></tr></thead><tbody id="tsold"></tbody></table></div></div></details>
+  <details class="acc"><summary>Price guide by state <span>Asking prices</span></summary><div class="accin">
+    <div class="tablewrap"><table><thead><tr><th>State</th><th class="r">Listings</th><th class="r">Median $/acre</th><th class="r">Median price</th><th class="r">Under $300k</th><th class="r">$/acre bush</th><th class="r">$/acre farm</th><th class="r">$/acre with house</th></tr></thead><tbody id="gtable"></tbody></table></div></div></details>
+  <details class="acc"><summary>Do small blocks grow faster? <span>Research</span></summary><div class="accin">
+    <p class="what">Short answer: not usually. Small blocks cost more per acre than big farms, but over 10 years they have mostly grown at the same speed or slower.</p>
     <ul class="plain">
+    <li><b>Australia-wide:</b> ABARES put hobby farms at the slowest 10-year growth of any farm type, about 4% a year to 2024, against about 10% for big grazing and cropping farms (a burst of about 10% a year from 2020 to 2023).</li>
+    <li><b>Smallest farm sizes in each region (75 to 250 acres):</b> grew faster than their region's farms in only 13 of 39 regions (Bendigo Bank).</li>
+    <li><b>Where small blocks did best:</b> Adelaide Hills and Fleurieu (+16.6% in 2025), Hunter (+10.1%), and Tasmania, where 37 to 100 acre blocks grew 9.6 to 10.6% a year over 10 years.</li>
+    <li><b>Queensland 2026 valuations:</b> small rural home blocks rose 11 to 86% since the last valuation. Biggest: North Burnett +86%, Western Downs +72%, Lockyer Valley +66%, Noosa +43%.</li>
+    <li><b>NSW:</b> rural land values fell 0.4% in the year to July 2025, put down to weaker demand for lifestyle blocks.</li>
+    <li><b>First half of 2026:</b> Australia +7.6% vs a year before. QLD +11.9%, NSW +2.1%, VIC +7.7%, SA +9.5%, WA +20.9%, TAS −9.5%.</li></ul></div></details>
+  <details class="acc"><summary>How the Growth score works <span>Tested on history</span></summary><div class="accin"><ul class="plain" id="howGrowth">
+      <li><b>Tested on two decades, the Track Edge way:</b> NSW government sales of 10–100 acre blocks, grouped into about 200 areas. The score was checked on 2002–05 → 2011–14 (years it was never tuned on) and on 2012–15 → 2022–25, including a shuffle test that it has to beat by a wide margin. Two things picked the winners in <i>both</i> decades: <b>areas still cheap per acre against the state caught up fastest</b>, and <b>areas that hadn't boomed yet grew faster next decade</b> (fast risers slowed down). Being close to a city, the coast or a holiday area paid off strongly in 2012–25 but not in 2002–14, so it counts for a bit less. It's still one of your must-haves. Wine regions made no difference either decade. <b>Every state:</b> the same check on the Bendigo Bank farmland figures for 256 councils (2005→2015→2025) found cheap councils caught up in all six states, and councils that hadn't boomed grew faster in all six. Queensland's own Valuer-General figures (every council since 2002) confirm the cheap rule strongly, but show early risers <i>kept</i> rising there, so the "hasn't boomed yet" points are left out for Queensland blocks. The top fifth of areas by this score grew about 8.6% a year in the older decade against 3.6% for the bottom fifth (5.2% for all areas), and 12.7% against 8.1% in the newer one. It beat all 2,000 shuffles in both decades. (Non-market sales such as family transfers are left out.)</li>
+      <li><b>Location (about 23 points):</b> city, holiday area, beach, a 10,000+ town, a town with the basics, a hospital. Drive times are real road times where the router has done them, otherwise straight-line × 1.3.</li>
+      <li><b>Things to do (about 8):</b> a national or state park, a wine region, holiday cabins and farm stays nearby.</li>
+      <li><b>Water and land (17):</b> creek or river from the listing or the state water maps (7), dam, bore or tanks (3), rainfall (3), size (2), gentle slope from terrain data (2). Very steep land loses points.</li>
+      <li><b>Catch-up and momentum (34):</b> area still cheap against the state (up to 20), area hasn't boomed yet over 10 years (3, not in Queensland), population growth (4: the state government's forecast to 2041 for Queensland, WA and Tasmania blocks, otherwise the last 10 years), market pace (4).</li>
+      <li><b>Growth path (4, or 6 with two signs):</b> a cheap area 35–90 minutes from a city (the tree-change belt, where NSW areas went up 10 times or more about two and a half times as often), or, in Queensland, inside or within about 3 km of the planned urban area, or near one of the state's chosen future growth areas; in Victoria, within 2 km of the Urban Growth Zone (land set aside for future suburbs); in South Australia, within 3 km of a rural-to-housing rezoning (a Code Amendment); in Western Australia, within 2 km of Urban Deferred land or 3 km of a region scheme change to Urban; in Tasmania, within 2 km of the Future Urban Zone. See "Where the next big jumps could be" at the top of this tab.</li>
+      <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price. The total is scaled to be out of 100.</li>
+      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 57+, and priced under similar blocks.</li>
+</ul></div></details>
+  <details class="acc"><summary>How the likely sale price works <span>Tested on sales</span></summary><div class="accin"><ul class="plain" id="howPrice">
+<li id="btNote" hidden></li>
+      <li>Each block is compared with up to 12 of the most similar blocks for sale: within 50 km first (then 120 km, then 250 km, then the state; blocks without a map point use the postcode district instead), including recent sales, similar size, and the same kind of land: bare bush, working farm, bare lifestyle block, or a block with a house.</li>
+      <li>Each comparison block's price is scaled to this block's size (bigger blocks cost more in total but less per acre), and the middle value is the likely sale price. Stations over 20,000 acres are left out, because they trade as a different market.</li>
+      <li>Then the block's own details: creek or river frontage adds 5%, power 4%. A covenant takes off 25%, no right to build 30%, leasehold 20%, doubtful access 15%, flood-prone 7%.</li>
+      <li><b>Verdict:</b> judged against the usual range of the similar blocks (their middle half). Inside the range is a fair price. Just under the low end is a good deal, and 15%+ under is a great deal. Less than half the low end is flagged "unusually cheap: find out why", because land that cheap nearly always has a catch. Up to 20% over the high end is a bit high, and more than that is overpriced.</li>
+      <li><b>Likely sale price:</b> asking prices are scaled down by 18% before they are used, because tested against real sales, blocks sell for about that much under asking. Real sales are used as they are.</li>
+      <li><b>Opening offer</b> = 93% of the lower of asking and likely sale price. <b>Walk away</b> above likely sale price plus 8%.</li>
+      <li><b>How accurate is it?</b> Tested on 3,073 real sales (each priced as if it were for sale, without itself): half sold within 33% of the likely sale price, and 33% within 20%. Land varies a lot, so treat it as a guide. A building and pest report, a title search and a look in person come first.</li>
+</ul></div></details>
+  <details class="acc"><summary>Costs and ways to earn <span>Where the numbers come from</span></summary><div class="accin"><ul class="plain" id="howCosts">
       <li><b>Stamp duty</b> is worked out with each state's 2026 general rates (WA uses its home rates when there's a house). First-home, young-farmer and primary-production concessions can cut it a lot, and foreign buyers pay 7–9% more. Check your state's revenue office before you sign.</li>
       <li><b>Other buying costs:</b> conveyancing $1,000–$3,500, building and pest $400–$900, a boundary survey $1,500–$5,000 on bigger blocks.</li>
       <li><b>Council rates</b> on rural land are usually 0.1–0.5% of the value a year, at least about $1,200.</li>
@@ -340,54 +434,59 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
       <li><b>Long-term rent</b> is the median weekly rent of houses in the same postcode from new leases (NSW Fair Trading, October 2026; SA, March quarter 2026). Victoria and Queensland weren't reachable.</li>
       <li><b>Agistment</b> is $5–$12 a head of cattle a week. The number of cattle is a rough guess from rainfall, so get a local agent's view. <b>Leasing paddocks</b> brings 2–5% of the land's value a year, <b>hay</b> $300–$800 a hectare in a good year, and <b>camping</b> hosts average about $10k a year. <b>Solar farm leases</b> pay $750–$1,500 a hectare a year, but only near a substation with spare capacity.</li>
       <li>All income figures are before costs, tax and council approval. Short-stay cabins and camping usually need council approval first.</li>
-    </ul></div>
-  <div class="panel"><h3>How the Growth score works</h3>
-    <ul class="plain">
-      <li><b>Tested on two decades, the Track Edge way:</b> NSW government sales of 10–100 acre blocks, grouped into about 200 areas. The score was checked on 2002–05 → 2011–14 (years it was never tuned on) and on 2012–15 → 2022–25, including a shuffle test that it has to beat by a wide margin. Two things picked the winners in <i>both</i> decades: <b>areas still cheap per acre against the state caught up fastest</b>, and <b>areas that hadn't boomed yet grew faster next decade</b> (fast risers slowed down). Being close to a city, the coast or a holiday area paid off strongly in 2012–25 but not in 2002–14, so it counts for a bit less. It's still one of your must-haves. Wine regions made no difference either decade. <b>Every state:</b> the same check on the Bendigo Bank farmland figures for 256 councils (2005→2015→2025) found cheap councils caught up in all six states, and councils that hadn't boomed grew faster in all six. Queensland's own Valuer-General figures (every council since 2002) confirm the cheap rule strongly, but show early risers <i>kept</i> rising there, so the "hasn't boomed yet" points are left out for Queensland blocks. The top fifth of areas by this score grew about 8.6% a year in the older decade against 3.6% for the bottom fifth (5.2% for all areas), and 12.7% against 8.1% in the newer one. It beat all 2,000 shuffles in both decades. (Non-market sales such as family transfers are left out.)</li>
-      <li><b>Location (about 23 points):</b> city, holiday area, beach, a 10,000+ town, a town with the basics, a hospital. Drive times are real road times where the router has done them, otherwise straight-line × 1.3.</li>
-      <li><b>Things to do (about 8):</b> a national or state park, a wine region, holiday cabins and farm stays nearby.</li>
-      <li><b>Water and land (17):</b> creek or river from the listing or the state water maps (7), dam, bore or tanks (3), rainfall (3), size (2), gentle slope from terrain data (2). Very steep land loses points.</li>
-      <li><b>Catch-up and momentum (34):</b> area still cheap against the state (up to 20), area hasn't boomed yet over 10 years (3, not in Queensland), population growth (4: the state government's forecast to 2041 for Queensland, WA and Tasmania blocks, otherwise the last 10 years), market pace (4).</li>
-      <li><b>Growth path (4, or 6 with two signs):</b> a cheap area 35–90 minutes from a city (the tree-change belt, where NSW areas went up 10 times or more about two and a half times as often), or, in Queensland, inside or within about 3 km of the planned urban area, or near one of the state's chosen future growth areas; in Victoria, within 2 km of the Urban Growth Zone (land set aside for future suburbs); in South Australia, within 3 km of a rural-to-housing rezoning (a Code Amendment); in Western Australia, within 2 km of Urban Deferred land or 3 km of a region scheme change to Urban; in Tasmania, within 2 km of the Future Urban Zone. See "Where the next big jumps could be" at the top of this tab.</li>
-      <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price. The total is scaled to be out of 100.</li>
-      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 57+, and priced under similar blocks.</li>
-    </ul></div>
-  <div class="panel"><h3>How the fair price works</h3>
-    <ul class="plain"><li id="btNote" hidden></li>
-      <li>Each block is compared with up to 12 of the most similar blocks for sale: within 50 km first (then 120 km, then 250 km, then the state; blocks without a map point use the postcode district instead), including recent sales, similar size, and the same kind of land: bare bush, working farm, bare lifestyle block, or a block with a house.</li>
-      <li>Each comparison block's price is scaled to this block's size (bigger blocks cost more in total but less per acre), and the middle value is the likely sale price. Stations over 20,000 acres are left out, because they trade as a different market.</li>
-      <li>Then the block's own details: creek or river frontage adds 5%, power 4%. A covenant takes off 25%, no right to build 30%, leasehold 20%, doubtful access 15%, flood-prone 7%.</li>
-      <li><b>Verdict:</b> judged against the usual range of the similar blocks (their middle half). Inside the range is a fair price. Just under the low end is a good deal, and 15%+ under is a great deal. Less than half the low end is flagged "unusually cheap: find out why", because land that cheap nearly always has a catch. Up to 20% over the high end is a bit high, and more than that is overpriced.</li>
-      <li><b>Likely sale price:</b> asking prices are scaled down by 18% before they are used, because tested against real sales, blocks sell for about that much under asking. Real sales are used as they are.</li>
-      <li><b>Opening offer</b> = 93% of the lower of asking and likely sale price. <b>Walk away</b> above likely sale price plus 8%.</li>
-      <li><b>How accurate is it?</b> Tested on 3,073 real sales (each priced as if it were for sale, without itself): half sold within 33% of the likely sale price, and 33% within 20%. Land varies a lot, so treat it as a guide. A building and pest report, a title search and a look in person come first.</li>
-    </ul></div>
+</ul></div></details>
 </section>
 
-<section class="view" id="v-buy" hidden>
-  <h3>Before you buy</h3>
-  <div class="tip">Never pay a deposit to hold land you haven't walked. Get a solicitor or conveyancer to do the title search before you sign.</div>
-  <div class="panel"><h3>Ask the agent</h3><ul class="plain">
+<!-- MORE: tools and guides. -->
+<section class="view" id="v-more" hidden aria-label="More">
+  <h2 class="vt">More</h2>
+  <div class="panel" id="checkBox"><h3>Check any listing</h3>
+    <p class="what">Found a block on Domain, realestate.com.au, Gumtree or Facebook? Paste the ad's words here. I'll read the size, price and town, then price it against everything in this scan.</p>
+    <textarea id="paste" placeholder="e.g. 160 acres bush block, Inglewood QLD 4387. Two dams, shed, power to boundary. $265,000"></textarea>
+    <div class="row"><button class="btn" id="readBtn" type="button">Read listing</button><button class="btn ghost" id="sampleBtn" type="button">Try an example</button></div>
+    <div class="grid2">
+      <label for="cAcres">Acres<input id="cAcres" inputmode="decimal" placeholder="160"></label>
+      <label for="cPrice">Asking $<input id="cPrice" inputmode="numeric" placeholder="265000"></label>
+      <label for="cState">State<select id="cState"></select></label>
+      <label for="cPc">Postcode<input id="cPc" inputmode="numeric" placeholder="4387"></label>
+    </div>
+    <div class="checks" id="cFeat"></div>
+    <button class="btn" id="checkBtn" type="button">Check it</button>
+    <div class="result" id="cResult" hidden></div></div>
+  <details class="acc"><summary>Before you buy <span>Checklist</span></summary><div class="accin">
+    <div class="tip">Never pay a deposit to hold land you haven't walked. Get a solicitor or conveyancer to do the title search before you sign.</div>
+    <h4>Ask the agent</h4><ul class="plain">
     <li>Is it still available? Has the price come down?</li>
     <li>Freehold or leasehold? (Western Lands lease in NSW, pastoral lease in WA, NT and SA)</li>
     <li>Is there registered legal road access, or only a track through a neighbour?</li>
     <li>Can I build a house? Is there a dwelling entitlement or a planning permit?</li>
     <li>Any covenant, Heritage Agreement or conservation agreement on the title?</li>
-    <li>What did it last sell for, and when? Will they do vendor finance?</li></ul></div>
-  <div class="panel"><h3>Check it yourself</h3><ul class="plain">
+    <li>What did it last sell for, and when? Will they do vendor finance?</li></ul>
+    <h4>Check it yourself</h4><ul class="plain">
     <li>Flood and bushfire maps on the council's planning map, and the bushfire (BAL) rating.</li>
     <li>Vegetation rules: QLD vegetation management maps, SA Native Vegetation Act, NSW biodiversity values map.</li>
-    <li>Mining, gas or petroleum leases over the land: QLD Globe, MinView (NSW), GeoVIEW.WA, SARIG (SA).</li>
+    <li>Mining, gas or petroleum leases: QLD Globe, MinView (NSW), GeoVIEW.WA, SARIG (SA).</li>
     <li>Water: bores, dams, rainfall, and whether a licence is needed.</li>
     <li>Distance to power, mobile coverage, the nearest town, hospital and school bus.</li>
-    <li>Yearly council rates. Some Heritage Agreement land pays none.</li></ul></div>
-  <div class="panel"><h3>Where else to look</h3><ul class="plain">
-    <li>Domain and realestate.com.au rural sections block automatic scanning. Use the Check a listing tab for anything you find there.</li>
+    <li>Yearly council rates. Some Heritage Agreement land pays none.</li></ul>
+    <h4>Where else to look</h4><ul class="plain">
+    <li>Domain and realestate.com.au rural sections block automatic scanning. Use "Check any listing" above for anything you find there.</li>
     <li>Council sales of land for unpaid rates (Walgett and Central Darling in NSW run these).</li>
-    <li>Trust for Nature (VIC) and the NSW Biodiversity Conservation Trust sell covenanted bush below market.</li></ul></div>
+    <li>Trust for Nature (VIC) and the NSW Biodiversity Conservation Trust sell covenanted bush below market.</li></ul></div></details>
+  <details class="acc"><summary>About this app <span>Data and limits</span></summary><div class="accin"><p class="what" id="foot"></p></div></details>
 </section>
-<footer id="foot"></footer>
+
+<!-- BLOCK: one block, everything about it, in clear sections. -->
+<section class="view" id="v-block" hidden aria-label="Block details"><div id="bp"></div></section>
 </main>
+
+<nav class="bnav" id="bnav" aria-label="Sections">
+  <button type="button" data-v="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+  <button type="button" data-v="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg>Search</button>
+  <button type="button" data-v="saved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9z"/></svg>Saved</button>
+  <button type="button" data-v="insights"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Insights</button>
+  <button type="button" data-v="more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>More</button>
+</nav>
 
 <script src="acreage-data.js"></script>
 <script src="history-data.js"></script>
@@ -426,14 +525,6 @@ $("facts").innerHTML=[[L.length,"blocks of 10+ acres"],[live.filter(x=>x.p<=3000
 function km(a,b){const r=Math.PI/180,dl=(b.lat-a.lat)*r,dg=(b.lng-a.lng)*r,h=Math.sin(dl/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dg/2)**2;return 12742*Math.asin(Math.sqrt(h))}
 function median(a){if(!a.length)return null;a=[...a].sort((x,y)=>x-y);const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2}
 $("facts").lastChild.querySelector("b").textContent=live.length?"$"+Math.round(median(live.map(x=>x.p/x.a))).toLocaleString("en-AU"):"–";
-
-// tabs
-const tabs=[...$("tabs").children];
-function show(v){tabs.forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));document.querySelectorAll("section.view").forEach(s=>s.hidden=s.id!=="v-"+v);pref.tab=v;save();if(location.hash!=="#"+v)history.replaceState(null,"","#"+v)}
-tabs.forEach(b=>b.onclick=()=>{show(b.dataset.v);window.scrollTo(0,0)});
-window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(tabs.some(b=>b.dataset.v===h))show(h)});
-
-
 const LATEST=(D.scanned||"").slice(0,10);
 const firstDays=[...new Set(L.map(x=>x.first).filter(Boolean))].sort();
 const tracking=firstDays.length>1;
@@ -693,75 +784,6 @@ function quick(x){
   (g.bad||[]).slice(0,2).forEach(b=>neg.push(b));
   if(!neg.length&&(c.fire))neg.push("bushfire prone");
   return {t,pos:pos.slice(0,4),neg}}
-function card(x){
-  const vk=vkey(x),q=quick(x);
-  const t=(x.feats||[]).map(f=>`<span class="tag">${FEAT[f]||f}</span>`).join("")+(x.flags||[]).map(f=>`<span class="tag bad">${FLAG[f]||f}</span>`).join("");
-  const name=x.addr.replace(/,?\s*(QLD|NSW|VIC|SA|WA|TAS|NT)\s*\d{4}$/,"")||x.sub;
-  const gsc=x.gs==null?"":`<span class="gs ${x.gs>=60?"hi":x.gs>=42?"mid":"lo"}" title="Growth score out of 100"><i>${x.gs}</i>Growth</span>`;
-  return `<article class="card${x.gstar?" star":""}">
-  <div class="chead"><div style="min-width:0;display:grid;gap:6px">
-    <div class="pills">${gsc}${x.gstar?'<span class="pill star">★ Standout</span>':x.gok?'<span class="pill v-great">Ticks must-haves</span>':""}<span class="pill v-${vk}">${VN[vk]}${gone(x)&&x.v?" · was "+VN[x.v].toLowerCase():""}</span><span class="pill st">${x.s}</span>${isNew(x)?'<span class="pill v-great">New</span>':newSince(x)?'<span class="pill v-great">New since your last visit</span>':""}${(x.gx&&x.gx.path&&x.gx.path.length)?'<span class="pill star">Growth path</span>':""}${x.drop?`<span class="pill v-high">Cut ${short(x.drop[0])} → ${short(x.drop[1])}</span>`:""}</div>
-    <h4>${esc(name)}</h4><div class="loc">${esc(x.sub)} ${x.s} ${esc(x.pc)}${x.type?" · "+esc(x.type.split(",")[0]):""}</div></div>
-    <div class="ask"><b>${x.p?short(x.p):"–"}</b><small>${esc((x.pt||"").slice(0,32))}</small></div></div>
-  <div class="nums"><div><small>Size</small><span>${acres(x.a)}</span></div><div><small>Likely sale</small><span>${short(x.fair)}</span></div><div><small>Offer from</small><span>${x.offer?short(x.offer):"–"}</span></div><div><small>Walk away</small><span>${x.walk?short(x.walk):"–"}</span></div></div>
-  ${q.t||q.pos.length||q.neg.length?`<div class="take1">${q.t?`<div><b>${esc(q.t.head.replace(/^[^A-Za-z]+/,""))}</b></div>`:""}${q.pos.length||q.neg.length?`<div class="minis">${q.pos.map(p=>`<span class="mini">${esc(p)}</span>`).join("")}${q.neg.map(p=>`<span class="mini bad">${esc(p)}</span>`).join("")}</div>`:""}</div>`:""}
-  <div class="links"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open listing ↗</a><button class="watch" type="button" data-w="${esc(x.id)}">${WATCH[x.id]?"★ Watching":"☆ Watch"}</button><span class="muted num" style="font-size:12.5px">${x.ppa?money(x.ppa)+" per acre":""}${x.dom!=null?" · listed "+(x.dom<45?x.dom+" days":Math.round(x.dom/30.4)+" months")+" ago":""}</span></div>
-  <details class="full"><summary>Full analysis</summary><div class="fullin">
-  ${x.lo?`<div class="loc">Similar blocks nearby usually ask ${short(x.lo)} to ${short(x.hi)}.</div>`:""}
-  ${subLine(x)}${growthLine(x)}${pathLine(x)}${dossier(x)}${takeLine(x)}${domLine(x)}${placeLine(x)}${costLine(x)}${incomeLine(x)}${areaLine(x)}${catchLine(x)}
-  ${t?`<div class="tags">${t}</div>`:""}
-  ${x.desc?`<p class="desc">${esc(x.desc)}</p>`:""}
-  <div class="links"><span class="muted" style="font-size:12.5px">${x.ag?esc(x.ag)+" · ":""}${x.q!=null?"listing quality "+x.q+"/100":""}</span><button class="more" type="button" data-id="${esc(x.id)}">Why this verdict?</button></div>
-  <ul class="why" hidden>${why(x).map(w=>`<li>${esc(w)}</li>`).join("")}</ul>
-  </div></details>
-  </article>`;
-}
-document.addEventListener("click",e=>{const w=e.target.closest(".watch");if(w){const i=w.dataset.w,x=byId[i];
-  if(WATCH[i])delete WATCH[i];else WATCH[i]={p:x&&x.p||null,d:(D.scanned||"").slice(0,10)};saveWatch();
-  document.querySelectorAll(`.watch[data-w="${CSS.escape(i)}"]`).forEach(b=>b.textContent=WATCH[i]?"★ Watching":"☆ Watch");if(window.drawWatch)drawWatch();return}});
-document.addEventListener("click",e=>{const b=e.target.closest(".more");if(!b)return;const u=b.closest(".card").querySelector(".why");u.hidden=!u.hidden;b.textContent=u.hidden?"Why this verdict?":"Hide reasons"});
-
-// deals view
-const ds=$("dstate");["All",...STATES].forEach(s=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=s;b.onclick=()=>{pref.dst=s;renderDeals()};ds.appendChild(b)});
-["dmax","dmin"].forEach(k=>{$(k).value=pref[k];$(k).onchange=()=>{pref[k]=$(k).value;renderDeals()}});
-["dhouse","dclean","dok"].forEach(k=>{$(k).checked=pref[k];$(k).onchange=()=>{pref[k]=$(k).checked;renderDeals()}});
-function dealPool(){return live.filter(x=>(!pref.dok||x.gok)&&(pref.dst==="All"||x.s===pref.dst)&&x.p<=+pref.dmax&&x.a>=+pref.dmin&&(!pref.dhouse||(x.feats||[]).includes("house"))&&(!pref.dclean||!(x.flags||[]).some(f=>["covenant","nobuild","lease"].includes(f))))}
-function renderDeals(){
-  save();[...ds.children].forEach(b=>b.setAttribute("aria-pressed",b.textContent===pref.dst));
-  const pool=dealPool();const top=[...pool].sort((a,b)=>score(b)-score(a)).slice(0,25);
-  $("dlist").innerHTML=top.length?top.map(card).join(""):'<div class="empty">Nothing matches. Try a higher price, a smaller minimum size, or another state.</div>';
-  chart(pool);
-}
-function chart(pool){
-  const W=640,H=340,P={l:44,r:14,t:14,b:38};
-  const xs=pool.map(x=>Math.max(-60,Math.min(60,(1-x.ratio)*100)));
-  const xmin=-60,xmax=60,ymin=0,ymax=100;
-  const X=v=>P.l+(v-xmin)/(xmax-xmin)*(W-P.l-P.r),Y=v=>H-P.b-(v-ymin)/(ymax-ymin)*(H-P.t-P.b);
-  const col={why:"var(--warn)",great:"var(--ok)",good:"var(--ok)",fair:"var(--info)",high:"var(--warn)",over:"var(--stop)"};
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Value versus quality scatter">`;
-  s+=`<rect x="${X(8)}" y="${Y(100)}" width="${X(60)-X(8)}" height="${Y(55)-Y(100)}" fill="var(--ok-soft)" rx="6"/>`;
-  [-60,-30,0,30,60].forEach(v=>{s+=`<line x1="${X(v)}" x2="${X(v)}" y1="${P.t}" y2="${H-P.b}" stroke="var(--line)" ${v===0?'stroke-width="1.5"':""}/><text x="${X(v)}" y="${H-P.b+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${v>0?v+"% under":v<0?(-v)+"% over":"fair"}</text>`});
-  [0,25,50,75,100].forEach(v=>{s+=`<line x1="${P.l}" x2="${W-P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${P.l-6}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v}</text>`});
-  s+=`<text x="${(W+P.l)/2}" y="${H-4}" text-anchor="middle" font-size="12" fill="var(--muted)">Asking price vs fair price</text><text x="12" y="${(H-P.b)/2}" transform="rotate(-90 12 ${(H-P.b)/2})" text-anchor="middle" font-size="12" fill="var(--muted)">Quality</text>`;
-  s+=`<text x="${X(34)}" y="${Y(96)}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ok)">Best buys</text>`;
-  pool.forEach((x,i)=>{s+=`<a href="${esc(x.u)}" target="_blank" rel="noopener"><circle cx="${X(xs[i]).toFixed(1)}" cy="${Y(x.q).toFixed(1)}" r="5" fill="${col[x.v]||"var(--muted)"}" fill-opacity=".75" stroke="var(--surface)"><title>${esc(x.sub)} ${x.s} · ${acres(x.a)} · ${short(x.p)} · ${VN[x.v]}</title></circle></a>`});
-  $("chart").innerHTML=s+"</svg>";
-}
-
-// all listings
-const asel=$("as");STATES.forEach(s=>asel.insertAdjacentHTML("beforeend",`<option>${s}</option>`));
-let alimit=40;
-["aq","as","av","amax","asort","agone","amine","aok","astar"].forEach(k=>$(k).addEventListener(k==="aq"?"input":"change",()=>{alimit=40;renderAll()}));
-$("amore").onclick=()=>{alimit+=40;renderAll()};
-function renderAll(){
-  const q=$("aq").value.trim().toLowerCase(),st=$("as").value,v=$("av").value,mx=+$("amax").value,so=$("asort").value,g=$("agone").checked;
-  let r=L.filter(x=>(!st||x.s===st)&&(!v||(v==="none"?!x.p:x.v===v))&&(!mx||(x.p&&x.p<=mx))&&(g||!gone(x))&&(!q||(x.addr+" "+x.sub+" "+x.pc+" "+x.ag).toLowerCase().includes(q))&&(!$("amine").checked||matchRules(x,getRules()))&&(!$("aok").checked||x.gok)&&(!$("astar").checked||x.gstar));
-  const k={ratio:(a,b)=>score(b)-score(a),p:(a,b)=>(a.p||9e9)-(b.p||9e9),ppa:(a,b)=>(a.ppa||9e9)-(b.ppa||9e9),a:(a,b)=>b.a-a.a,q:(a,b)=>b.q-a.q,gs:(a,b)=>(b.gs??-1)-(a.gs??-1),dom:(a,b)=>(b.dom||0)-(a.dom||0),cuts:(a,b)=>(b.cuts||0)-(a.cuts||0)||(b.dom||0)-(a.dom||0)}[so];
-  r.sort(k);$("acount").textContent=r.length.toLocaleString("en-AU")+" blocks";
-  $("alist").innerHTML=r.length?r.slice(0,alimit).map(card).join(""):'<div class="empty">No blocks match those filters.</div>';
-  $("amore").hidden=r.length<=alimit;
-}
-
 // guide
 const M=D.model||{b:.4,h:.45};
 const FARM=["Cropping","Livestock","Mixed Farming","Dairy","Horticulture","Viticulture","Specialist"];
@@ -833,8 +855,6 @@ function check(){
 }
 
 $("foot").innerHTML=`Listings from Farmbuy.com and FarmProperty.com.au, scanned ${D.scanned?new Date(D.scanned).toLocaleString("en-AU"):"–"}. Likely sale prices are estimates from asking prices and real sales of similar blocks, not valuations. Features are read from listing text and can be wrong. Not financial or legal advice.`;
-
-
 // growth
 (function(){
 const H=window.HISTORY_DATA;if(!H)return;
@@ -886,20 +906,10 @@ function fut(){const p=+$("fPrice").value||0,y=+$("fYears").value;const [s,n]=fr
   $("fNote").textContent=`These are prices before costs. Rates, stamp duty (about 4–5% to buy), agent fees (2–3% to sell) and inflation of about 2.5–3% a year all come off. Land with nothing on it often grows slower than the farm medians above, and ABARES puts hobby-farm growth at about ${H.outlook.abares_10yr_hobby}% a year over 10 years.`;}
 ["fPrice","fYears","fRegion"].forEach(k=>$(k).addEventListener("input",fut));fut();
 })();
-
-// today
+// recently sold (Insights)
 (function(){
-  const live2=L.filter(x=>!gone(x));
-  const nw=tracking?live2.filter(isNew).sort((a,b)=>score(b)-score(a)):[];
-  const dr=live2.filter(x=>x.drop).sort((a,b)=>(b.drop[0]-b.drop[1])/b.drop[0]-(a.drop[0]-a.drop[1])/a.drop[0]);
-  $("tNote").textContent=tracking?`Scanned ${new Date(D.scanned).toLocaleString("en-AU")}. New means first seen in the last 3 days.`:`Daily tracking started ${new Date(firstDays[0]||D.scanned).toLocaleDateString("en-AU",{day:"numeric",month:"long"})}. From the next daily scan, new listings and price drops show up here.`;
-  const s90=SOLD.filter(c=>c.sold&&(Date.parse(LATEST)-Date.parse(c.sold))<=90*864e5);
-  $("tfacts").innerHTML=[[nw.length,"new listings"],[dr.length,"price drops"],[s90.length,"sold, last 90 days"],[s90.length?money(median(s90.map(c=>c.p/c.a))):"–","median sold $/acre"]].map(f=>`<div><b>${typeof f[0]==="number"?f[0].toLocaleString("en-AU"):f[0]}</b><small>${f[1]}</small></div>`).join("");
-  $("tnew").innerHTML=nw.length?nw.slice(0,30).map(card).join(""):`<div class="empty">${tracking?"No new listings in the last 3 days.":"Nothing to compare with yet. Check back after tomorrow's scan."}</div>`;
-  $("tdrop").innerHTML=dr.length?dr.slice(0,30).map(card).join(""):'<div class="empty">No price drops spotted yet.</div>';
   $("tsold").innerHTML=SOLD.slice().sort((a,b)=>(b.sold||"").localeCompare(a.sold||"")).slice(0,60).map(c=>`<tr><td><a href="${esc(c.u)}" target="_blank" rel="noopener">${esc(c.sub)} ${esc(c.pc)}</a></td><td>${c.s}</td><td class="r num">${acres(c.a)}</td><td class="r num">${short(c.p)}</td><td class="r num">${money(c.p/c.a)}</td><td>${c.house?"House":c.bush?"Bush":"Land"}</td><td class="num">${c.sold?new Date(c.sold).toLocaleDateString("en-AU",{day:"numeric",month:"short"}):"–"}</td></tr>`).join("")||'<tr><td colspan="7" class="muted">No sold data yet.</td></tr>';
 })();
-
 // NSW sales since 2001
 (function(){
   const G=(D.nsw||{}).groups;if(!G||!G.length)return;$("nswpanel").hidden=false;
@@ -929,8 +939,6 @@ function fut(){const p=+$("fPrice").value||0,y=+$("fYears").value;const [s,n]=fr
   }
   ["aState","aBand","aSort"].forEach(i=>$(i).addEventListener("change",draw));draw();
 })();
-
-
 // my rules: saved on this phone, used by "Only my matches" and (when sent to Claude) by the morning alerts
 const RK="acreageRules";
 function getRules(){try{const v=localStorage.getItem(RK);if(v)return JSON.parse(v)}catch(e){}return Object.assign({},D.alert_rules||{})}
@@ -953,13 +961,193 @@ function matchRules(x,r){
   if(r.noVeg&&c.veg)return false;if(r.noFire&&(c.fire||c.burnt))return false;
   if(r.stay&&!x.stay)return false;if(r.split&&!(x.lots>=2))return false;if(r.musts&&!x.gok)return false;if(r.g60&&!((x.gs||0)>=60))return false;
   if(gone(x))return false;return true}
-function rulesChanged(){const r=readRules();setRules(r);const n=L.filter(x=>matchRules(x,r)).length;$("rulesCount").textContent=Object.keys(r).length?`(${n.toLocaleString("en-AU")} blocks match)`:"";if($("amine").checked){alimit=40;renderAll()}}
+function rulesChanged(){const r=readRules();setRules(r);const n=L.filter(x=>matchRules(x,r)).length;$("rulesCount").textContent=Object.keys(r).length?`(${n.toLocaleString("en-AU")} blocks match)`:"";if(window.__search)window.__search()}
 fillRules();
 Object.keys(RF).forEach(id=>{const el=$(id);if(el)el.addEventListener(el.type==="checkbox"||el.tagName==="SELECT"?"change":"input",rulesChanged)});
-$("rCopy").addEventListener("click",()=>{const t=JSON.stringify(getRules());(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{$("rCopy").textContent="Copied! Send it to Claude"}).catch(()=>{prompt("Copy these rules:",t)})});
 $("rClear").addEventListener("click",()=>{setRules({});fillRules();rulesChanged()});
 rulesChanged();
 
+// ===================== App 2.0 user interface =====================
+// Views: home, search, saved, insights, more, and block-<id> (one block's full page). Lists use compact rows;
+// everything about a block lives on its own page, so lists stay short and fast.
+const VIEWS=["home","search","saved","insights","more"];
+const navBtns=[...document.querySelectorAll("#bnav button,#dnav button")];
+const blockKey=x=>"block-"+String(x.id).replace(/[^A-Za-z0-9-]/g,"-");
+const byKey={};L.forEach(x=>byKey[blockKey(x)]=x);
+let lastList="home";
+function setView(v){
+  const isBlock=v.startsWith("block-");
+  document.querySelectorAll("section.view").forEach(s=>s.hidden=s.id!==(isBlock?"v-block":"v-"+v));
+  navBtns.forEach(b=>b.setAttribute("aria-current",b.dataset.v===(isBlock?lastList:v)?"page":"false"));
+  if(isBlock){const x=byKey[v];$("bp").innerHTML=x?blockPage(x):'<div class="empty">That block is no longer listed. It has probably sold.</div>';
+    document.title=x?(x.sub+" "+x.s+" · Acreage Finder"):"Acreage Finder"}
+  else{lastList=v;pref.tab=v;save();document.title="Acreage Finder"}
+  window.scrollTo(0,0);
+}
+function route(){const h=location.hash.slice(1);if(h.startsWith("block-")||VIEWS.includes(h))setView(h);else setView(pref.tab&&VIEWS.includes(pref.tab)?pref.tab:"home")}
+function go(v){if(location.hash==="#"+v)setView(v);else location.hash=v}
+navBtns.forEach(b=>b.onclick=()=>go(b.dataset.v));
+window.addEventListener("hashchange",route);
+
+// ---- one compact row per block
+function gsClass(g){return g==null?"":g>=60?"hi":g>=42?"mid":""}
+function row(x,note){
+  const vk=vkey(x),g=x.gx||{};
+  const tags=[];
+  if(x.gstar)tags.push('<span class="pill star">★ Standout</span>');else if(x.gok)tags.push('<span class="pill v-great">Must-haves ✓</span>');
+  if(vk!=="none")tags.push(`<span class="pill v-${vk}">${vk==="why"?"Unusually cheap":VN[vk]}</span>`);
+  if(g.path&&g.path.length)tags.push('<span class="pill star">Growth path</span>');
+  if(isNew(x)||newSince(x))tags.push('<span class="pill v-great">New</span>');
+  if(x.drop)tags.push('<span class="pill v-high">Price cut</span>');
+  const near=g.city&&g.city[1]<=150?`${g.city[0]} ${g.city[1]} min`:g.hol&&g.hol[1]<=60?`${g.hol[0]} ${g.hol[1]} min`:x.town?`${x.town[0]}`:"";
+  return `<a class="ri" href="#${blockKey(x)}"><span class="gsb ${gsClass(x.gs)}" title="Growth score out of 100">${x.gs==null?"–":x.gs}<small>growth</small></span>
+   <span class="ri-main"><span class="ri-t">${esc(x.sub)} ${x.s} · ${acres(x.a)}</span><span class="ri-s">${near?esc(near)+" · ":""}${x.fair?"likely sale "+short(x.fair):esc(x.type?x.type.split(",")[0]:"")}</span>${tags.length?`<span class="ri-tags">${tags.slice(0,3).join("")}</span>`:""}</span>
+   <span class="ri-p"><b>${x.p?short(x.p):"–"}</b><small>${x.ppa?money(x.ppa)+"/ac":esc((x.pt||"").slice(0,18))}</small></span>${note?`<span class="ri-note">${note}</span>`:""}</a>`}
+const rows=(list,empty)=>list.length?list.map(x=>row(x)).join(""):`<div class="empty-row">${empty}</div>`;
+
+// ---- HOME
+const liveL=L.filter(x=>!gone(x));
+const STARS=liveL.filter(x=>x.gstar).sort((a,b)=>score(b)-score(a));
+const PATH=liveL.filter(x=>x.gx&&x.gx.path&&x.gx.path.length&&x.gok).sort((a,b)=>(b.gs||0)-(a.gs||0));
+const NEWL=tracking?liveL.filter(isNew).sort((a,b)=>score(b)-score(a)):[];
+const DROPS=liveL.filter(x=>x.drop).sort((a,b)=>(b.drop[0]-b.drop[1])/b.drop[0]-(a.drop[0]-a.drop[1])/a.drop[0]);
+function renderHome(){
+  $("hStars").innerHTML=rows(STARS.slice(0,6),"No Standouts right now. New listings are checked every day.");
+  $("hPath").innerHTML=rows(PATH.slice(0,5),"None right now.");
+  const w=Object.keys(WATCH).map(i=>byId[i]).filter(Boolean);
+  $("hWatchWrap").hidden=!w.length;$("hWatch").innerHTML=w.slice(0,3).map(x=>row(x)).join("");
+  const s90=SOLD.filter(c=>c.sold&&(Date.parse(LATEST)-Date.parse(c.sold))<=90*864e5);
+  $("hTiles").innerHTML=[["new",NEWL.length,"new in 3 days"],["drop",DROPS.length,"price drops"],["sold",s90.length,"sold in 90 days"]]
+    .map(([k,n,t])=>`<button type="button" class="tile" data-tile="${k}"><b>${n.toLocaleString("en-AU")}</b><small>${t}</small></button>`).join("");
+  const P=D.pulse&&D.pulse.latest;
+  if(P){const e=$("hPulse");e.hidden=false;e.innerHTML=`<span><b>Market:</b> ${esc(P.verdict.split(":")[0])}<br><span>${esc((P.verdict.split(":")[1]||"").trim())}</span></span>`}
+}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-tile]");if(!t)return;const k=t.dataset.tile;
+  if(k==="sold"){go("insights");setTimeout(()=>{const d=$("tsold").closest("details");d.open=true;d.scrollIntoView({behavior:"smooth"})},50)}else{setPreset(k);go("search")}});
+document.addEventListener("click",e=>{const a=e.target.closest("[data-preset]");if(!a)return;e.preventDefault();setPreset(a.dataset.preset);go("search")});
+
+// ---- SEARCH
+const PRESETS=[["all","All"],["star","⭐ Standouts"],["ok","Must-haves ✓"],["path","Growth path"],["great","Great deals"],["new","New"],["drop","Price cuts"],["mine","My rules"]];
+let preset=pref.preset||"all",alimit=30;
+$("qchips").innerHTML=PRESETS.map(([k,t])=>`<button type="button" class="chip" data-q="${k}">${t}</button>`).join("");
+$("qchips").onclick=e=>{const b=e.target.closest("[data-q]");if(b){setPreset(b.dataset.q)}};
+function setPreset(k){preset=k;pref.preset=k;save();alimit=30;renderSearch()}
+STATES.forEach(s=>$("as").insertAdjacentHTML("beforeend",`<option>${s}</option>`));
+const FIDS=["as","amax","amin","av","asort","ahouse","aclean","agone"];
+const FDEF={as:"",amax:"0",amin:"0",av:"",asort:"ratio",ahouse:false,aclean:false,agone:false};
+const sf=pref.sf||{};FIDS.forEach(k=>{const el=$(k),v=k in sf?sf[k]:FDEF[k];if(el.type==="checkbox")el.checked=!!v;else el.value=v;
+  el.addEventListener("change",()=>{alimit=30;renderSearch()})});
+$("aq").addEventListener("input",()=>{alimit=30;renderSearch()});
+$("fBtn").onclick=()=>{const p=$("fPanel");p.hidden=!p.hidden;$("fBtn").setAttribute("aria-expanded",!p.hidden)};
+$("fDone").onclick=()=>{$("fPanel").hidden=true;$("fBtn").setAttribute("aria-expanded","false")};
+$("fReset").onclick=()=>{FIDS.forEach(k=>{const el=$(k);if(el.type==="checkbox")el.checked=FDEF[k];else el.value=FDEF[k]});alimit=30;renderSearch()};
+$("amore").onclick=()=>{alimit+=30;renderSearch()};
+function renderSearch(){
+  const f={};FIDS.forEach(k=>{const el=$(k);f[k]=el.type==="checkbox"?el.checked:el.value});pref.sf=f;save();
+  const changed=FIDS.filter(k=>k!=="asort"&&String(f[k])!==String(FDEF[k])).length;$("fCount").textContent=changed||"";
+  [...$("qchips").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.q===preset));
+  const q=$("aq").value.trim().toLowerCase(),rules=preset==="mine"?getRules():null;
+  let r=L.filter(x=>(f.agone||!gone(x))&&(!f.as||x.s===f.as)&&(!+f.amax||(x.p&&x.p<=+f.amax))&&(!+f.amin||x.a>=+f.amin)&&(!f.av||(f.av==="none"?!x.p:x.v===f.av))
+    &&(!f.ahouse||x.house)&&(!f.aclean||!(x.flags||[]).some(g=>["covenant","nobuild","lease"].includes(g)))
+    &&(!q||(x.addr+" "+x.sub+" "+x.pc+" "+(x.ag||"")+" "+(x.lga||"")).toLowerCase().includes(q)));
+  r=r.filter({all:()=>true,star:x=>x.gstar,ok:x=>x.gok,path:x=>x.gx&&x.gx.path&&x.gx.path.length,great:x=>x.v==="great",new:x=>isNew(x)||newSince(x),drop:x=>x.drop,mine:x=>matchRules(x,rules)}[preset]||(()=>true));
+  const k={ratio:(a,b)=>score(b)-score(a),p:(a,b)=>(a.p||9e9)-(b.p||9e9),ppa:(a,b)=>(a.ppa||9e9)-(b.ppa||9e9),a:(a,b)=>b.a-a.a,gs:(a,b)=>(b.gs??-1)-(a.gs??-1),dom:(a,b)=>(b.dom||0)-(a.dom||0),cuts:(a,b)=>(b.cuts||0)-(a.cuts||0)||(b.dom||0)-(a.dom||0)}[f.asort]||((a,b)=>score(b)-score(a));
+  r.sort(k);
+  $("acount").textContent=r.length.toLocaleString("en-AU")+(r.length===1?" block":" blocks")+(preset!=="all"?" · "+PRESETS.find(p=>p[0]===preset)[1]:"");
+  $("alist").innerHTML=rows(r.slice(0,alimit),preset==="mine"?'Nothing matches your rules. Change them in <a href="#saved">Saved</a>.':"No blocks match. Try fewer filters.");
+  $("amore").hidden=r.length<=alimit;$("amore").textContent=`Show more (${(r.length-alimit).toLocaleString("en-AU")} left)`;
+}
+
+// ---- SAVED
+function renderSaved(){
+  const ids=Object.keys(WATCH);
+  $("watchList").innerHTML=ids.length?ids.map(i=>{const x=byId[i],w=WATCH[i];
+    if(!x)return `<div class="ri"><span class="gsb">–</span><span class="ri-main"><span class="ri-t">A block you saved is no longer listed</span><span class="ri-s">It has probably sold.</span></span><button type="button" class="watch" data-w="${esc(i)}" aria-pressed="true">Remove</button></div>`;
+    const ch=x.p&&w.p&&x.p!==w.p?`<b>Price ${x.p<w.p?"dropped":"went up"}:</b> ${short(w.p)} → ${short(x.p)} since you saved it on ${esc(w.d)}.`:"";return row(x,ch)}).join("")
+    :`<div class="empty-row">Nothing saved yet. Open any block and tap ☆ Save to keep an eye on its price.</div>`;
+  renderHome();
+}
+document.addEventListener("click",e=>{const w=e.target.closest(".watch");if(!w)return;e.preventDefault();const i=w.dataset.w,x=byId[i];
+  if(WATCH[i])delete WATCH[i];else WATCH[i]={p:x&&x.p||null,d:(D.scanned||"").slice(0,10)};saveWatch();
+  document.querySelectorAll(`.watch[data-w="${CSS.escape(i)}"]`).forEach(b=>{b.setAttribute("aria-pressed",!!WATCH[i]);b.textContent=WATCH[i]?"★ Saved":"☆ Save"});renderSaved()});
+$("rShow").onclick=()=>{setPreset("mine");go("search")};
+
+// ---- BLOCK PAGE
+const AGENT_QS=["Why are the owners selling, and how long has it been for sale?","Has it had any offers, and what did similar blocks nearby sell for?","Is there legal road access the whole way in, and who maintains the road?","Any easements, covenants, or native vegetation that can't be cleared?","Water: licences, bores (how deep, how much), dam sizes, does the creek run all year?","Power and phone: is there a grid connection, and how far is the nearest pole?","Flood and bushfire: has it flooded or burnt, and what bushfire rating would a house need?","Has the council approved a house site, cabins or anything else? Any DA history?"];
+function ticksFor(x){
+  const g=x.gx||{},f=new Set(x.feats||[]),W=[],sm=g.sua?g.sua[1]:999,tm=g.town?g.town[1]:999,cm=g.city?g.city[1]:999,hm=g.hol?g.hol[1]:999,cst=g.coast??999,pk=g.park?g.park[1]:999,wd=g.wine?g.wine[1]:999,rn=x.rain||0,hp=g.hosp?g.hosp[1]:999,road=g.road?" by road":"";
+  if(g.cheap_area!=null)W.push([g.cheap_area<=0.9,g.cheap_area<=1?`Area still cheap: about ${Math.round((1-g.cheap_area)*100)}% under the state's price per acre (cheap areas caught up fastest)`:`Area already ${Math.round((g.cheap_area-1)*100)}% dearer than the state's price per acre`]);
+  if(x.s!=="QLD"&&g.land10!=null)W.push([g.land10<12.3,g.land10<12.3?`Area hasn't boomed yet (land up ${g.land10}%/yr over 10 years)`:`Area already boomed (land up ${g.land10}%/yr over 10 years)`]);
+  if(g.popf!=null)W.push([g.popf>=0.8,`Council population forecast to grow ${g.popf}%/yr to 2041`]);else if(g.pop10!=null)W.push([g.pop10>=0.8,`Council population grew ${g.pop10}%/yr`]);
+  W.push([cm<=150,g.city?`${g.city[0]} about ${cm} min${road}`:"Far from a city"]);
+  W.push([hm<=60,g.hol?`Holiday area: ${g.hol[0]} about ${hm} min`:"Not near a known holiday area"]);
+  W.push([cst<=60,cst<999?`Beach about ${cst} km`:"Far from the coast"]);
+  if(!(g.sua&&g.city&&g.sua[0]===g.city[0]))W.push([sm<=60,g.sua?`${g.sua[0]} (10,000+ people) about ${sm} min${road}`:"No town of 10,000+ near"]);
+  W.push([tm<=15,g.town?`Town with the basics (${g.town[0]}) about ${tm} min${road}`:"No town near"]);
+  W.push([hp<=45,g.hosp?`Hospital (${g.hosp[0]}) about ${hp} min`:"No hospital near"]);
+  W.push([pk<=15,g.park?`${g.park[0]} about ${pk} km`:"No park near"]);
+  W.push([wd<=50,g.wine?`${g.wine[0]} wine region about ${wd} km`:"No wine region near"]);
+  W.push([(g.stays||0)>=20,g.stays?`${g.stays} holiday cabins and farm stays within 40 km`:"Few holiday stays nearby"]);
+  const cr=f.has("creek")||f.has("river");W.push([cr||!!g.mapcreek,cr?"Creek or river":g.mapcreek?`${g.mapcreek} runs within 400 m (map)`:"No creek or river found"]);
+  W.push([f.has("dam")||f.has("bore")||f.has("tank"),f.has("dam")||f.has("bore")||f.has("tank")?"Dam, bore or tanks":"No dam or bore mentioned"]);
+  W.push([rn>=450&&rn<=1800,rn?`${rn} mm rain a year`:"Rainfall unknown"]);
+  if(g.slope!=null)W.push([g.slope<=10,g.slope<=10?`Mostly gentle land (about ${g.slope}% slope)`:`Steep in parts (about ${g.slope}% slope)`]);
+  if(g.pace)W.push([g.pace==="busy"||g.pace==="normal",`Local market ${g.pace}`]);
+  return W}
+function sec(title,body){return body?`<section class="bsec"><h3>${title}</h3>${body}</section>`:""}
+function blockPage(x){
+  const vk=vkey(x),g=x.gx||{},t=myTake(x),W=ticksFor(x),yes=W.filter(w=>w[0]),no=W.filter(w=>!w[0]);
+  const name=(x.addr||"").replace(/,?\s*(QLD|NSW|VIC|SA|WA|TAS|NT)\s*\d{4}$/,"")||x.sub;
+  const pills=[x.gstar?'<span class="pill star">★ Standout</span>':x.gok?'<span class="pill v-great">Ticks your must-haves</span>':'<span class="pill v-none">Misses a must-have</span>',
+    `<span class="pill v-${vk}">${VN[vk]}</span>`,`<span class="pill st">${x.s}</span>`,(g.path&&g.path.length)?'<span class="pill star">Growth path</span>':"",(isNew(x)||newSince(x))?'<span class="pill v-great">New</span>':"",x.drop?`<span class="pill v-high">Cut ${short(x.drop[0])} → ${short(x.drop[1])}</span>`:""].join("");
+  const kf=[["Size",acres(x.a)],["Likely sale",x.fair?short(x.fair):"–"],["Per acre",x.ppa?money(x.ppa):"–"],["Offer from",x.offer?short(x.offer):"–"],["Walk away",x.walk?short(x.walk):"–"],["For sale",x.dom!=null?(x.dom<45?x.dom+" days":Math.round(x.dom/30.4)+" mths"):"–"]]
+    .map(([a,b])=>`<div><small>${a}</small><span>${b}</span></div>`).join("");
+  const take=t?`<div class="take"><b>${esc(t.head.replace(/^[^A-Za-z]+/,""))}</b>${t.good.length?`<div class="minis">${t.good.slice(0,5).map(s=>`<span class="mini">${esc(s)}</span>`).join("")}</div>`:""}${t.bad.length?`<div class="minis">${t.bad.slice(0,5).map(s=>`<span class="mini bad">${esc(s)}</span>`).join("")}</div>`:""}</div>`:"";
+  // growth
+  const growth=x.gs==null?"":`<div class="gbig"><span class="gsb ${gsClass(x.gs)}">${x.gs}</span><div><b>Growth ${x.gs} out of 100</b><div class="muted" style="font-size:13px">${x.gstar?"Standout: ticks every must-have and priced well":x.gok?"Ticks your must-haves":"Misses one of your must-haves"}</div></div></div>
+    <ul class="ticks">${yes.slice(0,9).map(w=>`<li>${esc(w[1])}</li>`).join("")}${no.slice(0,5).map(w=>`<li class="no">${esc(w[1])}</li>`).join("")}</ul>
+    ${(g.bad||[]).length?`<div class="risk">⚠️ ${(g.bad||[]).map(esc).join(" · ")}</div>`:""}`;
+  // future: growth path, planning, big projects, subdivision
+  const fut=[pathLine(x),subLine(x),(qldPlan(x)+saPlan(x)+waPlan(x))?`<div class="loc">${(qldPlan(x)+saPlan(x)+waPlan(x)).trim()}</div>`:""].join("");
+  // price
+  const comps=(x.cids||[]).map(i=>byId[i]).filter(Boolean).slice(0,6);
+  const price=x.fair?`<div class="nums3"><div><small>Asking</small><b>${x.p?short(x.p):"–"}</b></div><div><small>Likely sale price</small><b>${short(x.fair)}</b></div><div><small>Open your offer at</small><b>${x.offer?short(x.offer):"–"}</b></div><div><small>Walk away above</small><b>${x.walk?short(x.walk):"–"}</b></div></div>
+    ${x.lo?`<div class="loc">Similar blocks nearby usually ask ${short(x.lo)} to ${short(x.hi)}.</div>`:""}
+    <ul class="plain">${why(x).map(w=>`<li>${esc(w)}</li>`).join("")}</ul>
+    ${comps.length?`<h4>Compared with</h4><ul class="plain">${comps.map(c=>`<li>${esc(c.sub||"")} ${esc(c.pc||"")}: ${acres(c.a)} for ${short(c.p)} (${money(c.p/c.a)}/ac${c.is_sold||c.sold?", sold"+(c.sold?" "+String(c.sold).slice(0,7):""):", asking"})</li>`).join("")}</ul>`:""}
+    ${domLine(x)}${x.hist&&x.hist.length?`<div class="loc"><b>Price history:</b> ${x.hist.map(e=>`${e[0].slice(0,7)} ${esc(e[2])} ${moneyK(e[1])}`).join(" → ")}</div>`:""}`:`<ul class="plain">${why(x).map(w=>`<li>${esc(w)}</li>`).join("")}</ul>${domLine(x)}`;
+  // money: what it costs, what it could earn, flip vs keep
+  const c=costs(x),k=v=>"$"+Math.round(v/1000)+"k",ideas=incomeIdeas(x);
+  const money2=(t?`<div class="nums3"><div><small>Save by offering low</small><b>${moneyK(t.save)}</b></div><div><small>Flip within a year</small><b>${t.flip>=0?"+":"−"}${moneyK(Math.abs(t.flip)).replace("−","")}</b></div><div><small>Keep 5 years</small><b>${moneyK(t.keep5)} ahead</b></div></div>
+     <p class="what">Flip: buy at ${moneyK(t.buy)}, resell for about ${moneyK(t.sell)} after stamp duty, rates and selling costs${t.flip<20000?" (not worth it unless you improve it)":""}. Keep: at ${t.g.toFixed(1)}%/yr growth it'd be worth about ${moneyK(t.val5)}${t.inc.v>=1000?`, plus about ${moneyK(t.inc.v)}/yr from ${t.inc.how}`:""}. Rough guide only.</p>`:"")
+    +(c?`<h4>What it costs</h4><ul class="plain"><li>To buy: about ${k(c.buyLo)}–${k(c.buyHi)} on top of the price (stamp duty ${c.duty!=null?k(c.duty):"?"}, legal, inspections, survey).</li><li>Council rates: about ${k(c.ratesLo)}–${k(c.ratesHi)} a year.</li>${c.liveLo?`<li>To make it livable (power, water, septic, shed, approvals): about ${k(c.liveLo)}–${k(c.liveHi)}, plus ${k(c.cabinLo)}–${k(c.cabinHi)} for a cabin or tiny home.</li>`:""}<li>Selling later: about ${k(c.sellLo)}–${k(c.sellHi)} in agent and marketing fees.</li></ul>`:"")
+    +(ideas.length?`<h4>Ways it could earn</h4><ul class="ideas">${ideas.map(s=>`<li>${s}</li>`).join("")}</ul>`:"");
+  // cabins
+  const cabin=`<div class="loc">${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: <b>${esc(x.zone)}</b>${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}</div>${x.a>=20&&g.hol&&g.hol[1]<=40?`<div class="okbox">🏕️ ${esc(g.hol[0])} is about ${g.hol[1]} min away: cabins or caravan sites could suit, with council approval.</div>`:""}`;
+  // area and risks
+  const risks=catchLine(x);
+  const area=[placeLine(x),areaLine(x)].join("");
+  // listing
+  const tags=(x.feats||[]).map(f=>`<span class="tag">${FEAT[f]||f}</span>`).join("")+(x.flags||[]).map(f=>`<span class="tag bad">${FLAG[f]||f}</span>`).join("");
+  const listing=(tags?`<div class="tags">${tags}</div>`:"")+(x.desc?`<p class="desc">${esc(x.desc)}</p>`:"")+`<div class="muted" style="font-size:13px">${x.ag?esc(x.ag)+" · ":""}${esc(x.pt||"")}${x.q!=null?" · listing detail "+x.q+"/100":""}</div>`;
+  const before=`<ol class="plain">${AGENT_QS.map(q=>`<li>${q}</li>`).join("")}</ol><div class="loc"><b>Before you offer:</b> look at it on Google Maps satellite, drive the road in, get a title search (about $30), ring the council about the zone and any approvals, and book a building and pest check if there's a house.</div>`;
+  return `<div class="bp-bar"><button type="button" class="back" onclick="history.length>1?history.back():location.hash='home'">Back</button></div>
+  <div class="bp-head"><div class="pills">${pills}</div><h2>${esc(name)}</h2><div class="bp-loc">${esc(x.sub)} ${x.s} ${esc(x.pc)}${x.lga?" · "+esc(x.lga)+" council":""}${x.type?" · "+esc(x.type.split(",")[0]):""}</div>
+   <div class="bp-price"><b>${x.p?short(x.p):"Price on request"}</b><span>${esc((x.pt||"").slice(0,40))}</span></div></div>
+  <div class="kf">${kf}</div>${take}
+  ${sec("📈 Growth outlook",growth)}
+  ${sec("🧭 Future: growth path and planning",fut)}
+  ${sec("💲 Price check",price)}
+  ${sec("💰 Costs, income, flip or keep",money2)}
+  ${sec("🏕️ Cabins or caravan sites",cabin)}
+  ${sec("📍 The area",area)}
+  ${sec("⚠️ Risks to check",risks||'<div class="okbox">No flood, bushfire or vegetation flags found on the state maps. Still check the council\'s maps.</div>')}
+  ${sec("📝 The listing",listing)}
+  ${sec("❓ Ask the agent",before)}
+  <div class="actbar"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open the listing ↗</a><button type="button" class="watch" data-w="${esc(x.id)}" aria-pressed="${!!WATCH[x.id]}">${WATCH[x.id]?"★ Saved":"☆ Save"}</button></div>`;
+}
+
+window.__search=()=>{if(preset==="mine"){alimit=30;renderSearch()}};
 // market pulse and track record
 (function(){
   const P=D.pulse;if(!P||!P.latest)return;$("pulseBox").hidden=false;
@@ -991,11 +1179,7 @@ rulesChanged();
     if(m.length){const mx=Math.max(1,...v);h+=`<div style="display:flex;gap:6px;align-items:flex-end;height:90px;margin-top:6px">`+m.map((mm,i)=>`<div style="flex:1;text-align:center"><div title="${mm}: ${v[i]} sold" style="height:${4+Math.round(70*v[i]/mx)}px;background:var(--accent);border-radius:4px 4px 0 0"></div><div class="muted" style="font-size:11px">${mm.slice(5)}</div></div>`).join("")+`</div><div class="muted" style="font-size:12px">10+ acre sales on Farmbuy each month in ${cur}. Early months are undercounted (Farmbuy only keeps its latest 3,000 sales), so read the trend from here on.</div>`}
     $("pState").innerHTML=h}
   if(ST.length)draw();
-  window.drawWatch=()=>{const ids=Object.keys(WATCH);$("watchBox").hidden=!ids.length;if(!ids.length)return;
-    $("watchList").innerHTML=ids.map(i=>{const x=byId[i],w=WATCH[i];if(!x)return`<div class="empty">A block you starred (${esc(i)}) is no longer listed: it has probably sold. <button class="watch" data-w="${esc(i)}">Remove</button></div>`;
-      const ch=x.p&&w.p&&x.p!==w.p?`<div class="tip" style="margin-bottom:6px"><b>Price ${x.p<w.p?"dropped":"went up"}:</b> ${short(w.p)} → ${short(x.p)} since you starred it on ${esc(w.d)}.</div>`:"";return ch+card(x)}).join("")};
-  drawWatch();
-  const pth=L.filter(x=>x.gx&&x.gx.path&&x.gx.path.length&&!gone(x)&&x.gok).sort((a,b)=>(b.gs||0)-(a.gs||0));
+  const pth=PATH;
   const J=D.jump||{};
   $("pathWhat").innerHTML=`<p style="margin:0 0 8px">We looked at every NSW government sale of 10–200 acre blocks since 2001${J.areas?` (${J.areas} areas about 10 km wide)`:""}. The typical area went up about ${J.median_multiple||4.3} times from 2001–06 to 2022–26. ${J.ten_x||44} areas went up <b>10 times or more</b>. What they had in common:</p>
    <ul class="plain"><li><b>Cheap to start with:</b> they started at about ${J.top_start?money(J.top_start):"$2,600"} an acre, against ${J.other_start?money(J.other_start):"$6,000"} for the rest. Cheap land had the most room to climb.</li>
@@ -1003,12 +1187,9 @@ rulesChanged();
    <li><b>Rezoning on a city's edge</b> made the very biggest money. Kemps Creek, next to the new Western Sydney Airport, went from about $54,000 to $1.24 million an acre (23 times), so 20 acres there is worth about $25 million now. Dombarton near Wollongong went up 14 times. These jumps happen where the state has marked land for future suburbs. In Queensland that's the SEQ Urban Footprint and the state's 10 SEQ development areas, which this app now checks for every Queensland block. In Victoria it's the Urban Growth Zone, and every Victorian block is checked for it too.</li></ul>
    <p class="muted" style="font-size:12.5px;margin:8px 0 0">Honest limits: part of each jump is more small blocks selling later (small blocks fetch more per acre), and land already marked for suburbs is usually priced for it. The best chances are cheap blocks <i>next to</i> the planned area, before the plan grows. These are odds, not promises.</p>
    <h3 style="font-size:15px;margin-top:12px">Blocks on a growth path that tick your must-haves (${pth.length})</h3>`;
-  $("pathList").innerHTML=pth.length?pth.slice(0,15).map(card).join(""):'<div class="empty">None right now. New listings are checked every day.</div>';
+  $("pathList").innerHTML=pth.length?pth.slice(0,15).map(x=>row(x)).join(""):'<div class="empty">None right now. New listings are checked every day.</div>';
   const B=D.bt;if(B){const e=$("btNote");e.hidden=false;e.innerHTML=`<b>Tested honestly:</b> the likely sale price was learned from ${esc(B.learned_on)}, then checked on the ${esc(B.tested_on)}, using only sales that happened before each one. It was typically about <b>${Math.round(B.median_abs_err*100)}% off</b>. It came within 20% for ${Math.round(B.within20*10)} in 10 blocks and within 35% for ${Math.round(B.within35*10)} in 10, and on average it came out ${Math.abs(Math.round((1-B.median_ratio)*100))}% ${B.median_ratio<1?"under":"over"} the real price. Use it as a guide for your opening offer, then check the agent's recent sales nearby before you bid. (Tried 15 Nov: more comparison blocks, closer-match weighting and counting real sales double. None of them made it more accurate on the newest sales, so the method stayed the same.)`}
-  const stars=L.filter(x=>x.gstar&&!gone(x)).sort((a,b)=>score(b)-score(a));
-  if(stars.length){$("starBox").hidden=false;$("starList").innerHTML=stars.slice(0,12).map(card).join("")+(stars.length>12?`<p class="what">${stars.length-12} more: tick "Only ⭐ Standouts" in All listings.</p>`:"")}
 })();
-renderDeals();renderAll();
-const h=location.hash.slice(1);show(tabs.some(b=>b.dataset.v===h)?h:(pref.tab||"deals"));
+renderHome();renderSearch();renderSaved();route();
 })();
 </script>
