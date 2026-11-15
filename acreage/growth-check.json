@@ -1,95 +1,95 @@
 {
  "1_live_score_on_older_decade": {
-  "areas": 171,
-  "rank_match": -0.1,
-  "shuffled_best": 0.18,
-  "p": 0.9085,
-  "top_fifth": 4.18,
-  "bottom_fifth": 4.58,
-  "all": 5.77
+  "areas": 159,
+  "rank_match": 0.42,
+  "shuffled_best": 0.19,
+  "p": 0.0005,
+  "top_fifth": 8.56,
+  "bottom_fifth": 3.57,
+  "all": 5.21
  },
  "live_score_on_tuning_decade": {
-  "areas": 223,
-  "rank_match": 0.23,
-  "shuffled_best": 0.15,
+  "areas": 204,
+  "rank_match": 0.42,
+  "shuffled_best": 0.17,
   "p": 0.0005,
-  "top_fifth": 11.29,
-  "bottom_fifth": 8.89,
-  "all": 10.11
+  "top_fifth": 12.68,
+  "bottom_fifth": 8.1,
+  "all": 10.25
  },
  "3_fit_on_older_predict_newer": {
-  "areas": 223,
-  "rank_match": 0.28,
-  "shuffled_best": 0.16,
+  "areas": 204,
+  "rank_match": 0.4,
+  "shuffled_best": 0.15,
   "p": 0.0005,
-  "top_fifth": 12.44,
-  "bottom_fifth": 9.15,
-  "all": 10.11
+  "top_fifth": 13.29,
+  "bottom_fifth": 9.43,
+  "all": 10.25
  },
  "older_decade_weights": {
-  "city": -1.4,
-  "hol": -0.17,
-  "coast": 0.52,
-  "sua": -0.12,
-  "town": 0.03,
-  "hosp": -0.4,
-  "park": 0.03,
-  "wine": 0.31,
-  "cheap": -2.81
+  "city": -1.56,
+  "hol": -0.09,
+  "coast": 0.17,
+  "sua": -0.25,
+  "town": -0.28,
+  "hosp": -0.53,
+  "park": -0.14,
+  "wine": 0.34,
+  "cheap": -3.48
  },
  "4_momentum_older_growth_predicts_newer": {
-  "areas": 168,
-  "rank_match": -0.27,
-  "shuffled_best": 0.19,
-  "p": 1.0,
-  "top_fifth": 8.34,
-  "bottom_fifth": 11.35,
-  "all": 10.16
+  "areas": 155,
+  "rank_match": -0.24,
+  "shuffled_best": 0.18,
+  "p": 0.9975,
+  "top_fifth": 8.04,
+  "bottom_fifth": 11.91,
+  "all": 10.36
  },
  "factors": {
   "city": {
-   "older": -0.07,
-   "newer": 0.21,
+   "older": -0.03,
+   "newer": 0.19,
    "holds_up": false
   },
   "hol": {
-   "older": -0.14,
-   "newer": 0.11,
+   "older": -0.1,
+   "newer": 0.1,
    "holds_up": false
   },
   "coast": {
-   "older": -0.17,
-   "newer": 0.16,
+   "older": -0.1,
+   "newer": 0.14,
    "holds_up": false
   },
   "sua": {
-   "older": -0.16,
+   "older": -0.15,
    "newer": -0.09,
    "holds_up": false
   },
   "town": {
-   "older": -0.19,
-   "newer": -0.05,
+   "older": -0.17,
+   "newer": -0.06,
    "holds_up": false
   },
   "hosp": {
-   "older": 0.08,
+   "older": 0.11,
    "newer": -0.04,
    "holds_up": false
   },
   "park": {
-   "older": -0.17,
-   "newer": 0.15,
+   "older": -0.12,
+   "newer": 0.16,
    "holds_up": false
   },
   "wine": {
-   "older": -0.04,
-   "newer": 0.01,
+   "older": -0.08,
+   "newer": -0.01,
    "holds_up": false
   },
   "cheap": {
-   "older": 0.52,
-   "newer": 0.21,
+   "older": 0.55,
+   "newer": 0.27,
    "holds_up": true
   }
  }

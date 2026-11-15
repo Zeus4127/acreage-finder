@@ -35,6 +35,11 @@ def build():
             if lo <= y <= hi: c[w].append(x["p"] / x["a"]); state[w].append(x["p"] / x["a"])
         if len(c["pts"]) < 40: c["pts"].append((x["lat"], x["lng"]))
     sm = {w: statistics.median(v) for w, v in state.items()}
+    def clean(v):   # drop non-market sales (family transfers, part shares): far from the area's middle price
+        if len(v) < 5: return v
+        m = statistics.median(v); return [x for x in v if 0.3 * m <= x <= 5 * m]
+    for c in cells.values():
+        for w in W: c[w] = clean(c[w])
     N = 8; rows = []
     for k, c in cells.items():
         la = statistics.median(p[0] for p in c["pts"]); lo = statistics.median(p[1] for p in c["pts"])
@@ -48,12 +53,14 @@ def build():
                 r["cheap" + d] = statistics.median(e) / sm[d + "0"]
         if "ga" in r or "gb" in r: rows.append(r)
 
-    def area_pts(r, d):   # the area part of the live Growth score, same points as growth.py
+    def area_pts(r, d):   # the area part of the live Growth score, same points as growth.py (location at 60%, cheap area up to 20)
         cm, hm, cst, smn, tm, hp, pk, wd, ca = r["city"], r["hol"], r["coast"], r["sua"], r["town"], r["hosp"], r["park"], r["wine"], r["cheap" + d]
-        return ((12 if cm <= 90 else 10 if cm <= 150 else 5 if cm <= 240 else 0) + (9 if hm <= 30 else 7 if hm <= 60 else 2 if hm <= 120 else 0)
+        L = 0.6
+        return (L * ((12 if cm <= 90 else 10 if cm <= 150 else 5 if cm <= 240 else 0) + (9 if hm <= 30 else 7 if hm <= 60 else 2 if hm <= 120 else 0)
                 + (6 if cst <= 20 else 3 if cst <= 60 else 2 if cst <= 150 else 0) + (6 if smn <= 40 else 4 if smn <= 60 else 2 if smn <= 90 else 0)
                 + (3 if tm <= 15 else 1 if tm <= 25 else 0) + (2 if hp <= 45 else 0) + (6 if pk <= 5 else 3 if pk <= 15 else 1 if pk <= 35 else 0)
-                + (2 if wd <= 25 else 1 if wd <= 50 else 0) + (5 if ca <= 0.7 else 3 if ca <= 0.9 else 0))
+                + (2 if wd <= 25 else 1 if wd <= 50 else 0))
+                + (20 if ca <= 0.5 else 15 if ca <= 0.7 else 9 if ca <= 0.9 else 3 if ca <= 1.1 else 0))
 
     return rows, area_pts
 

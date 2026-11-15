@@ -180,7 +180,7 @@ def main():
             {"great": "priced well under similar blocks", "good": "priced under similar blocks", "fair": "fairly priced", "high": "asking a bit high", "over": "overpriced", "why": "suspiciously cheap"}.get(v, "no price to judge"))
         if sl_ is not None and sl_ > 20: pts -= 4
         # growth path (what the 10x areas had in common): NSW 2001-06 -> 2022-26, 664 areas. Areas that were cheap per acre
-        # and 40-90 km from a city went up 10 times or more three times as often as the rest (19% against 7%).
+        # and 40-90 km from a city went up 10 times or more about 2.5 times as often as the rest (23% against 9%, with non-market sales removed).
         sid = str(r["id"]); qp = qplan.get(sid) or {}; path = []
         if ca is not None and ca <= 0.7 and 35 <= cm <= 90: path.append("tree-change belt: cheap area 35-90 min from " + (x["city"][0] if x["city"] else "a city"))
         if qp.get("cat") == "Urban Footprint": path.append("inside the planned urban area (SEQ Urban Footprint)")

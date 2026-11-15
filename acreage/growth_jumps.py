@@ -19,6 +19,10 @@ def main():
         elif y >= 2022: c["l"].append(v)
         c["sub"][x["sub"]] += 1
         if len(c["pts"]) < 30: c["pts"].append((x["lat"], x["lng"]))
+    def clean(v):   # drop non-market sales (family transfers, part shares): far below or above the area's middle price
+        if len(v) < 5: return v
+        m = statistics.median(v); return [x for x in v if 0.3 * m <= x <= 5 * m]
+    for c in cells.values(): c["e"], c["l"] = clean(c["e"]), clean(c["l"])
     rows = []
     for c in cells.values():
         if len(c["e"]) >= 5 and len(c["l"]) >= 5:
