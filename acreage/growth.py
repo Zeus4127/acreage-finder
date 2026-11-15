@@ -9,7 +9,7 @@ Drive times are straight-line distance x 1.3 at 80 km/h: a guide, not a route.
 
   python3 -I growth.py
 """
-import json, math, os
+import json, math, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 P = lambda f: os.path.join(HERE, f)
@@ -64,6 +64,8 @@ def main():
         except Exception: return {}
     drive, elev, water = lj("drive-cache.json"), lj("elev-cache.json"), lj("water-cache.json")
     qplan, qproj, qdev = lj("qld-plan-cache.json"), lj("qld-projects-near.json"), lj("qld-devarea-near.json")
+    popf = lj("ref/pop-forecast.json")
+    sys.path.insert(0, HERE); import pop_forecast as PF
     # area price level: median $/acre by state and size band, to spot areas that are still cheap (they caught up fastest)
     import statistics
     def bnd(a): return 0 if a < 50 else 1 if a < 200 else 2
@@ -109,6 +111,8 @@ def main():
         x["land20"] = g.get("cagr20"); x["land10"] = g.get("cagr10")
         pp = pop.get(r["s"] + "|" + (r.get("lga") or "").upper())
         x["pop10"] = pp["g10"] if pp else None
+        fc = popf.get(r["s"] + "|" + PF.norm(r.get("lga") or "")) if r.get("lga") else None
+        x["popf"] = fc   # state government forecast growth a year, next ~15 years
         mk = (d.get("areas") or {}).get(r["s"] + "|" + (r.get("region") or "")) or {}
         x["pace"] = mk.get("pace")
 
@@ -159,9 +163,12 @@ def main():
         if r["s"] == "QLD": l10 = None
         add(3 if l10 is not None and l10 < 9.6 else 1.5 if l10 is not None and l10 < 12.3 else 0, l10 is not None and l10 < 12.3,
             (f"area hasn't boomed yet: land values up {l10}%/yr over 10 years" if l10 < 12.3 else f"area already boomed: land values up {l10}%/yr over 10 years (fast risers slowed down next decade)") if l10 is not None else ("Queensland: past growth isn't a guide here (state figures show early risers kept rising)" if r["s"] == "QLD" else "no 10-year growth figure"))
-        p10 = x["pop10"]
-        add(4 if (p10 or 0) >= 1.5 else 3 if (p10 or 0) >= 0.8 else 1 if (p10 or 0) >= 0.3 else 0, (p10 or 0) >= 0.8,
-            f"council population growing {p10}%/yr" if p10 is not None else "population growth unknown")
+        p10 = x["pop10"]; pf = x["popf"]
+        if pf is not None:   # the future matters more than the past: use the state's forecast where there is one
+            add(4 if pf >= 1.5 else 3 if pf >= 0.8 else 1 if pf >= 0.3 else 0, pf >= 0.8, f"council population forecast to grow {pf}%/yr to 2041 (state government)")
+        else:
+            add(4 if (p10 or 0) >= 1.5 else 3 if (p10 or 0) >= 0.8 else 1 if (p10 or 0) >= 0.3 else 0, (p10 or 0) >= 0.8,
+                f"council population grew {p10}%/yr over 10 years" if p10 is not None else "population growth unknown")
         add(4 if x["pace"] == "busy" else 2 if x["pace"] == "normal" else 0, x["pace"] in ("busy", "normal"), f"local market {x['pace'] or 'unknown'}")
         ca = x["cheap_area"]
         add(20 if ca is not None and ca <= 0.5 else 15 if ca is not None and ca <= 0.7 else 9 if ca is not None and ca <= 0.9 else 3 if ca is not None and ca <= 1.1 else 0, ca is not None and ca <= 0.9,
