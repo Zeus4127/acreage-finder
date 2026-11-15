@@ -1,6 +1,87 @@
 {
 "alerts": [
 {
+"id": "400899",
+"when": "2026-11-15T03:02+00:00",
+"title": "\u2b50 Standout: Heathcote VIC",
+"text": "252 acres, asking $1,250,000, Growth 58/100, likely sale $1,441,000",
+"url": "https://farmbuy.com/503-mia-mia-derrinal-road-heathcote-vic-3523-400899",
+"def": 1,
+"m": {
+"p": 1250000.0,
+"a": 252.0,
+"tk": 9,
+"ck": 47,
+"rain": 524,
+"s": "VIC",
+"house": 1,
+"v": "great",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 2,
+"gok": 1,
+"gs": 58,
+"star": 1
+}
+},
+{
+"id": "416377",
+"when": "2026-11-15T03:02+00:00",
+"title": "\u2b50 Standout: Dungog NSW",
+"text": "150 acres, asking $1,450,000, Growth 57/100, likely sale $1,952,000",
+"url": "https://farmbuy.com/1712-stroud-hill-road-dungog-nsw-2420-416377",
+"def": 1,
+"m": {
+"p": 1450000.0,
+"a": 150.0,
+"tk": 0,
+"ck": 79,
+"rain": 992,
+"s": "NSW",
+"house": 1,
+"v": "great",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 57,
+"star": 1
+}
+},
+{
+"id": "377421",
+"when": "2026-11-15T03:02+00:00",
+"title": "\u2b50 Standout: East Seaham NSW",
+"text": "125 acres, asking $900,000, Growth 58/100, likely sale $902,000",
+"url": "https://farmbuy.com/4-killaloe-lane-east-seaham-nsw-2324-377421",
+"def": 1,
+"m": {
+"p": 900000.0,
+"a": 125.0,
+"tk": 14,
+"ck": 42,
+"rain": 1006,
+"s": "NSW",
+"house": 0,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 1,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 58,
+"star": 1
+}
+},
+{
 "id": "431645",
 "when": "2026-11-15T02:44+00:00",
 "title": "\u2b50 Standout: Dubbo NSW",
@@ -57,5 +138,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-15T02:44+00:00"
+"updated": "2026-11-15T03:02+00:00"
 }

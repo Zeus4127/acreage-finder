@@ -107,6 +107,7 @@ details.loc>summary{cursor:pointer;font-weight:600;color:var(--ink)}
 .links a.go{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;padding:7px 12px;border-radius:var(--r-sm)}
 a{color:var(--accent)}
 .more{border:none;background:none;color:var(--accent);font-weight:600;padding:0}
+.watch{border:1px solid var(--line2);background:var(--surface);color:var(--ink2);font-weight:600;padding:6px 11px;border-radius:var(--r-sm);font-size:13px}
 .why{font-size:13px;margin:0;padding-left:18px;display:grid;gap:3px}
 /* panels, forms, tables */
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:10px;box-shadow:var(--shadow)}
@@ -166,8 +167,11 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
     <div class="chips" id="pStates"></div>
     <div id="pState"></div>
     <div class="what" id="pPicks" style="min-width:0;max-width:100%"></div></div>
+  <div class="panel" id="watchBox" hidden><h3>☆ Your watchlist</h3>
+    <p class="what">Blocks you've starred (tap ☆ Watch on any card). Price changes since you starred them show here, and whether it has sold. Saved on this phone only.</p>
+    <div id="watchList" class="list"></div></div>
   <div class="panel" id="starBox" hidden><h3>⭐ Standouts right now</h3>
-    <p class="what">Blocks that tick every must-have (a real town or holiday town close by, water, things to do, no deal-breakers), score 59+ for growth, and are priced under similar blocks. Check each one yourself before you get excited.</p>
+    <p class="what">Blocks that tick every must-have (a real town or holiday town close by, water, things to do, no deal-breakers), score 57+ for growth, and are priced under similar blocks. Check each one yourself before you get excited.</p>
     <div id="starList"></div></div>
   <h3>What's new</h3>
   <p class="what" id="tNote"></p>
@@ -262,6 +266,9 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
 </section>
 
 <section class="view" id="v-growth" hidden>
+  <div class="panel" id="pathBox"><h3>Where the next big jumps could be</h3>
+    <div class="what" id="pathWhat" style="max-width:none"></div>
+    <div id="pathList" class="list"></div></div>
   <h3>How much has farmland gone up?</h3>
   <p class="what">Median sale price of farms over about 30 ha (75 acres) for each state, region and council, from every farm sale in Australia (Bendigo Bank Agribusiness, Australian Farmland Values 2026 and 2025). Prices are per acre and include houses and sheds on the land.</p>
   <div class="facts" id="gfacts" style="margin:0;border-radius:14px"></div>
@@ -341,11 +348,12 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
       <li><b>Things to do (about 8):</b> a national or state park, a wine region, holiday cabins and farm stays nearby.</li>
       <li><b>Water and land (17):</b> creek or river from the listing or the state water maps (7), dam, bore or tanks (3), rainfall (3), size (2), gentle slope from terrain data (2). Very steep land loses points.</li>
       <li><b>Catch-up and momentum (34):</b> area still cheap against the state (up to 20), area hasn't boomed yet over 10 years (3, not in Queensland), population growth (4), market pace (4).</li>
+      <li><b>Growth path (4, or 6 with two signs):</b> a cheap area 35–90 minutes from a city (the tree-change belt, where NSW areas went up 10 times or more three times as often), or, in Queensland, inside or within about 3 km of the planned urban area, or near one of the state's chosen future growth areas. See "Where the next big jumps could be" at the top of this tab.</li>
       <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price. The total is scaled to be out of 100.</li>
-      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 59+, and priced under similar blocks.</li>
+      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 57+, and priced under similar blocks.</li>
     </ul></div>
   <div class="panel"><h3>How the fair price works</h3>
-    <ul class="plain">
+    <ul class="plain"><li id="btNote" hidden></li>
       <li>Each block is compared with up to 12 of the most similar blocks for sale: within 50 km first (then 120 km, then 250 km, then the state; blocks without a map point use the postcode district instead), including recent sales, similar size, and the same kind of land: bare bush, working farm, bare lifestyle block, or a block with a house.</li>
       <li>Each comparison block's price is scaled to this block's size (bigger blocks cost more in total but less per acre), and the middle value is the likely sale price. Stations over 20,000 acres are left out, because they trade as a different market.</li>
       <li>Then the block's own details: creek or river frontage adds 5%, power 4%. A covenant takes off 25%, no right to build 30%, leasehold 20%, doubtful access 15%, flood-prone 7%.</li>
@@ -405,6 +413,10 @@ const score=x=>{if(x.gs==null)return !x.ratio?-999:(1-x.ratio)*40-60;const val=x
 let pref={dst:"All",dmax:"300000",dmin:"10",dhouse:false,dclean:false,dok:true,tab:"deals",pv:2};
 try{const sv=JSON.parse(localStorage.getItem("acreage-pref")||"{}");if(sv.pv!==2)delete sv.dmin;Object.assign(pref,sv);pref.pv=2}catch(e){}
 const save=()=>{try{localStorage.setItem("acreage-pref",JSON.stringify(pref))}catch(e){}};
+let WATCH={};try{WATCH=JSON.parse(localStorage.getItem("acreage-watch")||"{}")}catch(e){}
+const saveWatch=()=>{try{localStorage.setItem("acreage-watch",JSON.stringify(WATCH))}catch(e){}};
+let LASTV="";try{LASTV=localStorage.getItem("acreage-lastvisit")||"";localStorage.setItem("acreage-lastvisit",(D.scanned||"").slice(0,10))}catch(e){}
+const newSince=x=>LASTV&&x.first&&x.first>LASTV;
 
 // header + facts
 if(D.scanned){const d=new Date(D.scanned);$("scanned").textContent=L.length+" blocks · scanned "+d.toLocaleDateString("en-AU",{day:"numeric",month:"short"})}else $("scanned").textContent="no scan data";
@@ -533,6 +545,15 @@ const CABIN={
  SA:"South Australia: tourist accommodation in rural zones needs development approval under the Planning and Design Code. Check the zone's rules on the SA PlanSA site.",
  WA:"Western Australia: holiday homes, chalets or a caravan park on rural land need council approval under its local planning scheme, and some shires are stricter than others.",
  NT:"Northern Territory: tourist accommodation on rural land needs development consent under the NT Planning Scheme."};
+function qldPlan(x){const q=(x.gx||{}).qplan;if(!q)return"";const t=[];
+  if(q.cat)t.push(`State regional plan: <b>${esc(q.cat)}</b>`+(/Rural Production/.test(q.cat)?" (farming land: cabins or a caravan park need council approval and are harder here)":/Rural Living/.test(q.cat)?" (rural living: small-scale tourism is usually easier)":/Urban Footprint/.test(q.cat)?" (planned for towns and suburbs)":""));
+  if(q.tour)t.push("inside a <b>Significant Tourist Activity Area</b> (the state plan supports tourism here)");
+  if(q.paa)t.push("in a Priority Agricultural Area (other uses must not get in the way of farming)");
+  if(q.sea)t.push("in a Strategic Environmental Area (extra limits on some activities)");
+  return t.length?" Queensland checks: "+t.join("; ")+".":""}
+function pathLine(x){const g=x.gx||{};const a=[];if(g.path&&g.path.length)a.push("<b>Growth path:</b> "+g.path.map(esc).join("; ")+".");
+  if(g.proj&&g.proj.length)a.push("<b>Big state project nearby:</b> "+g.proj.map(p=>`${esc(p[1])} (${p[0]} km, ${esc(String(p[2]||"").toLowerCase())})`).join("; ")+". Big projects bring jobs and roads, but a mine or industrial site next door can also put buyers off.");
+  return a.length?`<div class="loc">${a.join(" ")}</div>`:""}
 function dossier(x){
   if(!x.gstar)return"";const k=v=>"$"+Math.round(v/1000)+"k";
   const cs=(x.cids||[]).map(i=>byId[i]).filter(Boolean).slice(0,6);
@@ -541,7 +562,7 @@ function dossier(x){
   return `<details class="loc" style="border:2px solid var(--ok);border-radius:12px;padding:8px 10px;margin-top:8px"><summary><b>⭐ Standout dossier</b></summary>
    <div style="margin-top:6px"><b>Offer plan:</b> open around ${k(x.offer||x.fair*.93)}, likely sale price about ${k(x.fair)}, walk away above ${k(x.walk||x.fair*1.08)}. Asking is ${k(x.p)}.</div>
    ${comps?`<div style="margin-top:6px"><b>What it was compared with:</b>${comps}</div>`:""}
-   <div style="margin-top:6px"><b>Cabins or caravan sites:</b> ${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: ${esc(x.zone)}${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}</div>
+   <div style="margin-top:6px"><b>Cabins or caravan sites:</b> ${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: ${esc(x.zone)}${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}${qldPlan(x)}</div>
    <div style="margin-top:6px"><b>Ask the agent:</b><ol style="margin:4px 0 0 18px;padding:0">${q.map(t=>`<li>${t}</li>`).join("")}</ol></div>
    <div style="margin-top:6px"><b>Before you offer:</b> look at it on Google Maps satellite, drive the road in, get a title search (about $30), ring the council about the zone and any approvals, and book a building and pest check if there's a house.</div></details>`}
 function growthLine(x){
@@ -657,6 +678,7 @@ function quick(x){
   if(f.has("creek")||f.has("river")||g.mapcreek)pos.push("creek or river");else if(f.has("dam")||f.has("bore"))pos.push("dam or bore");
   if(g.park&&g.park[1]<=15)pos.push("next to a park");
   if((x.lots||0)>=2)pos.push(`${x.lots} lots`);
+  if(g.path&&g.path.length)pos.unshift(g.path[0].split(":")[0]);
   (g.bad||[]).slice(0,2).forEach(b=>neg.push(b));
   if(!neg.length&&(c.fire))neg.push("bushfire prone");
   return {t,pos:pos.slice(0,4),neg}}
@@ -667,15 +689,15 @@ function card(x){
   const gsc=x.gs==null?"":`<span class="gs ${x.gs>=60?"hi":x.gs>=42?"mid":"lo"}" title="Growth score out of 100"><i>${x.gs}</i>Growth</span>`;
   return `<article class="card${x.gstar?" star":""}">
   <div class="chead"><div style="min-width:0;display:grid;gap:6px">
-    <div class="pills">${gsc}${x.gstar?'<span class="pill star">★ Standout</span>':x.gok?'<span class="pill v-great">Ticks must-haves</span>':""}<span class="pill v-${vk}">${VN[vk]}${gone(x)&&x.v?" · was "+VN[x.v].toLowerCase():""}</span><span class="pill st">${x.s}</span>${isNew(x)?'<span class="pill v-great">New</span>':""}${x.drop?`<span class="pill v-high">Cut ${short(x.drop[0])} → ${short(x.drop[1])}</span>`:""}</div>
+    <div class="pills">${gsc}${x.gstar?'<span class="pill star">★ Standout</span>':x.gok?'<span class="pill v-great">Ticks must-haves</span>':""}<span class="pill v-${vk}">${VN[vk]}${gone(x)&&x.v?" · was "+VN[x.v].toLowerCase():""}</span><span class="pill st">${x.s}</span>${isNew(x)?'<span class="pill v-great">New</span>':newSince(x)?'<span class="pill v-great">New since your last visit</span>':""}${(x.gx&&x.gx.path&&x.gx.path.length)?'<span class="pill star">Growth path</span>':""}${x.drop?`<span class="pill v-high">Cut ${short(x.drop[0])} → ${short(x.drop[1])}</span>`:""}</div>
     <h4>${esc(name)}</h4><div class="loc">${esc(x.sub)} ${x.s} ${esc(x.pc)}${x.type?" · "+esc(x.type.split(",")[0]):""}</div></div>
     <div class="ask"><b>${x.p?short(x.p):"–"}</b><small>${esc((x.pt||"").slice(0,32))}</small></div></div>
   <div class="nums"><div><small>Size</small><span>${acres(x.a)}</span></div><div><small>Likely sale</small><span>${short(x.fair)}</span></div><div><small>Offer from</small><span>${x.offer?short(x.offer):"–"}</span></div><div><small>Walk away</small><span>${x.walk?short(x.walk):"–"}</span></div></div>
   ${q.t||q.pos.length||q.neg.length?`<div class="take1">${q.t?`<div><b>${esc(q.t.head.replace(/^[^A-Za-z]+/,""))}</b></div>`:""}${q.pos.length||q.neg.length?`<div class="minis">${q.pos.map(p=>`<span class="mini">${esc(p)}</span>`).join("")}${q.neg.map(p=>`<span class="mini bad">${esc(p)}</span>`).join("")}</div>`:""}</div>`:""}
-  <div class="links"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open listing ↗</a><span class="muted num" style="font-size:12.5px">${x.ppa?money(x.ppa)+" per acre":""}${x.dom!=null?" · listed "+(x.dom<45?x.dom+" days":Math.round(x.dom/30.4)+" months")+" ago":""}</span></div>
+  <div class="links"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open listing ↗</a><button class="watch" type="button" data-w="${esc(x.id)}">${WATCH[x.id]?"★ Watching":"☆ Watch"}</button><span class="muted num" style="font-size:12.5px">${x.ppa?money(x.ppa)+" per acre":""}${x.dom!=null?" · listed "+(x.dom<45?x.dom+" days":Math.round(x.dom/30.4)+" months")+" ago":""}</span></div>
   <details class="full"><summary>Full analysis</summary><div class="fullin">
   ${x.lo?`<div class="loc">Similar blocks nearby usually ask ${short(x.lo)} to ${short(x.hi)}.</div>`:""}
-  ${subLine(x)}${growthLine(x)}${dossier(x)}${takeLine(x)}${domLine(x)}${placeLine(x)}${costLine(x)}${incomeLine(x)}${areaLine(x)}${catchLine(x)}
+  ${subLine(x)}${growthLine(x)}${pathLine(x)}${dossier(x)}${takeLine(x)}${domLine(x)}${placeLine(x)}${costLine(x)}${incomeLine(x)}${areaLine(x)}${catchLine(x)}
   ${t?`<div class="tags">${t}</div>`:""}
   ${x.desc?`<p class="desc">${esc(x.desc)}</p>`:""}
   <div class="links"><span class="muted" style="font-size:12.5px">${x.ag?esc(x.ag)+" · ":""}${x.q!=null?"listing quality "+x.q+"/100":""}</span><button class="more" type="button" data-id="${esc(x.id)}">Why this verdict?</button></div>
@@ -683,6 +705,9 @@ function card(x){
   </div></details>
   </article>`;
 }
+document.addEventListener("click",e=>{const w=e.target.closest(".watch");if(w){const i=w.dataset.w,x=byId[i];
+  if(WATCH[i])delete WATCH[i];else WATCH[i]={p:x&&x.p||null,d:(D.scanned||"").slice(0,10)};saveWatch();
+  document.querySelectorAll(`.watch[data-w="${CSS.escape(i)}"]`).forEach(b=>b.textContent=WATCH[i]?"★ Watching":"☆ Watch");if(window.drawWatch)drawWatch();return}});
 document.addEventListener("click",e=>{const b=e.target.closest(".more");if(!b)return;const u=b.closest(".card").querySelector(".why");u.hidden=!u.hidden;b.textContent=u.hidden?"Why this verdict?":"Hide reasons"});
 
 // deals view
@@ -898,7 +923,7 @@ function fut(){const p=+$("fPrice").value||0,y=+$("fYears").value;const [s,n]=fr
 // my rules: saved on this phone, used by "Only my matches" and (when sent to Claude) by the morning alerts
 const RK="acreageRules";
 function getRules(){try{const v=localStorage.getItem(RK);if(v)return JSON.parse(v)}catch(e){}return Object.assign({},D.alert_rules||{})}
-function setRules(r){try{localStorage.setItem(RK,JSON.stringify(r))}catch(e){}}
+function setRules(r){try{localStorage.setItem(RK,JSON.stringify(r))}catch(e){}try{if(window.AcreageApp)AcreageApp.setRules(JSON.stringify(r))}catch(e){}}
 const RF={rMax:"maxPrice",rMinA:"minAcres",rMaxA:"maxAcres",rTown:"maxTownKm",rCity:"maxCityKm",rRain:"minRain",rStates:"states",rHouse:"house",rDeal:"deal",rWater:"water",rNoFlood:"noFlood",rNoVeg:"noVeg",rNoFire:"noFire",rStay:"stay",rSplit:"split",rOk:"musts",rMinG:"g60"};
 function readRules(){const r={};for(const[id,k]of Object.entries(RF)){const el=$(id);if(!el)continue;if(el.type==="checkbox"){if(el.checked)r[k]=true}else{const v=el.value.trim();if(v)r[k]=["states","house","deal"].includes(k)?v.toUpperCase().replace(/[^A-Z ]/g,"").trim()||v:+v.replace(/[^0-9.]/g,"")}}if(r.house)r.house=r.house.toLowerCase();if(r.deal)r.deal=r.deal.toLowerCase();return r}
 function fillRules(){const r=getRules();for(const[id,k]of Object.entries(RF)){const el=$(id);if(!el)continue;if(el.type==="checkbox")el.checked=!!r[k];else el.value=r[k]??""}}
@@ -955,6 +980,20 @@ rulesChanged();
     if(m.length){const mx=Math.max(1,...v);h+=`<div style="display:flex;gap:6px;align-items:flex-end;height:90px;margin-top:6px">`+m.map((mm,i)=>`<div style="flex:1;text-align:center"><div title="${mm}: ${v[i]} sold" style="height:${4+Math.round(70*v[i]/mx)}px;background:var(--accent);border-radius:4px 4px 0 0"></div><div class="muted" style="font-size:11px">${mm.slice(5)}</div></div>`).join("")+`</div><div class="muted" style="font-size:12px">10+ acre sales on Farmbuy each month in ${cur}. Early months are undercounted (Farmbuy only keeps its latest 3,000 sales), so read the trend from here on.</div>`}
     $("pState").innerHTML=h}
   if(ST.length)draw();
+  window.drawWatch=()=>{const ids=Object.keys(WATCH);$("watchBox").hidden=!ids.length;if(!ids.length)return;
+    $("watchList").innerHTML=ids.map(i=>{const x=byId[i],w=WATCH[i];if(!x)return`<div class="empty">A block you starred (${esc(i)}) is no longer listed: it has probably sold. <button class="watch" data-w="${esc(i)}">Remove</button></div>`;
+      const ch=x.p&&w.p&&x.p!==w.p?`<div class="tip" style="margin-bottom:6px"><b>Price ${x.p<w.p?"dropped":"went up"}:</b> ${short(w.p)} → ${short(x.p)} since you starred it on ${esc(w.d)}.</div>`:"";return ch+card(x)}).join("")};
+  drawWatch();
+  const pth=L.filter(x=>x.gx&&x.gx.path&&x.gx.path.length&&!gone(x)&&x.gok).sort((a,b)=>(b.gs||0)-(a.gs||0));
+  const J=D.jump||{};
+  $("pathWhat").innerHTML=`<p style="margin:0 0 8px">We looked at every NSW government sale of 10–200 acre blocks since 2001${J.areas?` (${J.areas} areas about 10 km wide)`:""}. The typical area went up about ${J.median_multiple||4.3} times from 2001–06 to 2022–26. ${J.ten_x||44} areas went up <b>10 times or more</b>. What they had in common:</p>
+   <ul class="plain"><li><b>Cheap to start with:</b> they started at about ${J.top_start?money(J.top_start):"$2,600"} an acre, against ${J.other_start?money(J.other_start):"$6,000"} for the rest. Cheap land had the most room to climb.</li>
+   <li><b>The tree-change belt, 40–90 km from a city:</b> cheap areas in that ring went 10x <b>${J.belt_rate||19}%</b> of the time, against ${J.base_rate||7}% for all areas. Examples: the Canberra hinterland (Reidsdale, Majors Creek, Bombay, Michelago), the south coast hinterland, and the Mid-Coast behind Taree.</li>
+   <li><b>Rezoning on a city's edge</b> made the very biggest money. Kemps Creek, next to the new Western Sydney Airport, went from about $54,000 to $1.19 million an acre (22 times), so 20 acres there is worth about $24 million now. Dombarton near Wollongong went up 14 times. These jumps happen where the state has marked land for future suburbs. In Queensland that's the SEQ Urban Footprint and the state's 10 SEQ development areas, which this app now checks for every Queensland block.</li></ul>
+   <p class="muted" style="font-size:12.5px;margin:8px 0 0">Honest limits: part of each jump is more small blocks selling later (small blocks fetch more per acre), and land already marked for suburbs is usually priced for it. The best chances are cheap blocks <i>next to</i> the planned area, before the plan grows. These are odds, not promises.</p>
+   <h3 style="font-size:15px;margin-top:12px">Blocks on a growth path that tick your must-haves (${pth.length})</h3>`;
+  $("pathList").innerHTML=pth.length?pth.slice(0,15).map(card).join(""):'<div class="empty">None right now. New listings are checked every day.</div>';
+  const B=D.bt;if(B){const e=$("btNote");e.hidden=false;e.innerHTML=`<b>Tested honestly:</b> the likely sale price was learned from ${esc(B.learned_on)}, then checked on the ${esc(B.tested_on)}, using only sales that happened before each one. It was typically about <b>${Math.round(B.median_abs_err*100)}% off</b>. It came within 20% for ${Math.round(B.within20*10)} in 10 blocks and within 35% for ${Math.round(B.within35*10)} in 10, and on average it came out ${Math.abs(Math.round((1-B.median_ratio)*100))}% ${B.median_ratio<1?"under":"over"} the real price. Use it as a guide for your opening offer, then check the agent's recent sales nearby before you bid.`}
   const stars=L.filter(x=>x.gstar&&!gone(x)).sort((a,b)=>score(b)-score(a));
   if(stars.length){$("starBox").hidden=false;$("starList").innerHTML=stars.slice(0,12).map(card).join("")+(stars.length>12?`<p class="what">${stars.length-12} more: tick "Only ⭐ Standouts" in All listings.</p>`:"")}
 })();

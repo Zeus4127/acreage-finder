@@ -27,6 +27,8 @@ def main():
     for r in d["listings"]:
         if r.get("uo"): continue
         why = "⭐ Standout" if r.get("gstar") else "Matches your rules" if rules and S.match_rules(r, rules) else None
+        # also send good candidates: the phone app checks them against the rules set on the phone
+        if not why and (r.get("gok") or r.get("v") in ("great", "good")): why = "New block for your rules"
         if not why: continue
         key = str(r["id"])
         if key in sent: continue
@@ -41,14 +43,21 @@ def main():
     for why, r in new:
         feed["alerts"].insert(0, {"id": str(r["id"]), "when": now.isoformat(timespec="minutes"), "title": why + ": " + str(r.get("sub")) + " " + r["s"],
             "text": f"{round(r['a'])} acres, asking ${r['p']:,.0f}" + (f", Growth {r['gs']}/100" if r.get("gs") is not None else "") + (f", likely sale ${r['fair']:,.0f}" if r.get("fair") else ""),
-            "url": r.get("u") or ""})
+            "url": r.get("u") or "", "def": 0 if why == "New block for your rules" else 1,
+            # the facts the phone needs to apply "My rules" itself (same rules as the page)
+            "m": {"p": r.get("p") or 0, "a": r["a"], "tk": round(r["town"][1] * 1.3) if r.get("town") else 9999, "ck": round(r["city"][1] * 1.3) if r.get("city") else 9999,
+                  "rain": r.get("rain") or 0, "s": r["s"], "house": 1 if r.get("house") else 0, "v": r.get("v") or "",
+                  "water": 1 if set(r.get("feats") or []) & {"creek", "river", "dam", "bore"} else 0,
+                  "flood": 1 if ((r.get("chk") or {}).get("flood") or "flood" in (r.get("flags") or [])) else 0, "veg": 1 if (r.get("chk") or {}).get("veg") else 0,
+                  "fire": 1 if ((r.get("chk") or {}).get("fire") or (r.get("chk") or {}).get("burnt")) else 0, "stay": 1 if r.get("stay") else 0,
+                  "lots": r.get("lots") or 0, "gok": r.get("gok") or 0, "gs": r.get("gs") or 0, "star": r.get("gstar") or 0}})
     cut = (now - timedelta(days=60)).isoformat()
-    feed["alerts"] = [a for a in feed["alerts"] if a["when"] >= cut][:100]
+    feed["alerts"] = [a for a in feed["alerts"] if a["when"] >= cut][:400]
     feed["updated"] = now.isoformat(timespec="minutes")
     json.dump(feed, open(P("alerts-feed.json"), "w"), indent=0)
     if first: print("alerts: first run, remembered", len(sent), "blocks; nothing sent"); return
     print("alerts: new", len(new), "| sending" if topic else "| no ntfy topic set, not sending")
-    for why, r in new[:10]:
+    for why, r in [w for w in new if w[0] != "New block for your rules"][:10]:
         msg = f"{why}: {round(r['a'])} ac {r.get('sub')} {r['s']}, asking ${r['p']:,.0f}" + (f", Growth {r['gs']}/100" if r.get("gs") is not None else "") + (f", likely sale ${r['fair']:,.0f}" if r.get("fair") else "")
         if not topic: print("  ", msg); continue
         try:

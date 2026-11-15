@@ -142,6 +142,12 @@ public class MainActivity extends Activity {
             }
         });
         web.setWebChromeClient(new android.webkit.WebChromeClient());
+        // the page hands its "My rules" to the app, so background alerts follow the same rules
+        web.addJavascriptInterface(new Object() {
+            @android.webkit.JavascriptInterface public void setRules(String json) {
+                getSharedPreferences("rules", MODE_PRIVATE).edit().putString("json", json == null ? "" : json).apply();
+            }
+        }, "AcreageApp");
         // newer Android draws the app under the status and navigation bars; keep the page clear of them
         web.setOnApplyWindowInsetsListener(new android.view.View.OnApplyWindowInsetsListener() {
             public android.view.WindowInsets onApplyWindowInsets(android.view.View v, android.view.WindowInsets in) {

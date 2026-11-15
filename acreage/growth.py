@@ -63,6 +63,7 @@ def main():
         try: return json.load(open(P(f)))
         except Exception: return {}
     drive, elev, water = lj("drive-cache.json"), lj("elev-cache.json"), lj("water-cache.json")
+    qplan, qproj, qdev = lj("qld-plan-cache.json"), lj("qld-projects-near.json"), lj("qld-devarea-near.json")
     # area price level: median $/acre by state and size band, to spot areas that are still cheap (they caught up fastest)
     import statistics
     def bnd(a): return 0 if a < 50 else 1 if a < 200 else 2
@@ -171,6 +172,18 @@ def main():
         add({"great": 7, "good": 5, "fair": 3, "high": 1}.get(v, 0), v in ("great", "good", "fair"),
             {"great": "priced well under similar blocks", "good": "priced under similar blocks", "fair": "fairly priced", "high": "asking a bit high", "over": "overpriced", "why": "suspiciously cheap"}.get(v, "no price to judge"))
         if sl_ is not None and sl_ > 20: pts -= 4
+        # growth path (what the 10x areas had in common): NSW 2001-06 -> 2022-26, 664 areas. Areas that were cheap per acre
+        # and 40-90 km from a city went up 10 times or more three times as often as the rest (19% against 7%).
+        sid = str(r["id"]); qp = qplan.get(sid) or {}; path = []
+        if ca is not None and ca <= 0.7 and 35 <= cm <= 90: path.append("tree-change belt: cheap area 35-90 min from " + (x["city"][0] if x["city"] else "a city"))
+        if qp.get("cat") == "Urban Footprint": path.append("inside the planned urban area (SEQ Urban Footprint)")
+        elif qp.get("uf3"): path.append("within about 3 km of the planned urban area (SEQ Urban Footprint): next in line if it grows")
+        if sid in qdev and qdev[sid][0] <= 10: path.append(f"{qdev[sid][0]} km from {qdev[sid][1]} (the state's chosen future growth area)")
+        add(4 if path else 0, bool(path), path[0] if path else "not on a known growth path")
+        if len(path) >= 2: pts += 2
+        x["path"] = path
+        if qp: x["qplan"] = qp
+        if sid in qproj: x["proj"] = qproj[sid]
         # deal-breakers
         ck = r.get("chk") or {}; fl = set(r.get("flags") or [])
         bad = []
@@ -184,14 +197,14 @@ def main():
         if ck.get("fire") or ck.get("burnt"): pts -= 2; bad.append("bushfire prone")
         if a >= 20000: pts -= 10; bad.append("pastoral station")
         if sl_ is not None and sl_ > 25: bad.append("very steep")
-        gs = max(0, min(100, round(pts * 100 / 88.6)))   # 88.6 = most points possible, so the score is still out of 100
+        gs = max(0, min(100, round(pts * 100 / 94.6)))   # 94.6 = most points possible, so the score is still out of 100
         # must-haves: a real town or a holiday town with the basics, water, things to do, no deal-breaker
         town_ok = sm <= 45 or (hm <= 30 and tm <= 20)
         fun_ok = pkd <= 30 or wd <= 40 or cst <= 30 or hm <= 30
         hard = [b for b in bad if b not in ("bushfire prone", "very steep")]
         r["gs"], r["gx"] = gs, dict(x, bad=bad)   # the page builds the tick list from these facts
         r["gok"] = 1 if (town_ok and fun_ok and (frontage or stored) and not hard) else 0
-        r["gstar"] = 1 if (r["gok"] and gs >= 59 and v in ("great", "good")) else 0
+        r["gstar"] = 1 if (r["gok"] and gs >= 57 and v in ("great", "good")) else 0
     open(P("acreage-data.js"), "w").write("window.ACREAGE_DATA=" + json.dumps(d, separators=(",", ":")) + ";\n")
     L = [r for r in d["listings"] if "gs" in r]
     print("Growth score on", len(L), "blocks | tick all boxes:", sum(r["gok"] for r in L), "| standouts:", sum(r["gstar"] for r in L))

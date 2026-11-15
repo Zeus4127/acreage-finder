@@ -148,6 +148,10 @@ def main():
     # ---- add to the page data
     d["pulse"] = {"latest": pulse["latest"], "days": days[-120:], "nsw_months": pulse.get("nsw_months", []), "sales_months": sales_months}
     d["picks"] = summary
+    try: d["bt"] = json.load(open(P("backtest.json"))).get("honest")   # honest price test, shown on the Price guide tab
+    except Exception: pass
+    try: d["jump"] = json.load(open(P("growth-jumps.json")))   # what the 10x areas had in common
+    except Exception: pass
     open(P("acreage-data.js"), "w").write("window.ACREAGE_DATA=" + json.dumps(d, separators=(",", ":")) + ";\n")
     print("Pulse:", pulse["latest"]["verdict"], "| picks tracked:", len(picks), "| sold so far:", len(done))
 

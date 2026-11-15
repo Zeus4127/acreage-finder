@@ -44,6 +44,10 @@ def main():
         print(kind, json.dumps(o["all"]), flush=True)
         for k in ("by_state", "by_size", "by_source"): print("  ", k, {a: (b["median_ratio"], b["median_abs_err"], b["within20"], b["n"]) for a, b in o[k].items() if b})
     res = {"tests": out}
+    try:   # keep last week's learned gap unless re-tuning now
+        prev = json.load(open(os.path.join(HERE, "backtest.json")))
+        if "tuned_k" in prev: res["tuned_k"], res["tuned_on"] = prev["tuned_k"], prev.get("tuned_on")
+    except Exception: pass
     if "--tune" in ARGS:   # learn how far under asking blocks really sell, from the latest sales
         best = None
         for k in (0.74, 0.78, 0.82, 0.86, 0.90, 0.94):
@@ -57,6 +61,30 @@ def main():
             if best is None or abs(m - 1) + err < best[0]: best = (abs(m - 1) + err, k)
         res["tuned_k"] = best[1]; res["tuned_on"] = d["scanned"][:10]
         print("tuned ask-to-sale:", best[1])
+    # honest test, the Track Edge way: learn the asking-to-sale gap on older sales only, then judge on the newest
+    # fifth of sales, each priced only with sales that happened before it (no peeking at the future)
+    dated = sorted([t for t in test if (t.get("sold") or t.get("date"))], key=lambda t: t.get("sold") or t.get("date"))
+    if len(dated) >= 200:
+        cut = int(len(dated) * 0.8); older, newest = dated[:cut], dated[cut:]
+        cutoff = newest[0].get("sold") or newest[0].get("date")
+        def run(ts, k):
+            S.ASK_TO_SALE = k; rs = []
+            for t in ts:
+                when = t.get("sold") or t.get("date")
+                pool = [c for c in asking if c["id"] != t["id"]] + [c for c in sales if c["id"] != t["id"] and (c.get("sold") or c.get("date") or "9999") < when]
+                subj = dict(t); subj.pop("is_sold", None)
+                fair, cs, lvl = S.price_one(subj, model, pool)
+                if fair: rs.append(fair / t["p"])
+            return rs
+        fit = []
+        for k in (0.74, 0.78, 0.82, 0.86, 0.90):
+            rs = run(older, k); fit.append((abs(statistics.median(rs) - 1) + statistics.median(abs(x - 1) for x in rs), k))
+        k = min(fit)[1]; rs = run(newest, k)
+        res["honest"] = {"learned_on": f"{len(older)} sales before {cutoff}", "tested_on": f"{len(rs)} newest sales from {cutoff}", "k": k,
+                         "median_ratio": round(statistics.median(rs), 3), "median_abs_err": round(statistics.median(abs(x - 1) for x in rs), 3),
+                         "within20": round(sum(1 for x in rs if abs(x - 1) <= .2) / len(rs), 3), "within35": round(sum(1 for x in rs if abs(x - 1) <= .35) / len(rs), 3),
+                         "offer_band_ok": round(sum(1 for x in rs if 0.85 <= x <= 1.15) / len(rs), 3)}
+        print("honest test:", res["honest"], flush=True)
     json.dump(res, open(os.path.join(HERE, "backtest.json"), "w"), indent=1)
 
 if __name__ == "__main__":

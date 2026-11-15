@@ -52,6 +52,39 @@ public class AlertJob extends JobService {
 
     @Override public boolean onStopJob(JobParameters params) { return true; }
 
+    /** Standouts always; otherwise only blocks that match the rules set on this phone (same rules as the page).
+     *  With no rules on the phone, the scanner's own picks only (as before). */
+    static boolean wanted(JSONObject a, JSONObject r) {
+        JSONObject m = a.optJSONObject("m");
+        if (m == null) return true;                       // older feed entries
+        if (m.optInt("star") == 1) return true;
+        if (r == null) return a.optInt("def", 1) == 1;
+        double p = m.optDouble("p", 0), ac = m.optDouble("a", 0);
+        if (r.optDouble("maxPrice", 0) > 0 && !(p > 0 && p <= r.optDouble("maxPrice"))) return false;
+        if (r.optDouble("minAcres", 0) > 0 && ac < r.optDouble("minAcres")) return false;
+        if (r.optDouble("maxAcres", 0) > 0 && ac > r.optDouble("maxAcres")) return false;
+        if (r.optDouble("maxTownKm", 0) > 0 && m.optDouble("tk", 9999) > r.optDouble("maxTownKm")) return false;
+        if (r.optDouble("maxCityKm", 0) > 0 && m.optDouble("ck", 9999) > r.optDouble("maxCityKm")) return false;
+        if (r.optDouble("minRain", 0) > 0 && m.optDouble("rain", 0) < r.optDouble("minRain")) return false;
+        String st = r.optString("states", "").trim();
+        if (!st.isEmpty() && !(" " + st + " ").contains(" " + m.optString("s") + " ")) return false;
+        String house = r.optString("house", "");
+        if (house.equals("yes") && m.optInt("house") != 1) return false;
+        if (house.equals("no") && m.optInt("house") == 1) return false;
+        String deal = r.optString("deal", ""), v = m.optString("v", "");
+        if (deal.equals("good") && !(v.equals("good") || v.equals("great"))) return false;
+        if (deal.equals("great") && !v.equals("great")) return false;
+        if (r.optBoolean("water") && m.optInt("water") != 1) return false;
+        if (r.optBoolean("noFlood") && m.optInt("flood") == 1) return false;
+        if (r.optBoolean("noVeg") && m.optInt("veg") == 1) return false;
+        if (r.optBoolean("noFire") && m.optInt("fire") == 1) return false;
+        if (r.optBoolean("stay") && m.optInt("stay") != 1) return false;
+        if (r.optBoolean("split") && m.optInt("lots") < 2) return false;
+        if (r.optBoolean("musts") && m.optInt("gok") != 1) return false;
+        if (r.optBoolean("g60") && m.optInt("gs") < 60) return false;
+        return true;
+    }
+
     static void check(Context c) throws Exception {
         HttpURLConnection con = (HttpURLConnection) new URL(FEED + "?t=" + System.currentTimeMillis() / 60000).openConnection();
         con.setConnectTimeout(15000); con.setReadTimeout(30000);
@@ -63,6 +96,9 @@ public class AlertJob extends JobService {
         SharedPreferences sp = c.getSharedPreferences("alerts", Context.MODE_PRIVATE);
         Set<String> seen = new HashSet<String>(sp.getStringSet("seen", new HashSet<String>()));
         boolean first = !sp.getBoolean("started", false);
+        JSONObject rules = null;   // "My rules" from the page, saved by MainActivity
+        try { String rs = c.getSharedPreferences("rules", Context.MODE_PRIVATE).getString("json", ""); if (rs.length() > 2) rules = new JSONObject(rs); } catch (Exception e) { }
+        if (rules != null && rules.length() == 0) rules = null;
         NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= 26 && nm != null)
             nm.createNotificationChannel(new NotificationChannel(CHANNEL, "New deals", NotificationManager.IMPORTANCE_DEFAULT));
@@ -72,6 +108,7 @@ public class AlertJob extends JobService {
             String id = a.optString("id");
             if (id.isEmpty() || seen.contains(id)) continue;
             seen.add(id);
+            if (!wanted(a, rules)) continue;
             if (first || shown >= 5 || nm == null) continue;
             String url = a.optString("url");
             Intent open = url.isEmpty() ? new Intent(c, MainActivity.class) : new Intent(Intent.ACTION_VIEW, Uri.parse(url));
