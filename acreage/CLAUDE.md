@@ -19,8 +19,8 @@ zac (the owner) asked for these so the app never gets worse. Follow them every t
   versions) for the Growth score, and `backtest.py` for prices. Keep a change only if it's better on years
   or sales it wasn't tuned on. Write the result in README.md either way.
 - **The phone app** (android/) must keep the same package and signing key. Bump versionCode and versionName for each build.
-- **Undo:** `git log` shows every change. The tag `known-good-<date>` marks versions checked on a phone-size screen.
-  To roll back the page: `git checkout <tag> -- acreage/acreage.html`, then `./release.sh`.
+- **Undo:** `git log` shows every change. `checks/KNOWN_GOOD.txt` lists versions checked on a phone-size screen.
+  To roll back the page: `git checkout <commit> -- acreage/acreage.html`, then `./release.sh`. Add a line there after each good release.
 
 ## Standing rules from zac
 - Free tools and data only. No paid subscriptions.
