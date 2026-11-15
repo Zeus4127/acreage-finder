@@ -25,6 +25,12 @@ def main():
     todo = sorted([r for r in d["listings"] if r["s"] in SVC and r.get("lat") and not r.get("uo") and str(r["id"]) not in cache], key=lambda r: r["s"] != "VIC")   # VIC first: its service is quicker
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else 4000
     print("Town-edge check: to do", len(todo), "| doing up to", limit)
+    # skip a state whose map server isn't answering right now (try again next run)
+    for st in list(SVC):
+        r0 = next((r for r in todo if r["s"] == st), None)
+        if r0 and get(SVC[st][0], {"geometry": f"{r0['lng']},{r0['lat']}", "geometryType": "esriGeometryPoint", "inSR": "4326",
+                                   "spatialRel": "esriSpatialRelIntersects", "outFields": SVC[st][1], "returnGeometry": "false", "f": "json"}) is None:
+            print("  ", st, "map server not answering; skipping it this run"); todo = [r for r in todo if r["s"] != st]
     from concurrent.futures import ThreadPoolExecutor
     def one(r):
         url, fld = SVC[r["s"]]
