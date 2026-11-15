@@ -25,22 +25,24 @@ def main():
     todo = sorted([r for r in d["listings"] if r["s"] in SVC and r.get("lat") and not r.get("uo") and str(r["id"]) not in cache], key=lambda r: r["s"] != "VIC")   # VIC first: its service is quicker
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else 4000
     print("Town-edge check: to do", len(todo), "| doing up to", limit)
-    fails = 0
-    for i, r in enumerate(todo[:limit]):
+    from concurrent.futures import ThreadPoolExecutor
+    def one(r):
         url, fld = SVC[r["s"]]
         res = get(url, {"geometry": f"{r['lng']},{r['lat']}", "geometryType": "esriGeometryPoint", "inSR": "4326", "distance": "2000",
                         "units": "esriSRUnit_Meter", "spatialRel": "esriSpatialRelIntersects", "outFields": fld, "returnDistinctValues": "true",
                         "returnGeometry": "false", "f": "json"})
-        if res is None:
-            fails += 1
-            if fails >= 25: print("  service not answering, stopping for now"); break
-            continue
+        if res is None: return r, None
         codes = sorted({(f["attributes"].get(fld) or "").upper() for f in res.get("features", [])} - {""})
         x = {"res2": 1 if any(c.startswith(RES[r["s"]]) for c in codes) else 0}
         if r["s"] == "VIC" and any(c.startswith("UGZ") for c in codes): x["ugz2"] = 1
-        cache[str(r["id"])] = x
-        if i % 100 == 99: json.dump(cache, open(P("edge-cache.json"), "w")); print("  ", i + 1, flush=True)
-        time.sleep(0.25)
+        return r, x
+    done = fails = 0
+    with ThreadPoolExecutor(4) as ex:   # 4 at a time: the map servers are slow per request
+        for r, x in ex.map(one, todo[:limit]):
+            done += 1
+            if x is None: fails += 1; continue
+            cache[str(r["id"])] = x
+            if done % 100 == 0: json.dump(cache, open(P("edge-cache.json"), "w")); print("  ", done, "| no answer", fails, flush=True)
     json.dump(cache, open(P("edge-cache.json"), "w"))
     print("Town-edge check: cached", len(cache), "| near houses", sum(v.get("res2", 0) for v in cache.values()), "| near Urban Growth Zone", sum(v.get("ugz2", 0) for v in cache.values()))
 
