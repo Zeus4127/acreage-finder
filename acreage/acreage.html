@@ -348,7 +348,7 @@ footer{font-size:12px;color:var(--muted);padding-top:24px}
       <li><b>Things to do (about 8):</b> a national or state park, a wine region, holiday cabins and farm stays nearby.</li>
       <li><b>Water and land (17):</b> creek or river from the listing or the state water maps (7), dam, bore or tanks (3), rainfall (3), size (2), gentle slope from terrain data (2). Very steep land loses points.</li>
       <li><b>Catch-up and momentum (34):</b> area still cheap against the state (up to 20), area hasn't boomed yet over 10 years (3, not in Queensland), population growth (4: the state government's forecast to 2041 for Queensland, WA and Tasmania blocks, otherwise the last 10 years), market pace (4).</li>
-      <li><b>Growth path (4, or 6 with two signs):</b> a cheap area 35–90 minutes from a city (the tree-change belt, where NSW areas went up 10 times or more three times as often), or, in Queensland, inside or within about 3 km of the planned urban area, or near one of the state's chosen future growth areas; in Victoria, within 2 km of the Urban Growth Zone (land set aside for future suburbs); in South Australia, within 3 km of a rural-to-housing rezoning (a Code Amendment). See "Where the next big jumps could be" at the top of this tab.</li>
+      <li><b>Growth path (4, or 6 with two signs):</b> a cheap area 35–90 minutes from a city (the tree-change belt, where NSW areas went up 10 times or more three times as often), or, in Queensland, inside or within about 3 km of the planned urban area, or near one of the state's chosen future growth areas; in Victoria, within 2 km of the Urban Growth Zone (land set aside for future suburbs); in South Australia, within 3 km of a rural-to-housing rezoning (a Code Amendment); in Western Australia, within 2 km of Urban Deferred land or 3 km of a region scheme change to Urban. See "Where the next big jumps could be" at the top of this tab.</li>
       <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price. The total is scaled to be out of 100.</li>
       <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 57+, and priced under similar blocks.</li>
     </ul></div>
@@ -555,6 +555,10 @@ function saPlan(x){const q=(x.gx||{}).saplan;if(!q)return"";const t=[];
   if(q.zone)t.push(`zone: <b>${esc(q.zone)}</b>`+(/^Rural$/.test(q.zone)?" (tourist accommodation needs approval under the Planning and Design Code)":""));
   (q.rez||[]).forEach(z=>t.push(`nearby rezoning: ${esc(z[0])} (${esc(String(z[1]||"").toLowerCase())})`));if(q.green)t.push("Greenfield housing land within 2 km");
   return t.length?" South Australia checks: "+t.join("; ")+".":""}
+function waPlan(x){const q=(x.gx||{}).waplan;if(!q)return"";const t=[];
+  if(q.zones&&q.zones.length)t.push("region scheme zones within 2 km: "+q.zones.map(esc).join(", "));
+  (q.estate||[]).forEach(e=>t.push(`planned housing estate within 3 km: ${esc(e[0])}${e[1]?" ("+esc(String(e[1]).toLowerCase())+")":""}`));
+  return t.length?" Western Australia checks: "+t.join("; ")+".":""}
 function pathLine(x){const g=x.gx||{};const a=[];if(g.path&&g.path.length)a.push("<b>Growth path:</b> "+g.path.map(esc).join("; ")+".");
   if(g.proj&&g.proj.length)a.push("<b>Big state project nearby:</b> "+g.proj.map(p=>`${esc(p[1])} (${p[0]} km, ${esc(String(p[2]||"").toLowerCase())})`).join("; ")+". Big projects bring jobs and roads, but a mine or industrial site next door can also put buyers off.");
   return a.length?`<div class="loc">${a.join(" ")}</div>`:""}
@@ -566,7 +570,7 @@ function dossier(x){
   return `<details class="loc" style="border:2px solid var(--ok);border-radius:12px;padding:8px 10px;margin-top:8px"><summary><b>⭐ Standout dossier</b></summary>
    <div style="margin-top:6px"><b>Offer plan:</b> open around ${k(x.offer||x.fair*.93)}, likely sale price about ${k(x.fair)}, walk away above ${k(x.walk||x.fair*1.08)}. Asking is ${k(x.p)}.</div>
    ${comps?`<div style="margin-top:6px"><b>What it was compared with:</b>${comps}</div>`:""}
-   <div style="margin-top:6px"><b>Cabins or caravan sites:</b> ${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: ${esc(x.zone)}${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}${qldPlan(x)}${saPlan(x)}</div>
+   <div style="margin-top:6px"><b>Cabins or caravan sites:</b> ${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: ${esc(x.zone)}${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}${qldPlan(x)}${saPlan(x)}${waPlan(x)}</div>
    <div style="margin-top:6px"><b>Ask the agent:</b><ol style="margin:4px 0 0 18px;padding:0">${q.map(t=>`<li>${t}</li>`).join("")}</ol></div>
    <div style="margin-top:6px"><b>Before you offer:</b> look at it on Google Maps satellite, drive the road in, get a title search (about $30), ring the council about the zone and any approvals, and book a building and pest check if there's a house.</div></details>`}
 function growthLine(x){
