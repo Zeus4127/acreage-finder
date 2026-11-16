@@ -341,6 +341,54 @@ section#v-home{padding-top:0}
 .logo{width:30px;height:30px;border-radius:8px;background:var(--gold);display:grid;place-items:center}
 .logo::after{content:"AF";position:static;inset:auto;border:none;transform:none;font-family:"Inter",var(--sans);font-weight:800;font-size:12.5px;letter-spacing:-.02em;color:var(--navy)}
 
+.ic{width:20px;height:20px;flex:none;fill:none;stroke:var(--accent);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.bsec>h3{gap:10px}
+
+.rbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.seg{display:inline-flex;background:#fff;border:1px solid #DCCFB6;border-radius:999px;padding:3px}
+.seg button{border:none;background:none;border-radius:999px;padding:6px 14px;font-weight:600;font-size:13px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.mapbox{background:#fff;border:1px solid #EADFCB;border-radius:16px;padding:10px;box-shadow:var(--shadow)}
+.mapbox.mini{padding:0;overflow:hidden;border-radius:12px}
+.ausmap{display:block;width:100%;height:auto;max-height:72vh}
+.mapbox.mini .ausmap{max-height:260px;background:#EAF2F7}
+.states path{fill:#EFE7D6;stroke:#C9BC9F;stroke-width:.6;vector-effect:non-scaling-stroke}
+.ausmap circle{stroke:#fff;stroke-width:.5;vector-effect:non-scaling-stroke}
+.pin{fill:#8EA3B5;opacity:.75}.pin-ok{fill:var(--ok)}.pin-star{fill:var(--gold);stroke:var(--navy)!important}
+.pin-me{fill:var(--gold);stroke:var(--navy)!important;stroke-width:2!important}
+.legend .lg-star{background:var(--gold)}.legend .lg-ok{background:var(--ok)}.legend .lg-pin{background:#8EA3B5}
+.legend{padding:8px 4px 2px}
+
+.tabs2{position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px);z-index:15;display:flex;gap:4px;background:var(--cream);padding:6px 0;margin:4px 0 -2px;overflow-x:auto;scrollbar-width:none}
+@media (min-width:900px){.tabs2{top:calc(env(safe-area-inset-top,0px) + 62px)}}
+.tabs2 button{flex:1;border:1px solid #DCCFB6;background:#fff;border-radius:999px;padding:9px 12px;font-weight:600;font-size:14px;color:var(--ink2);white-space:nowrap}
+.tabs2 button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.tabp{display:grid;gap:12px}
+
+.cmpbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:34;background:var(--gold);color:var(--gold-ink);font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(20,48,74,.25);white-space:nowrap}
+@media (min-width:900px){.cmpbar{bottom:24px}}
+.cmpt table{min-width:0}.cmpt td:first-child{color:var(--muted);font-weight:600;font-size:12.5px;white-space:nowrap}
+.cmpt th a{color:var(--navy);font-family:var(--disp);font-size:15px;text-decoration:none;display:block;text-transform:none;letter-spacing:0}
+.cmpt th .more{font-size:11.5px;text-transform:none;letter-spacing:0}
+.yes{color:var(--ok);font-weight:700}.no{color:var(--muted)}
+.actbar .watch{padding:0 12px;font-size:13.5px}
+.actbar .go{font-size:15px}
+
+@media (max-width:600px){
+ #v-insights .tablewrap{border:none;background:none;overflow:visible}
+ #v-insights table{min-width:0;display:block}
+ #v-insights thead{display:none}
+ #v-insights tbody{display:grid;gap:8px}
+ #v-insights tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;background:#fff;border:1px solid #EADFCB;border-radius:12px;padding:10px 12px}
+ #v-insights td{border:none;padding:2px 0;text-align:left!important;display:grid;font-size:14px}
+ #v-insights td::before{content:attr(data-l);font-size:10.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+ #v-insights td:first-child{grid-column:1/-1;font-weight:700;font-size:15px;color:var(--navy)}
+ #v-insights td:first-child::before{display:none}
+ #v-insights td:first-child .more{text-align:left;font-family:var(--disp);font-size:16px;color:var(--navy)}
+ #v-insights td[colspan]{grid-column:1/-1}
+ #v-insights tbody tr:hover td{background:none}
+}
+
 </style>
 <header class="top"><div class="topin">
   <div class="bar1"><a class="brand" href="#home" aria-label="Acreage Finder home"><span class="logo" aria-hidden="true"></span>Acreage Finder</a><span class="live"><span class="dot"></span><span id="scanned">loading…</span></span></div>
@@ -377,7 +425,7 @@ section#v-home{padding-top:0}
   <div class="intro2"><h3>Most land sites show you what's cheap. This shows you what will grow.</h3>
     <p>The Growth score is tested on 25 years of real sales in every state: cheap areas that hadn't boomed yet, in reach of a city or a holiday town, grew the most. Every block also gets a likely sale price, an opening offer and a walk-away price.</p></div>
   <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
-  <div class="sec"><h3>⭐ Top picks</h3><a href="#search" data-preset="star">See all</a></div>
+  <div class="sec"><h3>★ Top picks</h3><a href="#search" data-preset="star">See all</a></div>
   <p class="sec-note">Tick every must-have, score high for growth, and priced under similar blocks.</p>
   <div class="rows" id="hStars"></div>
   <div class="sec"><h3>On a growth path</h3><a href="#search" data-preset="path">See all</a></div>
@@ -410,7 +458,9 @@ section#v-home{padding-top:0}
     </div>
     <div class="row"><button type="button" class="btn ghost" id="fReset">Reset filters</button><button type="button" class="btn" id="fDone">Show results</button></div>
   </div>
-  <div class="count" id="acount" aria-live="polite"></div>
+  <div class="rbar"><div class="count" id="acount" aria-live="polite"></div>
+    <div class="seg" role="group" aria-label="Show results as"><button type="button" data-sv="list">List</button><button type="button" data-sv="map">Map</button></div></div>
+  <div class="mapbox" id="amap" hidden></div>
   <div class="rows" id="alist"></div>
   <button class="btn ghost wide" id="amore" type="button" hidden>Show more</button>
 </section>
@@ -504,7 +554,7 @@ section#v-home{padding-top:0}
       <li><b>Catch-up and momentum (34):</b> area still cheap against the state (up to 20), area hasn't boomed yet over 10 years (3, not in Queensland), population growth (4: the state government's forecast to 2041 for Queensland, WA and Tasmania blocks, otherwise the last 10 years), market pace (4).</li>
       <li><b>Growth path (4, or 6 with two signs):</b> a cheap area 35–90 minutes from a city (the tree-change belt, where NSW areas went up 10 times or more about two and a half times as often), or, in Queensland, inside or within about 3 km of the planned urban area, or near one of the state's chosen future growth areas; in Victoria, within 2 km of the Urban Growth Zone (land set aside for future suburbs); in South Australia, within 3 km of a rural-to-housing rezoning (a Code Amendment); in Western Australia, within 2 km of Urban Deferred land or 3 km of a region scheme change to Urban; in Tasmania, within 2 km of the Future Urban Zone. See "Where the next big jumps could be" at the top of this tab.</li>
       <li><b>Upside and price (10):</b> subdivision (3) and price against similar blocks (7). <b>Deal-breakers take points off:</b> flood, protected vegetation, covenant, no right to build, leasehold, doubtful access, a suspiciously low price. The total is scaled to be out of 100.</li>
-      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>⭐ Standout</b> = all of those, a score of 57+, and priced under similar blocks.</li>
+      <li><b>Must-haves:</b> a 10,000+ town within 45 minutes (or a holiday town within 30 with a basic town within 20), water, a park, wine region, beach or holiday town close by, and no deal-breaker. <b>★ Standout</b> = all of those, a score of 57+, and priced under similar blocks.</li>
 </ul></div></details>
   <details class="acc"><summary>How the likely sale price works <span>Tested on sales</span></summary><div class="accin"><ul class="plain" id="howPrice">
 <li id="btNote" hidden></li>
@@ -569,9 +619,11 @@ section#v-home{padding-top:0}
 </section>
 
 <!-- BLOCK: one block, everything about it, in clear sections. -->
+<section class="view" id="v-compare" hidden aria-label="Compare blocks"><div id="cmp"></div></section>
 <section class="view" id="v-block" hidden aria-label="Block details"><div id="bp"></div></section>
 </main>
 
+<a class="cmpbar" id="cmpbar" href="#compare" hidden></a>
 <nav class="bnav" id="bnav" aria-label="Sections">
   <button type="button" data-v="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
   <button type="button" data-v="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg>Search</button>
@@ -582,6 +634,7 @@ section#v-home{padding-top:0}
 
 <script src="acreage-data.js"></script>
 <script src="history-data.js"></script>
+<script src="aus-map.js"></script>
 <script>
 (function(){
 const D=window.ACREAGE_DATA||{listings:[],guide:{},model:{}};
@@ -669,21 +722,21 @@ function costs(x){
 function incomeIdeas(x){
   const out=[],f=x.feats||[],ha=x.a/2.471,k=v=>"$"+(v>=1e6?(v/1e6).toFixed(1)+"M":Math.round(v/1000)+"k");
   const st=x.stay;
-  if(st)out.push(`🏡 Short stays: ${st.n} ${st.kind} within 40 km average about $${st.night}/night and are booked about ${st.nights} nights a year, earning about ${k(st.rev)} a year (top quarter ${k(st.top)}). ${x.house?"The house could do the same.":"A cabin or tiny home here could too, once approved."}`);
-  else if(x.city&&x.city[1]<250)out.push(`🏡 Short stays: no Airbnb figures for this area, but rural cabins usually get $150–$250 a night at 35–60% booked: about $20k–$50k a year before costs.`);
-  if(x.rent&&x.house)out.push(`🔑 Long-term rent: houses in postcode ${esc(x.pc)} rent for about $${x.rent[0]}/week (${x.rent[1]} new leases last period): about ${k(x.rent[0]*50)} a year.`);
-  else if(x.rent&&!x.house)out.push(`🔑 Long-term rent: once a house is built, houses in postcode ${esc(x.pc)} rent for about $${x.rent[0]}/week.`);
+  if(st)out.push(`Short stays: ${st.n} ${st.kind} within 40 km average about $${st.night}/night and are booked about ${st.nights} nights a year, earning about ${k(st.rev)} a year (top quarter ${k(st.top)}). ${x.house?"The house could do the same.":"A cabin or tiny home here could too, once approved."}`);
+  else if(x.city&&x.city[1]<250)out.push(`Short stays: no Airbnb figures for this area, but rural cabins usually get $150–$250 a night at 35–60% booked: about $20k–$50k a year before costs.`);
+  if(x.rent&&x.house)out.push(`Long-term rent: houses in postcode ${esc(x.pc)} rent for about $${x.rent[0]}/week (${x.rent[1]} new leases last period): about ${k(x.rent[0]*50)} a year.`);
+  else if(x.rent&&!x.house)out.push(`Long-term rent: once a house is built, houses in postcode ${esc(x.pc)} rent for about $${x.rent[0]}/week.`);
   const bush=f.includes("bush")&&!FARM.some(t=>(x.type||"").includes(t));
   if(x.a>=20&&!bush&&x.rain){const per10=x.rain<400?.2:x.rain<600?.5:x.rain<800?1:1.5,head=Math.max(1,Math.round(ha/10*per10));
-    if(x.a<20000)out.push(`🐄 Agistment: room for roughly ${head} cattle in an average year at ${x.rain} mm rain (a rough guess: ask a local agent); at $5–$12 a head a week that's about ${k(head*5*52)}–${k(head*12*52)} a year.`)}
-  if(x.p&&x.a>=40&&!bush)out.push(`🌾 Lease the paddocks to a neighbour: usually 2–5% of land value a year, about ${k(x.p*.02)}–${k(x.p*.05)}.`);
-  if(x.rain>=500&&x.a>=20&&x.a<2000&&!bush)out.push(`🌿 Hay: in a good year, cutting hay can net $300–$800 a hectare.`);
-  if(x.a>=10&&x.city&&x.city[1]<300)out.push(`⛺ Camping (Hipcamp-style): a few tent sites at $30–$75 a night; the average host earns about $10k a year.`);
-  if(x.subst&&x.subst[1]<=2&&x.a>=200)out.push(`☀️ Solar farm lease: a ${x.subst[2]||""} kV substation is ${x.subst[1]} km away. Solar developers pay about $750–$1,500 a hectare a year, if the site suits.`);
-  if(f.includes("bush"))out.push(`🐝 Bush blocks: beekeepers pay a small rent for hive sites, and carbon or biodiversity schemes may pay to keep the trees.`);
-  if(x.town&&x.town[1]<25)out.push(`🥚 Farm gate: an honesty box for eggs, fruit, veg or firewood near ${esc(x.town[0])} can bring in a few thousand a year.`);
+    if(x.a<20000)out.push(`Agistment: room for roughly ${head} cattle in an average year at ${x.rain} mm rain (a rough guess: ask a local agent); at $5–$12 a head a week that's about ${k(head*5*52)}–${k(head*12*52)} a year.`)}
+  if(x.p&&x.a>=40&&!bush)out.push(`Lease the paddocks to a neighbour: usually 2–5% of land value a year, about ${k(x.p*.02)}–${k(x.p*.05)}.`);
+  if(x.rain>=500&&x.a>=20&&x.a<2000&&!bush)out.push(`Hay: in a good year, cutting hay can net $300–$800 a hectare.`);
+  if(x.a>=10&&x.city&&x.city[1]<300)out.push(`Camping (Hipcamp-style): a few tent sites at $30–$75 a night; the average host earns about $10k a year.`);
+  if(x.subst&&x.subst[1]<=2&&x.a>=200)out.push(`Solar farm lease: a ${x.subst[2]||""} kV substation is ${x.subst[1]} km away. Solar developers pay about $750–$1,500 a hectare a year, if the site suits.`);
+  if(f.includes("bush"))out.push(`Bush blocks: beekeepers pay a small rent for hive sites, and carbon or biodiversity schemes may pay to keep the trees.`);
+  if(x.town&&x.town[1]<25)out.push(`Farm gate: an honesty box for eggs, fruit, veg or firewood near ${esc(x.town[0])} can bring in a few thousand a year.`);
   return out}
-function incomeLine(x){const o=incomeIdeas(x);return o.length?`<details class="loc"><summary>💵 Ways it could earn (${o.length})</summary>${o.map(t=>`<div style="margin:4px 0">${t}</div>`).join("")}</details>`:""}
+function incomeLine(x){const o=incomeIdeas(x);return o.length?`<details class="loc"><summary>Ways it could earn (${o.length})</summary>${o.map(t=>`<div style="margin:4px 0">${t}</div>`).join("")}</details>`:""}
 // my take: a short opinion, flip and keep numbers, the saving, and the price history
 function moneyK(v){return (v<0?"−":"")+"$"+(Math.abs(v)>=1e6?(Math.abs(v)/1e6).toFixed(2)+"M":Math.round(Math.abs(v)/1000)+"k")}
 function growthRate(x){const a=areaInfo(x),src=a&&(a.g||a.rg||a.st);if(!src)return 4;const v=[src.cagr10,src.cagr20].filter(n=>n!=null);return v.length?Math.min(Math.max(v.reduce((p,n)=>p+n,0)/v.length,0),7):4}
@@ -711,8 +764,8 @@ function myTake(x){
   if(fl.includes("covenant"))bad.push("covenant");if(fl.includes("nobuild"))bad.push("may not be allowed to build");
   if(fl.includes("lease"))bad.push("leasehold, not freehold");if(fl.includes("access"))bad.push("access needs checking");
   const score=good.length-bad.length+(x.v==="great"?1:0)-(x.v==="over"||x.v==="why"?1:0);
-  const head=x.gstar?"⭐ Standout: ticks everything and priced well. Look at it this week":x.gs==null?(score>=2?"👍 Worth a look":score>=0?"🤔 Check it carefully":"👎 I'd probably pass"):
-    x.gok&&x.gs>=55?"👍 Strong pick for long-term growth":x.gok?"🤔 Ticks the must-haves, but check the price and the area":"👎 I'd pass: it misses one of your must-haves";
+  const head=x.gstar?"★ Standout: ticks everything and priced well. Look at it this week":x.gs==null?(score>=2?"Worth a look":score>=0?"Check it carefully":"I'd probably pass"):
+    x.gok&&x.gs>=55?"Strong pick for long-term growth":x.gok?"Ticks the must-haves, but check the price and the area":"I'd pass: it misses one of your must-haves";
   // flip: buy at the opening offer, hold about a year, sell at the likely sale price
   const buy=x.offer||Math.min(x.p,x.fair),buyCost=(duty(x.s,buy,x.house)||0)+2500,hold=(c.ratesLo+c.ratesHi)/2||2000;
   const sell=Math.round((x.fair+x.p)/2),sellCost=sell*.025+5000,flip=sell-sellCost-buy-buyCost-hold;   // cautious: halfway between asking and the likely price
@@ -750,7 +803,7 @@ function dossier(x){
   const cs=(x.cids||[]).map(i=>byId[i]).filter(Boolean).slice(0,6);
   const comps=cs.length?"<ul class=\"plain\" style=\"margin:4px 0\">"+cs.map(c=>`<li>${esc(c.sub||"")} ${esc(c.pc||"")}: ${acres(c.a)} for ${short(c.p)} (${money(c.p/c.a)}/ac${c.is_sold||c.sold?", sold"+(c.sold?" "+String(c.sold).slice(0,7):""):", asking"})</li>`).join("")+"</ul>":"";
   const q=["Why are the owners selling, and how long has it been for sale?","Has it had any offers, and what did similar blocks nearby sell for?","Is there legal road access the whole way in, and who maintains the road?","Any easements, covenants, or native vegetation that can't be cleared?","Water: licences, bores (how deep, how much), dam sizes, does the creek run all year?","Power and phone: is there a grid connection, and how far is the nearest pole?","Flood and bushfire: has it flooded or burnt, and what bushfire rating would a house need?","Has the council approved a house site, cabins or anything else? Any DA history?"];
-  return `<details class="loc" style="border:2px solid var(--ok);border-radius:12px;padding:8px 10px;margin-top:8px"><summary><b>⭐ Standout dossier</b></summary>
+  return `<details class="loc" style="border:2px solid var(--ok);border-radius:12px;padding:8px 10px;margin-top:8px"><summary><b>★ Standout dossier</b></summary>
    <div style="margin-top:6px"><b>Offer plan:</b> open around ${k(x.offer||x.fair*.93)}, likely sale price about ${k(x.fair)}, walk away above ${k(x.walk||x.fair*1.08)}. Asking is ${k(x.p)}.</div>
    ${comps?`<div style="margin-top:6px"><b>What it was compared with:</b>${comps}</div>`:""}
    <div style="margin-top:6px"><b>Cabins or caravan sites:</b> ${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: ${esc(x.zone)}${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}${qldPlan(x)}${saPlan(x)}${waPlan(x)}</div>
@@ -758,7 +811,7 @@ function dossier(x){
    <div style="margin-top:6px"><b>Before you offer:</b> look at it on Google Maps satellite, drive the road in, get a title search (about $30), ring the council about the zone and any approvals, and book a building and pest check if there's a house.</div></details>`}
 function growthLine(x){
   if(x.gs==null)return"";const g=x.gx||{},col=x.gs>=70?"var(--ok)":x.gs>=50?"var(--info)":"var(--warn)";
-  const badge=x.gstar?"⭐ Standout":x.gok?"✓ Ticks the must-haves":"✗ Misses a must-have";
+  const badge=x.gstar?"★ Standout":x.gok?"✓ Ticks the must-haves":"✗ Misses a must-have";
   const W=[],f=new Set(x.feats||[]),sm=g.sua?g.sua[1]:999,tm=g.town?g.town[1]:999,cm=g.city?g.city[1]:999,hm=g.hol?g.hol[1]:999,cst=g.coast??999,pk=g.park?g.park[1]:999,wd=g.wine?g.wine[1]:999,rn=x.rain||0,p10=g.pop10,hp=g.hosp?g.hosp[1]:999,road=g.road?" by road":"";
   // strongest signals first (tested on two decades and every state)
   if(g.cheap_area!=null)W.push([g.cheap_area<=0.9,g.cheap_area<=1?`area still cheap: about ${Math.round((1-g.cheap_area)*100)}% under the state's price per acre (cheap areas caught up fastest)`:`area already ${Math.round((g.cheap_area-1)*100)}% dearer than the state's price per acre`]);
@@ -783,32 +836,32 @@ function growthLine(x){
   W.push([g.pace==="busy"||g.pace==="normal",`local market ${g.pace||"unknown"}`]);
   W.push([(x.lots||0)>=2,(x.lots||0)>=2?`could be split into ${x.lots} lots`:"no subdivision found"]);
   const yes=W.filter(w=>w[0]).map(w=>w[1]),no=W.filter(w=>!w[0]).map(w=>w[1]);
-  const cabin=x.a>=20&&g.hol&&g.hol[1]<=40?`<div>🏕️ Cabins or caravan sites could suit: ${esc(g.hol[0])} is about ${g.hol[1]} min away (check council approval).</div>`:"";
+  const cabin=x.a>=20&&g.hol&&g.hol[1]<=40?`<div>Cabins or caravan sites could suit: ${esc(g.hol[0])} is about ${g.hol[1]} min away (check council approval).</div>`:"";
   return `<div class="loc" style="color:var(--ink)"><b style="color:${col};font-size:17px">Growth ${x.gs}/100</b> · <b>${badge}</b>`+
-   `<div style="margin-top:4px">✅ ${yes.slice(0,8).map(esc).join(" · ")}</div>`+(no.length?`<div class="muted" style="margin-top:2px">❌ ${no.slice(0,6).map(esc).join(" · ")}</div>`:"")+
-   ((g.bad||[]).length?`<div style="margin-top:2px;color:var(--warn)">⚠️ ${(g.bad||[]).map(esc).join(" · ")}</div>`:"")+cabin+`</div>`}
+   `<div style="margin-top:4px">${yes.slice(0,8).map(esc).join(" · ")}</div>`+(no.length?`<div class="muted" style="margin-top:2px">${no.slice(0,6).map(esc).join(" · ")}</div>`:"")+
+   ((g.bad||[]).length?`<div style="margin-top:2px;color:var(--warn)">${(g.bad||[]).map(esc).join(" · ")}</div>`:"")+cabin+`</div>`}
 function takeLine(x){
   const t=myTake(x);let h="";
   if(t){
     h+=`<b>${t.head}</b>`+(t.good.length?`. Good: ${t.good.slice(0,4).join(", ")}`:"")+(t.bad.length?`. Watch: ${t.bad.slice(0,4).join(", ")}`:"")+".";
-    h+=`<br>💸 <b>Save:</b> offer ${moneyK(t.buy)} instead of ${moneyK(x.p)}: ${moneyK(t.save)} less.`;
-    h+=`<br>🔁 <b>Flip:</b> buy at ${moneyK(t.buy)}, resell for about ${moneyK(t.sell)} → ${t.flip>=0?"about "+moneyK(t.flip)+" profit":"a loss of about "+moneyK(-t.flip)} after stamp duty, rates and selling costs${t.flip<20000?" (not worth it unless you improve it)":""}.`;
-    h+=`<br>🏡 <b>Keep 5 years:</b> at ${t.g.toFixed(1)}%/yr growth it'd be worth about ${moneyK(t.val5)}`+(t.inc.v>=1000?`, plus about ${moneyK(t.inc.v)}/yr from ${t.inc.how}`:"")+` → about ${moneyK(t.keep5)} ahead in total.`;
+    h+=`<br><b>Save:</b> offer ${moneyK(t.buy)} instead of ${moneyK(x.p)}: ${moneyK(t.save)} less.`;
+    h+=`<br><b>Flip:</b> buy at ${moneyK(t.buy)}, resell for about ${moneyK(t.sell)} → ${t.flip>=0?"about "+moneyK(t.flip)+" profit":"a loss of about "+moneyK(-t.flip)} after stamp duty, rates and selling costs${t.flip<20000?" (not worth it unless you improve it)":""}.`;
+    h+=`<br><b>Keep 5 years:</b> at ${t.g.toFixed(1)}%/yr growth it'd be worth about ${moneyK(t.val5)}`+(t.inc.v>=1000?`, plus about ${moneyK(t.inc.v)}/yr from ${t.inc.how}`:"")+` → about ${moneyK(t.keep5)} ahead in total.`;
   }
-  if(x.hist&&x.hist.length){h+=(h?"<br>":"")+"📈 <b>Price history:</b> "+x.hist.map(e=>`${e[0].slice(0,7)} ${e[2]} ${moneyK(e[1])}`).join(" → ");}
+  if(x.hist&&x.hist.length){h+=(h?"<br>":"")+"<b>Price history:</b> "+x.hist.map(e=>`${e[0].slice(0,7)} ${e[2]} ${moneyK(e[1])}`).join(" → ");}
   return h?`<details class="loc" open><summary>My take</summary><div style="margin-top:4px">${h}</div><div class="muted" style="font-size:12px;margin-top:4px">Rough guide only. Resale is taken halfway between asking and the likely sale price, because that price is out by up to a third for half of blocks. Growth is the area's long-run average, capped at 7% a year. Income is before tax. A block that looks this cheap usually has a reason: check it first.</div></details>`:""}
 function costLine(x){
   const c=costs(x);if(!c)return"";const k=v=>"$"+Math.round(v/1000)+"k";
-  let t=`💰 To buy: about ${k(c.buyLo)}–${k(c.buyHi)} on top of the price (stamp duty ${c.duty!=null?k(c.duty):"?"}, legal, inspections and survey). Council rates about ${k(c.ratesLo)}–${k(c.ratesHi)} a year.`;
+  let t=`To buy: about ${k(c.buyLo)}–${k(c.buyHi)} on top of the price (stamp duty ${c.duty!=null?k(c.duty):"?"}, legal, inspections and survey). Council rates about ${k(c.ratesLo)}–${k(c.ratesHi)} a year.`;
   if(c.liveLo)t+=` To make it livable (power, water, septic, shed, approvals): about ${k(c.liveLo)}–${k(c.liveHi)}, plus ${k(c.cabinLo)}–${k(c.cabinHi)} for a cabin or tiny home.`;
   t+=` Selling later: about ${k(c.sellLo)}–${k(c.sellHi)} in agent and marketing fees.`;
   return `<div class="loc">${t}</div>`}
 function placeLine(x){
   if(!x.town)return"";const rd=k=>Math.round(k*1.3/5)*5||5;
-  let t=`📍 ${esc(x.town[0])} (town of 1,000+) about ${rd(x.town[1])} km by road`;
+  let t=`${esc(x.town[0])} (town of 1,000+) about ${rd(x.town[1])} km by road`;
   if(x.city)t+=`, ${esc(x.city[0])} about ${rd(x.city[1])} km`;
   if(x.approx)t+=" (from the suburb centre)";
-  if(x.rain)t+=`. 🌧️ About ${x.rain} mm of rain a year (${x.rain<350?"very dry: stock and gardens need bores or big tanks":x.rain<550?"dry: tanks and good dams matter":x.rain<800?"fair rainfall":x.rain<1200?"good rainfall":"high rainfall"})`;
+  if(x.rain)t+=`. About ${x.rain} mm of rain a year (${x.rain<350?"very dry: stock and gardens need bores or big tanks":x.rain<550?"dry: tanks and good dams matter":x.rain<800?"fair rainfall":x.rain<1200?"good rainfall":"high rainfall"})`;
   return `<div class="loc">${t}.</div>`;
 }
 function domLine(x){
@@ -821,11 +874,11 @@ function domLine(x){
 }
 function catchLine(x){
   const c=x.chk;if(!c)return"";const b=[];
-  if(c.fire)b.push(`🔥 Bushfire prone (${esc(c.fire)}): a house needs a bushfire plan and costs more to build.`);
-  if(c.flood)b.push(`🌊 In a mapped flood area (${esc(c.flood)}): check the flood map before you build.`);
-  if(c.veg)b.push(`🌳 Protected vegetation (${esc(c.veg)}): you may not be allowed to clear trees.`);
-  if(c.burnt)b.push(`🔥 Burnt recently (${esc(c.burnt)}).`);
-  if(c.scl)b.push(`🌾 Strategic cropping land: good soil, but non-farm building is restricted.`);
+  if(c.fire)b.push(`Bushfire prone (${esc(c.fire)}): a house needs a bushfire plan and costs more to build.`);
+  if(c.flood)b.push(`In a mapped flood area (${esc(c.flood)}): check the flood map before you build.`);
+  if(c.veg)b.push(`Protected vegetation (${esc(c.veg)}): you may not be allowed to clear trees.`);
+  if(c.burnt)b.push(`Burnt recently (${esc(c.burnt)}).`);
+  if(c.scl)b.push(`Strategic cropping land: good soil, but non-farm building is restricted.`);
   const ov=(c.ov||[]).filter(o=>/^(ESO|SLO|EMO|SMO)/.test(o));
   if(ov.length)b.push(`Other overlays: ${ov.map(esc).join(", ")} (environment, landscape, erosion or salinity rules apply).`);
   return b.length?`<div class="loc" style="color:var(--ink)">${b.join(" ")}</div>`:"";
@@ -1062,7 +1115,7 @@ rulesChanged();
 // ===================== App 2.0 user interface =====================
 // Views: home, search, saved, insights, more, and block-<id> (one block's full page). Lists use compact rows;
 // everything about a block lives on its own page, so lists stay short and fast.
-const VIEWS=["home","search","saved","insights","more"];
+const VIEWS=["home","search","saved","insights","more","compare"];
 const navBtns=[...document.querySelectorAll("#bnav button,#dnav button")];
 const blockKey=x=>"block-"+String(x.id).replace(/[^A-Za-z0-9-]/g,"-");
 const byKey={};L.forEach(x=>byKey[blockKey(x)]=x);
@@ -1119,7 +1172,7 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-tile]");if
 document.addEventListener("click",e=>{const a=e.target.closest("[data-preset]");if(!a)return;e.preventDefault();setPreset(a.dataset.preset);go("search")});
 
 // ---- SEARCH
-const PRESETS=[["all","All"],["star","⭐ Standouts"],["ok","Must-haves ✓"],["path","Growth path"],["great","Great deals"],["new","New"],["drop","Price cuts"],["mine","My rules"]];
+const PRESETS=[["all","All"],["star","★ Standouts"],["ok","Must-haves ✓"],["path","Growth path"],["great","Great deals"],["new","New"],["drop","Price cuts"],["mine","My rules"]];
 let preset=pref.preset||"all",alimit=30;
 $("qchips").innerHTML=PRESETS.map(([k,t])=>`<button type="button" class="chip" data-q="${k}">${t}</button>`).join("");
 $("qchips").onclick=e=>{const b=e.target.closest("[data-q]");if(b){setPreset(b.dataset.q)}};
@@ -1146,10 +1199,67 @@ function renderSearch(){
   const k={ratio:(a,b)=>score(b)-score(a),p:(a,b)=>(a.p||9e9)-(b.p||9e9),ppa:(a,b)=>(a.ppa||9e9)-(b.ppa||9e9),a:(a,b)=>b.a-a.a,gs:(a,b)=>(b.gs??-1)-(a.gs??-1),dom:(a,b)=>(b.dom||0)-(a.dom||0),cuts:(a,b)=>(b.cuts||0)-(a.cuts||0)||(b.dom||0)-(a.dom||0)}[f.asort]||((a,b)=>score(b)-score(a));
   r.sort(k);
   $("acount").textContent=r.length.toLocaleString("en-AU")+(r.length===1?" block":" blocks")+(preset!=="all"?" · "+PRESETS.find(p=>p[0]===preset)[1]:"");
+  [...document.querySelectorAll("[data-sv]")].forEach(b=>b.setAttribute("aria-pressed",b.dataset.sv===sview));
+  $("amap").hidden=sview!=="map";
+  if(sview==="map"){$("amap").innerHTML=ausMap(r)+`<div class="legend"><span><i class="lg-star"></i>Standout</span><span><i class="lg-ok"></i>Ticks your must-haves</span><span><i class="lg-pin"></i>Other blocks</span><span class="muted">${r.filter(x=>x.lat).length.toLocaleString("en-AU")} on the map · tap a dot to open it</span></div>`}
+  $("alist").hidden=sview==="map";$("amore").hidden=true;
+  if(sview==="map")return;
   $("alist").innerHTML=rows(r.slice(0,alimit),preset==="mine"?'Nothing matches your rules. Change them in <a href="#saved">Saved</a>.':"No blocks match. Try fewer filters.");
   $("amore").hidden=r.length<=alimit;$("amore").textContent=`Show more (${(r.length-alimit).toLocaleString("en-AU")} left)`;
 }
 
+
+// ---- MAP: state outlines (ABS 2021) with a pin for each block; tap a pin to open the block
+const AM=window.AUS_MAP;
+const mx=lng=>(lng-AM.x0)*AM.k*AM.s,my=lat=>(AM.y0-lat)*AM.s;
+function pinCls(x){return x.gstar?"pin-star":x.gok?"pin-ok":"pin"}
+function ausMap(list,focus){
+  if(!AM)return"";
+  let vb=`0 0 ${AM.w} ${AM.h}`,r=2.6;
+  if(focus&&focus.lat){const cx=mx(focus.lng),cy=my(focus.lat),w=60,h=44;vb=`${(cx-w/2).toFixed(1)} ${(cy-h/2).toFixed(1)} ${w} ${h}`;r=.5}
+  const st=AM.states.map(([n,d])=>`<path d="${d}"><title>${esc(n)}</title></path>`).join("");
+  const pts=list.filter(x=>x.lat&&x.lng).slice(0,2500).sort((a,b)=>(a.gstar?2:a.gok?1:0)-(b.gstar?2:b.gok?1:0))
+    .map(x=>`<a href="#${blockKey(x)}"><circle class="${pinCls(x)}" cx="${mx(x.lng).toFixed(1)}" cy="${my(x.lat).toFixed(1)}" r="${x.gstar?r*1.5:r}"><title>${esc(x.sub)} ${x.s} · ${acres(x.a)} · ${x.p?short(x.p):"price on request"}</title></circle></a>`).join("");
+  const me=focus&&focus.lat?`<circle class="pin-me" cx="${mx(focus.lng).toFixed(1)}" cy="${my(focus.lat).toFixed(1)}" r="${r*2.2}"/>`:"";
+  return `<svg class="ausmap" viewBox="${vb}" role="img" aria-label="Map of blocks"><g class="states">${st}</g>${pts}${me}</svg>`}
+let sview=pref.sv||"list";
+function setSview(v){sview=v;pref.sv=v;save();[...document.querySelectorAll("[data-sv]")].forEach(b=>b.setAttribute("aria-pressed",b.dataset.sv===v));renderSearch()}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-sv]");if(b)setSview(b.dataset.sv)});
+
+
+document.addEventListener("click",e=>{const t=e.target.closest("[data-tab]");if(!t)return;const i=t.dataset.tab,root=t.closest("#bp");
+  root.querySelectorAll("[data-tab]").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===i));
+  root.querySelectorAll(".tabp").forEach(p=>p.hidden=p.dataset.p!==i);
+  const bar=root.querySelector(".tabs2");if(bar&&bar.getBoundingClientRect().top<0)bar.scrollIntoView({behavior:"smooth"})});
+
+// ---- COMPARE: up to 3 blocks side by side
+let CMP=[];try{CMP=JSON.parse(localStorage.getItem("acreage-cmp")||"[]")}catch(e){}
+const saveCmp=()=>{try{localStorage.setItem("acreage-cmp",JSON.stringify(CMP))}catch(e){};drawCmpBar()};
+function drawCmpBar(){const n=CMP.filter(i=>byId[i]).length,b=$("cmpbar");b.hidden=n<2||!["","#home","#search","#saved"].includes(location.hash);b.textContent=`Compare ${n} blocks →`}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(!b)return;const i=String(b.dataset.c);
+  if(CMP.includes(i))CMP=CMP.filter(v=>v!==i);else{CMP.push(i);if(CMP.length>3)CMP.shift()}saveCmp();
+  document.querySelectorAll(`[data-c="${CSS.escape(i)}"]`).forEach(x=>{x.setAttribute("aria-pressed",CMP.includes(i));x.textContent=CMP.includes(i)?"✓ Comparing":"Compare"});
+  if(location.hash==="#compare")renderCompare()});
+function renderCompare(){
+  const xs=CMP.map(i=>byId[i]).filter(Boolean);
+  if(xs.length<2){$("cmp").innerHTML=`<h2 class="vt">Compare</h2><div class="empty-row">Open a block and tap <b>Compare</b>. Pick 2 or 3 to see them side by side.</div>`;return}
+  const g=x=>x.gx||{},yn=v=>v?'<span class="yes">Yes</span>':'<span class="no">No</span>';
+  const rowsC=[["Asking",x=>x.p?short(x.p):"–"],["Likely sale",x=>x.fair?short(x.fair):"–"],["Open offer at",x=>x.offer?short(x.offer):"–"],["Walk away above",x=>x.walk?short(x.walk):"–"],
+    ["Size",x=>acres(x.a)],["Per acre",x=>x.ppa?money(x.ppa):"–"],["Growth score",x=>x.gs==null?"–":`<b>${x.gs}</b>/100`],["Ticks must-haves",x=>yn(x.gok)],["Standout",x=>yn(x.gstar)],
+    ["Price verdict",x=>VN[vkey(x)]],["Growth path",x=>g(x).path&&g(x).path.length?esc(g(x).path[0].split(":")[0]):"–"],
+    ["Nearest city",x=>g(x).city?`${esc(g(x).city[0])} ${g(x).city[1]} min`:"–"],["Holiday area",x=>g(x).hol?`${esc(g(x).hol[0])} ${g(x).hol[1]} min`:"–"],["Town",x=>g(x).town?`${esc(g(x).town[0])} ${g(x).town[1]} min`:"–"],
+    ["Water",x=>{const f=x.feats||[];return f.includes("creek")||f.includes("river")||g(x).mapcreek?"Creek or river":f.includes("dam")||f.includes("bore")?"Dam or bore":"–"}],
+    ["Rain a year",x=>x.rain?x.rain+" mm":"–"],["Risks",x=>(g(x).bad||[]).length?esc(g(x).bad.join(", ")):"None found"],["For sale",x=>x.dom!=null?(x.dom<45?x.dom+" days":Math.round(x.dom/30.4)+" months"):"–"],
+    ["Price cuts",x=>x.cuts||0]];
+  $("cmp").innerHTML=`<div class="bp-bar"><button type="button" class="back" onclick="history.length>1?history.back():location.hash='home'">Back</button></div><h2 class="vt">Compare</h2>
+   <div class="tablewrap cmpt"><table><thead><tr><th></th>${xs.map(x=>`<th><a href="#${blockKey(x)}">${esc(x.sub)} ${x.s}</a><button type="button" class="more" data-c="${esc(x.id)}">Remove</button></th>`).join("")}</tr></thead>
+   <tbody>${rowsC.map(([t,f])=>`<tr><td>${t}</td>${xs.map(x=>`<td>${f(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`}
+window.addEventListener("hashchange",()=>{if(location.hash==="#compare")renderCompare();drawCmpBar()});
+
+// ---- phone-friendly tables: label every cell with its column, so tables can show as cards on small screens
+function labelTables(root){(root||document).querySelectorAll("#v-insights table").forEach(t=>{const h=[...t.querySelectorAll("thead th")].map(th=>th.textContent.trim());
+  t.querySelectorAll("tbody tr").forEach(tr=>[...tr.children].forEach((td,i)=>{if(h[i]&&!td.dataset.l)td.dataset.l=h[i]}))})}
+new MutationObserver(()=>labelTables()).observe(document.getElementById("v-insights"),{childList:true,subtree:true});
 // ---- SAVED
 function renderSaved(){
   const ids=Object.keys(WATCH);
@@ -1186,6 +1296,8 @@ function ticksFor(x){
   if(g.slope!=null)W.push([g.slope<=10,g.slope<=10?`Mostly gentle land (about ${g.slope}% slope)`:`Steep in parts (about ${g.slope}% slope)`]);
   if(g.pace)W.push([g.pace==="busy"||g.pace==="normal",`Local market ${g.pace}`]);
   return W}
+const ICONS={growth:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',price:'<path d="M20 12 12 20 4 12V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/>',money:'<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',cabin:'<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/>',pin:'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',alert:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/>',doc:'<path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/>',chat:'<path d="M4 5h16v11H9l-5 4z"/>'};
+const I=k=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]||""}</svg>`;
 function sec(title,body){return body?`<section class="bsec"><h3>${title}</h3>${body}</section>`:""}
 function blockPage(x){
   const vk=vkey(x),g=x.gx||{},t=myTake(x),W=ticksFor(x),yes=W.filter(w=>w[0]),no=W.filter(w=>!w[0]);
@@ -1198,7 +1310,7 @@ function blockPage(x){
   // growth
   const growth=x.gs==null?"":`<div class="gbig"><span class="gsb ${gsClass(x.gs)}">${x.gs}</span><div><b>Growth ${x.gs} out of 100</b><div class="muted" style="font-size:13px">${x.gstar?"Standout: ticks every must-have and priced well":x.gok?"Ticks your must-haves":"Misses one of your must-haves"}</div></div></div>
     <ul class="ticks">${yes.slice(0,9).map(w=>`<li>${esc(w[1])}</li>`).join("")}${no.slice(0,5).map(w=>`<li class="no">${esc(w[1])}</li>`).join("")}</ul>
-    ${(g.bad||[]).length?`<div class="risk">⚠️ ${(g.bad||[]).map(esc).join(" · ")}</div>`:""}`;
+    ${(g.bad||[]).length?`<div class="risk">${(g.bad||[]).map(esc).join(" · ")}</div>`:""}`;
   // future: growth path, planning, big projects, subdivision
   const fut=[pathLine(x),subLine(x),(qldPlan(x)+saPlan(x)+waPlan(x))?`<div class="loc">${(qldPlan(x)+saPlan(x)+waPlan(x)).trim()}</div>`:""].join("");
   // price
@@ -1215,7 +1327,7 @@ function blockPage(x){
     +(c?`<h4>What it costs</h4><ul class="plain"><li>To buy: about ${k(c.buyLo)}–${k(c.buyHi)} on top of the price (stamp duty ${c.duty!=null?k(c.duty):"?"}, legal, inspections, survey).</li><li>Council rates: about ${k(c.ratesLo)}–${k(c.ratesHi)} a year.</li>${c.liveLo?`<li>To make it livable (power, water, septic, shed, approvals): about ${k(c.liveLo)}–${k(c.liveHi)}, plus ${k(c.cabinLo)}–${k(c.cabinHi)} for a cabin or tiny home.</li>`:""}<li>Selling later: about ${k(c.sellLo)}–${k(c.sellHi)} in agent and marketing fees.</li></ul>`:"")
     +(ideas.length?`<h4>Ways it could earn</h4><ul class="ideas">${ideas.map(s=>`<li>${s}</li>`).join("")}</ul>`:"");
   // cabins
-  const cabin=`<div class="loc">${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: <b>${esc(x.zone)}</b>${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}</div>${x.a>=20&&g.hol&&g.hol[1]<=40?`<div class="okbox">🏕️ ${esc(g.hol[0])} is about ${g.hol[1]} min away: cabins or caravan sites could suit, with council approval.</div>`:""}`;
+  const cabin=`<div class="loc">${CABIN[x.s]||"Check the council's planning rules for the zone."}${x.zone?` This block's zone: <b>${esc(x.zone)}</b>${x.zone_name&&x.zone_name!==x.zone?" ("+esc(x.zone_name)+")":""}.`:""}</div>${x.a>=20&&g.hol&&g.hol[1]<=40?`<div class="okbox">${esc(g.hol[0])} is about ${g.hol[1]} min away: cabins or caravan sites could suit, with council approval.</div>`:""}`;
   // area and risks
   const risks=catchLine(x);
   const area=[placeLine(x),areaLine(x)].join("");
@@ -1227,16 +1339,22 @@ function blockPage(x){
   <div class="bp-head"><div class="pills">${pills}</div><h2>${esc(name)}</h2><div class="bp-loc">${esc(x.sub)} ${x.s} ${esc(x.pc)}${x.lga?" · "+esc(x.lga)+" council":""}${x.type?" · "+esc(x.type.split(",")[0]):""}</div>
    <div class="bp-price"><b>${x.p?short(x.p):"Price on request"}</b><span>${esc((x.pt||"").slice(0,40))}</span></div></div>
   <div class="kf">${kf}</div>${take}
-  ${sec("📈 Growth outlook",growth)}
-  ${sec("🧭 Future: growth path and planning",fut)}
-  ${sec("💲 Price check",price)}
-  ${sec("💰 Costs, income, flip or keep",money2)}
-  ${sec("🏕️ Cabins or caravan sites",cabin)}
-  ${sec("📍 The area",area)}
-  ${sec("⚠️ Risks to check",risks||'<div class="okbox">No flood, bushfire or vegetation flags found on the state maps. Still check the council\'s maps.</div>')}
-  ${sec("📝 The listing",listing)}
-  ${sec("❓ Ask the agent",before)}
-  <div class="actbar"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open the listing ↗</a><button type="button" class="watch" data-w="${esc(x.id)}" aria-pressed="${!!WATCH[x.id]}">${WATCH[x.id]?"★ Saved":"☆ Save"}</button></div>`;
+  <div class="tabs2" role="tablist">${["Overview","Price","Area","Checklist"].map((t,i)=>`<button type="button" role="tab" data-tab="${i}" aria-selected="${i===0}">${t}</button>`).join("")}</div>
+  <div class="tabp" data-p="0">
+  ${sec(I("growth")+"Growth outlook",growth)}
+  ${sec(I("compass")+"Future: growth path and planning",fut)}
+  </div><div class="tabp" data-p="1" hidden>
+  ${sec(I("price")+"Price check",price)}
+  ${sec(I("money")+"Costs, income, flip or keep",money2)}
+  </div><div class="tabp" data-p="2" hidden>
+  ${sec(I("pin")+"The area",(x.lat?`<div class="mapbox mini">${ausMap(L.filter(o=>o.lat&&Math.abs(o.lat-x.lat)<3&&Math.abs(o.lng-x.lng)<4&&!gone(o)),x)}</div><div class="muted" style="font-size:12.5px">This block in gold. Other blocks for sale nearby as dots: tap one to open it.</div>`:"")+area)}
+  ${sec(I("cabin")+"Cabins or caravan sites",cabin)}
+  ${sec(I("alert")+"Risks to check",risks||'<div class="okbox">No flood, bushfire or vegetation flags found on the state maps. Still check the council\'s maps.</div>')}
+  </div><div class="tabp" data-p="3" hidden>
+  ${sec(I("chat")+"Ask the agent",before)}
+  ${sec(I("doc")+"The listing",listing)}
+  </div>
+  <div class="actbar"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open the listing ↗</a><button type="button" class="watch" data-w="${esc(x.id)}" aria-pressed="${!!WATCH[x.id]}">${WATCH[x.id]?"★ Saved":"☆ Save"}</button><button type="button" class="watch cmpbtn" data-c="${esc(x.id)}" aria-pressed="${CMP.includes(String(x.id))}">${CMP.includes(String(x.id))?"✓ Comparing":"Compare"}</button></div>`;
 }
 
 
@@ -1256,7 +1374,7 @@ window.__search=()=>{if(preset==="mine"){alimit=30;renderSearch()}};
     $("pChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="NSW sale price per acre by month"><path d="${path}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>${ticks}${lab}</svg><div class="muted" style="font-size:12px">NSW sale price per acre, 10–200 acre blocks (3-month average). The last couple of months fill in as sales are recorded.</div>`}
   const k=D.picks;if(k)$("pPicks").innerHTML=`<b>Track record:</b> ${k.picks.toLocaleString("en-AU")} blocks called good or great deals are being followed. `+(k.sold?`${k.sold} have sold so far, for a median ${Math.round(k.sold_vs_ask*100)}% of their asking price`+(k.sold_vs_fair?` and ${Math.round(k.sold_vs_fair*100)}% of the app's likely sale price.`:"."):`None have sold yet. Results build up over the coming weeks, and the app re-learns how far under asking blocks sell every Monday.`)
    +(k.card?(()=>{const c=k.card,pc=g=>g.n?Math.round(g.gone/g.n*100)+"%":"–",row=(t,g)=>`<tr><td>${t}</td><td class="r num">${g.n.toLocaleString("en-AU")}</td><td class="r num">${pc(g)}</td><td class="r num">${g.sold_vs_fair?Math.round(g.sold_vs_fair*100)+"%":"–"}</td></tr>`;
-     return `<div class="tablewrap" style="margin-top:10px"><table><thead><tr><th>Paper scorecard since ${c.since}</th><th class="r">Blocks</th><th class="r">Sold or under offer</th><th class="r">Sold vs likely price</th></tr></thead><tbody>${row("⭐ Standouts",c.standouts)}${row("Growth score 55+",c.high_score)}${row("Other good or great deals",c.other_picks)}${row("Every listing (do nothing)",c.all_listings)}</tbody></table></div><div class="what" style="margin-top:6px">If the picks are right, Standouts should sell faster than the average listing and close to the likely sale price. This fills in by itself.</div>`})():"");
+     return `<div class="tablewrap" style="margin-top:10px"><table><thead><tr><th>Paper scorecard since ${c.since}</th><th class="r">Blocks</th><th class="r">Sold or under offer</th><th class="r">Sold vs likely price</th></tr></thead><tbody>${row("★ Standouts",c.standouts)}${row("Growth score 55+",c.high_score)}${row("Other good or great deals",c.other_picks)}${row("Every listing (do nothing)",c.all_listings)}</tbody></table></div><div class="what" style="margin-top:6px">If the picks are right, Standouts should sell faster than the average listing and close to the likely sale price. This fills in by itself.</div>`})():"");
 })();
 
 // market pulse by state, and standouts
@@ -1284,6 +1402,6 @@ window.__search=()=>{if(preset==="mine"){alimit=30;renderSearch()}};
   $("pathList").innerHTML=pth.length?pth.slice(0,15).map(x=>row(x)).join(""):'<div class="empty">None right now. New listings are checked every day.</div>';
   const B=D.bt;if(B){const e=$("btNote");e.hidden=false;e.innerHTML=`<b>Tested honestly:</b> the likely sale price was learned from ${esc(B.learned_on)}, then checked on the ${esc(B.tested_on)}, using only sales that happened before each one. It was typically about <b>${Math.round(B.median_abs_err*100)}% off</b>. It came within 20% for ${Math.round(B.within20*10)} in 10 blocks and within 35% for ${Math.round(B.within35*10)} in 10, and on average it came out ${Math.abs(Math.round((1-B.median_ratio)*100))}% ${B.median_ratio<1?"under":"over"} the real price. Use it as a guide for your opening offer, then check the agent's recent sales nearby before you bid. (Tried 15 Nov: more comparison blocks, closer-match weighting and counting real sales double. None of them made it more accurate on the newest sales, so the method stayed the same.)`}
 })();
-renderHome();renderSearch();renderSaved();route();
+labelTables();renderHome();renderSearch();renderSaved();route();if(location.hash==="#compare")renderCompare();drawCmpBar();
 })();
 </script>

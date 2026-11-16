@@ -21,12 +21,21 @@ const fails=[];const ok=(c,msg)=>{if(!c)fails.push(msg)};
       ok(r.shown,`${label}: the ${v} screen didn't show`);ok(!r.wide,`${label}: the ${v} screen runs off the side of the screen`);
       if(v==='search')ok(r.rows>=10,`${label}: Search shows only ${r.rows} rows`);
     }
+    // the map draws pins
+    await p.evaluate(()=>{location.hash='search'});await p.waitForTimeout(250);
+    const pins=await p.evaluate(()=>{const b=document.querySelector('[data-sv="map"]');if(!b)return -1;b.click();const n=document.querySelectorAll('#amap circle').length;document.querySelector('[data-sv="list"]').click();return n});
+    ok(pins>=100,`${label}: the map shows only ${pins} pins`);
     await p.evaluate(()=>{location.hash='home'});await p.waitForTimeout(250);
     await p.click('#hStars .ri');await p.waitForTimeout(400);
     const bp=await p.evaluate(()=>({hash:location.hash,secs:document.querySelectorAll('#bp .bsec').length,wide:document.documentElement.scrollWidth>document.documentElement.clientWidth+1,link:!!document.querySelector('#bp .actbar a.go[href^="http"]')}));
     ok(bp.hash.startsWith('#block-'),`${label}: tapping a top pick didn't open its page`);ok(bp.secs>=8,`${label}: block page has only ${bp.secs} sections`);
     ok(!bp.wide,`${label}: block page runs off the side`);ok(bp.link,`${label}: block page has no "Open the listing" link`);
+    const tabs=await p.evaluate(()=>{const t=document.querySelector('#bp [data-tab="1"]');if(!t)return false;t.click();return !document.querySelector('#bp .tabp[data-p="1"]').hidden});
+    ok(tabs,`${label}: the block page tabs don't switch`);
     await p.goBack();await p.waitForTimeout(300);ok((await p.evaluate(()=>location.hash))==='#home',`${label}: Back didn't return to Home`);
+    await p.evaluate(()=>{location.hash='compare'});await p.waitForTimeout(250);
+    ok(await p.evaluate(()=>!document.getElementById('v-compare').hidden),`${label}: the compare screen didn't show`);
+    await p.evaluate(()=>{location.hash='home'});await p.waitForTimeout(250);
     ok(errs.length===0,`${label}: script errors: ${errs.slice(0,3).join(' | ')}`);
     await c.close();
   }
