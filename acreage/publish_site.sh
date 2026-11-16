@@ -13,7 +13,7 @@ if [ ! -d "$WT/.git" ] && [ ! -f "$WT/.git" ]; then
     find "$WT" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
   fi
 fi
-cp acreage.html "$WT/index.html"; cp acreage-data.js history-data.js alerts-feed.json "$WT/"
+cp acreage.html "$WT/index.html"; cp acreage-data.js history-data.js alerts-feed.json "$WT/"; mkdir -p "$WT/media" && cp media/*.jpg media/CREDITS.md "$WT/media/"
 touch "$WT/.nojekyll"
 cat > "$WT/robots.txt" <<'R'
 User-agent: *

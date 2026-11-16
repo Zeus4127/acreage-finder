@@ -324,6 +324,23 @@ section#v-home{padding-top:0}
 @media (min-width:900px){.topin{display:flex;align-items:center;gap:22px;padding-top:10px;padding-bottom:10px}.bar1{flex:none}.bar1 .live{display:none}.dnav{margin-top:0;flex:1}.dnav button{border-bottom:none;border-radius:999px;padding:8px 13px}.dnav button[aria-current="page"]{background:var(--navy2)}.cta{display:inline-block}
  .searchbar{top:calc(env(safe-area-inset-top,0px) + 62px)}}
 
+.hero-photo{object-fit:cover;object-position:62% 40%;transform-origin:70% 40%}
+@media (prefers-reduced-motion:no-preference){.hero-photo{animation:kb 26s ease-in-out infinite alternate}}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+@media (max-width:900px){.ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.way{position:relative;display:block;aspect-ratio:4/5;border-radius:18px;overflow:hidden;text-decoration:none;color:#fff;background:var(--navy);box-shadow:0 6px 18px rgba(20,48,74,.12);max-width:100%}
+.way img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+@media (hover:hover){.way:hover img{transform:scale(1.05)}}
+.way::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,32,50,.86) 0%,rgba(14,32,50,.15) 60%,transparent)}
+.way-in{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:14px;display:grid;gap:4px}
+.way-in b{font-family:var(--disp);font-size:clamp(17px,2.2vw,21px);font-weight:600;line-height:1.15}
+.way-in small{font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.88)}
+@media (max-width:420px){.way{aspect-ratio:3/4}.way-in small{display:none}}
+
+.logo{width:30px;height:30px;border-radius:8px;background:var(--gold);display:grid;place-items:center}
+.logo::after{content:"AF";position:static;inset:auto;border:none;transform:none;font-family:"Inter",var(--sans);font-weight:800;font-size:12.5px;letter-spacing:-.02em;color:var(--navy)}
+
 </style>
 <header class="top"><div class="topin">
   <div class="bar1"><a class="brand" href="#home" aria-label="Acreage Finder home"><span class="logo" aria-hidden="true"></span>Acreage Finder</a><span class="live"><span class="dot"></span><span id="scanned">loading…</span></span></div>
@@ -337,21 +354,7 @@ section#v-home{padding-top:0}
 <!-- HOME: the short version. Today's best picks, the growth-path blocks, what you're watching, what changed. -->
 <section class="view" id="v-home" aria-labelledby="hTitle">
   <div class="hero2 bleed">
-    <svg class="hero-art" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E7FB8"/><stop offset=".55" stop-color="#9CC7E3"/><stop offset="1" stop-color="#F6D9A6"/></linearGradient>
-      <linearGradient id="pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7DAE4E"/><stop offset="1" stop-color="#4E8A3A"/></linearGradient></defs>
-      <rect width="1600" height="760" fill="url(#sky)"/>
-      <circle cx="1240" cy="250" r="70" fill="#FFE29A" opacity=".9"/>
-      <path d="M0 430 180 300 300 370 470 240 640 360 790 270 960 380 1120 290 1300 360 1460 280 1600 340V560H0Z" fill="#6E8FA0" opacity=".75"/>
-      <path d="M0 480 210 370 380 450 560 360 760 460 930 380 1110 470 1290 400 1460 460 1600 410V600H0Z" fill="#4F7A6A"/>
-      <path d="M0 560C260 500 520 520 800 545S1340 520 1600 500V760H0Z" fill="url(#pad)"/>
-      <path d="M0 640C300 600 700 615 1000 640S1450 650 1600 620V760H0Z" fill="#3F7A33"/>
-      <ellipse cx="1180" cy="610" rx="120" ry="18" fill="#7FB6D6" opacity=".9"/>
-      <g fill="#2F5E2A"><circle cx="300" cy="540" r="26"/><circle cx="330" cy="548" r="20"/><circle cx="1420" cy="525" r="30"/><circle cx="1452" cy="533" r="22"/><circle cx="880" cy="560" r="18"/></g>
-      <g stroke="#F4EEDC" stroke-width="5"><path d="M0 690H1600" /><path d="M0 714H1600"/></g>
-      <g fill="#F4EEDC"><rect x="60" y="672" width="8" height="60"/><rect x="260" y="672" width="8" height="60"/><rect x="460" y="672" width="8" height="60"/><rect x="660" y="672" width="8" height="60"/><rect x="860" y="672" width="8" height="60"/><rect x="1060" y="672" width="8" height="60"/><rect x="1260" y="672" width="8" height="60"/><rect x="1460" y="672" width="8" height="60"/></g>
-      <g fill="none" stroke="#24364A" stroke-width="4" stroke-linecap="round"><path d="M980 170q12-10 24 0q12-10 24 0"/><path d="M1070 130q9-8 18 0q9-8 18 0"/><path d="M1380 180q8-7 16 0q8-7 16 0"/></g>
-    </svg>
+    <img class="hero-art hero-photo" src="media/hero.jpg" alt="Rolling green grazing country with a tall gum tree under a big sky" fetchpriority="high">
     <div class="hero-in">
       <p class="ey">All of Australia · rural blocks 10 acres and up</p>
       <h2 id="hTitle">Land you'll love. Land that <em>grows</em>.</h2>
@@ -362,9 +365,15 @@ section#v-home{padding-top:0}
         <button type="submit">Find blocks</button>
       </form>
     </div>
-    <span class="hero-tag">Illustration · scores from real sales since 2001</span>
+    <span class="hero-tag">Photo: Carl Davies, CSIRO · CC BY 3.0</span>
   </div>
   <div class="band bleed"><div class="facts" id="facts"></div></div>
+  <div class="ways">
+    <a class="way" href="#search" data-preset="star"><img src="media/cattle.jpg" alt="Cattle in green paddocks at Tenterfield, New South Wales" loading="lazy"><span class="way-in"><b>Standouts</b><small>Tick every must-have, high Growth score, priced under similar blocks.</small></span></a>
+    <a class="way" href="#search" data-preset="path"><img src="media/range.jpg" alt="Cattle grazing below a misty mountain range" loading="lazy"><span class="way-in"><b>On a growth path</b><small>The tree-change belt and land next to future suburbs.</small></span></a>
+    <a class="way" href="#search" data-preset="ok"><img src="media/gums.jpg" alt="Gum trees and cattle on lush pasture near Bega" loading="lazy"><span class="way-in"><b>Ticks your must-haves</b><small>A real town close by, water, and things to do.</small></span></a>
+    <a class="way" href="#search" data-preset="great"><img src="media/dam.jpg" alt="Farm with a dam, paddocks and bushland" loading="lazy"><span class="way-in"><b>Great deals</b><small>Asking well under what similar blocks ask.</small></span></a>
+  </div>
   <div class="intro2"><h3>Most land sites show you what's cheap. This shows you what will grow.</h3>
     <p>The Growth score is tested on 25 years of real sales in every state: cheap areas that hadn't boomed yet, in reach of a city or a holiday town, grew the most. Every block also gets a likely sale price, an opening offer and a walk-away price.</p></div>
   <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
@@ -556,7 +565,7 @@ section#v-home{padding-top:0}
     <li>Domain and realestate.com.au rural sections block automatic scanning. Use "Check any listing" above for anything you find there.</li>
     <li>Council sales of land for unpaid rates (Walgett and Central Darling in NSW run these).</li>
     <li>Trust for Nature (VIC) and the NSW Biodiversity Conservation Trust sell covenanted bush below market.</li></ul></div></details>
-  <details class="acc"><summary>About this app <span>Data and limits</span></summary><div class="accin"><p class="what" id="foot"></p></div></details>
+  <details class="acc"><summary>About this app <span>Data and limits</span></summary><div class="accin"><p class="what" id="foot"></p><p class="what"><b>Photos</b> (Wikimedia Commons, free licences): grazing country with a gum tree by Carl Davies, CSIRO; cattle below a mountain range, farm with a dam, and a farm dam by Nick Pitsas, CSIRO; cattle near Bega by Gregory Heath, CSIRO (all CC BY 3.0); cattle at Tenterfield by Sheba_Also (CC BY-SA 2.0).</p></div></details>
 </section>
 
 <!-- BLOCK: one block, everything about it, in clear sections. -->

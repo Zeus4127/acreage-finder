@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 SDK=${SDK:-/tmp/claude-0/sdk}; BT=$SDK/build-tools/36.1.0; AJ=$SDK/platforms/android-36/android.jar
 : "${ACREAGE_KEYSTORE:?set ACREAGE_KEYSTORE}"; : "${ACREAGE_KSPASS:?set ACREAGE_KSPASS}"
 rm -rf out assets; mkdir -p out/classes out/gen assets
-cp ../acreage.html assets/index.html; cp ../acreage-data.js ../history-data.js assets/
+cp ../acreage.html assets/index.html; cp ../acreage-data.js ../history-data.js assets/; mkdir -p assets/media && cp ../media/*.jpg assets/media/
 $BT/aapt2 compile --dir res -o out/res.zip
 $BT/aapt2 link -I $AJ --manifest AndroidManifest.xml -o out/base.apk -A assets --java out/gen out/res.zip
 javac -source 8 -target 8 -nowarn -Xlint:-options -bootclasspath $AJ -cp $AJ -d out/classes $(find src out/gen -name '*.java') 2>&1 | grep -v "JAVA_TOOL\|warning\|Note:" || true
