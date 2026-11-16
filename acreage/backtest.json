@@ -3,19 +3,19 @@
   {
    "pool": "asking prices only",
    "all": {
-    "n": 2645,
-    "median_ratio": 0.918,
-    "median_abs_err": 0.353,
-    "within20": 0.306,
-    "within35": 0.496
+    "n": 2660,
+    "median_ratio": 0.916,
+    "median_abs_err": 0.349,
+    "within20": 0.315,
+    "within35": 0.502
    },
    "by_state": {
     "NSW": {
-     "n": 1474,
-     "median_ratio": 0.897,
-     "median_abs_err": 0.368,
-     "within20": 0.294,
-     "within35": 0.479
+     "n": 1480,
+     "median_ratio": 0.896,
+     "median_abs_err": 0.361,
+     "within20": 0.307,
+     "within35": 0.484
     },
     "NT": {
      "n": 12,
@@ -26,113 +26,113 @@
     },
     "New South Wales": null,
     "QLD": {
-     "n": 500,
+     "n": 504,
      "median_ratio": 0.965,
-     "median_abs_err": 0.359,
+     "median_abs_err": 0.358,
      "within20": 0.312,
-     "within35": 0.488
+     "within35": 0.492
     },
     "SA": {
-     "n": 63,
-     "median_ratio": 1.004,
-     "median_abs_err": 0.445,
-     "within20": 0.206,
-     "within35": 0.413
+     "n": 64,
+     "median_ratio": 1.027,
+     "median_abs_err": 0.448,
+     "within20": 0.203,
+     "within35": 0.406
     },
     "TAS": {
-     "n": 57,
-     "median_ratio": 0.893,
-     "median_abs_err": 0.288,
-     "within20": 0.298,
-     "within35": 0.561
+     "n": 59,
+     "median_ratio": 0.892,
+     "median_abs_err": 0.286,
+     "within20": 0.288,
+     "within35": 0.576
     },
     "VIC": {
-     "n": 358,
-     "median_ratio": 0.927,
-     "median_abs_err": 0.262,
-     "within20": 0.399,
-     "within35": 0.617
+     "n": 360,
+     "median_ratio": 0.929,
+     "median_abs_err": 0.251,
+     "within20": 0.411,
+     "within35": 0.628
     },
     "Vic": null,
     "WA": {
      "n": 178,
-     "median_ratio": 0.947,
-     "median_abs_err": 0.408,
-     "within20": 0.264,
-     "within35": 0.449
+     "median_ratio": 0.952,
+     "median_abs_err": 0.395,
+     "within20": 0.275,
+     "within35": 0.461
     },
     "sa": null
    },
    "by_size": {
     "10-50": {
-     "n": 1474,
-     "median_ratio": 0.874,
-     "median_abs_err": 0.326,
-     "within20": 0.331,
-     "within35": 0.522
+     "n": 1473,
+     "median_ratio": 0.88,
+     "median_abs_err": 0.312,
+     "within20": 0.344,
+     "within35": 0.536
     },
     "50-200": {
-     "n": 688,
-     "median_ratio": 1.041,
-     "median_abs_err": 0.326,
-     "within20": 0.318,
-     "within35": 0.529
+     "n": 693,
+     "median_ratio": 1.007,
+     "median_abs_err": 0.327,
+     "within20": 0.328,
+     "within35": 0.527
     },
     "200-1000": {
-     "n": 349,
-     "median_ratio": 1.017,
-     "median_abs_err": 0.436,
-     "within20": 0.238,
-     "within35": 0.407
+     "n": 358,
+     "median_ratio": 0.983,
+     "median_abs_err": 0.438,
+     "within20": 0.24,
+     "within35": 0.399
     },
     "1000+": {
-     "n": 134,
-     "median_ratio": 0.699,
-     "median_abs_err": 0.625,
-     "within20": 0.149,
-     "within35": 0.269
+     "n": 136,
+     "median_ratio": 0.644,
+     "median_abs_err": 0.623,
+     "within20": 0.147,
+     "within35": 0.272
     }
    },
    "by_source": {
     "farmbuy": {
-     "n": 1380,
-     "median_ratio": 0.931,
+     "n": 1395,
+     "median_ratio": 0.932,
      "median_abs_err": 0.297,
-     "within20": 0.367,
-     "within35": 0.564
+     "within20": 0.371,
+     "within35": 0.566
     },
     "fp": {
      "n": 465,
-     "median_ratio": 1.092,
-     "median_abs_err": 0.401,
-     "within20": 0.273,
-     "within35": 0.449
+     "median_ratio": 1.088,
+     "median_abs_err": 0.388,
+     "within20": 0.275,
+     "within35": 0.462
     },
     "nsw": {
      "n": 800,
-     "median_ratio": 0.799,
-     "median_abs_err": 0.427,
-     "within20": 0.221,
-     "within35": 0.405
+     "median_ratio": 0.787,
+     "median_abs_err": 0.412,
+     "within20": 0.241,
+     "within35": 0.412
     }
    }
   },
   {
    "pool": "asking + sales (what the app uses)",
    "all": {
-    "n": 3080,
-    "median_ratio": 1.018,
-    "median_abs_err": 0.3,
-    "within20": 0.354,
-    "within35": 0.566
+    "n": 3100,
+    "median_ratio": 1.014,
+    "median_abs_err": 0.293,
+    "within20": 0.353,
+    "within35": 0.57
    },
    "by_state": {
     "NSW": {
-     "n": 1579,
-     "median_ratio": 1.022,
-     "median_abs_err": 0.307,
-     "within20": 0.351,
-     "within35": 0.558
+     "n": 1586,
+     "median_ratio": 1.017,
+     "median_abs_err": 0.303,
+     "within20": 0.349,
+     "within35": 0.561
     },
     "NT": {
      "n": 18,
@@ -143,106 +143,108 @@
     },
     "New South Wales": null,
     "QLD": {
-     "n": 673,
+     "n": 678,
      "median_ratio": 1.025,
-     "median_abs_err": 0.293,
-     "within20": 0.351,
-     "within35": 0.577
+     "median_abs_err": 0.288,
+     "within20": 0.344,
+     "within35": 0.58
     },
     "SA": {
-     "n": 74,
-     "median_ratio": 1.093,
-     "median_abs_err": 0.429,
-     "within20": 0.189,
-     "within35": 0.392
+     "n": 75,
+     "median_ratio": 1.129,
+     "median_abs_err": 0.421,
+     "within20": 0.187,
+     "within35": 0.413
     },
     "TAS": {
-     "n": 78,
-     "median_ratio": 1.091,
-     "median_abs_err": 0.274,
-     "within20": 0.333,
-     "within35": 0.59
+     "n": 81,
+     "median_ratio": 1.094,
+     "median_abs_err": 0.256,
+     "within20": 0.346,
+     "within35": 0.605
     },
     "VIC": {
-     "n": 451,
-     "median_ratio": 0.997,
-     "median_abs_err": 0.242,
-     "within20": 0.417,
-     "within35": 0.645
+     "n": 455,
+     "median_ratio": 0.998,
+     "median_abs_err": 0.245,
+     "within20": 0.418,
+     "within35": 0.651
     },
     "Vic": null,
     "WA": {
      "n": 204,
      "median_ratio": 1.01,
-     "median_abs_err": 0.381,
-     "within20": 0.324,
-     "within35": 0.466
+     "median_abs_err": 0.373,
+     "within20": 0.338,
+     "within35": 0.48
     },
     "sa": null
    },
    "by_size": {
     "10-50": {
-     "n": 1909,
-     "median_ratio": 1.015,
-     "median_abs_err": 0.276,
-     "within20": 0.376,
-     "within35": 0.605
+     "n": 1913,
+     "median_ratio": 1.012,
+     "median_abs_err": 0.273,
+     "within20": 0.374,
+     "within35": 0.611
     },
     "50-200": {
-     "n": 688,
-     "median_ratio": 1.037,
-     "median_abs_err": 0.305,
-     "within20": 0.346,
-     "within35": 0.541
+     "n": 693,
+     "median_ratio": 1.032,
+     "median_abs_err": 0.304,
+     "within20": 0.355,
+     "within35": 0.548
     },
     "200-1000": {
-     "n": 349,
-     "median_ratio": 1.004,
-     "median_abs_err": 0.379,
-     "within20": 0.295,
-     "within35": 0.47
+     "n": 358,
+     "median_ratio": 1.018,
+     "median_abs_err": 0.387,
+     "within20": 0.274,
+     "within35": 0.461
     },
     "1000+": {
-     "n": 134,
-     "median_ratio": 0.983,
-     "median_abs_err": 0.457,
-     "within20": 0.239,
-     "within35": 0.381
+     "n": 136,
+     "median_ratio": 0.965,
+     "median_abs_err": 0.419,
+     "within20": 0.25,
+     "within35": 0.404
     }
    },
    "by_source": {
     "farmbuy": {
-     "n": 1741,
+     "n": 1761,
      "median_ratio": 0.999,
      "median_abs_err": 0.268,
-     "within20": 0.384,
-     "within35": 0.612
+     "within20": 0.383,
+     "within35": 0.61
     },
     "fp": {
      "n": 539,
-     "median_ratio": 1.061,
-     "median_abs_err": 0.355,
-     "within20": 0.317,
-     "within35": 0.486
+     "median_ratio": 1.054,
+     "median_abs_err": 0.354,
+     "within20": 0.319,
+     "within35": 0.494
     },
     "nsw": {
      "n": 800,
-     "median_ratio": 1.031,
-     "median_abs_err": 0.342,
-     "within20": 0.315,
-     "within35": 0.519
+     "median_ratio": 1.025,
+     "median_abs_err": 0.327,
+     "within20": 0.31,
+     "within35": 0.534
     }
    }
   }
  ],
+ "tuned_k": 0.78,
+ "tuned_on": "2026-11-16",
  "honest": {
-  "learned_on": "2322 sales before 2026-10-12",
-  "tested_on": "580 newest sales from 2026-10-12",
-  "k": 0.82,
-  "median_ratio": 0.998,
-  "median_abs_err": 0.258,
-  "within20": 0.428,
-  "within35": 0.598,
-  "offer_band_ok": 0.333
+  "learned_on": "2338 sales before 2026-10-12",
+  "tested_on": "585 newest sales from 2026-10-12",
+  "k": 0.86,
+  "median_ratio": 1.018,
+  "median_abs_err": 0.268,
+  "within20": 0.415,
+  "within35": 0.585,
+  "offer_band_ok": 0.332
  }
 }
