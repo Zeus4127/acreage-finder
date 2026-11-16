@@ -1,3 +1,4 @@
 # Versions checked by release.sh and looked at on a phone-size screen. Roll back the page with:
 #   git checkout <commit> -- acreage/acreage.html && ./release.sh <out.html>
 39bcbf0  2026-11-16  App 2.0 structure (bottom navigation, rows, block page), all release checks pass
+2026-11-16 pro2: splash, how-it-works, photo band; APK 2.5 — release passed, checked desktop+phone
