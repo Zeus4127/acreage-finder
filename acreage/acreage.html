@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Every rural block of 10 acres or more for sale in Australia, priced against similar blocks: fair price, opening offer and walk-away price.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
 /* Layout: a land-analysis desk. Quiet white header with tabs, a slim summary band, then compact listing cards:
    key figures first, the full analysis one tap away. Light theme only (by request), eucalyptus and slate with an ochre mark for Standouts. */
@@ -269,7 +269,7 @@ details.acc{min-width:0;max-width:100%}
 textarea{min-height:110px}
 
 /* ===== Business look (after the Wavessa site): navy bar, full-width hero, blue number band, cream sections ===== */
-:root{--navy:#14304A;--navy2:#1D3F5E;--gold:#F7C33B;--gold-ink:#1B2430;--sky:#2F8AC6;--cream:#FFF8EE;--bg:#FFF8EE;--disp:"Fredoka","Nunito",var(--sans);--mono2:"JetBrains Mono",ui-monospace,Menlo,monospace}
+:root{--navy:#14304A;--navy2:#1D3F5E;--gold:#F7C33B;--gold-ink:#1B2430;--sky:#2F8AC6;--cream:#FFF8EE;--bg:#FFF8EE;--disp:"Plus Jakarta Sans",var(--sans);--mono2:"JetBrains Mono",ui-monospace,Menlo,monospace}
 html,body{overflow-x:clip}
 body{background:var(--cream);font-family:"Inter",var(--sans)}
 body::before{background:var(--navy)}
@@ -414,6 +414,33 @@ section#v-home{padding-top:0}
 .pband-in h3{font-family:var(--disp);font-weight:600;font-size:clamp(28px,5vw,46px);line-height:1.08;max-width:18ch;margin:0 0 18px;color:#fff}
 .cta2{display:inline-block;background:var(--gold);color:var(--gold-ink);font-weight:700;text-decoration:none;padding:13px 22px;border-radius:12px}
 
+
+.pcards{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,72%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;margin:0 -2px;scrollbar-width:thin}
+.pcards:empty{display:none}
+@media(min-width:760px){.pcards{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));overflow:visible}}
+.pc{scroll-snap-align:start;display:grid;gap:4px;align-content:start;background:#fff;border:1px solid #E6DCCB;border-radius:16px;padding:16px;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(20,48,74,.05),0 8px 24px -14px rgba(20,48,74,.25);transition:transform .15s,box-shadow .15s}
+@media(hover:hover){.pc:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,48,74,.06),0 14px 30px -14px rgba(20,48,74,.35)}}
+.pc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.pc-st{font-family:var(--mono2);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--sky);background:#EAF3FA;padding:3px 8px;border-radius:6px}
+.pc-gs{display:flex;align-items:baseline;gap:5px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.pc-gs b{font-family:var(--disp);font-size:22px;letter-spacing:-.02em;color:var(--faint)}
+.pc-gs.hi b{color:var(--ok)}.pc-gs.mid b{color:var(--info)}
+.pc-t{font-family:var(--disp);font-size:18px;font-weight:700;color:var(--navy);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-s{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-p{display:flex;align-items:baseline;gap:8px;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+.pc-p b{font-family:var(--disp);font-size:24px;font-weight:800;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+.pc-p small{font-size:12px;color:var(--muted)}
+.pc-f{font-size:12.5px;color:var(--ink2)}.pc-f b{color:var(--ok)}
+.pc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;min-height:22px}
+h1,h2,h3{text-wrap:balance}
+@media(max-width:640px){
+ .how{gap:0;background:#fff;border:1px solid #EADFCB;border-radius:16px;overflow:hidden}
+ .how-i{border:0;border-radius:0;border-top:1px solid #EFE6D6;grid-template-columns:34px 1fr;padding:14px 16px;gap:2px 8px}
+ .how-i:first-child{border-top:0}
+ .how-n{grid-row:span 2;padding-top:3px}
+ .how-i b{font-size:16px}.how-i p{font-size:13.5px;line-height:1.5}
+ .ri-tags .pill:nth-child(n+3){display:none}
+}
 </style>
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
@@ -458,10 +485,10 @@ section#v-home{padding-top:0}
   </div>
   <div class="sec"><h3>★ Top picks</h3><a href="#search" data-preset="star">See all</a></div>
   <p class="sec-note">Tick every must-have, score high for growth, and priced under similar blocks.</p>
-  <div class="rows" id="hStars"></div>
+  <div class="pcards" id="hStars"></div>
   <div class="sec"><h3>On a growth path</h3><a href="#search" data-preset="path">See all</a></div>
   <p class="sec-note">Cheap areas in the tree-change belt, or next to land the state has set aside for future suburbs.</p>
-  <div class="rows" id="hPath"></div>
+  <div class="pcards" id="hPath"></div>
   <div id="hWatchWrap" hidden><div class="sec"><h3>☆ Watching</h3><a href="#saved">See all</a></div><div class="rows" id="hWatch"></div></div>
   <div class="pband bleed"><img src="media/dam2.jpg" alt="A farm dam below a slope of tall gum trees" loading="lazy">
     <div class="pband-in"><p class="ey">Our approach</p><h3>Buy where the growth is going, not where it's been.</h3><a class="cta2" href="#search" data-preset="path">See blocks on a growth path</a></div>
@@ -1182,6 +1209,18 @@ function row(x,note){
   return `<a class="ri" href="#${blockKey(x)}"><span class="gsb ${gsClass(x.gs)}" title="Growth score out of 100">${x.gs==null?"–":x.gs}<small>growth</small></span>
    <span class="ri-main"><span class="ri-t">${esc(x.sub)} ${x.s} · ${acres(x.a)}</span><span class="ri-s">${near?esc(near)+" · ":""}${x.fair?"likely sale "+short(x.fair):esc(x.type?x.type.split(",")[0]:"")}</span>${tags.length?`<span class="ri-tags">${tags.slice(0,3).join("")}</span>`:""}</span>
    <span class="ri-p"><b>${x.p?short(x.p):"–"}</b><small>${x.ppa?money(x.ppa)+"/ac":esc((x.pt||"").slice(0,18))}</small></span>${note?`<span class="ri-note">${note}</span>`:""}</a>`}
+function card(x){
+  const vk=vkey(x),g=x.gx||{},t=[];
+  if(x.gstar)t.push('<span class="pill star">★ Standout</span>');else if(x.gok)t.push('<span class="pill v-great">Must-haves ✓</span>');
+  if(vk!=="none")t.push(`<span class="pill v-${vk}">${vk==="why"?"Unusually cheap":VN[vk]}</span>`);
+  if(g.path&&g.path.length&&t.length<2)t.push('<span class="pill star">Growth path</span>');
+  const near=g.city&&g.city[1]<=150?`${g.city[0]} · ${g.city[1]} min`:g.hol&&g.hol[1]<=60?`${g.hol[0]} · ${g.hol[1]} min`:x.town?x.town[0]:"";
+  return `<a class="pc" href="#${blockKey(x)}"><span class="pc-top"><span class="pc-st">${esc(x.s)}</span><span class="pc-gs ${gsClass(x.gs)}"><b>${x.gs==null?"–":x.gs}</b>growth</span></span>
+  <span class="pc-t">${esc(x.sub)}</span><span class="pc-s">${acres(x.a)}${near?" · "+esc(near):""}</span>
+  <span class="pc-p"><b>${x.p?short(x.p):"–"}</b><small>${x.ppa?money(x.ppa)+"/ac":""}</small></span>
+  <span class="pc-f">${x.fair?"Likely sale <b>"+short(x.fair)+"</b>":"&nbsp;"}</span>
+  <span class="pc-tags">${t.slice(0,2).join("")}</span></a>`}
+const cards=(list,empty)=>list.length?list.map(card).join(""):`<div class="empty-row">${empty}</div>`;
 const rows=(list,empty)=>list.length?list.map(x=>row(x)).join(""):`<div class="empty-row">${empty}</div>`;
 
 // ---- HOME
@@ -1191,8 +1230,8 @@ const PATH=liveL.filter(x=>x.gx&&x.gx.path&&x.gx.path.length&&x.gok).sort((a,b)=
 const NEWL=tracking?liveL.filter(isNew).sort((a,b)=>score(b)-score(a)):[];
 const DROPS=liveL.filter(x=>x.drop).sort((a,b)=>(b.drop[0]-b.drop[1])/b.drop[0]-(a.drop[0]-a.drop[1])/a.drop[0]);
 function renderHome(){
-  $("hStars").innerHTML=rows(STARS.slice(0,6),"No Standouts right now. New listings are checked every day.");
-  $("hPath").innerHTML=rows(PATH.slice(0,5),"None right now.");
+  $("hStars").innerHTML=cards(STARS.slice(0,8),"No Standouts right now. New listings are checked every day.");
+  $("hPath").innerHTML=cards(PATH.slice(0,8),"None right now.");
   const w=Object.keys(WATCH).map(i=>byId[i]).filter(Boolean);
   $("hWatchWrap").hidden=!w.length;$("hWatch").innerHTML=w.slice(0,3).map(x=>row(x)).join("");
   const s90=SOLD.filter(c=>c.sold&&(Date.parse(LATEST)-Date.parse(c.sold))<=90*864e5);

@@ -2,3 +2,4 @@
 #   git checkout <commit> -- acreage/acreage.html && ./release.sh <out.html>
 39bcbf0  2026-11-16  App 2.0 structure (bottom navigation, rows, block page), all release checks pass
 2026-11-16 pro2: splash, how-it-works, photo band; APK 2.5 — release passed, checked desktop+phone
+2026-11-16 pro3: business font, Top picks cards, compact how-it-works on phones; APK 2.6 — release passed, phone checked

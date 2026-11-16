@@ -11,7 +11,7 @@ const fails=[];const ok=(c,msg)=>{if(!c)fails.push(msg)};
     const c=await b.newContext(ctx);const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e)));
     await p.goto('file://'+require('path').resolve(file));
     try{await p.waitForFunction(()=>document.querySelectorAll('.ri').length>0,{timeout:30000})}catch(e){fails.push(label+': no blocks showed within 30 s')}
-    const info=await p.evaluate(()=>({n:(window.ACREAGE_DATA||{}).listings?.length||0,stars:document.querySelectorAll('#hStars .ri').length,h:document.documentElement.scrollHeight}));
+    const info=await p.evaluate(()=>({n:(window.ACREAGE_DATA||{}).listings?.length||0,stars:document.querySelectorAll('#hStars .pc').length,h:document.documentElement.scrollHeight}));
     ok(info.n>=2000,`${label}: only ${info.n} listings in the data (expected 2,000+)`);
     ok(info.stars>=1,`${label}: no top picks on Home`);
     if(label==='phone')ok(info.h<6000,`${label}: Home is ${info.h}px tall (should stay under 6,000)`);
@@ -26,7 +26,7 @@ const fails=[];const ok=(c,msg)=>{if(!c)fails.push(msg)};
     const pins=await p.evaluate(()=>{const b=document.querySelector('[data-sv="map"]');if(!b)return -1;b.click();const n=document.querySelectorAll('#amap circle').length;document.querySelector('[data-sv="list"]').click();return n});
     ok(pins>=100,`${label}: the map shows only ${pins} pins`);
     await p.evaluate(()=>{location.hash='home'});await p.waitForTimeout(250);
-    await p.click('#hStars .ri');await p.waitForTimeout(400);
+    await p.click('#hStars .pc');await p.waitForTimeout(400);
     const bp=await p.evaluate(()=>({hash:location.hash,secs:document.querySelectorAll('#bp .bsec').length,wide:document.documentElement.scrollWidth>document.documentElement.clientWidth+1,link:!!document.querySelector('#bp .actbar a.go[href^="http"]')}));
     ok(bp.hash.startsWith('#block-'),`${label}: tapping a top pick didn't open its page`);ok(bp.secs>=8,`${label}: block page has only ${bp.secs} sections`);
     ok(!bp.wide,`${label}: block page runs off the side`);ok(bp.link,`${label}: block page has no "Open the listing" link`);
