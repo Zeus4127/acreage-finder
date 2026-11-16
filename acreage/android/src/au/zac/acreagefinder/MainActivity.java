@@ -206,7 +206,7 @@ public class MainActivity extends Activity {
                 ui.post(new Runnable() { public void run() { if (web != null) web.evaluateJavascript(
                     "(function(){var sc=(window.ACREAGE_DATA||{}).scanned||'';if(sc>='" + when + "')return;" +
                     "var d=document.createElement('div');d.textContent='New listings are ready. Tap to refresh.';" +
-                    "d.style.cssText='position:fixed;left:12px;right:12px;bottom:84px;z-index:9999;background:#1D5C4A;color:#fff;" +
+                    "d.style.cssText='position:fixed;left:12px;right:12px;bottom:84px;z-index:9999;background:#14304A;color:#fff;" +
                     "padding:14px 16px;border-radius:14px;font:600 16px system-ui;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.25)';" +
                     "d.onclick=function(){location.reload()};document.body.appendChild(d)})()", null); }});
             } catch (Exception e) {
