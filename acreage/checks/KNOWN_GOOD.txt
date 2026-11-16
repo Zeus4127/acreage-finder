@@ -4,3 +4,4 @@
 2026-11-16 pro2: splash, how-it-works, photo band; APK 2.5 — release passed, checked desktop+phone
 2026-11-16 pro3: business font, Top picks cards, compact how-it-works on phones; APK 2.6 — release passed, phone checked
 2026-11-16 pro4: Backbone-style readouts, steps strip, data-check panel; APK 2.7 — release passed, phone+desktop checked
+2026-11-16 pro5 block page header panel, wrapping row titles: RELEASE PASSED, phone+desktop screenshots ok
