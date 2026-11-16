@@ -441,6 +441,40 @@ h1,h2,h3{text-wrap:balance}
  .how-i b{font-size:16px}.how-i p{font-size:13.5px;line-height:1.5}
  .ri-tags .pill:nth-child(n+3){display:none}
 }
+
+/* Backbone-style: blueprint navy, readouts, steps strip, check panel */
+.band{background:linear-gradient(rgba(127,190,230,.10) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(127,190,230,.10) 1px,transparent 1px) 0 0/40px 40px,var(--navy);border-top:1px solid rgba(127,190,230,.22)}
+.band .facts{gap:0}
+.band .facts div{border-left:1px solid rgba(127,190,230,.25)!important;padding:4px 18px!important}
+.band .facts div:first-child{border-left:none!important;padding-left:0!important}
+.band .facts b{font-family:var(--mono2);font-weight:600;letter-spacing:-.03em;font-size:clamp(24px,3.6vw,34px)}
+.band .facts small{color:#A9BED0;font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:12.5px}
+@media(max-width:640px){.band .facts{row-gap:16px}.band .facts div:nth-child(odd){border-left:none!important;padding-left:0!important}}
+.tiles{gap:0;background:#fff;border:1px solid #EADFCB;border-radius:16px;overflow:hidden}
+.tiles .tile{border:0;border-left:1px solid #EFE6D6;border-radius:0;box-shadow:none;padding:16px 18px;cursor:pointer}
+.tiles .tile:first-child{border-left:0}
+.tiles .tile b{font-family:var(--mono2);font-size:26px;font-weight:600}
+@media(hover:hover){.tiles .tile:hover{background:#FBF6EC}}
+@media(min-width:641px){
+ .how{gap:0;background:#fff;border:1px solid #EADFCB;border-radius:16px;overflow:hidden}
+ .how-i{border:0;border-left:1px solid #EFE6D6;border-radius:0;padding:22px 20px}
+ .how-i:first-child{border-left:0}
+}
+.how-n{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--sky);font-size:11.5px;letter-spacing:0}
+.how-i:last-child .how-n{border-color:#C98A00;color:#C98A00}
+@media(min-width:641px){.how-n{margin-bottom:8px}}
+.sec h3,.vt,.bp-head h2{font-weight:700;letter-spacing:-.025em}
+.hero2 h1,.pband h2,.intro2 h2{letter-spacing:-.035em;line-height:1.04}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;margin:26px 0 8px}
+@media(max-width:760px){.trust{grid-template-columns:1fr;gap:14px}}
+.trust-h{font-family:var(--disp);font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.03em;color:var(--navy);margin:0 0 8px;text-wrap:balance}
+.trust-p{margin:0;color:var(--ink2);font-size:14.5px;line-height:1.6;max-width:46ch}
+.dpanel{color:#E6EEF2;border-radius:16px;padding:20px;border:1px solid rgba(127,190,230,.25);background:linear-gradient(rgba(127,190,230,.10) 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,rgba(127,190,230,.10) 1px,transparent 1px) 0 0/22px 22px,var(--navy)}
+.dp-h{display:block;font-family:var(--disp);font-size:17px;letter-spacing:-.02em;color:#fff}
+.dp-when{display:block;font-size:12.5px;color:#A9BED0;margin-top:2px}
+.dp-list{list-style:none;margin:12px 0 0;padding:0}
+.dp-list li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(127,190,230,.22);font:500 13.5px/1.3 var(--mono2)}
+.dp-list .ok{color:#6EE0AE}
 </style>
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
@@ -495,6 +529,10 @@ h1,h2,h3{text-wrap:balance}
     <span class="hero-tag">Photo: Nick Pitsas, CSIRO · CC BY 3.0</span></div>
   <div class="sec"><h3>What changed</h3></div>
   <div class="tiles" id="hTiles"></div>
+  <div class="trust">
+    <div><h3 class="trust-h">Checked before it reaches you.</h3><p class="trust-p">Every scan has to pass its checks before this page updates. If anything looks wrong, the last good version stays up.</p></div>
+    <div class="dpanel" aria-label="Last data check"><b class="dp-h">Last data check</b><span class="dp-when" id="dpWhen"></span><ul class="dp-list" id="dpList"></ul></div>
+  </div>
 </section>
 
 <!-- SEARCH: one place to find any block. Quick filters up top, more filters behind a button, compact rows. -->
@@ -1235,6 +1273,8 @@ function renderHome(){
   const w=Object.keys(WATCH).map(i=>byId[i]).filter(Boolean);
   $("hWatchWrap").hidden=!w.length;$("hWatch").innerHTML=w.slice(0,3).map(x=>row(x)).join("");
   const s90=SOLD.filter(c=>c.sold&&(Date.parse(LATEST)-Date.parse(c.sold))<=90*864e5);
+  {const ok=(n)=>`<span class="ok">${n}</span>`;$("dpWhen").textContent=(($("scanned")||{}).textContent||"").replace(/^.*?·\s*/,"")||"today";
+  $("dpList").innerHTML=[["Blocks scanned",ok(L.length.toLocaleString("en-AU"))],["Priced",ok(Math.round(100*L.filter(x=>x.p).length/Math.max(1,L.length))+"%")],["Growth scored",ok(Math.round(100*L.filter(x=>x.gs!=null).length/Math.max(1,L.length))+"%")],["Sales to compare",ok(SOLD.length.toLocaleString("en-AU"))],["Page checks",ok("passed")]].map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join("")}
   $("hTiles").innerHTML=[["new",NEWL.length,"new in 3 days"],["drop",DROPS.length,"price drops"],["sold",s90.length,"sold in 90 days"]]
     .map(([k,n,t])=>`<button type="button" class="tile" data-tile="${k}"><b>${n.toLocaleString("en-AU")}</b><small>${t}</small></button>`).join("");
   const P=D.pulse&&D.pulse.latest;
