@@ -490,6 +490,68 @@ h1,h2,h3{text-wrap:balance}
 .bp-hero .kf small{color:rgba(255,255,255,.65);font-family:var(--mono2);font-weight:500;letter-spacing:.08em;font-size:10.5px}
 .bp-hero .kf span{color:#fff;font-family:var(--mono2);font-weight:600;font-size:16px}
 @media (min-width:900px){.bp-hero{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:end;padding:26px 26px 24px}.bp-hero .bp-head h2{font-size:30px}}
+
+/* layers: simple first, charts next, workings last */
+.layer{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;margin:30px 0 4px;padding-top:20px;border-top:1px solid var(--line)}
+.layer .ln{grid-row:span 2;font-family:var(--mono2);font-size:12px;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--navy);display:grid;place-items:center;color:var(--navy);font-weight:600}
+.layer b{font-family:var(--disp);font-size:19px;color:var(--navy);letter-spacing:-.01em}
+.layer small{color:var(--muted);font-size:13px;line-height:1.4}
+.chg{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.chg:empty{display:none}
+.ch{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;align-content:start;box-shadow:var(--shadow);min-width:0}
+.ch figcaption b{display:block;font-family:var(--disp);color:var(--navy);font-size:15.5px}
+.ch figcaption small{color:var(--muted);font-size:12.5px}
+.ch-n{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink2);padding:9px 11px;background:var(--bg);border-radius:var(--r-sm)}
+.hb{display:grid;grid-template-columns:max-content minmax(0,1fr) max-content;gap:7px 10px;align-items:center;font-size:13px}
+.hb-r{display:contents}
+.hb-l{color:var(--ink2);white-space:nowrap;max-width:9.5em;overflow:hidden;text-overflow:ellipsis}
+.hb-t{height:14px;display:block}
+.hb-t i{display:block;height:100%;background:var(--sky);border-radius:0 4px 4px 0}
+.hb-t i.hl{background:var(--navy)}
+.hb-v{font-variant-numeric:tabular-nums;font-weight:650;font-size:12.5px;text-align:right}
+.cols{display:flex;align-items:flex-end;gap:3px;height:110px;border-bottom:1px solid var(--line)}
+.cols i{flex:1;background:var(--sky);border-radius:4px 4px 0 0}
+.cols i.hl{background:var(--navy)}
+.cols-x{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:-6px}
+#tip{position:fixed;z-index:99;max-width:260px;padding:7px 10px;border-radius:8px;background:var(--navy);color:#fff;font-size:12.5px;line-height:1.35;pointer-events:none;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.kv{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:4px 10px;font-size:13px;color:var(--muted)}.kv b{color:var(--ink);font-variant-numeric:tabular-nums}
+.kv4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.kv4 div{padding:10px 12px;background:var(--bg);border-radius:var(--r-sm);display:grid;gap:2px}
+.kv4 small{font-size:11.5px;color:var(--muted);font-weight:600}.kv4 b{font-size:18px;font-variant-numeric:tabular-nums;color:var(--navy)}
+.pipe{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.pipe li{display:grid;grid-template-columns:30px 1fr;gap:0 10px}
+.pipe span{grid-row:span 2;font-family:var(--mono2);font-size:11px;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.pipe li:last-child span{background:var(--gold);color:var(--gold-ink)}
+.pipe b{font-size:14px}.pipe small{font-size:13px;color:var(--muted);line-height:1.45}
+.srcs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.srcs li{display:grid;gap:1px;padding-bottom:8px;border-bottom:1px solid var(--line)}.srcs li:last-child{border:none;padding:0}
+.srcs b{font-size:13.5px}.srcs small{font-size:12.5px;color:var(--muted)}
+.sumstrip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.sumstrip:empty{display:none}
+.sumstrip div{padding:9px 10px;border-left:1px solid var(--line);display:grid;gap:1px;min-width:0}.sumstrip div:first-child{border:none}
+.sumstrip small{font-family:var(--mono2);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sumstrip b{font-size:14.5px;font-variant-numeric:tabular-nums;color:var(--navy)}
+.ruler{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:12px;box-shadow:var(--shadow)}
+.rl-h{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}.rl-h b{font-family:var(--disp);color:var(--navy)}.rl-h small{color:var(--muted);font-size:13px}
+.rl-track{position:relative;height:30px;margin:4px 6px}
+.rl-track::before{content:"";position:absolute;left:0;right:0;top:14px;height:2px;background:var(--line)}
+.rl-rng{position:absolute;top:9px;height:12px;background:var(--bg);border:1px dashed var(--muted);border-radius:6px}
+.rl-band{position:absolute;top:10px;height:10px;background:var(--ok);opacity:.55;border-radius:5px}
+.rl-m{position:absolute;top:2px;width:4px;height:26px;margin-left:-2px;border-radius:2px}
+.rl-m.fair{background:var(--navy)}.rl-m.ask{background:var(--gold);box-shadow:0 0 0 2px var(--surface)}
+.rl-key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}.rl-key b{color:var(--ink)}
+.rl-key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.k-ask{background:var(--gold)}.k-fair{background:var(--navy)}.k-band{background:var(--ok);opacity:.55}.k-rng{border:1px dashed var(--muted)}
+.dpanel.wide{margin-top:4px}
+.dpanel.wide .dp-list li{font:400 13px/1.45 var(--sans)}.dpanel.wide .dp-list li span:first-child{color:#9FC3DD;font-weight:600}
+.dpanel.wide .dp-list li{display:grid;grid-template-columns:minmax(110px,32%) 1fr;gap:10px}
+@media (max-width:420px){.sumstrip{grid-template-columns:repeat(2,minmax(0,1fr))}.sumstrip div:nth-child(3){border-left:none}.sumstrip div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+@media (max-width:759px){#hCharts,#hMethod{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -16px;padding:2px 16px 8px;scrollbar-width:none}
+#hCharts>.ch,#hMethod>.ch{flex:0 0 86%;scroll-snap-align:start}
+#hCharts::-webkit-scrollbar,#hMethod::-webkit-scrollbar{display:none}}
+.swipe-hint{font-size:12px;color:var(--muted);margin:-2px 0 0}
+@media (min-width:760px){.swipe-hint{display:none}}
 </style>
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
@@ -524,14 +586,6 @@ h1,h2,h3{text-wrap:balance}
     <a class="way" href="#search" data-preset="ok"><img src="media/gums.jpg" alt="Gum trees and cattle on lush pasture near Bega" loading="lazy"><span class="way-in"><b>Ticks your must-haves</b><small>A real town close by, water, and things to do.</small></span></a>
     <a class="way" href="#search" data-preset="great"><img src="media/dam.jpg" alt="Farm with a dam, paddocks and bushland" loading="lazy"><span class="way-in"><b>Great deals</b><small>Asking well under what similar blocks ask.</small></span></a>
   </div>
-  <div class="intro2"><h3>Most land sites show you what's cheap. This shows you what will grow.</h3>
-    <p>The Growth score is tested on 25 years of real sales in every state: cheap areas that hadn't boomed yet, in reach of a city or a holiday town, grew the most. Every block also gets a likely sale price, an opening offer and a walk-away price.</p></div>
-  <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
-  <div class="how">
-    <div class="how-i"><span class="how-n">01</span><b>Every block, every day</b><p>Every rural block of 10 acres and up on Farmbuy and Farm Property, scanned daily, with price cuts and sales tracked.</p></div>
-    <div class="how-i"><span class="how-n">02</span><b>Scored for growth</b><p>Tested on 25 years of real sales in every state: cheap areas near a city or a holiday town that hadn't boomed yet grew the most.</p></div>
-    <div class="how-i"><span class="how-n">03</span><b>Priced against real sales</b><p>A likely sale price from similar blocks that sold, plus an opening offer and a price to walk away at.</p></div>
-  </div>
   <div class="sec"><h3>★ Top picks</h3><a href="#search" data-preset="star">See all</a></div>
   <p class="sec-note">Tick every must-have, score high for growth, and priced under similar blocks.</p>
   <div class="pcards" id="hStars"></div>
@@ -539,15 +593,27 @@ h1,h2,h3{text-wrap:balance}
   <p class="sec-note">Cheap areas in the tree-change belt, or next to land the state has set aside for future suburbs.</p>
   <div class="pcards" id="hPath"></div>
   <div id="hWatchWrap" hidden><div class="sec"><h3>☆ Watching</h3><a href="#saved">See all</a></div><div class="rows" id="hWatch"></div></div>
+  <div class="sec"><h3>What changed</h3></div>
+  <div class="tiles" id="hTiles"></div>
+  <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
+  <div class="layer" id="hL2"><span class="ln">02</span><b>Look closer</b><small>The market in charts: where the blocks are, what they cost, how they score.</small></div>
+  <div class="chg" id="hCharts"></div><p class="swipe-hint">Swipe for more charts →</p>
   <div class="pband bleed"><img src="media/dam2.jpg" alt="A farm dam below a slope of tall gum trees" loading="lazy">
     <div class="pband-in"><p class="ey">Our approach</p><h3>Buy where the growth is going, not where it's been.</h3><a class="cta2" href="#search" data-preset="path">See blocks on a growth path</a></div>
     <span class="hero-tag">Photo: Nick Pitsas, CSIRO · CC BY 3.0</span></div>
-  <div class="sec"><h3>What changed</h3></div>
-  <div class="tiles" id="hTiles"></div>
+  <div class="layer"><span class="ln">03</span><b>How it works</b><small>For the detail-minded: the method, the tests and where every number comes from.</small></div>
+  <div class="intro2"><h3>Most land sites show you what's cheap. This shows you what will grow.</h3>
+    <p>The Growth score is tested on 25 years of real sales in every state: cheap areas that hadn't boomed yet, in reach of a city or a holiday town, grew the most. Every block also gets a likely sale price, an opening offer and a walk-away price.</p></div>
+  <div class="how">
+    <div class="how-i"><span class="how-n">01</span><b>Every block, every day</b><p>Every rural block of 10 acres and up on Farmbuy and Farm Property, scanned daily, with price cuts and sales tracked.</p></div>
+    <div class="how-i"><span class="how-n">02</span><b>Scored for growth</b><p>Tested on 25 years of real sales in every state: cheap areas near a city or a holiday town that hadn't boomed yet grew the most.</p></div>
+    <div class="how-i"><span class="how-n">03</span><b>Priced against real sales</b><p>A likely sale price from similar blocks that sold, plus an opening offer and a price to walk away at.</p></div>
+  </div>
   <div class="trust">
     <div><h3 class="trust-h">Checked before it reaches you.</h3><p class="trust-p">Every scan has to pass its checks before this page updates. If anything looks wrong, the last good version stays up.</p></div>
     <div class="dpanel" aria-label="Last data check"><b class="dp-h">Last data check</b><span class="dp-when" id="dpWhen"></span><ul class="dp-list" id="dpList"></ul></div>
   </div>
+  <div class="chg" id="hMethod"></div><p class="swipe-hint">Swipe for more →</p>
 </section>
 
 <!-- SEARCH: one place to find any block. Quick filters up top, more filters behind a button, compact rows. -->
@@ -574,6 +640,8 @@ h1,h2,h3{text-wrap:balance}
   </div>
   <div class="rbar"><div class="count" id="acount" aria-live="polite"></div>
     <div class="seg" role="group" aria-label="Show results as"><button type="button" data-sv="list">List</button><button type="button" data-sv="map">Map</button></div></div>
+  <div class="sumstrip" id="asum"></div>
+  <details class="acc" id="aChartsW"><summary>Charts for these results <span>Prices, sizes, states</span></summary><div class="accin"><div class="chg" id="aCharts"></div></div></details>
   <div class="mapbox" id="amap" hidden></div>
   <div class="rows" id="alist"></div>
   <button class="btn ghost wide" id="amore" type="button" hidden>Show more</button>
@@ -584,6 +652,7 @@ h1,h2,h3{text-wrap:balance}
   <h2 class="vt">Saved</h2>
   <div class="sec"><h3>☆ Watching</h3></div>
   <div class="rows" id="watchList"></div>
+  <div class="chg" id="savedCharts"></div>
   <div class="panel" id="rulesBox"><h3>My rules</h3>
     <p class="what">What you're after. The "My rules" quick filter in Search uses these, and the phone app only sends alerts for new blocks that match them (Standouts always come through). Saved on this device.</p>
     <div class="grid2">
@@ -614,6 +683,8 @@ h1,h2,h3{text-wrap:balance}
 <!-- INSIGHTS: the evidence. Market, growth history, how the scores work. Each topic folds away. -->
 <section class="view" id="v-insights" hidden aria-label="Insights">
   <h2 class="vt">Insights</h2>
+  <div class="chg" id="iGlance"></div>
+  <div class="layer"><span class="ln">02</span><b>Look closer</b><small>Market pulse, growth by area, sales and prices.</small></div>
   <details class="acc" open><summary>Is it time to buy? <span>Market pulse</span></summary><div class="accin" id="pulseBox">
     <p id="pVerdict" class="verdict"></p><ul class="plain" id="pNotes"></ul>
     <div id="pChart" class="chart"></div>
@@ -651,6 +722,7 @@ h1,h2,h3{text-wrap:balance}
     <div class="tablewrap"><table><thead><tr><th>Where</th><th>State</th><th class="r">Acres</th><th class="r">Price</th><th class="r">$/acre</th><th>Kind</th><th>Sold</th></tr></thead><tbody id="tsold"></tbody></table></div></div></details>
   <details class="acc"><summary>Price guide by state <span>Asking prices</span></summary><div class="accin">
     <div class="tablewrap"><table><thead><tr><th>State</th><th class="r">Listings</th><th class="r">Median $/acre</th><th class="r">Median price</th><th class="r">Under $300k</th><th class="r">$/acre bush</th><th class="r">$/acre farm</th><th class="r">$/acre with house</th></tr></thead><tbody id="gtable"></tbody></table></div></div></details>
+  <div class="layer"><span class="ln">03</span><b>How it works</b><small>The research and the tests behind the scores.</small></div>
   <details class="acc"><summary>Do small blocks grow faster? <span>Research</span></summary><div class="accin">
     <p class="what">Short answer: not usually. Small blocks cost more per acre than big farms, but over 10 years they have mostly grown at the same speed or slower.</p>
     <ul class="plain">
@@ -709,6 +781,7 @@ h1,h2,h3{text-wrap:balance}
     <div class="checks" id="cFeat"></div>
     <button class="btn" id="checkBtn" type="button">Check it</button>
     <div class="result" id="cResult" hidden></div></div>
+  <div class="layer"><span class="ln">02</span><b>Before you buy</b><small>What to ask, what to check, where else to look.</small></div>
   <details class="acc"><summary>Before you buy <span>Checklist</span></summary><div class="accin">
     <div class="tip">Never pay a deposit to hold land you haven't walked. Get a solicitor or conveyancer to do the title search before you sign.</div>
     <h4>Ask the agent</h4><ul class="plain">
@@ -729,6 +802,8 @@ h1,h2,h3{text-wrap:balance}
     <li>Domain and realestate.com.au rural sections block automatic scanning. Use "Check any listing" above for anything you find there.</li>
     <li>Council sales of land for unpaid rates (Walgett and Central Darling in NSW run these).</li>
     <li>Trust for Nature (VIC) and the NSW Biodiversity Conservation Trust sell covenanted bush below market.</li></ul></div></details>
+  <div class="layer"><span class="ln">03</span><b>How it works</b><small>Where the data comes from and its limits.</small></div>
+  <div class="chg" id="mSources"></div>
   <details class="acc"><summary>About this app <span>Data and limits</span></summary><div class="accin"><p class="what" id="foot"></p><p class="what"><b>Photos</b> (Wikimedia Commons, free licences): grazing country with a gum tree by Carl Davies, CSIRO; cattle below a mountain range, farm with a dam, and a farm dam by Nick Pitsas, CSIRO; cattle near Bega by Gregory Heath, CSIRO (all CC BY 3.0); cattle at Tenterfield by Sheba_Also (CC BY-SA 2.0).</p></div></details>
 </section>
 
@@ -1326,6 +1401,7 @@ function renderSearch(){
   r=r.filter({all:()=>true,star:x=>x.gstar,ok:x=>x.gok,path:x=>x.gx&&x.gx.path&&x.gx.path.length,great:x=>x.v==="great",new:x=>isNew(x)||newSince(x),drop:x=>x.drop,mine:x=>matchRules(x,rules)}[preset]||(()=>true));
   const k={ratio:(a,b)=>score(b)-score(a),p:(a,b)=>(a.p||9e9)-(b.p||9e9),ppa:(a,b)=>(a.ppa||9e9)-(b.ppa||9e9),a:(a,b)=>b.a-a.a,gs:(a,b)=>(b.gs??-1)-(a.gs??-1),dom:(a,b)=>(b.dom||0)-(a.dom||0),cuts:(a,b)=>(b.cuts||0)-(a.cuts||0)||(b.dom||0)-(a.dom||0)}[f.asort]||((a,b)=>score(b)-score(a));
   r.sort(k);
+  searchSummary(r);
   $("acount").textContent=r.length.toLocaleString("en-AU")+(r.length===1?" block":" blocks")+(preset!=="all"?" · "+PRESETS.find(p=>p[0]===preset)[1]:"");
   [...document.querySelectorAll("[data-sv]")].forEach(b=>b.setAttribute("aria-pressed",b.dataset.sv===sview));
   $("amap").hidden=sview!=="map";
@@ -1395,7 +1471,7 @@ function renderSaved(){
     if(!x)return `<div class="ri"><span class="gsb">–</span><span class="ri-main"><span class="ri-t">A block you saved is no longer listed</span><span class="ri-s">It has probably sold.</span></span><button type="button" class="watch" data-w="${esc(i)}" aria-pressed="true">Remove</button></div>`;
     const ch=x.p&&w.p&&x.p!==w.p?`<b>Price ${x.p<w.p?"dropped":"went up"}:</b> ${short(w.p)} → ${short(x.p)} since you saved it on ${esc(w.d)}.`:"";return row(x,ch)}).join("")
     :`<div class="empty-row">Nothing saved yet. Open any block and tap ☆ Save to keep an eye on its price.</div>`;
-  renderHome();
+  renderHome();savedCharts(ids);
 }
 document.addEventListener("click",e=>{const w=e.target.closest(".watch");if(!w)return;e.preventDefault();const i=w.dataset.w,x=byId[i];
   if(WATCH[i])delete WATCH[i];else WATCH[i]={p:x&&x.p||null,d:(D.scanned||"").slice(0,10)};saveWatch();
@@ -1466,13 +1542,13 @@ function blockPage(x){
   return `<div class="bp-bar"><button type="button" class="back" onclick="history.length>1?history.back():location.hash='home'">Back</button></div>
   <div class="bp-hero"><div class="bp-head"><div class="pills">${pills}</div><h2>${esc(name)}</h2><div class="bp-loc">${esc(x.sub)} ${x.s} ${esc(x.pc)}${x.lga?" · "+esc(x.lga)+" council":""}${x.type?" · "+esc(x.type.split(",")[0]):""}</div>
    <div class="bp-price"><b>${x.p?short(x.p):"Price on request"}</b><span>${esc((x.pt||"").slice(0,40))}</span></div></div>
-  <div class="kf">${kf}</div></div>${take}
+  <div class="kf">${kf}</div></div>${take}${priceRuler(x)}
   <div class="tabs2" role="tablist">${["Overview","Price","Area","Checklist"].map((t,i)=>`<button type="button" role="tab" data-tab="${i}" aria-selected="${i===0}">${t}</button>`).join("")}</div>
   <div class="tabp" data-p="0">
-  ${sec(I("growth")+"Growth outlook",growth)}
+  ${sec(I("growth")+"Growth outlook",growth+growthRank(x))}
   ${sec(I("compass")+"Future: growth path and planning",fut)}
   </div><div class="tabp" data-p="1" hidden>
-  ${sec(I("price")+"Price check",price)}
+  ${sec(I("price")+"Price check",price+compsChart(x,comps))}
   ${sec(I("money")+"Costs, income, flip or keep",money2)}
   </div><div class="tabp" data-p="2" hidden>
   ${sec(I("pin")+"The area",(x.lat?`<div class="mapbox mini">${ausMap(L.filter(o=>o.lat&&Math.abs(o.lat-x.lat)<3&&Math.abs(o.lng-x.lng)<4&&!gone(o)),x)}</div><div class="muted" style="font-size:12.5px">This block in gold. Other blocks for sale nearby as dots: tap one to open it.</div>`:"")+area)}
@@ -1482,6 +1558,8 @@ function blockPage(x){
   ${sec(I("chat")+"Ask the agent",before)}
   ${sec(I("doc")+"The listing",listing)}
   </div>
+  <div class="layer"><span class="ln">03</span><b>How we worked this out</b><small>The workings behind this block's numbers.</small></div>
+  ${blockMethod(x)}
   <div class="actbar"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open the listing ↗</a><button type="button" class="watch" data-w="${esc(x.id)}" aria-pressed="${!!WATCH[x.id]}">${WATCH[x.id]?"★ Saved":"☆ Save"}</button><button type="button" class="watch cmpbtn" data-c="${esc(x.id)}" aria-pressed="${CMP.includes(String(x.id))}">${CMP.includes(String(x.id))?"✓ Comparing":"Compare"}</button></div>`;
 }
 
@@ -1530,6 +1608,108 @@ window.__search=()=>{if(preset==="mine"){alimit=30;renderSearch()}};
   $("pathList").innerHTML=pth.length?pth.slice(0,15).map(x=>row(x)).join(""):'<div class="empty">None right now. New listings are checked every day.</div>';
   const B=D.bt;if(B){const e=$("btNote");e.hidden=false;e.innerHTML=`<b>Tested honestly:</b> the likely sale price was learned from ${esc(B.learned_on)}, then checked on the ${esc(B.tested_on)}, using only sales that happened before each one. It was typically about <b>${Math.round(B.median_abs_err*100)}% off</b>. It came within 20% for ${Math.round(B.within20*10)} in 10 blocks and within 35% for ${Math.round(B.within35*10)} in 10, and on average it came out ${Math.abs(Math.round((1-B.median_ratio)*100))}% ${B.median_ratio<1?"under":"over"} the real price. Use it as a guide for your opening offer, then check the agent's recent sales nearby before you bid. (Tried 15 Nov: more comparison blocks, closer-match weighting and counting real sales double. None of them made it more accurate on the newest sales, so the method stayed the same.)`}
 })();
-labelTables();renderHome();renderSearch();renderSaved();route();{const sp=document.getElementById("splash");if(sp){sp.classList.add("done");setTimeout(()=>sp.remove(),450)}}if(location.hash==="#compare")renderCompare();drawCmpBar();
+// ---- LAYERS: shared charts (plain HTML bars, hover or tap for detail) and the deeper sections
+const pct=v=>Math.round(v*100)+"%";
+function hbars(items,fmt=String,max){const m=max||Math.max(1,...items.map(i=>i.v));
+  return `<div class="hb">${items.map(i=>`<div class="hb-r" data-tip="${esc(i.tip||i.l+": "+fmt(i.v))}"><span class="hb-l">${esc(i.l)}</span><span class="hb-t"><i class="${i.hl?"hl":""}" style="width:${Math.max(.5,100*i.v/m).toFixed(1)}%"></i></span><span class="hb-v">${fmt(i.v)}</span></div>`).join("")}</div>`}
+function colsChart(bins,labels,hl,tipf){const m=Math.max(1,...bins);
+  return `<div class="cols">${bins.map((n,i)=>`<i class="${i===hl?"hl":""}" style="height:${Math.max(1.5,100*n/m).toFixed(1)}%" data-tip="${esc(tipf(i,n))}"></i>`).join("")}</div><div class="cols-x">${labels.map(l=>`<span>${l}</span>`).join("")}</div>`}
+const fig=(t,sub,body,note)=>`<figure class="ch"><figcaption><b>${t}</b>${sub?`<small>${sub}</small>`:""}</figcaption>${body}${note?`<p class="ch-n"><b>What it means:</b> ${note}</p>`:""}</figure>`;
+const LVL={near50:"within 50 km",near120:"within 120 km",near250:"within 250 km",state:"anywhere in the state",district:"in the same postcode district",area:"in the same postcode area"};
+const SIZES=[["10–25 ac",10,25],["25–50 ac",25,50],["50–100 ac",50,100],["100–250 ac",100,250],["250–1,000 ac",250,1000],["1,000 ac +",1000,1e9]];
+// one tooltip for every chart
+(()=>{const tip=document.createElement("div");tip.id="tip";tip.hidden=true;document.body.appendChild(tip);
+  const show=(e)=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(!t){tip.hidden=true;return}tip.textContent=t.dataset.tip;tip.hidden=false;
+    const r=t.getBoundingClientRect(),w=tip.offsetWidth;tip.style.left=Math.max(8,Math.min(innerWidth-w-8,(e.clientX||r.left+r.width/2)-w/2))+"px";tip.style.top=Math.max(8,r.top-tip.offsetHeight-8)+"px"};
+  document.addEventListener("pointerover",show);document.addEventListener("pointerdown",show);addEventListener("scroll",()=>tip.hidden=true,{passive:true})})();
+
+function homeCharts(){
+  const A=L.filter(x=>!gone(x)),P=A.filter(x=>x.p&&x.ppa);
+  const byS=STATES.map(s=>({s,n:A.filter(x=>x.s===s).length,ppa:median(P.filter(x=>x.s===s).map(x=>x.ppa)),med:median(P.filter(x=>x.s===s).map(x=>x.p))})).filter(o=>o.n);
+  const big=[...byS].sort((a,b)=>b.n-a.n),cheap=[...byS].filter(o=>o.ppa).sort((a,b)=>a.ppa-b.ppa);
+  const c1=fig("Blocks for sale by state",`${A.length.toLocaleString("en-AU")} blocks of 10 acres and up`,hbars(big.map(o=>({l:o.s,v:o.n,tip:`${o.s}: ${o.n.toLocaleString("en-AU")} blocks, middle asking price ${short(o.med)}`})),v=>v.toLocaleString("en-AU")),
+    `${big[0].s} has the most choice. Fewer blocks means less to pick from, so act faster when a good one comes up.`);
+  const c2=fig("Price per acre by state","The middle asking price per acre",hbars(cheap.map(o=>({l:o.s,v:o.ppa,tip:`${o.s}: half the blocks ask under ${money(o.ppa)} an acre`})),money),
+    `${cheap[0].s} is the cheapest per acre and ${cheap[cheap.length-1].s} the dearest. Per acre falls as blocks get bigger, so compare blocks of a similar size.`);
+  const sz=SIZES.map(([l,a,b])=>{const g=P.filter(x=>x.a>=a&&x.a<b);return {l,v:median(g.map(x=>x.p))||0,n:g.length,ppa:median(g.map(x=>x.ppa))}}).filter(o=>o.n);
+  const c3=fig("What a block costs by size","The middle asking price",hbars(sz.map(o=>({l:o.l,v:o.v,tip:`${o.l}: middle price ${short(o.v)}, ${money(o.ppa)} an acre, ${o.n.toLocaleString("en-AU")} blocks`})),short),
+    `A 10–25 acre block typically asks about ${short(sz[0].v)}. Bigger blocks cost more in total but much less per acre.`);
+  const gs=A.filter(x=>x.gs!=null).map(x=>x.gs),bins=Array(10).fill(0);gs.forEach(g=>bins[Math.min(9,Math.floor(g/10))]++);
+  const hi=gs.filter(g=>g>=60).length;
+  const c4=fig("How blocks score for growth","Growth score out of 100, every block",colsChart(bins,["0","20","40","60","80","100"].map(String),-1,(i,n)=>`Score ${i*10}–${i*10+9}: ${n.toLocaleString("en-AU")} blocks`),
+    `Only ${hi.toLocaleString("en-AU")} blocks (${pct(hi/Math.max(1,gs.length))}) score 60 or more. Those are the ones near a city or holiday town in a cheap area that hasn't boomed yet.`);
+  const vs=["great","good","fair","high","over"].map(k=>({l:VN[k],v:A.filter(x=>x.v===k).length}));const deals=vs[0].v+vs[1].v;
+  const c5=fig("Asking price against likely sale","How each block's asking price compares with similar blocks",hbars(vs.map(o=>({l:o.l,v:o.v,hl:o.l===VN.great,tip:`${o.l}: ${o.v.toLocaleString("en-AU")} blocks`})),v=>v.toLocaleString("en-AU")),
+    `${deals.toLocaleString("en-AU")} blocks ask less than similar ones nearby. Most rural blocks sell under their asking price, so treat the asking price as a starting point.`);
+  const cb=[["Under 35 min",0,35],["35–90 min",35,90],["90–150 min",90,150],["Over 150 min",150,1e9]].map(([l,a,b])=>({l,v:A.filter(x=>x.gx&&x.gx.city&&x.gx.city[1]>=a&&x.gx.city[1]<b).length}));
+  const c6=fig("Drive to the nearest city","Blocks by drive time to a city of 50,000+",hbars(cb.map(o=>({l:o.l,v:o.v,hl:o.l==="35–90 min"})),v=>v.toLocaleString("en-AU")),
+    `In NSW sales since 2001, cheap areas 35–90 minutes from a city went up tenfold about 2.5 times as often as the rest: close enough to drive in, far enough to stay cheap.`);
+  $("hCharts").innerHTML=c1+c2+c3+c4+c5+c6;
+  $("hMethod").innerHTML=methodCards()+sourcesCard();
+}
+function methodCards(){
+  const B=D.bt,A=L.filter(x=>!gone(x));
+  const steps=[["Scan",`${L.length.toLocaleString("en-AU")} listings read every day from Farmbuy and Farm Property`],["Check",`Each scan must pass data and page checks before the site updates`],["Locate",`Drive times, towns, hospitals, water, rain, slope, flood, fire and zoning for each block`],["Score",`Growth score from 25 years of sales: cheap, not yet boomed, near a city or holiday town`],["Price",`Likely sale price from the 12 most similar blocks, real sales counted first`],["Publish",`Only when every check passes; the last good version stays up otherwise`]];
+  const pipe=fig("The daily process","From listing to score, every morning",`<ol class="pipe">${steps.map(([a,b],i)=>`<li><span>${String(i+1).padStart(2,"0")}</span><b>${a}</b><small>${b}</small></li>`).join("")}</ol>`);
+  const acc=B?fig("How accurate is the likely sale price?",`Tested on the ${esc(B.tested_on)}, priced only with older sales`,hbars([{l:"Within 20%",v:B.within20},{l:"Within 35%",v:B.within35},{l:"In the offer range",v:B.offer_band_ok}],pct,1)+`<div class="kv"><span>Typical miss</span><b>${pct(B.median_abs_err)}</b><span>On average</span><b>${Math.abs(Math.round((1-B.median_ratio)*100))}% ${B.median_ratio<1?"under":"over"}</b></div>`,
+    `Rural land is hard to price: no two blocks are alike and few sell. Use the likely sale price as a guide for your opening offer, then check the agent's recent sales nearby.`):"";
+  const w=fig("What the Growth score rewards","Tested on 25 years of sales in every state",hbars([{l:"Location",v:22.8,tip:"City, holiday town, beach, big town, town with the basics, hospital: up to 23 points"},{l:"Cheap area",v:20,hl:true,tip:"Area still cheap for its state: up to 20 points"},{l:"Water and land",v:17,tip:"Creek or river, dam or bore, rain, size, gentle slope: up to 17 points"},{l:"Price and split",v:10,tip:"Priced under similar blocks, could be split: up to 10 points"},{l:"Population, market",v:8,tip:"Council population forecast and how busy the local market is: up to 8 points"},{l:"Things to do",v:7.8,tip:"Parks, wineries, holiday stays nearby: up to 8 points"},{l:"Growth path",v:6,tip:"Tree-change belt or next to land set aside for suburbs: up to 6 points"},{l:"Hasn't boomed",v:3,tip:"Land values not already up fast (not used in QLD): up to 3 points"}],v=>Math.round(v)+" pts"),
+    `A cheap area was the strongest single sign of future growth, in both decades tested. Location counts at 60% because it only paid off in the newer decade. Points come off for steep land, flood, fire and other risks.`);
+  return pipe+acc+w;
+}
+function sourcesCard(){
+  const S=[["Farmbuy and Farm Property","Every block for sale, and recent sales"],["NSW Valuer General","Every NSW rural sale since 2001"],["QLD Valuer General","Council land value changes since 2002"],["Bendigo Bank farmland values","Growth by state, region and size, 2004–2025"],["State planning maps","Zones, rezonings, future suburbs, flood and fire"],["OpenStreetMap and OSRM","Towns, hospitals and real drive times"],["Bureau of Meteorology","Rainfall"],["State population forecasts","Council growth to about 2041"]];
+  return fig("Where the data comes from","All free, public sources",`<ul class="srcs">${S.map(([a,b])=>`<li><b>${a}</b><small>${b}</small></li>`).join("")}</ul>`);
+}
+function priceRuler(x){
+  if(!x.p||!x.fair)return "";
+  const v=[x.p,x.fair,x.offer,x.walk,x.lo,x.hi].filter(n=>n>0),lo=Math.min(...v)*.94,hi=Math.max(...v)*1.06,X=n=>((n-lo)/(hi-lo)*100).toFixed(1)+"%";
+  const band=x.offer&&x.walk?`<span class="rl-band" style="left:${X(x.offer)};width:calc(${X(x.walk)} - ${X(x.offer)})" data-tip="Good buying range: ${short(x.offer)} to ${short(x.walk)}"></span>`:"";
+  const rng=x.lo&&x.hi?`<span class="rl-rng" style="left:${X(x.lo)};width:calc(${X(x.hi)} - ${X(x.lo)})" data-tip="Similar blocks nearby ask ${short(x.lo)} to ${short(x.hi)}"></span>`:"";
+  const d=Math.round((x.fair/x.p-1)*100);
+  return `<div class="ruler"><div class="rl-h"><b>Where the price sits</b><small>${d>=0?`Likely sale is ${d}% above asking`:`Likely sale is ${-d}% under asking`}</small></div>
+   <div class="rl-track">${rng}${band}<span class="rl-m fair" style="left:${X(x.fair)}" data-tip="Likely sale price ${short(x.fair)}"></span><span class="rl-m ask" style="left:${X(x.p)}" data-tip="Asking ${short(x.p)}"></span></div>
+   <div class="rl-key"><span><i class="k-ask"></i>Asking <b>${short(x.p)}</b></span><span><i class="k-fair"></i>Likely sale <b>${short(x.fair)}</b></span>${x.offer?`<span><i class="k-band"></i>Buy between <b>${short(x.offer)}–${short(x.walk)}</b></span>`:""}${x.lo?`<span><i class="k-rng"></i>Nearby asks <b>${short(x.lo)}–${short(x.hi)}</b></span>`:""}</div></div>`}
+function growthRank(x){
+  if(x.gs==null)return "";const g=L.filter(o=>o.s===x.s&&o.gs!=null&&!gone(o)).map(o=>o.gs),bins=Array(10).fill(0);g.forEach(v=>bins[Math.min(9,Math.floor(v/10))]++);
+  const beat=g.filter(v=>v<x.gs).length/Math.max(1,g.length);
+  return `<h4>Against other ${x.s} blocks</h4>${colsChart(bins,["0","20","40","60","80","100"],Math.min(9,Math.floor(x.gs/10)),(i,n)=>`Score ${i*10}–${i*10+9}: ${n} blocks${i===Math.min(9,Math.floor(x.gs/10))?" (this block)":""}`)}<p class="ch-n"><b>What it means:</b> this block scores higher than ${pct(beat)} of the ${g.length.toLocaleString("en-AU")} blocks for sale in ${x.s}.</p>`}
+function compsChart(x,comps){
+  const c=comps.filter(o=>o.p&&o.a);if(!c.length||!x.ppa)return "";
+  const it=[{l:"This block",v:x.ppa,hl:true,tip:`This block: ${money(x.ppa)} an acre (${acres(x.a)} for ${short(x.p)})`},...c.map(o=>({l:(o.sub||"Nearby").slice(0,16),v:o.p/o.a,tip:`${o.sub||""}: ${acres(o.a)} ${o.is_sold||o.sold?"sold":"asking"} ${short(o.p)}, ${money(o.p/o.a)} an acre`}))].sort((a,b)=>a.v-b.v);
+  const below=c.filter(o=>o.p/o.a>x.ppa).length;
+  return `<h4>Price per acre against the comparisons</h4>${hbars(it,money)}<p class="ch-n"><b>What it means:</b> ${below} of ${c.length} similar blocks cost more per acre than this one. Smaller blocks usually cost more per acre, so size counts too.</p>`}
+function blockMethod(x){
+  const B=D.bt,n=(x.cids||[]).length,ns=x.nsold||0;
+  const rows=[["Compared with",n?`${n} similar blocks ${LVL[x.lvl]||""}`:"Not enough similar blocks"],["Real sales among them",ns?`${ns}`:"None, so asking prices were scaled down"],["Asking to sale",`Asking prices count at ${pct(D.ask_to_sale||.86)}, as blocks usually sell under asking`],["Size adjustment",`Price grows with size to the power ${(D.model&&D.model.b)||0.3}: twice the land costs about ${pct(Math.pow(2,(D.model&&D.model.b)||.3)-1)} more`],["Growth score","Points for a cheap area, location, water and land, price, population, things to do and a growth path; points off for risks"],["Accuracy",B?`Within 20% for ${Math.round(B.within20*10)} in 10 sales and within 35% for ${Math.round(B.within35*10)} in 10, on sales it hadn't seen`:"–"],["Data",`Listing read ${esc(LATEST)}. Drive times from OSRM, rain from the Bureau of Meteorology, zones from state planning maps`]];
+  return `<div class="dpanel wide"><b class="dp-h">The workings</b><ul class="dp-list">${rows.map(([a,b])=>`<li><span>${a}</span><span>${b}</span></li>`).join("")}</ul></div>`}
+function searchSummary(r){
+  const P=r.filter(x=>x.p),g=r.filter(x=>x.gs!=null);
+  $("asum").innerHTML=r.length?[["Blocks",r.length.toLocaleString("en-AU")],["Middle price",P.length?short(median(P.map(x=>x.p))):"–"],["Per acre",P.length?money(median(P.filter(x=>x.ppa).map(x=>x.ppa))):"–"],["Middle growth",g.length?Math.round(median(g.map(x=>x.gs)))+"/100":"–"]].map(([a,b])=>`<div><small>${a}</small><b>${b}</b></div>`).join(""):"";
+  if(!$("aChartsW").open){$("aCharts").innerHTML="";return}
+  const pb=[0,300e3,500e3,750e3,1e6,1.5e6,2.5e6,1e12],pl=["<$300k","$300–500k","$500–750k","$750k–1M","$1–1.5M","$1.5–2.5M","$2.5M+"];
+  const ps=pl.map((l,i)=>({l,v:P.filter(x=>x.p>=pb[i]&&x.p<pb[i+1]).length}));
+  const ss=STATES.map(s=>({l:s,v:r.filter(x=>x.s===s).length})).filter(o=>o.v).sort((a,b)=>b.v-a.v);
+  const sz=SIZES.map(([l,a,b])=>({l,v:r.filter(x=>x.a>=a&&x.a<b).length})).filter(o=>o.v);
+  const f=v=>v.toLocaleString("en-AU");
+  $("aCharts").innerHTML=fig("Asking price","How many blocks at each price",hbars(ps,f))+fig("Size","How many blocks of each size",hbars(sz,f))+fig("State","Where these blocks are",hbars(ss,f));
+}
+document.addEventListener("toggle",e=>{if(e.target.id==="aChartsW"&&e.target.open)renderSearch()},true);
+function savedCharts(ids){
+  const xs=ids.map(i=>byId[i]).filter(x=>x&&x.p&&x.fair);
+  $("savedCharts").innerHTML=xs.length?fig("Your saved blocks: asking against likely sale","Bars show how far under (or over) asking each block is likely to sell",
+    hbars(xs.map(x=>({l:x.sub,v:Math.abs(x.fair/x.p-1)*100,hl:x.fair>=x.p,tip:`${x.sub}: asking ${short(x.p)}, likely sale ${short(x.fair)}`})),v=>Math.round(v)+"%"),
+    `Dark bars are blocks likely to sell for more than asking: the best value. Light bars are likely to sell under asking: offer low.`):"";
+}
+function insightsGlance(){
+  const H=window.HISTORY_DATA,P=D.pulse&&D.pulse.latest;if(!H)return;
+  const N=H.national,st=H.regions.filter(r=>r.is_state&&r.cagr10!=null).sort((a,b)=>b.cagr10-a.cagr10);
+  const k=`<div class="kv4"><div><small>Farmland per acre</small><b>${money(N.median/2.471)}</b></div><div><small>Growth a year, 20 years</small><b>${N.cagr20}%</b></div><div><small>Last year</small><b>${(N.yoy>0?"+":"")+N.yoy.toFixed(1)}%</b></div><div><small>Market now</small><b>${P?esc(P.verdict.split(":")[0]):"–"}</b></div></div>`;
+  $("iGlance").innerHTML=fig("At a glance","Australian farmland, Bendigo Bank values to 2025",k,`Land has grown about ${N.cagr20}% a year for 20 years, so it roughly doubles every ${Math.round(72/N.cagr20)} years. ${P?esc((P.verdict.split(":")[1]||"").trim()):""}`)
+   +fig("Growth a year by state","Average over the last 10 years",hbars(st.map(r=>({l:r.state,v:r.cagr10,hl:r===st[0]})),v=>v.toFixed(1)+"%"),`${st[0].name} grew fastest over 10 years. Past growth is a guide, not a promise: the cheap areas that hadn't boomed yet grew most.`);
+}
+function moreSources(){$("mSources").innerHTML=sourcesCard()+methodCards()}
+
+labelTables();renderHome();renderSearch();renderSaved();route();try{homeCharts();insightsGlance();moreSources()}catch(e){console.error(e)}{const sp=document.getElementById("splash");if(sp){sp.classList.add("done");setTimeout(()=>sp.remove(),450)}}if(location.hash==="#compare")renderCompare();drawCmpBar();
 })();
 </script>

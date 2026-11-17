@@ -5,3 +5,4 @@
 2026-11-16 pro3: business font, Top picks cards, compact how-it-works on phones; APK 2.6 — release passed, phone checked
 2026-11-16 pro4: Backbone-style readouts, steps strip, data-check panel; APK 2.7 — release passed, phone+desktop checked
 2026-11-16 pro5 block page header panel, wrapping row titles: RELEASE PASSED, phone+desktop screenshots ok
+2026-11-17 layers: simple top, charts (Look closer), workings (How it works) on Home, block page, Search, Saved, Insights, More: RELEASE PASSED, phone+desktop screenshots ok

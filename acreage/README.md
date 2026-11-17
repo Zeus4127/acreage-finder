@@ -119,3 +119,10 @@ The free system runs on its own until then. When there's money to spend, in this
 4. **Phone alerts:** built into the Acreage Finder app (1.5+), free. Each refresh writes `alerts-feed.json`
    (new Standouts and new matches for `alert-rules.json`); the app checks it in the background about every 3 hours,
    even when closed, and shows a notification that opens the listing. Allow notifications when the app asks.
+
+### Price test, 17 Nov 2026
+Tried 60 versions of the likely sale price (6, 9, 12 or 16 comparisons; plain median, closeness-weighted median or
+weighted average; real sales counted once or twice; asking-to-sale 0.82, 0.86 or 0.90). Tuned on older sales, the best
+was 16 comparisons with a weighted median. On the 585 newest sales it did worse (38% within 20%) than the current method
+(42% within 20%), so the method stayed the same. Signals tried as a confidence level (how near the comparisons are, how
+spread out, how many real sales) barely changed accuracy, so no confidence label was added.
