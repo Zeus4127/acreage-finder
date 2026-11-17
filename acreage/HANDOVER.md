@@ -13,7 +13,7 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
 - Website: one page, `acreage/acreage.html`. It's built by `build_page.py` and released only through `./release.sh <out.html>`, which runs
   `checks/check_data.py` and `checks/check_page.js` (phone and desktop).
 - Live page: claude.ai artifact https://claude.ai/artifact/8MPdWAJGMGGWvUNDMK8AF8. It's private: share it from its Share menu.
-- Android app: `acreage/android/`, now version 3.2 (versionCode 22). Bump both for every build.
+- Android app: `acreage/android/`, now version 3.3 (versionCode 23). Bump both for every build.
 - Daily data: `run_daily.sh` (full scan, about 40 min) and `run_hourly.sh` (quick refresh). Both end with release.sh.
 - Methods and test results: `acreage/README.md`.
 
@@ -59,3 +59,6 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
 ## Standing rules from the owner
 Free tools only. Never scrape Facebook, Gumtree, Domain or realestate.com.au; never get around bot checks. No keys, passwords or ntfy topics
 in any file. Light theme, no purple or pink. Plain, simple words. Don't waste usage.
+
+## App download
+The website links to https://zeus4127.github.io/acreage-finder/AcreageFinder.apk. publish_site.sh copies android/out/AcreageFinder.apk there each run, so after building a new version, the next refresh (or ./publish_site.sh) puts it on the site. Inside the app the download links are hidden.

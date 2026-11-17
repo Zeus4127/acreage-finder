@@ -17,6 +17,7 @@ if [ ! -e "$WT/.git" ]; then
   fi
 fi
 cp acreage.html "$WT/index.html"; cp acreage-data.js history-data.js aus-map.js alerts-feed.json "$WT/"; mkdir -p "$WT/media" && cp media/*.jpg media/CREDITS.md "$WT/media/"
+[ -s android/out/AcreageFinder.apk ] && cp android/out/AcreageFinder.apk "$WT/AcreageFinder.apk"   # the app download link on the site
 touch "$WT/.nojekyll"
 cd "$WT"
 git add -A
