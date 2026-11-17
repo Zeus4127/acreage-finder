@@ -13,7 +13,7 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
 - Website: one page, `acreage/acreage.html`. It's built by `build_page.py` and released only through `./release.sh <out.html>`, which runs
   `checks/check_data.py` and `checks/check_page.js` (phone and desktop).
 - Live page: claude.ai artifact https://claude.ai/artifact/8MPdWAJGMGGWvUNDMK8AF8. It's private: share it from its Share menu.
-- Android app: `acreage/android/`, now version 3.3 (versionCode 23). Bump both for every build.
+- Android app: `acreage/android/`, now version 3.4 (versionCode 24). Bump both for every build.
 - Daily data: `run_daily.sh` (full scan, about 40 min) and `run_hourly.sh` (quick refresh). Both end with release.sh.
 - Methods and test results: `acreage/README.md`.
 

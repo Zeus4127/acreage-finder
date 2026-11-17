@@ -748,10 +748,65 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
 .getapp{display:grid;gap:12px;border-left:4px solid var(--gold)}
 .getapp .mx-btn{justify-self:start}
 html.in-app .app-only-web{display:none!important}
+
+/* look v2 */
+.look-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.look-t{display:grid;gap:5px;justify-items:center;padding:8px 6px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);min-height:44px}
+.look-t small{font-size:12px;font-weight:600;color:var(--ink2)}
+.look-t[aria-pressed="true"]{border-color:var(--navy);box-shadow:0 0 0 2px var(--gold)}
+.look-t .look-sw i{width:16px;height:20px}
+.look-r{margin-top:2px}
+/* corners */
+:root[data-cn]{--rad:16px}
+:root[data-cn="sharp"]{--rad:0px;--r:0px;--r-sm:0px}:root[data-cn="slight"]{--rad:5px;--r:5px;--r-sm:4px}:root[data-cn="soft"]{--rad:22px;--r:22px;--r-sm:14px}:root[data-cn="pill"]{--rad:30px;--r:28px;--r-sm:20px}
+:root[data-cn] :is(.mx-svc,.mx-step,.pc,.ch,.dpanel,.qa,.tiles,.mx-mosaic img,#bp>.actbar,.hsearch,.panel,.bsec,.ruler,.bp-hero,.kf,.sumstrip,.rows,.look-t,.look-b,details.acc){border-radius:var(--rad)!important}
+:root[data-cn="sharp"] :is(.mx-btn,.chip,.cta,.tabs2 button,.seg,.seg button,#aq,.fbtn,.mx-live,.hsearch button,.btn,.go,.watch,.pill,.gsb){border-radius:0!important}
+:root[data-cn="slight"] :is(.mx-btn,.chip,.cta,.tabs2 button,.seg,.seg button,#aq,.fbtn,.mx-live,.hsearch button,.btn,.go,.watch){border-radius:5px!important}
+/* headings */
+:root[data-hd="classic"]{--disp:Georgia,"Times New Roman",serif}
+:root[data-hd="classic"] :is(.mx-h,.pg-h,.hero-in h2){letter-spacing:-.015em;font-weight:700}
+:root[data-hd="strong"]{--disp:"Inter",var(--sans)}
+:root[data-hd="strong"] :is(.mx-h,.pg-h,.hero-in h2){text-transform:uppercase;letter-spacing:-.01em;font-weight:800}
+:root[data-hd="friendly"]{--disp:ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Trebuchet MS",sans-serif}
+:root[data-hd="friendly"] :is(.mx-h,.pg-h,.hero-in h2){letter-spacing:-.01em;font-weight:700}
+:root[data-hd="tech"]{--disp:var(--mono2)}
+:root[data-hd="tech"] :is(.mx-h,.pg-h,.hero-in h2){letter-spacing:-.04em;font-weight:600}
+/* cards */
+:root[data-cs="flat"] :is(.mx-svc,.pc,.ch,.qa,.panel,.bsec,.ruler,.tiles,.sumstrip,.rows,details.acc,.look-t,.look-b){border-color:transparent!important;box-shadow:none!important;background:color-mix(in srgb,var(--navy) 5%,#fff)!important}
+:root[data-cs="shadow"] :is(.mx-svc,.pc,.ch,.qa,.panel,.bsec,.ruler,.tiles,.sumstrip,.rows,details.acc){border-color:transparent!important;box-shadow:0 10px 30px -12px rgba(20,30,40,.35)!important}
+:root[data-cs="bold"] :is(.mx-svc,.pc,.ch,.qa,.panel,.bsec,.ruler,.tiles,.sumstrip,.rows,details.acc){border:2px solid var(--navy)!important;box-shadow:none!important}
+:root[data-cs="edge"] :is(.mx-svc,.pc,.ch,.qa,.panel,.bsec,.ruler,details.acc){border-left:5px solid var(--gold)!important}
+/* header */
+:root[data-hs="light"] :is(.top,.bnav){background:#fff!important;border-bottom:1px solid var(--line)}
+:root[data-hs="light"] .bnav{border-top:1px solid var(--line)}
+:root[data-hs="light"] :is(.top .brand,.top .live,.top .dnav button,.bnav button){color:var(--navy)!important}
+:root[data-hs="light"] .dnav button[aria-current="page"]{background:color-mix(in srgb,var(--navy) 8%,transparent)!important}
+:root[data-hs="light"] .bnav button[aria-current="page"]{color:var(--gold-d)!important}
+:root[data-hs="gold"] :is(.top,.bnav){background:var(--gold)!important}
+:root[data-hs="gold"] :is(.top .brand,.top .live,.top .dnav button,.bnav button){color:var(--gold-ink)!important}
+:root[data-hs="gold"] .top .cta{background:var(--navy)!important;color:#fff!important}
+:root[data-hs="gold"] .bnav button[aria-current="page"]{color:var(--navy)!important;font-weight:800}
+:root[data-hs="gold"] .mx-util{background:var(--navy);color:#fff}
+:root[data-hs="gradient"] :is(.top,.bnav){background:linear-gradient(90deg,var(--navy),var(--sky))!important}
+:root[data-hs="glass"] .top{background:color-mix(in srgb,var(--navy) 72%,transparent)!important;backdrop-filter:blur(14px) saturate(1.4)!important;-webkit-backdrop-filter:blur(14px) saturate(1.4)!important}
+:root[data-hs="glass"] .bnav{background:color-mix(in srgb,var(--navy) 80%,transparent)!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important}
+/* text size */
+:root[data-ts="xs"] body{zoom:.88}:root[data-ts="s"] body{zoom:.94}:root[data-ts="l"] body{zoom:1.08}:root[data-ts="xl"] body{zoom:1.16}
+:root[data-hs="gold"] .dnav button[aria-current="page"]{background:var(--navy)!important;color:#fff!important}
+:root[data-hs="gold"] .top .logo{box-shadow:0 0 0 2px var(--navy)}
 </style>
 <script>if(location.protocol==="file:"&&/Android/.test(navigator.userAgent))document.documentElement.classList.add("in-app")</script>
 
-<script>try{var k=JSON.parse(localStorage.getItem("af-look")||"{}"),r=document.documentElement;if(k.th)r.dataset.th=k.th;if(k.cn)r.dataset.cn=k.cn;if(k.hd)r.dataset.hd=k.hd}catch(e){}</script>
+<script>window.AF_THEMES=[["land","Land","#14304A","#F7C33B","#2F8AC6","#FFF8EE"],["forest","Forest","#173B2E","#EDBB45","#2F8F6B","#F7F5EC"],["outback","Outback","#40281C","#F0A04B","#C2622D","#FBF3E7"],["slate","Slate","#1F2933","#F2C94C","#3E7CB1","#F5F7FA"],["coast","Coast","#0E4A5A","#FFD166","#1B98A8","#F2FAFB"],["eucalypt","Eucalypt","#2F4A3A","#D9C26A","#6E9C7E","#F4F6F0"],["harbour","Harbour","#0B3D63","#FFB703","#219EBC","#F1F7FB"],["reddirt","Red Dirt","#5A1F14","#F2A541","#B5452A","#FCF2EC"],["wheatbelt","Wheatbelt","#4A3B1B","#E9C46A","#B08A3E","#FBF7EC"],["rainforest","Rainforest","#0F3D2E","#A7D46F","#2A9D8F","#F0F7F2"],["midnight","Midnight","#101828","#FDB022","#2E90FA","#F5F8FC"],["sandstone","Sandstone","#5B3A29","#E6B87A","#C17F59","#FBF5EE"],["ocean","Ocean","#003049","#FCBF49","#0081A7","#EEF6F9"],["olive","Olive","#3A3F1E","#D4B44A","#7A8B3A","#F6F6EE"],["charcoal","Charcoal","#2B2B2B","#F4C430","#5B7083","#F6F6F4"],["teal","Teal","#134E4A","#F59E0B","#14B8A6","#F0FAF8"],["rust","Rust","#4A2216","#F4A259","#BC4B2A","#FCF3EE"],["sunset","Sunset","#3B1F12","#FF9F1C","#E76F51","#FFF6EE"],["sage","Sage","#3F5245","#E3C770","#8AA899","#F5F7F4"],["heritage","Heritage","#1D3557","#F4A261","#457B9D","#F8F5F0"],["granite","Granite","#374151","#FBBF24","#6B7280","#F7F7F8"],["copper","Copper","#3D2B1F","#E0A458","#B87333","#FAF4EC"],["lagoon","Lagoon","#0A4D68","#F9D949","#05BFDB","#EFFAFC"],["pine","Pine","#1B4332","#FFD166","#40916C","#F2F8F4"],["storm","Storm","#263238","#FFCA28","#546E7A","#F4F6F7"],["mallee","Mallee","#4E3B31","#DDB967","#8C6E54","#F8F4EE"],["citrus","Citrus","#234E2A","#FFC300","#4C9A2A","#F7FBEF"]];
+window.afApplyLook=function(k){var r=document.documentElement,T=null;k=k||{};
+ function h(x){return [parseInt(x.slice(1,3),16),parseInt(x.slice(3,5),16),parseInt(x.slice(5,7),16)]}
+ function mix(a,b,t){var A=h(a),B=h(b);return "#"+[0,1,2].map(function(i){return ("0"+Math.round(A[i]*(1-t)+B[i]*t).toString(16)).slice(-2)}).join("")}
+ for(var i=0;i<AF_THEMES.length;i++)if(AF_THEMES[i][0]===(k.th||"land"))T=AF_THEMES[i];
+ var V=["--navy","--navy2","--deep","--foot","--gold","--gold-d","--sky","--cream","--bg","--accent"];
+ if(T&&T[0]!=="land"){var n=T[2],g=T[3],sk=T[4],bg=T[5],set={"--navy":n,"--navy2":mix(n,"#ffffff",.12),"--deep":mix(n,"#000000",.3),"--foot":mix(n,"#ffffff",.07),"--gold":g,"--gold-d":mix(g,"#000000",.5),"--sky":sk,"--cream":bg,"--bg":bg,"--accent":mix(sk,n,.35)};V.forEach(function(v){r.style.setProperty(v,set[v])})}
+ else V.forEach(function(v){r.style.removeProperty(v)});
+ delete r.dataset.th;["cn","hd","cs","hs","ts"].forEach(function(f){if(k[f])r.dataset[f]=k[f];else delete r.dataset[f]})};
+try{afApplyLook(JSON.parse(localStorage.getItem("af-look")||"{}"))}catch(e){}</script>
 
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
@@ -1015,9 +1070,9 @@ html.in-app .app-only-web{display:none!important}
     <ol class="plain"><li>Tap <b>Download the app</b> on your Android phone.</li><li>Open the downloaded file. If your phone asks, allow installs from your browser.</li><li>Open Acreage Finder. To update later, download it again and install over the top.</li></ol></div>
     <a class="mx-btn" href="https://zeus4127.github.io/acreage-finder/AcreageFinder.apk" rel="noopener">Download the app</a><p class="what" style="font-size:12.5px">Android only, free. iPhone: use this website, or add it to your home screen from Safari's Share menu.</p></div>
   <div class="panel look" id="lookBox"><h3>Look and feel</h3><p class="what">Pick the colours and style you like. It changes straight away and is remembered on this device.</p>
-    <div><h4>Colour theme</h4><div class="look-row" id="lookTh"></div></div>
-    <div><h4>Corners</h4><div class="look-row" id="lookCn"></div></div>
-    <div><h4>Headings</h4><div class="look-row" id="lookHd"></div></div></div>
+    <div><h4>Colour theme <span class="muted" id="lookThN"></span></h4><div class="look-grid" id="lookTh"></div></div>
+    <div id="lookRows"></div>
+    <div><button type="button" class="btn ghost" id="lookReset">Back to the standard look</button></div></div></div>
   <div class="layer"><span class="ln">02</span><b>Before you buy</b><small>What to ask, what to check, where else to look.</small></div>
   <details class="acc"><summary>Before you buy <span>Checklist</span></summary><div class="accin">
     <div class="tip">Never pay a deposit to hold land you haven't walked. Get a solicitor or conveyancer to do the title search before you sign.</div>
@@ -1968,17 +2023,22 @@ function insightsGlance(){
 function moreSources(){$("mSources").innerHTML=sourcesCard()+methodCards()}
 
 
-// ---- look and feel
-(()=>{const TH=[["","Land",["#14304A","#F7C33B","#FFF8EE"]],["forest","Forest",["#173B2E","#EDBB45","#F7F5EC"]],["outback","Outback",["#40281C","#F0A04B","#FBF3E7"]],["slate","Slate",["#1F2933","#F2C94C","#F5F7FA"]],["coast","Coast",["#0E4A5A","#FFD166","#F2FAFB"]]],
-  CN=[["","Rounded"],["square","Square"]],HD=[["","Modern"],["classic","Classic"],["strong","Bold capitals"]],r=document.documentElement;
+// ---- look and feel: 27 colour themes and 5 style choices, each with 5 options
+(()=>{const ROWS=[["cn","Corners",[["","Rounded"],["sharp","Sharp"],["slight","Slight"],["soft","Soft"],["pill","Extra round"]]],
+  ["hd","Headings",[["","Modern"],["classic","Classic serif"],["strong","Bold capitals"],["friendly","Friendly"],["tech","Technical"]]],
+  ["cs","Cards",[["","Outlined"],["flat","Flat"],["shadow","Shadow"],["bold","Bold border"],["edge","Gold edge"]]],
+  ["hs","Header",[["","Dark"],["light","Light"],["gold","Gold"],["gradient","Gradient"],["glass","Glass"]]],
+  ["ts","Text size",[["xs","Smaller"],["s","Small"],["","Standard"],["l","Large"],["xl","Larger"]]]];
   let k={};try{k=JSON.parse(localStorage.getItem("af-look")||"{}")}catch(e){}
-  const draw=()=>{$("lookTh").innerHTML=TH.map(([v,n,c])=>`<button type="button" class="look-b" data-look="th" data-v="${v}" aria-pressed="${(k.th||"")===v}"><span class="look-sw">${c.map(x=>`<i style="background:${x}"></i>`).join("")}</span>${n}</button>`).join("");
-    $("lookCn").innerHTML=CN.map(([v,n])=>`<button type="button" class="look-b" data-look="cn" data-v="${v}" aria-pressed="${(k.cn||"")===v}">${n}</button>`).join("");
-    $("lookHd").innerHTML=HD.map(([v,n])=>`<button type="button" class="look-b" data-look="hd" data-v="${v}" aria-pressed="${(k.hd||"")===v}">${n}</button>`).join("")};
-  $("lookBox").addEventListener("click",e=>{const b=e.target.closest("[data-look]");if(!b)return;const f=b.dataset.look,v=b.dataset.v;k[f]=v;if(v)r.dataset[f]=v;else delete r.dataset[f];
-    try{localStorage.setItem("af-look",JSON.stringify(k))}catch(e){}draw()});
+  if(k.th==="")delete k.th;
+  const save=()=>{try{localStorage.setItem("af-look",JSON.stringify(k))}catch(e){}afApplyLook(k);draw()};
+  const draw=()=>{const cur=k.th||"land";
+    $("lookTh").innerHTML=AF_THEMES.map(t=>`<button type="button" class="look-t" data-look="th" data-v="${t[0]}" aria-pressed="${cur===t[0]}" title="${t[1]}"><span class="look-sw"><i style="background:${t[2]}"></i><i style="background:${t[3]}"></i><i style="background:${t[4]}"></i><i style="background:${t[5]}"></i></span><small>${t[1]}</small></button>`).join("");
+    $("lookThN").textContent="("+AF_THEMES.length+")";
+    $("lookRows").innerHTML=ROWS.map(([f,n,o])=>`<div class="look-r"><h4>${n}</h4><div class="look-row">${o.map(([v,l])=>`<button type="button" class="look-b" data-look="${f}" data-v="${v}" aria-pressed="${(k[f]||"")===v}">${l}</button>`).join("")}</div></div>`).join("")};
+  $("lookBox").addEventListener("click",e=>{const b=e.target.closest("[data-look]");if(!b)return;const f=b.dataset.look,v=b.dataset.v;if(v&&!(f==="th"&&v==="land"))k[f]=v;else delete k[f];save()});
+  $("lookReset").onclick=()=>{k={};save()};
   draw()})();
-
 labelTables();renderHome();renderSearch();renderSaved();route();try{homeCharts();insightsGlance();moreSources()}catch(e){console.error(e)}{const sp=document.getElementById("splash");if(sp){sp.classList.add("done");setTimeout(()=>sp.remove(),450)}}if(location.hash==="#compare")renderCompare();drawCmpBar();
 })();
 </script>

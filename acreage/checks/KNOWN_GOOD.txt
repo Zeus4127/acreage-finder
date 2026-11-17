@@ -10,3 +10,4 @@
 2026-11-17 fable pass: page header bands on Search/Saved/Insights/More, desktop search sidebar, block page side card, new-listing count fix, honest data-check labels: RELEASE PASSED, phone+desktop screenshots ok
 2026-11-17 look and feel: 5 colour themes, corners, headings (More > Look and feel): RELEASE PASSED, all themes screenshotted
 2026-11-17 app download links (hero, top bar, More, footer), app file published with the site; app 3.3: RELEASE PASSED, phone screenshot ok
+2026-11-17 look v2: 27 colour themes + corners/headings/cards/header/text size (5 each): RELEASE PASSED, combos screenshotted
