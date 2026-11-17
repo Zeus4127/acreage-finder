@@ -744,7 +744,13 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
 .look-sw i{width:14px;height:22px;display:block}
 .mx-hero::after{background:linear-gradient(100deg,color-mix(in srgb,var(--deep) 90%,transparent) 0%,color-mix(in srgb,var(--navy) 66%,transparent) 45%,color-mix(in srgb,var(--navy) 12%,transparent) 80%),linear-gradient(0deg,color-mix(in srgb,var(--deep) 80%,transparent) 0%,transparent 45%)!important}
 .mx-pic::after{background:linear-gradient(0deg,color-mix(in srgb,var(--deep) 85%,transparent),transparent 55%)}
+
+.getapp{display:grid;gap:12px;border-left:4px solid var(--gold)}
+.getapp .mx-btn{justify-self:start}
+html.in-app .app-only-web{display:none!important}
 </style>
+<script>if(location.protocol==="file:"&&/Android/.test(navigator.userAgent))document.documentElement.classList.add("in-app")</script>
+
 <script>try{var k=JSON.parse(localStorage.getItem("af-look")||"{}"),r=document.documentElement;if(k.th)r.dataset.th=k.th;if(k.cn)r.dataset.cn=k.cn;if(k.hd)r.dataset.hd=k.hd}catch(e){}</script>
 
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
@@ -759,7 +765,7 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
 <main id="main">
 <!-- HOME: the short version. Today's best picks, the growth-path blocks, what you're watching, what changed. -->
 <section class="view" id="v-home" aria-labelledby="hTitle">
-  <div class="mx-util bleed"><div class="mx-w"><span><i class="mx-dot"></i>Updated every morning · <b id="uCount">every rural block in Australia</b></span><span class="mx-ul"><a href="#insights">Market pulse</a><a href="#saved">My rules</a><a href="#more">Check a listing</a></span></div></div>
+  <div class="mx-util bleed"><div class="mx-w"><span><i class="mx-dot"></i>Updated every morning · <b id="uCount">every rural block in Australia</b></span><span class="mx-ul"><a class="app-only-web" href="https://zeus4127.github.io/acreage-finder/AcreageFinder.apk" rel="noopener">Get the Android app</a><a href="#insights">Market pulse</a><a href="#saved">My rules</a><a href="#more">Check a listing</a></span></div></div>
   <div class="hero2 bleed mx-hero">
     <img class="hero-art hero-photo" src="media/hero.jpg" alt="Rolling green grazing country with a tall gum tree under a big sky" fetchpriority="high">
     <div class="mx-grid" aria-hidden="true"></div>
@@ -767,7 +773,7 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
       <span class="mx-live"><i class="mx-dot"></i>Scanned today<span class="mx-st"> · QLD · NSW · VIC · SA · WA · TAS · NT</span></span>
       <h2 id="hTitle">Land you'll love. Land that <em>grows</em>.</h2>
       <p class="hsub">Every rural block of 10 acres and up, scored for long-term growth, priced against real sales and checked for what matters: a real town close by, water, and things to do.</p>
-      <div class="mx-ctas"><a class="mx-btn" href="#search" data-preset="star">See top picks</a><a class="mx-btn line" href="#search">Browse every block</a></div>
+      <div class="mx-ctas"><a class="mx-btn" href="#search" data-preset="star">See top picks</a><a class="mx-btn line" href="#search">Browse every block</a><a class="mx-btn line app-only-web" href="https://zeus4127.github.io/acreage-finder/AcreageFinder.apk" rel="noopener">Get the Android app</a></div>
       <form class="hsearch" id="hSearch" role="search">
         <label><span>Where</span><input id="hq" placeholder="Town, postcode or council"></label>
         <label><span>Up to</span><select id="hmax"><option value="0">Any price</option><option value="300000">$300k</option><option value="500000">$500k</option><option value="750000">$750k</option><option value="1000000">$1M</option><option value="2000000">$2M</option></select></label>
@@ -1005,6 +1011,9 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
     <div class="checks" id="cFeat"></div>
     <button class="btn" id="checkBtn" type="button">Check it</button>
     <div class="result" id="cResult" hidden></div></div>
+  <div class="panel getapp app-only-web" id="appBox"><div><h3>Get the Android app</h3><p class="what">The same finder on your phone, with alerts for new blocks that match your rules. It updates itself with new listings every day.</p>
+    <ol class="plain"><li>Tap <b>Download the app</b> on your Android phone.</li><li>Open the downloaded file. If your phone asks, allow installs from your browser.</li><li>Open Acreage Finder. To update later, download it again and install over the top.</li></ol></div>
+    <a class="mx-btn" href="https://zeus4127.github.io/acreage-finder/AcreageFinder.apk" rel="noopener">Download the app</a><p class="what" style="font-size:12.5px">Android only, free. iPhone: use this website, or add it to your home screen from Safari's Share menu.</p></div>
   <div class="panel look" id="lookBox"><h3>Look and feel</h3><p class="what">Pick the colours and style you like. It changes straight away and is remembered on this device.</p>
     <div><h4>Colour theme</h4><div class="look-row" id="lookTh"></div></div>
     <div><h4>Corners</h4><div class="look-row" id="lookCn"></div></div>
@@ -1041,7 +1050,7 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
 <footer class="mx-foot bleed"><div class="mx-w mx-fg">
   <div><b class="mx-fb"><span class="logo" aria-hidden="true"></span>Acreage Finder</b><p>Every rural block of 10 acres and up in Australia, scored for growth and priced against real sales. Updated every morning.</p></div>
   <div><h4>Find</h4><ul><li><a href="#search" data-preset="star">Standouts</a></li><li><a href="#search" data-preset="path">Growth path</a></li><li><a href="#search" data-preset="ok">Must-haves</a></li><li><a href="#search" data-preset="great">Great deals</a></li></ul></div>
-  <div><h4>Learn</h4><ul><li><a href="#insights">Market pulse</a></li><li><a href="#insights">Growth by area</a></li><li><a href="#more">Before you buy</a></li><li><a href="#more">Check any listing</a></li><li><a href="#more">Colours and style</a></li></ul></div>
+  <div><h4>Learn</h4><ul><li><a href="#insights">Market pulse</a></li><li><a href="#insights">Growth by area</a></li><li><a href="#more">Before you buy</a></li><li><a href="#more">Check any listing</a></li><li><a href="#more">Colours and style</a></li><li class="app-only-web"><a href="https://zeus4127.github.io/acreage-finder/AcreageFinder.apk" rel="noopener">Android app</a></li></ul></div>
   <div><h4>Your land</h4><ul><li><a href="#saved">Saved blocks</a></li><li><a href="#saved">My rules and alerts</a></li><li><a href="#compare">Compare blocks</a></li></ul></div>
   <p class="mx-legal">Not financial advice. Prices and scores are estimates from public data: check with the agent, the council and a valuer before you buy. Photos: CSIRO and Wikimedia Commons, free licences.</p>
 </div></footer>
