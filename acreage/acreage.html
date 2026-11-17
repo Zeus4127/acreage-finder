@@ -580,7 +580,7 @@ h1,h2,h3{text-wrap:balance}
 .mx-hero .hsearch span{color:#C3D1DE}
 .mx-hero .hsearch input,.mx-hero .hsearch select{color:#fff}.mx-hero .hsearch input::placeholder{color:rgba(255,255,255,.7)}
 .mx-hero .hsearch option{color:#1b1b1b}
-.mx-src{background:#0F2236;color:#A9BED0}
+.mx-src{background:var(--deep);color:#A9BED0}
 .mx-src .mx-w{display:flex;align-items:center;gap:12px 30px;flex-wrap:wrap;padding-block:13px;font-family:var(--disp);font-weight:600;font-size:14.5px}
 .mx-src small{font-family:var(--mono2);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 @media (max-width:720px){.mx-src .mx-w{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.mx-src .mx-w::-webkit-scrollbar{display:none}}
@@ -615,7 +615,7 @@ h1,h2,h3{text-wrap:balance}
 .mx-t{font-family:var(--disp);font-weight:700;font-size:17px;color:var(--navy)}
 .mx-li{position:relative;padding-left:16px;font-size:14px;color:var(--muted)}.mx-li::before{content:"";position:absolute;left:2px;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .mx-more{margin-top:auto;padding-top:8px;font-weight:700;color:var(--sky)}
-.mx-call{background:linear-gradient(150deg,var(--navy),#1F4A70);color:#fff;border:0;justify-content:center;position:relative;overflow:hidden}
+.mx-call{background:linear-gradient(150deg,var(--navy),var(--navy2));color:#fff;border:0;justify-content:center;position:relative;overflow:hidden}
 .mx-call::after{content:"";position:absolute;width:300px;height:300px;right:-130px;bottom:-170px;border-radius:50%;border:8px solid var(--gold);border-left-color:transparent;border-bottom-color:transparent;opacity:.5}
 .mx-call .mx-body{gap:12px;justify-content:center;padding:24px}.mx-call span{color:#DCE6EF;font-size:14.5px;line-height:1.55}
 .mx-big{font-family:var(--disp);font-size:44px;font-weight:800;color:var(--gold);letter-spacing:-.03em;line-height:1}
@@ -634,7 +634,7 @@ h1,h2,h3{text-wrap:balance}
 .qa summary::after{content:"+";color:var(--gold-d);font-size:20px;line-height:1}.qa[open] summary::after{content:"–"}
 .qa .ans{padding:0 16px 16px;color:var(--ink2);font-size:14.5px;line-height:1.6}
 .mx-faq .mx-h{margin-bottom:10px}
-.mx-foot{background:#1B3A58;color:#DCE6EF;margin-top:clamp(40px,8vw,80px);padding-block:44px 30px}
+.mx-foot{background:var(--foot);color:#DCE6EF;margin-top:clamp(40px,8vw,80px);padding-block:44px 30px}
 .mx-fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:26px}
 .mx-fb{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:19px;color:#fff;margin-bottom:10px}
 .mx-fg p{margin:0;font-size:14px;line-height:1.6;color:#B4C4D3;max-width:40ch}
@@ -721,7 +721,32 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
 }
 @media (max-width:420px){.sumstrip{grid-template-columns:repeat(4,minmax(0,1fr))!important}.sumstrip div{padding:7px 8px;border-top:0!important;border-left:1px solid var(--line)!important}.sumstrip div:first-child{border-left:0!important}.sumstrip small{font-size:8.5px}.sumstrip b{font-size:12.5px}}
 @media (max-width:759px){#v-search .pg-band .mx-w{padding-block:14px}#v-search .pg-read{display:none}}
+
+/* look and feel: colour themes and styles (all light, no purple or pink) */
+:root{--deep:#0F2236;--foot:#1B3A58}
+:root[data-th="forest"]{--navy:#173B2E;--navy2:#22543F;--deep:#0F2A20;--foot:#1D4636;--gold:#EDBB45;--gold-d:#7A5800;--sky:#2F8F6B;--cream:#F7F5EC;--bg:#F7F5EC;--accent:#1F6F5C}
+:root[data-th="outback"]{--navy:#40281C;--navy2:#5A3A28;--deep:#2C1A11;--foot:#4A3022;--gold:#F0A04B;--gold-d:#8A4A0C;--sky:#C2622D;--cream:#FBF3E7;--bg:#FBF3E7;--accent:#A8501F}
+:root[data-th="slate"]{--navy:#1F2933;--navy2:#323F4B;--deep:#141B22;--foot:#27323D;--gold:#F2C94C;--gold-d:#7A5C00;--sky:#3E7CB1;--cream:#F5F7FA;--bg:#F5F7FA;--accent:#2B6CB0}
+:root[data-th="coast"]{--navy:#0E4A5A;--navy2:#156577;--deep:#093642;--foot:#115668;--gold:#FFD166;--gold-d:#7A5A00;--sky:#1B98A8;--cream:#F2FAFB;--bg:#F2FAFB;--accent:#0F7C8C}
+:root[data-cn="square"]{--r:4px;--r-sm:3px}
+:root[data-cn="square"] .mx-svc,:root[data-cn="square"] .mx-step,:root[data-cn="square"] .pc,:root[data-cn="square"] .ch,:root[data-cn="square"] .dpanel,:root[data-cn="square"] .qa,:root[data-cn="square"] .tiles,:root[data-cn="square"] .how,:root[data-cn="square"] .mx-mosaic img,:root[data-cn="square"] .way,:root[data-cn="square"] #bp>.actbar,:root[data-cn="square"] .hsearch,:root[data-cn="square"] .hsearch button{border-radius:4px!important}
+:root[data-cn="square"] .mx-btn,:root[data-cn="square"] .chip,:root[data-cn="square"] .cta,:root[data-cn="square"] .tabs2 button,:root[data-cn="square"] .seg,:root[data-cn="square"] .seg button,:root[data-cn="square"] #aq,:root[data-cn="square"] .fbtn,:root[data-cn="square"] .mx-live{border-radius:4px!important}
+:root[data-hd="classic"]{--disp:Georgia,"Times New Roman",serif}
+:root[data-hd="classic"] .mx-h,:root[data-hd="classic"] .pg-h,:root[data-hd="classic"] .hero-in h2{letter-spacing:-.015em;font-weight:700}
+:root[data-hd="strong"]{--disp:"Inter",var(--sans)}
+:root[data-hd="strong"] .mx-h,:root[data-hd="strong"] .pg-h,:root[data-hd="strong"] .hero-in h2{text-transform:uppercase;letter-spacing:-.01em;font-weight:800}
+.look{display:grid;gap:14px}
+.look h4{margin:0 0 6px;font-size:13px;color:var(--muted);font-weight:600}
+.look-row{display:flex;gap:8px;flex-wrap:wrap}
+.look-b{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-weight:600;font-size:13.5px;min-height:44px}
+.look-b[aria-pressed="true"]{border-color:var(--navy);box-shadow:0 0 0 2px var(--gold)}
+.look-sw{display:inline-flex;border-radius:5px;overflow:hidden;border:1px solid rgba(0,0,0,.12)}
+.look-sw i{width:14px;height:22px;display:block}
+.mx-hero::after{background:linear-gradient(100deg,color-mix(in srgb,var(--deep) 90%,transparent) 0%,color-mix(in srgb,var(--navy) 66%,transparent) 45%,color-mix(in srgb,var(--navy) 12%,transparent) 80%),linear-gradient(0deg,color-mix(in srgb,var(--deep) 80%,transparent) 0%,transparent 45%)!important}
+.mx-pic::after{background:linear-gradient(0deg,color-mix(in srgb,var(--deep) 85%,transparent),transparent 55%)}
 </style>
+<script>try{var k=JSON.parse(localStorage.getItem("af-look")||"{}"),r=document.documentElement;if(k.th)r.dataset.th=k.th;if(k.cn)r.dataset.cn=k.cn;if(k.hd)r.dataset.hd=k.hd}catch(e){}</script>
+
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
   <div class="bar1"><a class="brand" href="#home" aria-label="Acreage Finder home"><span class="logo" aria-hidden="true"></span>Acreage Finder</a><span class="live"><span class="dot"></span><span id="scanned">loading…</span></span></div>
@@ -980,6 +1005,10 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
     <div class="checks" id="cFeat"></div>
     <button class="btn" id="checkBtn" type="button">Check it</button>
     <div class="result" id="cResult" hidden></div></div>
+  <div class="panel look" id="lookBox"><h3>Look and feel</h3><p class="what">Pick the colours and style you like. It changes straight away and is remembered on this device.</p>
+    <div><h4>Colour theme</h4><div class="look-row" id="lookTh"></div></div>
+    <div><h4>Corners</h4><div class="look-row" id="lookCn"></div></div>
+    <div><h4>Headings</h4><div class="look-row" id="lookHd"></div></div></div>
   <div class="layer"><span class="ln">02</span><b>Before you buy</b><small>What to ask, what to check, where else to look.</small></div>
   <details class="acc"><summary>Before you buy <span>Checklist</span></summary><div class="accin">
     <div class="tip">Never pay a deposit to hold land you haven't walked. Get a solicitor or conveyancer to do the title search before you sign.</div>
@@ -1012,7 +1041,7 @@ section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
 <footer class="mx-foot bleed"><div class="mx-w mx-fg">
   <div><b class="mx-fb"><span class="logo" aria-hidden="true"></span>Acreage Finder</b><p>Every rural block of 10 acres and up in Australia, scored for growth and priced against real sales. Updated every morning.</p></div>
   <div><h4>Find</h4><ul><li><a href="#search" data-preset="star">Standouts</a></li><li><a href="#search" data-preset="path">Growth path</a></li><li><a href="#search" data-preset="ok">Must-haves</a></li><li><a href="#search" data-preset="great">Great deals</a></li></ul></div>
-  <div><h4>Learn</h4><ul><li><a href="#insights">Market pulse</a></li><li><a href="#insights">Growth by area</a></li><li><a href="#more">Before you buy</a></li><li><a href="#more">Check any listing</a></li></ul></div>
+  <div><h4>Learn</h4><ul><li><a href="#insights">Market pulse</a></li><li><a href="#insights">Growth by area</a></li><li><a href="#more">Before you buy</a></li><li><a href="#more">Check any listing</a></li><li><a href="#more">Colours and style</a></li></ul></div>
   <div><h4>Your land</h4><ul><li><a href="#saved">Saved blocks</a></li><li><a href="#saved">My rules and alerts</a></li><li><a href="#compare">Compare blocks</a></li></ul></div>
   <p class="mx-legal">Not financial advice. Prices and scores are estimates from public data: check with the agent, the council and a valuer before you buy. Photos: CSIRO and Wikimedia Commons, free licences.</p>
 </div></footer>
@@ -1928,6 +1957,18 @@ function insightsGlance(){
    +fig("Growth a year by state","Average over the last 10 years",hbars(st.map(r=>({l:r.state,v:r.cagr10,hl:r===st[0]})),v=>v.toFixed(1)+"%"),`${st[0].name} grew fastest over 10 years. Past growth is a guide, not a promise: the cheap areas that hadn't boomed yet grew most.`);
 }
 function moreSources(){$("mSources").innerHTML=sourcesCard()+methodCards()}
+
+
+// ---- look and feel
+(()=>{const TH=[["","Land",["#14304A","#F7C33B","#FFF8EE"]],["forest","Forest",["#173B2E","#EDBB45","#F7F5EC"]],["outback","Outback",["#40281C","#F0A04B","#FBF3E7"]],["slate","Slate",["#1F2933","#F2C94C","#F5F7FA"]],["coast","Coast",["#0E4A5A","#FFD166","#F2FAFB"]]],
+  CN=[["","Rounded"],["square","Square"]],HD=[["","Modern"],["classic","Classic"],["strong","Bold capitals"]],r=document.documentElement;
+  let k={};try{k=JSON.parse(localStorage.getItem("af-look")||"{}")}catch(e){}
+  const draw=()=>{$("lookTh").innerHTML=TH.map(([v,n,c])=>`<button type="button" class="look-b" data-look="th" data-v="${v}" aria-pressed="${(k.th||"")===v}"><span class="look-sw">${c.map(x=>`<i style="background:${x}"></i>`).join("")}</span>${n}</button>`).join("");
+    $("lookCn").innerHTML=CN.map(([v,n])=>`<button type="button" class="look-b" data-look="cn" data-v="${v}" aria-pressed="${(k.cn||"")===v}">${n}</button>`).join("");
+    $("lookHd").innerHTML=HD.map(([v,n])=>`<button type="button" class="look-b" data-look="hd" data-v="${v}" aria-pressed="${(k.hd||"")===v}">${n}</button>`).join("")};
+  $("lookBox").addEventListener("click",e=>{const b=e.target.closest("[data-look]");if(!b)return;const f=b.dataset.look,v=b.dataset.v;k[f]=v;if(v)r.dataset[f]=v;else delete r.dataset[f];
+    try{localStorage.setItem("af-look",JSON.stringify(k))}catch(e){}draw()});
+  draw()})();
 
 labelTables();renderHome();renderSearch();renderSaved();route();try{homeCharts();insightsGlance();moreSources()}catch(e){console.error(e)}{const sp=document.getElementById("splash");if(sp){sp.classList.add("done");setTimeout(()=>sp.remove(),450)}}if(location.hash==="#compare")renderCompare();drawCmpBar();
 })();
