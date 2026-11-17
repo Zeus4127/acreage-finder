@@ -552,6 +552,132 @@ h1,h2,h3{text-wrap:balance}
 #hCharts::-webkit-scrollbar,#hMethod::-webkit-scrollbar{display:none}}
 .swipe-hint{font-size:12px;color:var(--muted);margin:-2px 0 0}
 @media (min-width:760px){.swipe-hint{display:none}}
+
+/* mega-style structure, land theme */
+:root{--gold-d:#8A5A00}
+.mx-w{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mx-util{background:var(--gold);color:var(--gold-ink);font-size:13px;font-weight:600}
+.mx-util .mx-w{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:7px}
+.mx-ul{display:flex;gap:18px}.mx-ul a{color:inherit;text-decoration:none}.mx-ul a:hover{text-decoration:underline}
+@media (max-width:640px){.mx-ul{display:none}}
+.mx-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2BB673;margin-right:8px;vertical-align:1px;box-shadow:0 0 0 0 rgba(43,182,115,.6);animation:mxp 2s infinite}
+@keyframes mxp{70%{box-shadow:0 0 0 8px rgba(43,182,115,0)}100%{box-shadow:0 0 0 0 rgba(43,182,115,0)}}
+@media (prefers-reduced-motion:reduce){.mx-dot{animation:none}}
+.mx-hero{min-height:min(86vh,720px)}
+.mx-hero::after{background:linear-gradient(100deg,rgba(14,32,50,.9) 0%,rgba(20,48,74,.66) 45%,rgba(20,48,74,.12) 80%),linear-gradient(0deg,rgba(14,32,50,.8) 0%,rgba(14,32,50,0) 45%)!important}
+.mx-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:linear-gradient(100deg,#000,transparent 65%);mask-image:linear-gradient(100deg,#000,transparent 65%);pointer-events:none}
+.mx-hero .hero-in{z-index:2}
+.mx-live{display:inline-flex;align-items:center;font-family:var(--mono2);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:7px 12px;border-radius:999px;backdrop-filter:blur(6px);margin-bottom:16px}
+@media (max-width:480px){.mx-st{display:none}}
+.mx-hero h2{font-size:clamp(42px,8.4vw,92px)!important;text-shadow:0 2px 30px rgba(0,0,0,.3)}
+.mx-hero .hsub{font-size:clamp(16px,2vw,20px);max-width:42ch;color:#E3EAF2;line-height:1.55}
+.mx-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.mx-btn{display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;padding:14px 22px;border-radius:999px;background:var(--gold);color:var(--gold-ink);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.mx-btn:hover{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(247,195,59,.6),0 10px 34px -8px rgba(247,195,59,.55)}
+.mx-btn.line{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.85)}
+.mx-hero .hsearch{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);box-shadow:0 24px 60px rgba(0,0,0,.35);max-width:720px}
+.mx-hero .hsearch label{color:#fff;border-color:rgba(255,255,255,.18)}
+.mx-hero .hsearch span{color:#C3D1DE}
+.mx-hero .hsearch input,.mx-hero .hsearch select{color:#fff}.mx-hero .hsearch input::placeholder{color:rgba(255,255,255,.7)}
+.mx-hero .hsearch option{color:#1b1b1b}
+.mx-src{background:#0F2236;color:#A9BED0}
+.mx-src .mx-w{display:flex;align-items:center;gap:12px 30px;flex-wrap:wrap;padding-block:13px;font-family:var(--disp);font-weight:600;font-size:14.5px}
+.mx-src small{font-family:var(--mono2);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+@media (max-width:720px){.mx-src .mx-w{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.mx-src .mx-w::-webkit-scrollbar{display:none}}
+.band{margin-top:0!important}
+.mx-sec{padding-block:clamp(34px,7vw,72px) 0}
+.mx-ey{margin:0 0 10px;font-family:var(--mono2);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-d);display:flex;align-items:center;gap:10px}
+.mx-ey::before{content:"";width:24px;height:2px;background:var(--gold)}
+.mx-ey.light{color:var(--gold)}
+.mx-h{margin:0;font-family:var(--disp);font-weight:800;font-size:clamp(30px,5vw,54px);line-height:1.04;letter-spacing:-.03em;color:var(--navy);text-wrap:balance;max-width:20ch}
+.mx-h.sm{font-size:clamp(26px,3.6vw,38px)}
+.mx-h em{font-style:normal;background:linear-gradient(transparent 64%,rgba(247,195,59,.6) 0)}
+.mx-h.light{color:#fff}.mx-h.light em{background:none;color:var(--gold)}
+.mx-lede{margin:12px 0 0;font-size:16.5px;line-height:1.6;color:var(--ink2);max-width:58ch}
+.mx-intro{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(20px,5vw,56px);align-items:center}
+.mx-ticks{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px}
+.mx-ticks li{position:relative;padding-left:30px;display:grid;gap:1px}
+.mx-ticks li::before{content:"";position:absolute;left:2px;top:.4em;width:13px;height:7px;border-left:3px solid var(--gold-d);border-bottom:3px solid var(--gold-d);transform:rotate(-45deg)}
+.mx-ticks b{font-size:15.5px;color:var(--navy)}.mx-ticks span{font-size:14px;color:var(--muted)}
+.mx-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mx-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.mx-mosaic img:first-child{grid-column:1/-1;aspect-ratio:16/10}.mx-mosaic img:not(:first-child){aspect-ratio:1}
+.mx-svcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.mx-svc{background:#fff;border:1px solid #E6DCCB;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .3s,box-shadow .3s;min-width:0}
+.mx-svc:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(247,195,59,.6),0 12px 36px -10px rgba(20,48,74,.35)}
+.mx-pic{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--navy);display:block}
+.mx-pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.mx-svc:hover .mx-pic img{transform:scale(1.05)}
+.mx-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,32,50,.85),rgba(14,32,50,0) 55%)}
+.mx-on{position:absolute;left:14px;bottom:12px;z-index:1;color:#fff;font-family:var(--mono2);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.mx-on::before{content:"";width:18px;height:2px;background:var(--gold)}
+.mx-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
+.mx-stat{display:flex;align-items:baseline;gap:8px}.mx-stat b{font-family:var(--disp);font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--navy)}.mx-stat small{color:var(--muted);font-size:13px}
+.mx-t{font-family:var(--disp);font-weight:700;font-size:17px;color:var(--navy)}
+.mx-li{position:relative;padding-left:16px;font-size:14px;color:var(--muted)}.mx-li::before{content:"";position:absolute;left:2px;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.mx-more{margin-top:auto;padding-top:8px;font-weight:700;color:var(--sky)}
+.mx-call{background:linear-gradient(150deg,var(--navy),#1F4A70);color:#fff;border:0;justify-content:center;position:relative;overflow:hidden}
+.mx-call::after{content:"";position:absolute;width:300px;height:300px;right:-130px;bottom:-170px;border-radius:50%;border:8px solid var(--gold);border-left-color:transparent;border-bottom-color:transparent;opacity:.5}
+.mx-call .mx-body{gap:12px;justify-content:center;padding:24px}.mx-call span{color:#DCE6EF;font-size:14.5px;line-height:1.55}
+.mx-big{font-family:var(--disp);font-size:44px;font-weight:800;color:var(--gold);letter-spacing:-.03em;line-height:1}
+.mx-call .mx-more{color:var(--gold)}
+.mx-dark{background:var(--navy);color:#E6EEF2;margin-top:clamp(40px,8vw,80px);padding-block:clamp(40px,8vw,76px);background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px}
+.mx-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:26px;counter-reset:st}
+.mx-step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden}
+.mx-step img{aspect-ratio:16/10;width:100%;object-fit:cover}
+.mx-step div{padding:14px 16px 18px;display:grid;gap:6px}
+.mx-step div::before{counter-increment:st;content:"0" counter(st);font-family:var(--mono2);font-size:12px;color:var(--gold);letter-spacing:.14em}
+.mx-step b{font-family:var(--disp);font-size:17px;color:#fff}.mx-step p{margin:0;font-size:14px;line-height:1.55;color:#B4C4D3}
+.mx-faq{max-width:780px}
+.qa{border:1px solid #E6DCCB;border-radius:12px;background:#fff;margin-top:10px}
+.qa summary{cursor:pointer;padding:15px 16px;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:14px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";color:var(--gold-d);font-size:20px;line-height:1}.qa[open] summary::after{content:"–"}
+.qa .ans{padding:0 16px 16px;color:var(--ink2);font-size:14.5px;line-height:1.6}
+.mx-faq .mx-h{margin-bottom:10px}
+.mx-foot{background:#1B3A58;color:#DCE6EF;margin-top:clamp(40px,8vw,80px);padding-block:44px 30px}
+.mx-fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:26px}
+.mx-fb{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:19px;color:#fff;margin-bottom:10px}
+.mx-fg p{margin:0;font-size:14px;line-height:1.6;color:#B4C4D3;max-width:40ch}
+.mx-fg h4{margin:0 0 10px;font-family:var(--mono2);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.mx-fg ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}.mx-fg a{color:#DCE6EF;text-decoration:none;font-size:14.5px}.mx-fg a:hover{color:var(--gold)}
+.mx-legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);padding-top:16px;font-size:12.5px!important;max-width:none!important}
+@media (max-width:900px){.mx-svcs{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-fg{grid-template-columns:1fr 1fr}}
+@media (max-width:759px){
+ .mx-intro{grid-template-columns:1fr}.mx-mosaic{display:none}
+ .mx-svcs,.mx-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-left:-16px;margin-right:-16px;padding:2px 16px 8px;scrollbar-width:none}
+ .mx-svcs::-webkit-scrollbar,.mx-steps::-webkit-scrollbar{display:none}
+ .mx-svc,.mx-step{flex:0 0 78%;scroll-snap-align:start}
+ .mx-steps .mx-step img{aspect-ratio:2/1}
+ .mx-dark .mx-w{padding-left:16px;padding-right:16px}
+ .mx-hero{min-height:0}
+ .mx-fg{grid-template-columns:1fr 1fr;gap:18px}.mx-fg>div:first-child{grid-column:1/-1}
+ .mx-foot{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+}
+
+@media (max-width:759px){
+ .mx-sec{padding-top:26px}
+ .mx-foot{padding-block:26px 18px!important;margin-top:30px}
+ .mx-fg{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.mx-fg>div:first-child p{display:none}.mx-fb{margin:0}
+ .mx-fg a{font-size:13px}.mx-fg ul{gap:5px}
+ .mx-v-home .trust-p,#v-home .trust-p{display:none}
+ #v-home .trust{margin-top:14px}
+ #v-home .mx-sec .mx-lede{display:none}
+ .mx-ticks{gap:8px;margin-top:14px}.mx-ticks span{font-size:13px}
+ .pipe{gap:6px}.pipe small{font-size:12.5px;line-height:1.35}
+ .mx-dark{margin-top:30px;padding-block:30px}
+ .qa summary{padding:12px 14px}
+}
+@media (max-width:759px){.mx-hero .hero-in{padding-top:34px;padding-bottom:26px}.mx-ctas{margin-top:16px}.mx-btn{padding:12px 18px}.mx-hero .hsearch{margin-top:18px}}
+
+#v-home{padding-top:0!important;gap:0!important}
+.mx-sec{display:grid;gap:12px;align-content:start}
+.mx-sec.mx-intro{display:grid}
+.mx-sec .sec{margin-top:6px;align-items:end}
+.mx-sec .sec-note{margin:-4px 0 0}
+.mx-sec .mx-h.sm{margin-top:0}
+.mx-sec>.mx-ey{margin-bottom:-2px}
+@media (max-width:759px){.mx-sec{gap:8px}.qa{margin-top:6px}#v-home .sec-note{display:none}.mx-faq .mx-h{margin-bottom:4px}.swipe-hint{margin:0}}
+.mx-st{margin-left:6px}
 </style>
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
@@ -565,12 +691,15 @@ h1,h2,h3{text-wrap:balance}
 <main id="main">
 <!-- HOME: the short version. Today's best picks, the growth-path blocks, what you're watching, what changed. -->
 <section class="view" id="v-home" aria-labelledby="hTitle">
-  <div class="hero2 bleed">
+  <div class="mx-util bleed"><div class="mx-w"><span><i class="mx-dot"></i>Updated every morning · <b id="uCount">every rural block in Australia</b></span><span class="mx-ul"><a href="#insights">Market pulse</a><a href="#saved">My rules</a><a href="#more">Check a listing</a></span></div></div>
+  <div class="hero2 bleed mx-hero">
     <img class="hero-art hero-photo" src="media/hero.jpg" alt="Rolling green grazing country with a tall gum tree under a big sky" fetchpriority="high">
+    <div class="mx-grid" aria-hidden="true"></div>
     <div class="hero-in">
-      <p class="ey">All of Australia · rural blocks 10 acres and up</p>
+      <span class="mx-live"><i class="mx-dot"></i>Scanned today<span class="mx-st"> · QLD · NSW · VIC · SA · WA · TAS · NT</span></span>
       <h2 id="hTitle">Land you'll love. Land that <em>grows</em>.</h2>
-      <p class="hsub">Every rural block for sale, scored for long-term growth, priced against real sales and checked against your must-haves: a real town close by, water, and things to do.</p>
+      <p class="hsub">Every rural block of 10 acres and up, scored for long-term growth, priced against real sales and checked for what matters: a real town close by, water, and things to do.</p>
+      <div class="mx-ctas"><a class="mx-btn" href="#search" data-preset="star">See top picks</a><a class="mx-btn line" href="#search">Browse every block</a></div>
       <form class="hsearch" id="hSearch" role="search">
         <label><span>Where</span><input id="hq" placeholder="Town, postcode or council"></label>
         <label><span>Up to</span><select id="hmax"><option value="0">Any price</option><option value="300000">$300k</option><option value="500000">$500k</option><option value="750000">$750k</option><option value="1000000">$1M</option><option value="2000000">$2M</option></select></label>
@@ -579,41 +708,67 @@ h1,h2,h3{text-wrap:balance}
     </div>
     <span class="hero-tag">Photo: Carl Davies, CSIRO · CC BY 3.0</span>
   </div>
+  <div class="mx-src bleed"><div class="mx-w"><small>Built on public data from</small><span>Farmbuy</span><span>Farm Property</span><span>NSW Valuer General</span><span>QLD Valuer General</span><span>Bendigo Bank</span><span>OpenStreetMap</span><span>Bureau of Meteorology</span></div></div>
   <div class="band bleed"><div class="facts" id="facts"></div></div>
-  <div class="ways">
-    <a class="way" href="#search" data-preset="star"><img src="media/cattle.jpg" alt="Cattle in green paddocks at Tenterfield, New South Wales" loading="lazy"><span class="way-in"><b>Standouts</b><small>Tick every must-have, high Growth score, priced under similar blocks.</small></span></a>
-    <a class="way" href="#search" data-preset="path"><img src="media/range.jpg" alt="Cattle grazing below a misty mountain range" loading="lazy"><span class="way-in"><b>On a growth path</b><small>The tree-change belt and land next to future suburbs.</small></span></a>
-    <a class="way" href="#search" data-preset="ok"><img src="media/gums.jpg" alt="Gum trees and cattle on lush pasture near Bega" loading="lazy"><span class="way-in"><b>Ticks your must-haves</b><small>A real town close by, water, and things to do.</small></span></a>
-    <a class="way" href="#search" data-preset="great"><img src="media/dam.jpg" alt="Farm with a dam, paddocks and bushland" loading="lazy"><span class="way-in"><b>Great deals</b><small>Asking well under what similar blocks ask.</small></span></a>
+
+  <div class="mx-sec mx-intro">
+    <div><p class="mx-ey">What you're after</p><h2 class="mx-h">A real town close by, water, and <em>things to do</em>.</h2>
+      <p class="mx-lede">Every block is checked against the four things that make land worth owning, and growing in value.</p>
+      <ul class="mx-ticks"><li><b>A real town within 40 minutes</b><span>Supermarket, hospital and a 10,000+ town, by real drive time</span></li><li><b>Things to do</b><span>Wineries, national parks and holiday towns like Stanthorpe</span></li><li><b>Water</b><span>Creek or river frontage, dams, bores and reliable rain</span></li><li><b>Cabin potential</b><span>Zoning, holiday stays nearby and room for a cabin or two</span></li></ul></div>
+    <div class="mx-mosaic"><img src="media/gums.jpg" alt="Gum trees and cattle on lush pasture near Bega" loading="lazy"><img src="media/dam.jpg" alt="Farm with a dam, paddocks and bushland" loading="lazy"><img src="media/cattle.jpg" alt="Cattle in green paddocks at Tenterfield" loading="lazy"></div>
   </div>
-  <div class="sec"><h3>★ Top picks</h3><a href="#search" data-preset="star">See all</a></div>
-  <p class="sec-note">Tick every must-have, score high for growth, and priced under similar blocks.</p>
-  <div class="pcards" id="hStars"></div>
-  <div class="sec"><h3>On a growth path</h3><a href="#search" data-preset="path">See all</a></div>
-  <p class="sec-note">Cheap areas in the tree-change belt, or next to land the state has set aside for future suburbs.</p>
-  <div class="pcards" id="hPath"></div>
-  <div id="hWatchWrap" hidden><div class="sec"><h3>☆ Watching</h3><a href="#saved">See all</a></div><div class="rows" id="hWatch"></div></div>
-  <div class="sec"><h3>What changed</h3></div>
-  <div class="tiles" id="hTiles"></div>
-  <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
-  <div class="layer" id="hL2"><span class="ln">02</span><b>Look closer</b><small>The market in charts: where the blocks are, what they cost, how they score.</small></div>
-  <div class="chg" id="hCharts"></div><p class="swipe-hint">Swipe for more charts →</p>
-  <div class="pband bleed"><img src="media/dam2.jpg" alt="A farm dam below a slope of tall gum trees" loading="lazy">
-    <div class="pband-in"><p class="ey">Our approach</p><h3>Buy where the growth is going, not where it's been.</h3><a class="cta2" href="#search" data-preset="path">See blocks on a growth path</a></div>
-    <span class="hero-tag">Photo: Nick Pitsas, CSIRO · CC BY 3.0</span></div>
-  <div class="layer"><span class="ln">03</span><b>How it works</b><small>For the detail-minded: the method, the tests and where every number comes from.</small></div>
-  <div class="intro2"><h3>Most land sites show you what's cheap. This shows you what will grow.</h3>
-    <p>The Growth score is tested on 25 years of real sales in every state: cheap areas that hadn't boomed yet, in reach of a city or a holiday town, grew the most. Every block also gets a likely sale price, an opening offer and a walk-away price.</p></div>
-  <div class="how">
-    <div class="how-i"><span class="how-n">01</span><b>Every block, every day</b><p>Every rural block of 10 acres and up on Farmbuy and Farm Property, scanned daily, with price cuts and sales tracked.</p></div>
-    <div class="how-i"><span class="how-n">02</span><b>Scored for growth</b><p>Tested on 25 years of real sales in every state: cheap areas near a city or a holiday town that hadn't boomed yet grew the most.</p></div>
-    <div class="how-i"><span class="how-n">03</span><b>Priced against real sales</b><p>A likely sale price from similar blocks that sold, plus an opening offer and a price to walk away at.</p></div>
+
+  <div class="mx-sec">
+    <p class="mx-ey">Ways to search</p><h2 class="mx-h">Start with the <em>shortlist</em>.</h2>
+    <div class="mx-svcs">
+      <a class="mx-svc" href="#search" data-preset="star"><span class="mx-pic"><img src="media/cattle.jpg" alt="" loading="lazy"><span class="mx-on">Standouts</span></span><span class="mx-body"><span class="mx-stat"><b data-cnt="star">–</b><small>blocks today</small></span><span class="mx-t">Tick everything, priced well</span><span class="mx-li">Every must-have ticked</span><span class="mx-li">High Growth score</span><span class="mx-li">Asking under similar blocks</span><span class="mx-more">See Standouts →</span></span></a>
+      <a class="mx-svc" href="#search" data-preset="path"><span class="mx-pic"><img src="media/range.jpg" alt="" loading="lazy"><span class="mx-on">Growth path</span></span><span class="mx-body"><span class="mx-stat"><b data-cnt="path">–</b><small>blocks today</small></span><span class="mx-t">Where growth is heading</span><span class="mx-li">Cheap, 35–90 min from a city</span><span class="mx-li">Next to land set aside for suburbs</span><span class="mx-li">Rezonings nearby</span><span class="mx-more">See growth path →</span></span></a>
+      <a class="mx-svc" href="#search" data-preset="ok"><span class="mx-pic"><img src="media/gums.jpg" alt="" loading="lazy"><span class="mx-on">Must-haves</span></span><span class="mx-body"><span class="mx-stat"><b data-cnt="ok">–</b><small>blocks today</small></span><span class="mx-t">Town, water, things to do</span><span class="mx-li">Real town within 40 min</span><span class="mx-li">Water on or near the block</span><span class="mx-li">Parks, wineries, holiday towns</span><span class="mx-more">See must-haves →</span></span></a>
+      <a class="mx-svc" href="#search" data-preset="great"><span class="mx-pic"><img src="media/dam.jpg" alt="" loading="lazy"><span class="mx-on">Great deals</span></span><span class="mx-body"><span class="mx-stat"><b data-cnt="great">–</b><small>blocks today</small></span><span class="mx-t">Asking well under similar blocks</span><span class="mx-li">Priced against real sales</span><span class="mx-li">Opening offer and walk-away price</span><span class="mx-li">Price cuts tracked daily</span><span class="mx-more">See great deals →</span></span></a>
+      <a class="mx-svc mx-call" href="#saved"><span class="mx-body"><span class="mx-ey light">Alerts</span><b class="mx-big">Your rules.</b><span>Set your price, size, distance to town and rain. The app tells you when a new block matches.</span><span class="mx-more">Set my rules →</span></span></a>
+    </div>
   </div>
-  <div class="trust">
-    <div><h3 class="trust-h">Checked before it reaches you.</h3><p class="trust-p">Every scan has to pass its checks before this page updates. If anything looks wrong, the last good version stays up.</p></div>
-    <div class="dpanel" aria-label="Last data check"><b class="dp-h">Last data check</b><span class="dp-when" id="dpWhen"></span><ul class="dp-list" id="dpList"></ul></div>
+
+  <div class="mx-sec">
+    <div class="sec"><div><p class="mx-ey">Today's top picks</p><h2 class="mx-h sm">The best blocks <em>right now</em>.</h2></div><a href="#search" data-preset="star">See all</a></div>
+    <p class="sec-note">Tick every must-have, score high for growth, and priced under similar blocks.</p>
+    <div class="pcards" id="hStars"></div>
+    <div class="sec"><h3>On a growth path</h3><a href="#search" data-preset="path">See all</a></div>
+    <p class="sec-note">Cheap areas in the tree-change belt, or next to land the state has set aside for future suburbs.</p>
+    <div class="pcards" id="hPath"></div>
+    <div id="hWatchWrap" hidden><div class="sec"><h3>☆ Watching</h3><a href="#saved">See all</a></div><div class="rows" id="hWatch"></div></div>
+    <div class="sec"><h3>What changed</h3></div>
+    <div class="tiles" id="hTiles"></div>
+    <a class="pulse-mini" id="hPulse" href="#insights" hidden></a>
   </div>
-  <div class="chg" id="hMethod"></div><p class="swipe-hint">Swipe for more →</p>
+
+  <div class="mx-sec" id="hL2"><p class="mx-ey">02 · Look closer</p><h2 class="mx-h">The market <em>in charts</em>.</h2><p class="mx-lede">Where the blocks are, what they cost and how they score. Tap any bar for the detail.</p>
+    <div class="chg" id="hCharts"></div><p class="swipe-hint">Swipe for more charts →</p></div>
+
+  <div class="mx-dark bleed"><div class="mx-w">
+    <p class="mx-ey light">How it works</p><h2 class="mx-h light">From listing to score, <em>every morning</em>.</h2>
+    <div class="mx-steps">
+      <div class="mx-step"><img src="media/range.jpg" alt="" loading="lazy"><div><b>Every block, every day</b><p>Every rural block of 10 acres and up on Farmbuy and Farm Property, with price cuts and sales tracked.</p></div></div>
+      <div class="mx-step"><img src="media/gums.jpg" alt="" loading="lazy"><div><b>Checked where it sits</b><p>Real drive times to towns and hospitals, water, rain, slope, flood, fire and zoning for each block.</p></div></div>
+      <div class="mx-step"><img src="media/cattle.jpg" alt="" loading="lazy"><div><b>Scored for growth</b><p>Tested on 25 years of sales: cheap areas near a city or holiday town that hadn't boomed yet grew most.</p></div></div>
+      <div class="mx-step"><img src="media/dam2.jpg" alt="" loading="lazy"><div><b>Priced against sales</b><p>A likely sale price from the most similar blocks, plus an opening offer and a walk-away price.</p></div></div>
+    </div></div></div>
+
+  <div class="mx-sec"><p class="mx-ey">03 · The detail</p><h2 class="mx-h">Checked before it <em>reaches you</em>.</h2>
+    <div class="trust">
+      <div><p class="trust-p">Every scan has to pass its data and page checks before this site updates. If anything looks wrong, the last good version stays up. Below: the daily process, how accurate the prices are, what the Growth score rewards and where the data comes from.</p></div>
+      <div class="dpanel" aria-label="Last data check"><b class="dp-h">Last data check</b><span class="dp-when" id="dpWhen"></span><ul class="dp-list" id="dpList"></ul></div>
+    </div>
+    <div class="chg" id="hMethod"></div><p class="swipe-hint">Swipe for more →</p></div>
+
+  <div class="mx-sec mx-faq"><p class="mx-ey">Questions</p><h2 class="mx-h">Plain answers.</h2>
+    <details class="qa"><summary>What is the Growth score?</summary><div class="ans">A score out of 100 for how likely a block's area is to grow in value. It rewards cheap areas that haven't boomed yet, being near a city or holiday town, water, and a growing population. It was tested on 25 years of real sales in every state. 60 or more is rare and strong.</div></details>
+    <details class="qa"><summary>How accurate is the likely sale price?</summary><div class="ans">On recent sales it hadn't seen, it came within 20% about 4 times in 10 and within 35% about 6 times in 10. Rural land is hard to price, so use it as a guide for your opening offer and check the agent's recent sales nearby.</div></details>
+    <details class="qa"><summary>Where does the data come from?</summary><div class="ans">Listings from Farmbuy and Farm Property, sales from the NSW Valuer General and recent sold listings, growth history from Bendigo Bank and the QLD Valuer General, and maps from the states, OpenStreetMap and the Bureau of Meteorology. All free and public.</div></details>
+    <details class="qa"><summary>Can I put a cabin on a block?</summary><div class="ans">Each block page shows its zone and what the state's rules usually allow, plus holiday stays nearby. Always ring the council before you buy: rules differ between councils.</div></details>
+    <details class="qa"><summary>How often is it updated?</summary><div class="ans">Every morning. New listings, price cuts and sales show up the day they appear.</div></details>
+    <details class="qa"><summary>Is this financial advice?</summary><div class="ans">No. It's a research tool to find blocks worth a closer look. Get a valuation, a title search and council advice before you buy.</div></details>
+  </div>
 </section>
 
 <!-- SEARCH: one place to find any block. Quick filters up top, more filters behind a button, compact rows. -->
@@ -810,6 +965,13 @@ h1,h2,h3{text-wrap:balance}
 <!-- BLOCK: one block, everything about it, in clear sections. -->
 <section class="view" id="v-compare" hidden aria-label="Compare blocks"><div id="cmp"></div></section>
 <section class="view" id="v-block" hidden aria-label="Block details"><div id="bp"></div></section>
+<footer class="mx-foot bleed"><div class="mx-w mx-fg">
+  <div><b class="mx-fb"><span class="logo" aria-hidden="true"></span>Acreage Finder</b><p>Every rural block of 10 acres and up in Australia, scored for growth and priced against real sales. Updated every morning.</p></div>
+  <div><h4>Find</h4><ul><li><a href="#search" data-preset="star">Standouts</a></li><li><a href="#search" data-preset="path">Growth path</a></li><li><a href="#search" data-preset="ok">Must-haves</a></li><li><a href="#search" data-preset="great">Great deals</a></li></ul></div>
+  <div><h4>Learn</h4><ul><li><a href="#insights">Market pulse</a></li><li><a href="#insights">Growth by area</a></li><li><a href="#more">Before you buy</a></li><li><a href="#more">Check any listing</a></li></ul></div>
+  <div><h4>Your land</h4><ul><li><a href="#saved">Saved blocks</a></li><li><a href="#saved">My rules and alerts</a></li><li><a href="#compare">Compare blocks</a></li></ul></div>
+  <p class="mx-legal">Not financial advice. Prices and scores are estimates from public data: check with the agent, the council and a valuer before you buy. Photos: CSIRO and Wikimedia Commons, free licences.</p>
+</div></footer>
 </main>
 
 <a class="cmpbar" id="cmpbar" href="#compare" hidden></a>
@@ -1623,7 +1785,10 @@ const SIZES=[["10–25 ac",10,25],["25–50 ac",25,50],["50–100 ac",50,100],["
     const r=t.getBoundingClientRect(),w=tip.offsetWidth;tip.style.left=Math.max(8,Math.min(innerWidth-w-8,(e.clientX||r.left+r.width/2)-w/2))+"px";tip.style.top=Math.max(8,r.top-tip.offsetHeight-8)+"px"};
   document.addEventListener("pointerover",show);document.addEventListener("pointerdown",show);addEventListener("scroll",()=>tip.hidden=true,{passive:true})})();
 
-function homeCharts(){
+function homeCounts(){const A=L.filter(x=>!gone(x)),c={star:A.filter(x=>x.gstar).length,path:A.filter(x=>x.gx&&x.gx.path&&x.gx.path.length).length,ok:A.filter(x=>x.gok).length,great:A.filter(x=>x.v==="great").length};
+  document.querySelectorAll("[data-cnt]").forEach(e=>e.textContent=(c[e.dataset.cnt]||0).toLocaleString("en-AU"));
+  const u=$("uCount");if(u)u.textContent=A.length.toLocaleString("en-AU")+" rural blocks for sale"}
+function homeCharts(){homeCounts();
   const A=L.filter(x=>!gone(x)),P=A.filter(x=>x.p&&x.ppa);
   const byS=STATES.map(s=>({s,n:A.filter(x=>x.s===s).length,ppa:median(P.filter(x=>x.s===s).map(x=>x.ppa)),med:median(P.filter(x=>x.s===s).map(x=>x.p))})).filter(o=>o.n);
   const big=[...byS].sort((a,b)=>b.n-a.n),cheap=[...byS].filter(o=>o.ppa).sort((a,b)=>a.ppa-b.ppa);
