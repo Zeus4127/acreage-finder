@@ -2,13 +2,9 @@
 
 Written 17 Nov 2026 so a fresh session can finish the app and website and get them running on their own.
 
-## First steps in the new session
-1. **Get the latest work.** The last commits on branch `ccr-37547555-829az5` may not be on GitHub yet (pushes kept failing with 403).
-   If the upload `acreage-finder-changes.bundle` is attached, apply it:
-   `git fetch acreage-finder-changes.bundle ccr-37547555-829az5:handover && git checkout ccr-37547555-829az5 && git merge --ff-only handover`
-   then push the branch. Check: `acreage/HANDOVER.md` exists and `git log` shows "Home rebuilt in the Mega Electrics structure".
-2. **Signing key for the Android app.** The owner keeps `acreage.jks` and `acreage.pass` privately. Never commit them.
-   Put them outside the repo (for example in `~/keys/`). Build with
+## First steps in a new session
+1. Clone `Zeus4127/acreage-finder` (main). Everything is there.
+2. **Signing key for the Android app.** The owner keeps `acreage.jks` and `acreage.pass` privately. Never commit them. Build with
    `cd acreage/android && ACREAGE_KEYSTORE=~/keys/acreage.jks ACREAGE_KSPASS="$(cat ~/keys/acreage.pass)" bash build.sh`
    The package must stay `au.zac.acreagefinder`, signed with the same key, or phones won't accept the update.
 3. **Read `acreage/CLAUDE.md`** and follow it: publish only on RELEASE PASSED, never loosen a check, back up before editing.
@@ -17,7 +13,7 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
 - Website: one page, `acreage/acreage.html`. It's built by `build_page.py` and released only through `./release.sh <out.html>`, which runs
   `checks/check_data.py` and `checks/check_page.js` (phone and desktop).
 - Live page: claude.ai artifact https://claude.ai/artifact/8MPdWAJGMGGWvUNDMK8AF8. It's private: share it from its Share menu.
-- Android app: `acreage/android/`, now version 3.1 (versionCode 21). Bump both for every build.
+- Android app: `acreage/android/`, now version 3.2 (versionCode 22). Bump both for every build.
 - Daily data: `run_daily.sh` (full scan, about 40 min) and `run_hourly.sh` (quick refresh). Both end with release.sh.
 - Methods and test results: `acreage/README.md`.
 
@@ -38,26 +34,27 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
   and "Likely sale price 99%" (it used to label the 70% as "Priced"). The growth rank no longer says "higher than 100%".
 - `run_daily.sh` and `run_hourly.sh` call `publish_site.sh` after RELEASE PASSED. It does nothing until `acreage/site-repo.txt` exists.
 
-## DANGER: do not touch this repo's GitHub Pages
-`bargain-finder` main already serves the caravan **Bargain Finder** website with GitHub Pages. Never switch this repo's Pages source and
-never publish Acreage Finder into it. Acreage Finder's public site needs its **own repo**.
+## DANGER: never publish into bargain-finder
+`bargain-finder` main serves the caravan **Bargain Finder** website with GitHub Pages. Acreage Finder has its own repo now; keep it that way.
+
+## Home of the project (from 17 Nov 2026)
+- Repo: **Zeus4127/acreage-finder**, branch **main**, folder `acreage/`. Work in `/home/user/acreage-finder`. Pushes work there.
+- The old copy on `bargain-finder` branch `ccr-37547555-829az5` is frozen (pushes to it are refused). Don't use it.
+- The app (3.2 and later) reads fresh data from `raw.githubusercontent.com/Zeus4127/acreage-finder/main/acreage/acreage-data.js`,
+  so every pushed refresh reaches installed apps.
+- Public website: `publish_site.sh` pushes the checked page to the `gh-pages` branch of acreage-finder after each RELEASE PASSED.
+  Owner turns it on once: repo Settings → Pages → Deploy from a branch → gh-pages, / (root). Address: https://zeus4127.github.io/acreage-finder/
 
 ## Still to do (all need the owner)
-1. **GitHub push is refused (403)** for git in every cloud session, old or new, even though the GitHub tools can read the repo. The Claude
-   GitHub App is installed on Zeus4127 but this repo is probably not in its repository list. Owner: GitHub → Settings → Applications →
-   Claude → Configure → Repository access → add `bargain-finder` (or All repositories). Then `git push -u origin ccr-37547555-829az5`.
-   Until then the app can't get fresh data (it reads `acreage/acreage-data.js` from this branch on raw.githubusercontent.com).
-2. **Public website:** owner creates an empty public repo (for example `acreage-finder`), turns on Pages for main, and gives the Claude app
-   access to it. Put its address in `acreage/site-repo.txt`. The refresh scripts then publish to it by themselves.
-   Until then, share the claude.ai artifact from its Share menu.
-3. **Phone alerts:** set the ntfy topic on the phone only. Never store it in a file.
-4. Real-phone test of app 3.0.
-5. Can't reach 85/100 within the rules: price accuracy (needs paid sales data) and coverage (Domain and realestate.com.au are off-limits).
+1. Turn on GitHub Pages as above.
+2. Install app 3.2 (older apps look at the old repo and won't get fresh data).
+3. Phone alerts: set the ntfy topic on the phone only. Never store it in a file.
+4. Can't reach 85/100 within the rules: price accuracy (needs paid sales data) and coverage (Domain and realestate.com.au are off-limits).
 
 ## Scheduled tasks (already running)
-- "Acreage Finder daily refresh (this chat)", 3:40 am Brisbane, and "Acreage Finder midday + evening refresh (weekdays)", 12:07 and 5:07 pm.
-  Both fire into session_018H8UUA2PVZm6rSG4DDuejH, which holds the signing key and the scratchpad page. If that session is ever lost,
-  re-create them for a new session and change the scratchpad path in their prompts.
+- "Acreage Finder daily refresh", 3:40 am Brisbane, and "midday + evening refresh (weekdays)", 12:07 and 5:07 pm. Both fire into
+  session_018H8UUA2PVZm6rSG4DDuejH, which holds the signing key (outside the repo) and the scratchpad page. If that session is ever lost,
+  re-create them for a new session, change the scratchpad path in their prompts, and note that a new signing key means reinstalling the app.
 
 ## Standing rules from the owner
 Free tools only. Never scrape Facebook, Gumtree, Domain or realestate.com.au; never get around bot checks. No keys, passwords or ntfy topics

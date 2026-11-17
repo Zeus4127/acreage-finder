@@ -22,7 +22,7 @@ import java.net.URL;
  *  fresh ones (refreshed hourly by the scanner) in the background each time it is opened. */
 public class MainActivity extends Activity {
     static final String BASE =
-        "https://raw.githubusercontent.com/Zeus4127/bargain-finder/ccr-37547555-829az5/acreage/";
+        "https://raw.githubusercontent.com/Zeus4127/acreage-finder/main/acreage/";
     static final String DATA_URL = BASE + "acreage-data.js";
     static final long CHECK_EVERY_MS = 15 * 60 * 1000L;
     WebView web;
