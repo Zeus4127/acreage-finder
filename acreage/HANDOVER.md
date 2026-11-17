@@ -17,7 +17,7 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
 - Website: one page, `acreage/acreage.html`. It's built by `build_page.py` and released only through `./release.sh <out.html>`, which runs
   `checks/check_data.py` and `checks/check_page.js` (phone and desktop).
 - Live page: claude.ai artifact https://claude.ai/artifact/8MPdWAJGMGGWvUNDMK8AF8. It's private: share it from its Share menu.
-- Android app: `acreage/android/`, now version 2.9 (versionCode 19). Bump both for every build.
+- Android app: `acreage/android/`, now version 3.0 (versionCode 20). Bump both for every build.
 - Daily data: `run_daily.sh` (full scan, about 40 min) and `run_hourly.sh` (quick refresh). Both end with release.sh.
 - Methods and test results: `acreage/README.md`.
 
@@ -30,17 +30,34 @@ Written 17 Nov 2026 so a fresh session can finish the app and website and get th
   middle ("Look closer"), and workings at the bottom ("How it works"). It has charts on Home, the block page, Search, Saved and Insights.
 - 17 Nov price test: 60 variants were tried and none beat the current method on the newest sales, so it was kept (see README).
 
-## Still to do to make it run on its own
-1. **Push to GitHub**, then publish the public site: push `/home/user/site-gh-pages` (or re-create it with `publish_site.sh`) to the
-   `gh-pages` branch. The owner turns on Pages under Settings → Pages → gh-pages. The site will be at https://zeus4127.github.io/bargain-finder/.
-2. **Add `publish_site.sh` to `run_daily.sh` and `run_hourly.sh`** after RELEASE PASSED, so the public site updates itself.
-3. **Point the app at the public site's data**, so the installed app gets fresh listings every day without a new APK.
-4. **Scheduled tasks.** The daily and midday/evening refresh tasks currently fire into the old session. Re-create them for the new
-   session (or a fresh session each time) once GitHub works.
-5. **Phone alerts.** These need an ntfy topic, which the owner sets on the phone. Never store it in a file.
-6. Restyle Search, Saved, Insights, More and the block page in the same Mega-style structure as Home (keep phone Home under 6,000 px).
-7. Real-phone test of the APK. Things that can't reach 85/100 within the rules: price accuracy (needs paid sales data) and coverage
-   (Domain and realestate.com.au are off-limits).
+## State on 17 Nov 2026 (after the Fable pass)
+- Website version 54 and app 3.0 (versionCode 20). Every screen now has the same business structure: a dark page header with key
+  numbers, then content. Search has a filter sidebar on desktop. The block page has a sticky side card (asking, likely sale, offer,
+  walk-away, buttons) on desktop.
+- Fixed: Home said "5,008 new in 3 days" (it counted the day tracking began; now 44). The data check panel now says "Asking price shown 70%"
+  and "Likely sale price 99%" (it used to label the 70% as "Priced"). The growth rank no longer says "higher than 100%".
+- `run_daily.sh` and `run_hourly.sh` call `publish_site.sh` after RELEASE PASSED. It does nothing until `acreage/site-repo.txt` exists.
+
+## DANGER: do not touch this repo's GitHub Pages
+`bargain-finder` main already serves the caravan **Bargain Finder** website with GitHub Pages. Never switch this repo's Pages source and
+never publish Acreage Finder into it. Acreage Finder's public site needs its **own repo**.
+
+## Still to do (all need the owner)
+1. **GitHub push is refused (403)** for git in every cloud session, old or new, even though the GitHub tools can read the repo. The Claude
+   GitHub App is installed on Zeus4127 but this repo is probably not in its repository list. Owner: GitHub → Settings → Applications →
+   Claude → Configure → Repository access → add `bargain-finder` (or All repositories). Then `git push -u origin ccr-37547555-829az5`.
+   Until then the app can't get fresh data (it reads `acreage/acreage-data.js` from this branch on raw.githubusercontent.com).
+2. **Public website:** owner creates an empty public repo (for example `acreage-finder`), turns on Pages for main, and gives the Claude app
+   access to it. Put its address in `acreage/site-repo.txt`. The refresh scripts then publish to it by themselves.
+   Until then, share the claude.ai artifact from its Share menu.
+3. **Phone alerts:** set the ntfy topic on the phone only. Never store it in a file.
+4. Real-phone test of app 3.0.
+5. Can't reach 85/100 within the rules: price accuracy (needs paid sales data) and coverage (Domain and realestate.com.au are off-limits).
+
+## Scheduled tasks (already running)
+- "Acreage Finder daily refresh (this chat)", 3:40 am Brisbane, and "Acreage Finder midday + evening refresh (weekdays)", 12:07 and 5:07 pm.
+  Both fire into session_018H8UUA2PVZm6rSG4DDuejH, which holds the signing key and the scratchpad page. If that session is ever lost,
+  re-create them for a new session and change the scratchpad path in their prompts.
 
 ## Standing rules from the owner
 Free tools only. Never scrape Facebook, Gumtree, Domain or realestate.com.au; never get around bot checks. No keys, passwords or ntfy topics

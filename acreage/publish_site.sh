@@ -1,27 +1,25 @@
 #!/bin/bash
-# Copy the checked site to the public website branch (gh-pages) of this repo and push it.
-# Run only after release.sh printed RELEASE PASSED. GitHub Pages serves the branch at
-#   https://zeus4127.github.io/bargain-finder/
+# Copy the checked Acreage Finder site to its OWN public website repo and push it.
+# Run only after release.sh printed RELEASE PASSED.
+#
+# IMPORTANT: this repo (bargain-finder) already serves the caravan Bargain Finder website from its main
+# branch with GitHub Pages. Never switch this repo's Pages setting and never publish Acreage Finder here.
+# Acreage Finder needs its own repo (for example Zeus4127/acreage-finder with Pages on main).
+# To turn publishing on, put that repo's address on one line in acreage/site-repo.txt, e.g.
+#   https://github.com/Zeus4127/acreage-finder
 set -eu
 cd "$(dirname "$0")"
-REPO="$(cd .. && pwd)"; WT="$REPO/../site-gh-pages"
-if [ ! -d "$WT/.git" ] && [ ! -f "$WT/.git" ]; then
-  if git -C "$REPO" ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
-    git -C "$REPO" fetch -q origin gh-pages && git -C "$REPO" worktree add -f "$WT" gh-pages
-  else
-    git -C "$REPO" worktree add -f --detach "$WT" && git -C "$WT" checkout -q --orphan gh-pages && git -C "$WT" rm -rq --cached . 2>/dev/null || true
-    find "$WT" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-  fi
-fi
-cp acreage.html "$WT/index.html"; cp acreage-data.js history-data.js aus-map.js alerts-feed.json "$WT/"; mkdir -p "$WT/media" && cp media/*.jpg media/CREDITS.md "$WT/media/"
+[ -s site-repo.txt ] || { echo "SITE: no public site repo set (see publish_site.sh); skipped"; exit 0; }
+URL="$(head -1 site-repo.txt | tr -d '[:space:]')"
+case "$URL" in *bargain-finder*) echo "SITE: refusing to publish into bargain-finder (it hosts the caravan site)"; exit 1;; esac
+WT="$(cd ../.. && pwd)/acreage-site-public"
+[ -d "$WT/.git" ] || git clone -q --depth 1 "$URL" "$WT" || { echo "SITE: can't reach $URL"; exit 1; }
+cp acreage.html "$WT/index.html"; cp acreage-data.js history-data.js aus-map.js alerts-feed.json "$WT/"
+mkdir -p "$WT/media" && cp media/*.jpg media/CREDITS.md "$WT/media/"
 touch "$WT/.nojekyll"
-cat > "$WT/robots.txt" <<'R'
-User-agent: *
-Disallow: /
-R
 cd "$WT"
 git add -A
 if git diff --cached --quiet; then echo "SITE: nothing new"; exit 0; fi
 git commit -qm "Site update $(date -u +%Y-%m-%dT%H:%M)Z (release checks passed)"
-for i in 1 2 3 4; do git push -q -u origin gh-pages && { echo "SITE PUBLISHED: https://zeus4127.github.io/bargain-finder/"; exit 0; }; sleep $((i*3)); done
+for i in 1 2 3 4; do git push -q origin HEAD && { echo "SITE PUBLISHED"; exit 0; }; sleep $((i*3)); done
 echo "SITE: push failed"; exit 1

@@ -678,6 +678,49 @@ h1,h2,h3{text-wrap:balance}
 .mx-sec>.mx-ey{margin-bottom:-2px}
 @media (max-width:759px){.mx-sec{gap:8px}.qa{margin-top:6px}#v-home .sec-note{display:none}.mx-faq .mx-h{margin-bottom:4px}.swipe-hint{margin:0}}
 .mx-st{margin-left:6px}
+
+/* fable pass: page bands, search sidebar, block page side card */
+section.view:not(#v-home):not(#v-block):not(#v-compare){padding-top:0!important}
+.pg-band{background:var(--navy);color:#fff;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px;margin-bottom:6px}
+.pg-band .mx-w{display:grid;grid-template-columns:minmax(0,1.2fr) auto;gap:18px 40px;align-items:end;padding-block:clamp(22px,4vw,44px)}
+.pg-h{margin:0;font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.6vw,50px);line-height:1.04;letter-spacing:-.03em;color:#fff}
+.pg-h em{font-style:normal;color:var(--gold)}
+.pg-l{margin:10px 0 0;color:#C3D1DE;font-size:15.5px;line-height:1.55;max-width:52ch}
+.pg-read{display:flex;gap:0}
+.pg-read:empty{display:none}
+.pg-read div{display:grid;gap:3px;padding:2px 22px;border-left:1px solid rgba(127,190,230,.25)}
+.pg-read div:first-child{padding-left:0;border-left:0}
+.pg-read b{font-family:var(--mono2);font-weight:600;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.03em;white-space:nowrap}
+.pg-read small{color:#A9BED0;font-size:12px;white-space:nowrap}
+@media (max-width:759px){.pg-band .mx-w{grid-template-columns:1fr;gap:12px;padding-block:18px}.pg-l{display:none}.pg-read div{padding:0 14px}.pg-read b{font-size:18px}.pg-read small{font-size:11px}#v-search .pg-read div:nth-child(4){display:none}}
+#bp{display:grid;gap:12px;min-width:0}
+#bp>*{min-width:0}
+.ab-sum,.ab-ag{display:none}
+@media (min-width:1000px){
+ #v-search{grid-template-columns:270px minmax(0,1fr);column-gap:24px;align-items:start}
+ #v-search>*{grid-column:2;min-width:0}
+ #v-search>.pg-band{grid-column:1/-1}
+ #v-search>#fPanel,#v-search>#fPanel[hidden]{display:grid!important;grid-column:1;grid-row:2/span 12;position:sticky;top:76px;align-self:start}
+ #fPanel .grid2{grid-template-columns:1fr}
+ #fPanel #fDone{display:none}
+ #fPanel::before{content:"Filters";font-family:var(--disp);font-weight:700;font-size:17px;color:var(--navy)}
+ #fBtn{display:none}
+ .searchbar{position:static}
+ #bp{grid-template-columns:minmax(0,1fr) 320px;column-gap:24px;align-items:start}
+ #bp>*{grid-column:1}
+ #bp>.bp-bar,#bp>.bp-hero{grid-column:1/-1}
+ #bp>.actbar{grid-column:2;grid-row:3/span 30;position:sticky;top:76px;bottom:auto;flex-direction:column;align-items:stretch;gap:10px;background:#fff;border:1px solid #E6DCCB;border-radius:16px;padding:20px;box-shadow:var(--shadow);z-index:5}
+ .ab-sum{display:grid;gap:4px;padding-bottom:12px;margin-bottom:2px;border-bottom:1px solid var(--line)}
+ .ab-sum>small{font-family:var(--mono2);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+ .ab-sum>b{font-family:var(--disp);font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--navy);line-height:1.05;margin-bottom:8px}
+ .ab-kv{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--muted);padding:5px 0}.ab-kv b{color:var(--ink);font-variant-numeric:tabular-nums}
+ #bp>.actbar .go{min-height:50px;flex:none}
+ #bp>.actbar .watch{min-height:44px}
+ .ab-ag{display:block;margin:4px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+ #bp .tabs2{top:62px}
+}
+@media (max-width:420px){.sumstrip{grid-template-columns:repeat(4,minmax(0,1fr))!important}.sumstrip div{padding:7px 8px;border-top:0!important;border-left:1px solid var(--line)!important}.sumstrip div:first-child{border-left:0!important}.sumstrip small{font-size:8.5px}.sumstrip b{font-size:12.5px}}
+@media (max-width:759px){#v-search .pg-band .mx-w{padding-block:14px}#v-search .pg-read{display:none}}
 </style>
 <div id="splash" role="status" aria-label="Loading listings"><div class="sp-in"><span class="logo"></span><b>Acreage Finder</b><small>Loading every rural block in Australia…</small><i class="sp-bar"></i></div></div>
 <header class="top"><div class="topin">
@@ -773,6 +816,7 @@ h1,h2,h3{text-wrap:balance}
 
 <!-- SEARCH: one place to find any block. Quick filters up top, more filters behind a button, compact rows. -->
 <section class="view" id="v-search" hidden aria-label="Search">
+  <div class="pg-band bleed"><div class="mx-w"><div><p class="mx-ey light">Search</p><h2 class="pg-h">Find your <em>block</em>.</h2><p class="pg-l">Every rural block of 10 acres and up. Filter by price, size and state, or start from a shortlist.</p></div><div class="pg-read" id="sRead"></div></div></div>
   <div class="searchbar">
     <input type="search" id="aq" placeholder="Town, postcode or agent" aria-label="Search by town, postcode or agent">
     <button type="button" class="fbtn" id="fBtn" aria-expanded="false" aria-controls="fPanel">Filters<span id="fCount"></span></button>
@@ -804,7 +848,7 @@ h1,h2,h3{text-wrap:balance}
 
 <!-- SAVED: blocks you're watching and the rules your phone alerts follow. -->
 <section class="view" id="v-saved" hidden aria-label="Saved">
-  <h2 class="vt">Saved</h2>
+  <div class="pg-band bleed"><div class="mx-w"><div><p class="mx-ey light">Saved</p><h2 class="pg-h">Your <em>shortlist</em>.</h2><p class="pg-l">Blocks you're watching, and the rules your alerts follow.</p></div><div class="pg-read" id="svRead"></div></div></div>
   <div class="sec"><h3>☆ Watching</h3></div>
   <div class="rows" id="watchList"></div>
   <div class="chg" id="savedCharts"></div>
@@ -837,7 +881,7 @@ h1,h2,h3{text-wrap:balance}
 
 <!-- INSIGHTS: the evidence. Market, growth history, how the scores work. Each topic folds away. -->
 <section class="view" id="v-insights" hidden aria-label="Insights">
-  <h2 class="vt">Insights</h2>
+  <div class="pg-band bleed"><div class="mx-w"><div><p class="mx-ey light">Insights</p><h2 class="pg-h">The market, <em>explained</em>.</h2><p class="pg-l">Is it time to buy, where growth has been, and how the scores are worked out.</p></div><div class="pg-read" id="iRead"></div></div></div>
   <div class="chg" id="iGlance"></div>
   <div class="layer"><span class="ln">02</span><b>Look closer</b><small>Market pulse, growth by area, sales and prices.</small></div>
   <details class="acc" open><summary>Is it time to buy? <span>Market pulse</span></summary><div class="accin" id="pulseBox">
@@ -922,7 +966,7 @@ h1,h2,h3{text-wrap:balance}
 
 <!-- MORE: tools and guides. -->
 <section class="view" id="v-more" hidden aria-label="More">
-  <h2 class="vt">More</h2>
+  <div class="pg-band bleed"><div class="mx-w"><div><p class="mx-ey light">Tools</p><h2 class="pg-h">Check, compare, <em>buy well</em>.</h2><p class="pg-l">Price any listing from any site, and what to ask and check before you buy.</p></div><div class="pg-read" id="mRead"></div></div></div>
   <div class="panel" id="checkBox"><h3>Check any listing</h3>
     <p class="what">Found a block on Domain, realestate.com.au, Gumtree or Facebook? Paste the ad's words here. I'll read the size, price and town, then price it against everything in this scan.</p>
     <textarea id="paste" placeholder="e.g. 160 acres bush block, Inglewood QLD 4387. Two dams, shed, power to boundary. $265,000"></textarea>
@@ -1024,7 +1068,7 @@ $("facts").lastChild.querySelector("b").textContent=live.length?"$"+Math.round(m
 const LATEST=(D.scanned||"").slice(0,10);
 const firstDays=[...new Set(L.map(x=>x.first).filter(Boolean))].sort();
 const tracking=firstDays.length>1;
-const isNew=x=>tracking&&x.first&&(Date.parse(LATEST)-Date.parse(x.first))<=3*864e5;
+const isNew=x=>tracking&&x.first&&x.first>firstDays[0]&&(Date.parse(LATEST)-Date.parse(x.first))<=3*864e5;
 function subLine(x){
   const bits=[];
   if(x.lots>=2)bits.push(`<b>Could split into ${x.lots} lots</b> under the council's ${x.minlot_ha>=1?x.minlot_ha+" ha":Math.round(x.minlot_ha*1e4)+" m²"} minimum lot size (zone ${esc(x.zone||"?")}${x.zone_name?" "+esc(x.zone_name):""}). ${x.minsrc==="vicdefault"?"That's the Victorian default for this zone; the council's schedule can set a different size, so check it. ":x.minsrc==="tasdefault"?"That's the Tasmanian state default for this zone; the council's Local Provisions Schedule can differ, so check it. ":x.minsrc==="waguide"?"That's a typical size for this zone in WA, only a guide; the council scheme sets the real one. ":""}Subdivision still needs council approval.`);
@@ -1526,7 +1570,7 @@ function renderHome(){
   $("hWatchWrap").hidden=!w.length;$("hWatch").innerHTML=w.slice(0,3).map(x=>row(x)).join("");
   const s90=SOLD.filter(c=>c.sold&&(Date.parse(LATEST)-Date.parse(c.sold))<=90*864e5);
   {const ok=(n)=>`<span class="ok">${n}</span>`;$("dpWhen").textContent=(($("scanned")||{}).textContent||"").replace(/^.*?·\s*/,"")||"today";
-  $("dpList").innerHTML=[["Blocks scanned",ok(L.length.toLocaleString("en-AU"))],["Priced",ok(Math.round(100*L.filter(x=>x.p).length/Math.max(1,L.length))+"%")],["Growth scored",ok(Math.round(100*L.filter(x=>x.gs!=null).length/Math.max(1,L.length))+"%")],["Sales to compare",ok(SOLD.length.toLocaleString("en-AU"))],["Page checks",ok("passed")]].map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join("")}
+  $("dpList").innerHTML=[["Blocks scanned",ok(L.length.toLocaleString("en-AU"))],["Asking price shown",ok(Math.round(100*L.filter(x=>x.p).length/Math.max(1,L.length))+"%")],["Likely sale price",ok(Math.round(100*L.filter(x=>x.fair).length/Math.max(1,L.length))+"%")],["Growth scored",ok(Math.round(100*L.filter(x=>x.gs!=null).length/Math.max(1,L.length))+"%")],["Sales to compare",ok(SOLD.length.toLocaleString("en-AU"))],["Page checks",ok("passed")]].map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join("")}
   $("hTiles").innerHTML=[["new",NEWL.length,"new in 3 days"],["drop",DROPS.length,"price drops"],["sold",s90.length,"sold in 90 days"]]
     .map(([k,n,t])=>`<button type="button" class="tile" data-tile="${k}"><b>${n.toLocaleString("en-AU")}</b><small>${t}</small></button>`).join("");
   const P=D.pulse&&D.pulse.latest;
@@ -1633,7 +1677,7 @@ function renderSaved(){
     if(!x)return `<div class="ri"><span class="gsb">–</span><span class="ri-main"><span class="ri-t">A block you saved is no longer listed</span><span class="ri-s">It has probably sold.</span></span><button type="button" class="watch" data-w="${esc(i)}" aria-pressed="true">Remove</button></div>`;
     const ch=x.p&&w.p&&x.p!==w.p?`<b>Price ${x.p<w.p?"dropped":"went up"}:</b> ${short(w.p)} → ${short(x.p)} since you saved it on ${esc(w.d)}.`:"";return row(x,ch)}).join("")
     :`<div class="empty-row">Nothing saved yet. Open any block and tap ☆ Save to keep an eye on its price.</div>`;
-  renderHome();savedCharts(ids);
+  renderHome();savedCharts(ids);try{savedRead()}catch(e){}
 }
 document.addEventListener("click",e=>{const w=e.target.closest(".watch");if(!w)return;e.preventDefault();const i=w.dataset.w,x=byId[i];
   if(WATCH[i])delete WATCH[i];else WATCH[i]={p:x&&x.p||null,d:(D.scanned||"").slice(0,10)};saveWatch();
@@ -1722,7 +1766,7 @@ function blockPage(x){
   </div>
   <div class="layer"><span class="ln">03</span><b>How we worked this out</b><small>The workings behind this block's numbers.</small></div>
   ${blockMethod(x)}
-  <div class="actbar"><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open the listing ↗</a><button type="button" class="watch" data-w="${esc(x.id)}" aria-pressed="${!!WATCH[x.id]}">${WATCH[x.id]?"★ Saved":"☆ Save"}</button><button type="button" class="watch cmpbtn" data-c="${esc(x.id)}" aria-pressed="${CMP.includes(String(x.id))}">${CMP.includes(String(x.id))?"✓ Comparing":"Compare"}</button></div>`;
+  <div class="actbar"><div class="ab-sum"><small>Asking</small><b>${x.p?short(x.p):"Price on request"}</b>${x.fair?`<div class="ab-kv"><span>Likely sale</span><b>${short(x.fair)}</b></div>`:""}${x.offer?`<div class="ab-kv"><span>Open your offer at</span><b>${short(x.offer)}</b></div><div class="ab-kv"><span>Walk away above</span><b>${short(x.walk)}</b></div>`:""}${x.gs!=null?`<div class="ab-kv"><span>Growth score</span><b>${x.gs}/100</b></div>`:""}</div><a class="go" href="${esc(x.u)}" target="_blank" rel="noopener">Open the listing ↗</a><button type="button" class="watch" data-w="${esc(x.id)}" aria-pressed="${!!WATCH[x.id]}">${WATCH[x.id]?"★ Saved":"☆ Save"}</button><button type="button" class="watch cmpbtn" data-c="${esc(x.id)}" aria-pressed="${CMP.includes(String(x.id))}">${CMP.includes(String(x.id))?"✓ Comparing":"Compare"}</button>${x.ag?`<p class="ab-ag">Listed by ${esc(x.ag)}</p>`:""}</div>`;
 }
 
 
@@ -1788,7 +1832,17 @@ const SIZES=[["10–25 ac",10,25],["25–50 ac",25,50],["50–100 ac",50,100],["
 function homeCounts(){const A=L.filter(x=>!gone(x)),c={star:A.filter(x=>x.gstar).length,path:A.filter(x=>x.gx&&x.gx.path&&x.gx.path.length).length,ok:A.filter(x=>x.gok).length,great:A.filter(x=>x.v==="great").length};
   document.querySelectorAll("[data-cnt]").forEach(e=>e.textContent=(c[e.dataset.cnt]||0).toLocaleString("en-AU"));
   const u=$("uCount");if(u)u.textContent=A.length.toLocaleString("en-AU")+" rural blocks for sale"}
-function homeCharts(){homeCounts();
+function pageReads(){
+  const A=L.filter(x=>!gone(x)),ro=a=>a.map(([v,l])=>`<div><b>${v}</b><small>${l}</small></div>`).join(""),n=v=>v.toLocaleString("en-AU");
+  $("sRead").innerHTML=ro([[n(A.length),"blocks for sale"],[n(NEWL.length),"new in 3 days"],[n(DROPS.length),"price cuts"],[n(A.filter(x=>x.gstar).length),"Standouts"]]);
+  const H=window.HISTORY_DATA,P=D.pulse&&D.pulse.latest;
+  if(H)$("iRead").innerHTML=ro([[money(H.national.median/2.471),"farmland per acre"],[H.national.cagr20+"%","a year, 20 years"],[P?esc(P.verdict.split(":")[0]):"–","market now"]]);
+  $("mRead").innerHTML=ro([[n(SOLD.length),"sales to compare"],[n(A.length),"blocks to compare"]]);
+  savedRead()}
+function savedRead(){const ids=Object.keys(WATCH),r=getRules(),ro=a=>a.map(([v,l])=>`<div><b>${v}</b><small>${l}</small></div>`).join("");
+  const ch=ids.filter(i=>byId[i]&&byId[i].p&&WATCH[i].p&&byId[i].p!==WATCH[i].p).length;
+  $("svRead").innerHTML=ro([[ids.length,"blocks watched"],[ch,"price changes"],[Object.keys(r||{}).length?L.filter(x=>!gone(x)&&matchRules(x,r)).length.toLocaleString("en-AU"):"–","match your rules"]])}
+function homeCharts(){homeCounts();pageReads();
   const A=L.filter(x=>!gone(x)),P=A.filter(x=>x.p&&x.ppa);
   const byS=STATES.map(s=>({s,n:A.filter(x=>x.s===s).length,ppa:median(P.filter(x=>x.s===s).map(x=>x.ppa)),med:median(P.filter(x=>x.s===s).map(x=>x.p))})).filter(o=>o.n);
   const big=[...byS].sort((a,b)=>b.n-a.n),cheap=[...byS].filter(o=>o.ppa).sort((a,b)=>a.ppa-b.ppa);
@@ -1838,7 +1892,7 @@ function priceRuler(x){
 function growthRank(x){
   if(x.gs==null)return "";const g=L.filter(o=>o.s===x.s&&o.gs!=null&&!gone(o)).map(o=>o.gs),bins=Array(10).fill(0);g.forEach(v=>bins[Math.min(9,Math.floor(v/10))]++);
   const beat=g.filter(v=>v<x.gs).length/Math.max(1,g.length);
-  return `<h4>Against other ${x.s} blocks</h4>${colsChart(bins,["0","20","40","60","80","100"],Math.min(9,Math.floor(x.gs/10)),(i,n)=>`Score ${i*10}–${i*10+9}: ${n} blocks${i===Math.min(9,Math.floor(x.gs/10))?" (this block)":""}`)}<p class="ch-n"><b>What it means:</b> this block scores higher than ${pct(beat)} of the ${g.length.toLocaleString("en-AU")} blocks for sale in ${x.s}.</p>`}
+  return `<h4>Against other ${x.s} blocks</h4>${colsChart(bins,["0","20","40","60","80","100"],Math.min(9,Math.floor(x.gs/10)),(i,n)=>`Score ${i*10}–${i*10+9}: ${n} blocks${i===Math.min(9,Math.floor(x.gs/10))?" (this block)":""}`)}<p class="ch-n"><b>What it means:</b> ${beat>=.995?`this is the highest-scoring of the ${g.length.toLocaleString("en-AU")} blocks for sale in ${x.s}.`:`this block scores higher than ${Math.min(99,Math.round(beat*100))}% of the ${g.length.toLocaleString("en-AU")} blocks for sale in ${x.s}.`}</p>`}
 function compsChart(x,comps){
   const c=comps.filter(o=>o.p&&o.a);if(!c.length||!x.ppa)return "";
   const it=[{l:"This block",v:x.ppa,hl:true,tip:`This block: ${money(x.ppa)} an acre (${acres(x.a)} for ${short(x.p)})`},...c.map(o=>({l:(o.sub||"Nearby").slice(0,16),v:o.p/o.a,tip:`${o.sub||""}: ${acres(o.a)} ${o.is_sold||o.sold?"sold":"asking"} ${short(o.p)}, ${money(o.p/o.a)} an acre`}))].sort((a,b)=>a.v-b.v);

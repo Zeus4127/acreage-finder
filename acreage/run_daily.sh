@@ -28,4 +28,4 @@ python3 -I -u drive_times.py || echo "Drive times step failed; carrying on"
 python3 -I -u growth.py || echo "Growth score step failed; carrying on"
 python3 -I -u pulse.py || echo "Market pulse step failed; carrying on"
 python3 -I -u alerts.py || echo "Alerts step failed; carrying on"
-./release.sh "${1:-acreage-finder.html}"   # builds, checks data and page; only a passing build replaces the page
+./release.sh "${1:-acreage-finder.html}" && { ./publish_site.sh || echo "SITE: not published (GitHub access needed); the checked page is still ready"; }   # builds, checks data and page; only a passing build replaces the page
