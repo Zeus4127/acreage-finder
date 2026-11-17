@@ -1,6 +1,60 @@
 {
 "alerts": [
 {
+"id": "fp40107",
+"when": "2026-11-17T18:24+00:00",
+"title": "New block for your rules: Austral Eden NSW",
+"text": "11 acres, asking $820,000, Growth 36/100, likely sale $918,000",
+"url": "https://www.farmproperty.com.au/property/40107/363-austral-eden-inner-road-austral-eden-nsw-2440",
+"def": 0,
+"m": {
+"p": 820000.0,
+"a": 10.7,
+"tk": 6,
+"ck": 318,
+"rain": 1186,
+"s": "NSW",
+"house": 1,
+"v": "good",
+"water": 0,
+"flood": 0,
+"veg": 0,
+"fire": 1,
+"stay": 1,
+"lots": 0,
+"gok": 0,
+"gs": 36,
+"star": 0
+}
+},
+{
+"id": "439244",
+"when": "2026-11-17T18:24+00:00",
+"title": "New block for your rules: Neville NSW",
+"text": "70 acres, asking $795,000, Growth 45/100, likely sale $866,000",
+"url": "https://farmbuy.com/670-kentucky-road-neville-nsw-2799-439244",
+"def": 0,
+"m": {
+"p": 795000.0,
+"a": 69.7,
+"tk": 27,
+"ck": 211,
+"rain": 830,
+"s": "NSW",
+"house": 1,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 0,
+"gs": 45,
+"star": 0
+}
+},
+{
 "id": "439137",
 "when": "2026-11-17T07:15+00:00",
 "title": "New block for your rules: Colebrook TAS",
@@ -3297,5 +3351,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-17T07:15+00:00"
+"updated": "2026-11-17T18:24+00:00"
 }
