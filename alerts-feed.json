@@ -1,6 +1,33 @@
 {
 "alerts": [
 {
+"id": "439395",
+"when": "2026-11-18T18:21+00:00",
+"title": "New block for your rules: Darraweit Guim VIC",
+"text": "53 acres, asking $1,500,000, Growth 47/100, likely sale $1,082,000",
+"url": "https://farmbuy.com/67-the-boreen-darraweit-guim-vic-3756-439395",
+"def": 0,
+"m": {
+"p": 1500000.0,
+"a": 53.0,
+"tk": 14,
+"ck": 73,
+"rain": 587,
+"s": "VIC",
+"house": 1,
+"v": "fair",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 47,
+"star": 0
+}
+},
+{
 "id": "fp78924",
 "when": "2026-11-18T07:15+00:00",
 "title": "New block for your rules: Dunmora QLD",
@@ -3783,5 +3810,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-18T07:15+00:00"
+"updated": "2026-11-18T18:21+00:00"
 }
