@@ -1,6 +1,60 @@
 {
 "alerts": [
 {
+"id": "439697",
+"when": "2026-11-20T18:23+00:00",
+"title": "New block for your rules: Yorklea NSW",
+"text": "138 acres, asking $850,000, Growth 40/100, likely sale $919,000",
+"url": "https://farmbuy.com/431-fogwells-road-yorklea-nsw-2470-439697",
+"def": 0,
+"m": {
+"p": 850000.0,
+"a": 137.5,
+"tk": 14,
+"ck": 118,
+"rain": 1066,
+"s": "NSW",
+"house": 0,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 1,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 40,
+"star": 0
+}
+},
+{
+"id": "411163",
+"when": "2026-11-20T18:23+00:00",
+"title": "New block for your rules: Oakdale QLD",
+"text": "101 acres, asking $990,000, Growth 39/100, likely sale $961,000",
+"url": "https://farmbuy.com/34-bellottis-road-oakdale-qld-4605-411163",
+"def": 0,
+"m": {
+"p": 990000.0,
+"a": 100.7,
+"tk": 9,
+"ck": 164,
+"rain": 676,
+"s": "QLD",
+"house": 1,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 0,
+"gs": 39,
+"star": 0
+}
+},
+{
 "id": "fp77612",
 "when": "2026-11-20T07:15+00:00",
 "title": "New block for your rules: Mount Mee QLD",
@@ -4566,5 +4620,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-20T07:15+00:00"
+"updated": "2026-11-20T18:23+00:00"
 }
