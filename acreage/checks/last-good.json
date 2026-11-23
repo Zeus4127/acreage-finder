@@ -1,11 +1,11 @@
 {
- "listings": 5446,
- "live": 5000,
- "priced": 4966,
- "scored": 4588,
- "musts": 1284,
+ "listings": 5441,
+ "live": 4992,
+ "priced": 4958,
+ "scored": 4584,
+ "musts": 1285,
  "standouts": 21,
  "bad_numbers": 0,
- "bytes": 9248698,
- "scanned": "2026-11-22T17:45+00:00"
+ "bytes": 9243967,
+ "scanned": "2026-11-23T02:12+00:00"
 }
