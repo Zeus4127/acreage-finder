@@ -1,12 +1,12 @@
 {
- "areas": 593,
- "median_multiple": 4.2,
+ "areas": 594,
+ "median_multiple": 4.3,
  "ten_x": 55,
  "base_rate": 9,
  "belt_areas": 60,
  "belt_rate": 23,
- "top_start": 3138,
- "other_start": 6597,
+ "top_start": 3191,
+ "other_start": 6594,
  "top": [
   [
    "Sussex Inlet",
@@ -21,12 +21,6 @@
    58721
   ],
   [
-   "Kemps Creek",
-   23.0,
-   53880,
-   1239247
-  ],
-  [
    "Bombay",
    22.2,
    1255,
@@ -37,6 +31,12 @@
    22.1,
    983,
    21751
+  ],
+  [
+   "Kemps Creek",
+   22.0,
+   53880,
+   1185528
   ],
   [
    "Roseberry Creek",
@@ -87,16 +87,16 @@
    47482
   ],
   [
-   "Rainbow Flat",
-   17.1,
-   5560,
-   94900
-  ],
-  [
    "Mulloon",
    16.9,
    3132,
    52886
+  ],
+  [
+   "Eunanoreenya",
+   16.6,
+   3796,
+   63043
   ]
  ]
 }

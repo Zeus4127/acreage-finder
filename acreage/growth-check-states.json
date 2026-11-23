@@ -4,7 +4,7 @@
  "tests": {
   "cheap_then_growth_2005_15": {
    "rank_match": 0.22,
-   "p": 0.0005,
+   "p": 0.001,
    "by_state": {
     "NSW": 0.32,
     "QLD": 0.39,
