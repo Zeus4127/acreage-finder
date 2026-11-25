@@ -1,6 +1,114 @@
 {
 "alerts": [
 {
+"id": "439973",
+"when": "2026-11-25T02:14+00:00",
+"title": "New block for your rules: Scotts Creek VIC",
+"text": "14 acres, asking $600,000, Growth 46/100, likely sale $767,000",
+"url": "https://farmbuy.com/199-cobden-port-campbell-road-scotts-creek-vic-3267-439973",
+"def": 0,
+"m": {
+"p": 600000.0,
+"a": 14.2,
+"tk": 13,
+"ck": 151,
+"rain": 793,
+"s": "VIC",
+"house": 1,
+"v": "great",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 46,
+"star": 0
+}
+},
+{
+"id": "371271",
+"when": "2026-11-25T02:14+00:00",
+"title": "New block for your rules: Mortlake VIC",
+"text": "10 acres, asking $380,000, likely sale $437,000",
+"url": "https://farmbuy.com/lot-7-pound-lane-mortlake-vic-3272-371271",
+"def": 0,
+"m": {
+"p": 380000.0,
+"a": 10.0,
+"tk": 9999,
+"ck": 9999,
+"rain": 0,
+"s": "VIC",
+"house": 0,
+"v": "great",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 0,
+"gs": 0,
+"star": 0
+}
+},
+{
+"id": "423383",
+"when": "2026-11-25T02:14+00:00",
+"title": "New block for your rules: Torryburn NSW",
+"text": "512 acres, asking $2,000,000, Growth 57/100, likely sale $1,668,000",
+"url": "https://farmbuy.com/526-torryburn-road-torryburn-nsw-2421-423383",
+"def": 0,
+"m": {
+"p": 2000000.0,
+"a": 512.0,
+"tk": 25,
+"ck": 70,
+"rain": 850,
+"s": "NSW",
+"house": 0,
+"v": "fair",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 57,
+"star": 0
+}
+},
+{
+"id": "439954",
+"when": "2026-11-25T02:14+00:00",
+"title": "New block for your rules: Isis River QLD",
+"text": "137 acres, asking $1,100,000, Growth 29/100, likely sale $1,216,000",
+"url": "https://farmbuy.com/27790-bruce-highway-isis-river-qld-4660-439954",
+"def": 0,
+"m": {
+"p": 1100000.0,
+"a": 136.6,
+"tk": 13,
+"ck": 216,
+"rain": 849,
+"s": "QLD",
+"house": 1,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 1,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 0,
+"gs": 29,
+"star": 0
+}
+},
+{
 "id": "fp78975",
 "when": "2026-11-24T07:15+00:00",
 "title": "Matches your rules: West Kempsey NSW",
@@ -5619,5 +5727,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-24T18:23+00:00"
+"updated": "2026-11-25T02:14+00:00"
 }
