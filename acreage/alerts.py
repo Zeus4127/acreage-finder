@@ -42,7 +42,7 @@ def main():
     now = datetime.now(timezone.utc)
     for why, r in new:
         feed["alerts"].insert(0, {"id": str(r["id"]), "when": now.isoformat(timespec="minutes"), "title": why + ": " + str(r.get("sub")) + " " + r["s"],
-            "text": f"{round(r['a'])} acres, asking ${r['p']:,.0f}" + (f", Growth {r['gs']}/100" if r.get("gs") is not None else "") + (f", likely sale ${r['fair']:,.0f}" if r.get("fair") else ""),
+            "text": f"{round(r['a'])} acres, " + (f"asking ${r['p']:,.0f}" if r.get('p') else "price on request") + (f", Growth {r['gs']}/100" if r.get("gs") is not None else "") + (f", likely sale ${r['fair']:,.0f}" if r.get("fair") else ""),
             "url": r.get("u") or "", "def": 0 if why == "New block for your rules" else 1,
             # the facts the phone needs to apply "My rules" itself (same rules as the page)
             "m": {"p": r.get("p") or 0, "a": r["a"], "tk": round(r["town"][1] * 1.3) if r.get("town") else 9999, "ck": round(r["city"][1] * 1.3) if r.get("city") else 9999,
