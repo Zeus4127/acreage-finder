@@ -1,6 +1,87 @@
 {
 "alerts": [
 {
+"id": "440194",
+"when": "2026-11-26T18:22+00:00",
+"title": "New block for your rules: Bamawm VIC",
+"text": "63 acres, asking $1,075,000, Growth 43/100, likely sale $871,000",
+"url": "https://farmbuy.com/1109-foster-road-bamawm-vic-3561-440194",
+"def": 0,
+"m": {
+"p": 1075000.0,
+"a": 63.0,
+"tk": 12,
+"ck": 77,
+"rain": 419,
+"s": "VIC",
+"house": 1,
+"v": "fair",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 1,
+"gs": 43,
+"star": 0
+}
+},
+{
+"id": "440211",
+"when": "2026-11-26T18:22+00:00",
+"title": "New block for your rules: Veteran QLD",
+"text": "43 acres, asking $2,600,000, Growth 37/100, likely sale $1,366,000",
+"url": "https://farmbuy.com/30-outlook-road-veteran-qld-4570-440211",
+"def": 0,
+"m": {
+"p": 2600000.0,
+"a": 42.6,
+"tk": 10,
+"ck": 82,
+"rain": 1080,
+"s": "QLD",
+"house": 1,
+"v": "over",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 1,
+"lots": 0,
+"gok": 1,
+"gs": 37,
+"star": 0
+}
+},
+{
+"id": "440204",
+"when": "2026-11-26T18:22+00:00",
+"title": "New block for your rules: Wooderson QLD",
+"text": "271 acres, asking $1,620,000, Growth 30/100, likely sale $1,798,000",
+"url": "https://farmbuy.com/557-wooderson-road-wooderson-qld-4680-440204",
+"def": 0,
+"m": {
+"p": 1620000.0,
+"a": 270.8,
+"tk": 26,
+"ck": 441,
+"rain": 802,
+"s": "QLD",
+"house": 1,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 0,
+"gs": 30,
+"star": 0
+}
+},
+{
 "id": "fp79016",
 "when": "2026-11-26T02:14+00:00",
 "title": "New block for your rules: Spring Creek QLD",
@@ -6105,5 +6186,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-26T02:14+00:00"
+"updated": "2026-11-26T18:22+00:00"
 }
