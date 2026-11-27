@@ -1,6 +1,87 @@
 {
 "alerts": [
 {
+"id": "439379",
+"when": "2026-11-27T18:22+00:00",
+"title": "New block for your rules: Yarloop WA",
+"text": "15 acres, asking $675,000, Growth 42/100, likely sale $1,521,000",
+"url": "https://farmbuy.com/254-clifton-road-yarloop-wa-6218-439379",
+"def": 0,
+"m": {
+"p": 675000.0,
+"a": 15.4,
+"tk": 16,
+"ck": 131,
+"rain": 850,
+"s": "WA",
+"house": 1,
+"v": "great",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 1,
+"stay": 1,
+"lots": 0,
+"gok": 0,
+"gs": 42,
+"star": 0
+}
+},
+{
+"id": "439348",
+"when": "2026-11-27T18:22+00:00",
+"title": "New block for your rules: Merriwa NSW",
+"text": "1010 acres, asking $1,590,000, Growth 29/100, likely sale $2,289,000",
+"url": "https://farmbuy.com/3615-coulsons-creek-road-merriwa-nsw-2329-439348",
+"def": 0,
+"m": {
+"p": 1590000.0,
+"a": 1010.0,
+"tk": 46,
+"ck": 216,
+"rain": 852,
+"s": "NSW",
+"house": 1,
+"v": "good",
+"water": 1,
+"flood": 0,
+"veg": 0,
+"fire": 1,
+"stay": 0,
+"lots": 4,
+"gok": 0,
+"gs": 29,
+"star": 0
+}
+},
+{
+"id": "440300",
+"when": "2026-11-27T18:22+00:00",
+"title": "New block for your rules: Wooderson QLD",
+"text": "142 acres, asking $1,089,000, Growth 34/100, likely sale $1,331,000",
+"url": "https://farmbuy.com/501-deep-creek-road-wooderson-qld-4680-440300",
+"def": 0,
+"m": {
+"p": 1089000.0,
+"a": 142.2,
+"tk": 39,
+"ck": 460,
+"rain": 741,
+"s": "QLD",
+"house": 1,
+"v": "great",
+"water": 1,
+"flood": 1,
+"veg": 0,
+"fire": 0,
+"stay": 0,
+"lots": 0,
+"gok": 0,
+"gs": 34,
+"star": 0
+}
+},
+{
 "id": "fp79036",
 "when": "2026-11-27T07:14+00:00",
 "title": "New block for your rules: . Noravale Clermont QLD",
@@ -6699,5 +6780,5 @@
 "url": "https://farmbuy.com/lot-24-hermitage-emuvale-road-yangan-qld-4371-420773"
 }
 ],
-"updated": "2026-11-27T07:14+00:00"
+"updated": "2026-11-27T18:22+00:00"
 }
